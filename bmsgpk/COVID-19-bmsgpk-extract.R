@@ -5,7 +5,7 @@ library(readr)
 library(dplyr)
 
 
-setwd("/home/at062084/DataEngineering/COVID-19/bmsgpk")
+#setwd("/home/at062084/DataEngineering/COVID-19/bmsgpk")
 
 #read manually maintained excel sheet
 #library(readxl)
