@@ -4,8 +4,8 @@ library(stringr)
 library(readr)
 library(dplyr)
 
-
-#setwd("/home/at062084/DataEngineering/COVID-19/bmsgpk")
+# set work dir here
+setwd("/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk")
 
 #read manually maintained excel sheet
 #library(readxl)
@@ -39,14 +39,14 @@ closeAll <- "</p>"
 
 # Stamp
 s <- str_extract(html, paste0(atConfirmed,".*",closeAll))
-t <- stringr::str_match(s,paste0("<strong>Stand ","([\\d\\s\\.,:]*)"," Uhr</strong>"))[2]
+t <- stringr::str_match(s,paste0("<strong>Stand ","([\\d\\s\\.,:]*)"," Uhr:</strong>"))[2]
 Stamp <- as.POSIXct(t, format="%d.%m.%Y, %H:%M", tz="CET")
 
 # Extract total number of Tested
 s <- str_extract(html, paste0(atTested,".*",closeAll))
 t <- str_match(s,paste0("</strong>","([\\d\\.]*)","</p>"))[,2]
 totTested <- as.integer(str_remove(t,"\\."))
-df[tR,"Stamp"] <- Stamp + hours(1)
+df[tR,"Stamp"] <- Stamp 
 df[tR,"Status"] <- "Tested"
 df[tR,"AT"] <- totTested
 
@@ -56,7 +56,7 @@ Bundeslaender <- data.frame(Name=c("Burgenland","K&auml;rnten","Nieder&ouml;ster
 
 # Extract number of Confirmed cases
 s <- str_extract(html, paste0(atConfirmed,".*",closeAll))
-df[cR,"Stamp"] <- Stamp + hours(1)
+df[cR,"Stamp"] <- Stamp 
 df[cR,"Status"] <- "Confirmed"
 for (bl in Bundeslaender$Name) {
   n <- as.integer(str_match(s,paste0(bl," \\(","(\\d*)","\\)"))[2])
@@ -67,8 +67,8 @@ df[cR,"AT"] <- sum(df[cR,c(Bundeslaender[,2])])
 
 # Extract number of Recovered cases
 s <- str_extract(html, paste0(atRecovered,".*",closeAll))
-nAT <- as.numeric(str_match(s,paste0("</strong>: (\\d*),"))[2])
-df[rR,"Stamp"] <- Stamp + hours(1)
+nAT <- as.numeric(str_match(s,paste0(":</strong> (\\d*),"))[2])
+df[rR,"Stamp"] <- Stamp 
 df[rR,"Status"] <- "Recovered"
 df[rR,"AT"] <- nAT
 for (bl in Bundeslaender$Name) {
@@ -81,7 +81,7 @@ for (bl in Bundeslaender$Name) {
 # Extract number of Deaths
 s <- str_extract(html, paste0(atDeaths,".*",closeAll))
 nAT <- as.numeric(str_match(s,paste0("Uhr:</strong> (\\d*),"))[2])
-df[dR,"Stamp"] <- Stamp + hours(1)
+df[dR,"Stamp"] <- Stamp 
 df[dR,"Status"] <- "Deaths"
 df[dR,"AT"] <- nAT
 for (bl in Bundeslaender$Name) {
@@ -91,6 +91,7 @@ for (bl in Bundeslaender$Name) {
   #cat(bl,n,"\n")
 }
 
+tail(df)
 
 # Persist data
 write.csv(df, csvFile, row.names=FALSE, quote=FALSE)
