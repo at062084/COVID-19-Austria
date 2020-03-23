@@ -2,8 +2,8 @@
 COVID-19: Dataset for Austria. R Scripts for download, visualization, analysis and prediction
 - 'number of days until times ten cases': This is the main unit for speed of spread of COVID-19 used here
 
-## bmsgpk - Bundesministerium für Soziales, Gesundheit, Pflege und Konsumentenschutz
-The official statisitcs are provided by the 'Sozial Ministerium (bmsgpk)'
+##   bmsgpk - Bundesministerium für Soziales, Gesundheit, Pflege und Konsumentenschutz
+The official statisitcs for Austria are provided by the 'Sozial Ministerium (bmsgpk)'
 - This dataset starts at 2020-02-25, the day the first COVID-19 case was confirmed in Austria. 
 - Data on cases tested, confirmed, recovered and deaths are reported for Austria and the 'Bundeslaender' every day at 15h00. 
 - From 2020-03-10 an additional report is issued at 08h00.
@@ -25,10 +25,13 @@ Dataset provided by the OurWorldInData site
 - Last data provided for 2020-03-17
 - currently no updates here
 - Plots with lots of data and calculations for 10+ regions worldwide
-
-## ecdc - European Council for Decease Control
-in progress
-
+### ./owid/data/COVID-19-owid.csv
 
 ## jhucsse - John Hopkins University - Center for Systems Science and Engineering
+Data published by the John Hopkins University, slightly polished.
+- Reactivated after lots of defects around 2020-03-13. 
+- Data for at least Austria have been corrected
+### ./jhucsse/data/COVID-19-jhucsse.csv
+
+## ecdc - European Council for Decease Control
 in progress
