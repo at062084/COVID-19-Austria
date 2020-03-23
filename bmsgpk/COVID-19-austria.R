@@ -53,8 +53,10 @@ gg <- dl %>% dplyr::filter(Status=="Confirmed", Region %in% fltRegion) %>%
   scale_y_log10() +
   xlim(as.POSIXct("2020-03-01"),as.POSIXct("2020-03-31")) +
   ggtitle(paste(format(max(df$Stamp),"%Y-%m-%d"),"COVID-19-Austria/bmsgpk: Confirmed.", "Regression last ", lmDays, " days"))
+ggsave(filename=paste0("./thumbs/bmsgpk.Confirmed.logCount.lm-",lmDays,"d.",format(max(df$Stamp),"%Y-%m-%d"),".png"), plot=gg, 
+       width=200, height=150, units="mm", scale=1 ,dpi=100)
 ggsave(filename=paste0("./plots/bmsgpk.Confirmed.logCount.lm-",lmDays,"d.",format(max(df$Stamp),"%Y-%m-%d"),".png"), plot=gg, 
-       width=350, height=200, units="mm", scale=.75 ,dpi=150)
+       width=350, height=200, units="mm", scale=.8 ,dpi=150)
 ggplotly(gg, tooltip=c("Stamp","Region","Count"), width=1280, height=756, dynamicTicks=TRUE)
 
 # Tested, Confirmed and Confirmed/Tested (scaled to similar scale)
@@ -72,8 +74,10 @@ gg <- dl %>% dplyr::filter(Region=="AT")  %>%
     labels = scales::trans_format("log10", scales::math_format(10^.x)),
     limits=c(.1,15)) +
   ggtitle(paste(format(max(df$Stamp),"%Y-%m-%d"),"COVID-19-Austria/bmsgpk: Tested-Confirmed"))
+ggsave(filename=paste0("./thumbs/bmsgpk.Tested-Confirmed.logCount.",format(max(df$Stamp),"%Y-%m-%d"),".png"), plot=gg, 
+       width=200, height=150, units="mm", scale=1 ,dpi=100)
 ggsave(filename=paste0("./plots/bmsgpk.Tested-Confirmed.logCount.",format(max(df$Stamp),"%Y-%m-%d"),".png"), plot=gg, 
-       width=350, height=200, units="mm", scale=.75 ,dpi=150)
+       width=350, height=200, units="mm", scale=.8 ,dpi=150)
 
 
 #----------------------------------------------------------------------------------------------------
@@ -96,6 +100,8 @@ gg <- dr %>% filter(Status=="Confirmed") %>% dplyr::filter(Region %in% fltRegion
   scale_x_date(date_breaks = "days" , date_labels="%d.%m", limits=c(as.Date("2020-03-07"), as.Date("2020-03-20"))) +
   ylim(0,20) +
   ggtitle(paste(format(max(df$Stamp),"%Y-%m-%d"),"COVID-19-Austria/bmsgpk: Days to Confirmed*10.", "Rolling Regression. Window=", lmDays, " days"))
+ggsave(filename=paste0("./thumbs/bmsgpk.Confirmed.times10.lm-",lmDays,"d.",format(max(df$Stamp),"%Y-%m-%d"),".png"), plot=gg, 
+       width=200, height=150, units="mm", scale=1 ,dpi=100)
 ggsave(filename=paste0("./plots/bmsgpk.Confirmed.times10.lm-",lmDays,"d.",format(max(df$Stamp),"%Y-%m-%d"),".png"), plot=gg, 
        width=350, height=200, units="mm", scale=.75 ,dpi=150)
 
