@@ -1,0 +1,7 @@
+
+--------------------------------------------------------------------
+2020-03-24 14:12:26 Running ./COVID-19-cron.sh for SECTION=info
+2020-03-24 14:12:26 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-03-24 14:12:26 Running auto-dump of COVID-19 info from bmsgpk infosite
+2020-03-24 14:12:26 /opt/google/chrome/chrome --headless --disable-gpu --dump-dom https://info.gesundheitsministerium.at/ > /home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/html/COVID-19-info.20200324-1412.dmp
