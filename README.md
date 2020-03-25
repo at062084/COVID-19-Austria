@@ -20,6 +20,13 @@ Starting from 2020-03-21 data have been manually extracted from
 - https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html
 - Starting from 2020-03-21 these data are extracted from the above website by the ./bmsgpk/COVID-19-bmsgpk-extract.R script
 
+### ./bmsgpk/data/COVID-19-austria.regions.csv
+- Contains Confirmed cases data for 100+ regions in Austria (from 2020-03-24, extracted from info.sozialministerium.at)
+
+### ./bmsgpk/data/COVID-19-austria.info.csv
+- Contains AT wide data for 'hospitalized, seriouslyIll, intensiveCare, mildlyIll' plus Tested,Confirmed,Deaths from COVID-19-austria.csv (from 2020-03-24, extracted from info.sozialministerium.at)
+
+
 ## jhucsse - John Hopkins University - Center for Systems Science and Engineering
 Data published by the John Hopkins University, slightly polished.
 - Reactivated after plots of defects around 2020-03-13. 
