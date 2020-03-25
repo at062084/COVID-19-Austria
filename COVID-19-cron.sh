@@ -2,7 +2,7 @@
 
 if [ $# -ne 1 ]
 then
-	echo "Usage: $0 <bmsgpk|info>"
+	echo "Usage: $0 <bmsgpk|detail>"
 	exit 1
 fi
 
@@ -33,18 +33,18 @@ then
 	git push 2>&1 >> $LOG_FILE
 fi
 
-if [ "$SECTION" == "info" ]
+if [ "$SECTION" == "detail" ]
 then
 	cd $BASE_DIR/bmsgpk
 	echo ""
-	echo "$STAMP Running auto-dump of COVID-19 info from bmsgpk infosite"       >> $LOG_FILE
+	echo "$STAMP Running auto-dump of COVID-19 detail from bmsgpk infosite"       >> $LOG_FILE
 	CHROME="/opt/google/chrome/chrome"
 	URL="https://info.gesundheitsministerium.at/"
 	# FLAGS="--headless --disable-gpu --dump-dom  --blink-settings=imagesEnabled=false --remote-debugging-port=9222"
 	FLAGS="--headless --disable-gpu --dump-dom"
-	DMP_FILE="$BASE_DIR/bmsgpk/html/COVID-19-info.$DT.dmp"
+	DMP_FILE="$BASE_DIR/bmsgpk/html/COVID-19-austria.detail.$DT.dmp"
 	echo "$STAMP $CHROME $FLAGS $URL > $DMP_FILE"  >> $LOG_FILE
-	$CHROME $FLAGS $URL > $DMP_FILE
+	$CHROME $FLAGS $URL > $DMP_FILE 2>>$LOG_FILE
 fi
 
 

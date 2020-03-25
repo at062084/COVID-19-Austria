@@ -3,6 +3,8 @@ library(lubridate)
 library(stringr)
 library(readr)
 library(dplyr)
+library(xml2)
+
 options(error = function() traceback(2))
 
 # set work dir here
@@ -15,10 +17,12 @@ logMsg <- function(msg) {
   cat(paste(format(Sys.time(), "%Y%m%d-%H%M%OS3"), msg, "\n"), sep="")
 }
 
-#read manually maintained excel sheet
-#library(readxl)
-#xlsFile <- paste0("./data/COVID-19-austria.xls")
-#df <- read_excel(xlsFile)
+logMsg(paste("Running COVID-19-bmsgpk-extract.R"))
+
+
+# --------------------------------------------------------------------------------------------------------
+# Extract data from www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html
+# --------------------------------------------------------------------------------------------------------
 
 # read current data file
 csvFile <- paste0("./data/COVID-19-austria.csv")
@@ -26,17 +30,14 @@ df <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp))
 nRows <- nrow(df)
 
 # get html page from bmsgpk
-bmsgpkFile <- paste0("./html/COVID-19-austria.bmsgpk.",format(now(),"%Y%m%d-%H%M"),".html")
+ts <- format(now(),"%Y%m%d-%H%M")
+bmsgpkFile <- paste0("./html/COVID-19-austria.bmsgpk.",ts,".html")
+logMsg(paste("Dumping bmsgpk page to", bmsgpkFile))
 cmd <- paste("\"https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html\"", "-O", bmsgpkFile)
 system2("wget", cmd)
+
+logMsg(paste("Parsing dump of bmsgpk page in", bmsgpkFile))
 html <- read_file(bmsgpkFile)
-
-
-# add four rows for data from website to current data
-tR=nRows+1
-cR=nRows+2
-rR=nRows+3
-dR=nRows+4
 
 # Identifiers of sections  in html response of wget 
 atTested <- "<p><strong>Bisher durchgef&uuml;hrte Testungen in &Ouml;sterreich"
@@ -45,37 +46,44 @@ atRecovered <- "<p><strong>Genesene Personen,</strong> <strong>Stand "
 atDeaths <- "<p><strong>Todesf&auml;lle</strong>, <strong>Stand"
 closeAll <- "</p>"
 
+# Definition of Bundesländer for localized data
+Bundeslaender <- data.frame(Name=c("Burgenland","K&auml;rnten","Nieder&ouml;sterreich","Ober&ouml;sterreich","Salzburg","Steiermark","Tirol","Vorarlberg","Wien"),
+                            Letter=c("B","K","Noe","Ooe","Szbg","Stmk","T","V","W"), stringsAsFactors=FALSE)
+
+# add four rows for data from website to current data
+tR=nRows+1
+cR=nRows+2
+rR=nRows+3
+dR=nRows+4
+
 # Stamp
 s <- str_extract(html, paste0(atConfirmed,".*",closeAll))
 t <- stringr::str_match(s,paste0("<strong>Stand ","([\\d\\s\\.,:]*)"," Uhr:</strong>"))[2]
 Stamp <- as.POSIXct(t, format="%d.%m.%Y, %H:%M", tz="CET")
 logMsg(paste("Running extraction for", Stamp, "from", bmsgpkFile))
 
-# Extract total number of Tested
+# Extract number of Tested
 s <- str_extract(html, paste0(atTested,".*",closeAll))
 t <- str_match(s,paste0("</strong>","([\\d\\.]*)","</p>"))[,2]
 totTested <- as.integer(str_remove(t,"\\."))
 df[tR,"Stamp"] <- Stamp 
 df[tR,"Status"] <- "Tested"
 df[tR,"AT"] <- totTested
-
-# Definition of Bundesländer for localized data
-Bundeslaender <- data.frame(Name=c("Burgenland","K&auml;rnten","Nieder&ouml;sterreich","Ober&ouml;sterreich","Salzburg","Steiermark","Tirol","Vorarlberg","Wien"),
-                            Letter=c("B","K","Noe","Ooe","Szbg","Stmk","T","V","W"), stringsAsFactors=FALSE)
+logMsg(paste("Tested",totTested))
 
 # Extract number of Confirmed cases
+logMsg("Confirmed")
 s <- str_extract(html, paste0(atConfirmed,".*",closeAll))
 df[cR,"Stamp"] <- Stamp 
 df[cR,"Status"] <- "Confirmed"
 if(!is.na(s)) {
-  nAT <- as.integer(str_remove(str_match(s,paste0("Uhr:</strong>&nbsp;","([\\d\\.]*)"," F&auml;lle,"))[2],"\\."))
+  nAT <- as.integer(str_remove(str_match(s,paste0("Uhr:</strong> ","([\\d\\.]*)"," F&auml;lle,"))[2],"\\."))
   df[cR,"AT"] <- nAT
   for (bl in Bundeslaender$Name) {
     n <- as.integer(str_remove(str_match(s,paste0(bl," \\(","([\\d\\.]*)","\\)"))[2],"\\."))
-    #cat(bl,n,"\n")
     df[cR,Bundeslaender[Bundeslaender$Name==bl,2]] <-n
   }
-  #df[cR,"AT"] <- sum(df[cR,c(Bundeslaender[,2])])
+  logMsg(paste("Confirmed",nAT))
 } else {
   logMsg("WARN: No record for Confirmed found")
 }
@@ -91,8 +99,8 @@ if (!is.na(s)) {
     n <- as.integer(str_remove(str_match(s,paste0(bl," \\(","([\\d\\.]*)","\\)"))[2],"\\."))
     if (is.na(n)) n <- 0
     df[rR,Bundeslaender[Bundeslaender$Name==bl,2]] <-n
-    #cat(bl,n,"\n")
   }
+  logMsg(paste("Recovered",nAT))
 } else {
   logMsg("WARN: No record for Recovered found")
 }
@@ -109,15 +117,151 @@ if (!is.na(sAT)) {
     n <- n <- as.integer(str_remove(str_match(s,paste0(bl," \\(","([\\d\\.]*)","\\)"))[2],"\\."))
     if (is.na(n)) n <- 0
     df[dR,Bundeslaender[Bundeslaender$Name==bl,2]] <-n
-    #cat(bl,n,"\n")
   }
-  # df[dR,"AT"] <- sum(df[dR,c(Bundeslaender[,2])])
+  logMsg(paste("Deaths",nAT))
 } else {
-  logMsg("WARN: No record for Desaths found")
+  logMsg("WARN: No record for Deaths found")
 }
+
+# Print to console
+df %>% tail() %>% print()
 
 # Persist data
 write.csv(df, csvFile, row.names=FALSE, quote=FALSE)
 
 
+
+# --------------------------------------------------------------------------------------------------------
+# Some more Details from info.gesundheitsministerium.at
+# --------------------------------------------------------------------------------------------------------
+# crawl and dump javascripted site using chrome headless
+dmpFile=paste0("./html/COVID-19-austria.detail.",ts,".dmp")
+logMsg(paste("Creating dump of info page using headless chrome into", dmpFile))
+
+chrome="/opt/google/chrome/chrome"
+url="https://info.gesundheitsministerium.at/"
+flags="--headless --disable-gpu --dump-dom"
+system2(chrome,paste(url, flags, ">", dmpFile))
+
+# read previous info data from disk
+csvFile <- paste0("./data/COVID-19-austria.info.csv")
+di <- read.csv(csvFile, stringsAsFactors=FALSE) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp))
+
+# extract AT data from above section
+rs <- c(tR,cR,rR,dR)
+dr <- df[rs,-c(4:12)] %>% dplyr::mutate(Region="AT",Count=AT) %>% dplyr::select(Stamp,Region,Status,Count)
+
+# append AT extract from above section
+di <- rbind(di,dr)
+nRows=nrow(di)
+
+# add four more rows for data from info website to current data
+eR=nRows+1
+hR=nRows+2
+iR=nRows+3
+mR=nRows+4
+
+# xpath anchor points in dump of info.gesundheitsministerium.at
+xpathAktualisierung  <- '//*[@id="divLetzteAktualisierung"]'
+xpathErkrankungen    <- '//*[@id="divErkrankungen"]'
+xpathHospitalisiert  <- '//*[@id="Hospitalisiert"]'
+xpathIntensivStation <- '//*[@id="Intensivstation"]'
+xpathMilderVerlauf   <- '//*[@id="MilderVerlauf"]'
+
+# use xml2 methods to extract information from dump
+logMsg(paste("Analysing dump file", dmpFile))
+x <- xml2::read_html(dmpFile)
+
+# Aktualisierung
+xa <- xml_find_all(x, xpathAktualisierung)
+xd <- xml_text(xa, trim=TRUE)
+tAktualisierung <- as.POSIXct(xd, format="%d.%m.%Y %H:%M.%S")
+logMsg(paste("Aktualisierung",tAktualisierung))
+
+# Erkrankungen
+xa <- xml_find_all(x, xpathErkrankungen)
+xd <- xml_text(xa, trim=TRUE)
+nErkrankungen <- as.integer(xd)
+di[eR,"Stamp"] <- Stamp 
+di[eR,"Count"] <- nErkrankungen
+di[eR,"Status"] <- "Erkrankungen"
+di[eR,"Region"] <- "AT"
+logMsg(paste("Erkrankungen",nErkrankungen))
+
+# Hospitalisiert
+xa <- xml_find_all(x, xpathHospitalisiert)
+xp <- './/div'
+xr <- xml_find_all(xa, xp)
+xd <- xml_text(xr, trim=TRUE)
+nHospitalisiert <- as.integer(xd[2])
+di[hR,"Stamp"] <- Stamp 
+di[hR,"Region"] <- "AT"
+di[hR,"Status"] <- "Hospitalisiert"
+di[hR,"Count"] <- nHospitalisiert
+logMsg(paste("Hospitalisiert",nHospitalisiert))
+
+# IntensivStation
+xa <- xml_find_all(x, xpathIntensivStation)
+xp <- './/div'
+xr <- xml_find_all(xa, xp)
+xd <- xml_text(xr, trim=TRUE)
+nIntensivStation <- as.integer(xd[2])
+di[iR,"Stamp"] <- Stamp 
+di[iR,"Region"] <- "AT"
+di[iR,"Status"] <- "IntensivStation"
+di[iR,"Count"] <- nIntensivStation
+logMsg(paste("IntensivStation",nIntensivStation))
+
+# MilderVerlauf
+xa <- xml_find_all(x, xpathMilderVerlauf)
+xp <- './/div'
+xr <- xml_find_all(xa, xp)
+xd <- xml_text(xr, trim=TRUE)
+nMilderVerlauf <- as.integer(xd[2])
+di[mR,"Stamp"] <- Stamp 
+di[mR,"Region"] <- "AT"
+di[mR,"Status"] <- "MilderVerlauf"
+di[mR,"Count"] <- nMilderVerlauf
+logMsg(paste("MilderVerlauf",nMilderVerlauf))
+
+# Print to console
+di %>% tail(n=10) %>% print()
+
+# Persist data
+logMsg(paste("Writing data to",csvFile))
+write.csv(di, csvFile, row.names=FALSE, quote=FALSE)
+
+
+# --------------------------------------------------------------------------------------------------------
+# Confirmed data for 100+ Regions in Austria -> goes into dedicated file
+# --------------------------------------------------------------------------------------------------------
+logMsg(paste("Extracting table of Confirmed in 100+ regions"))
+csvFile <- paste0("./data/COVID-19-austria.regions.csv")
+
+# table 'Confirmed by Bezirk'
+xpathBezirke         <- '//*[@id="tblBezirke"]'
+xpathBezirke <- '//*[@id="tblBezirke"]'
+tblBezirke <- xml_find_all(x, xpathBezirke)
+
+xpathRowsBezirke <- './/td'
+rowsBezirke <- xml_find_all(tblBezirke,xpathRowsBezirke)
+tbl <- xml_text(rowsBezirke, trim=TRUE)
+n = length(tbl)
+dx <- data.frame(Region=tbl[seq(3,n,by=2)], Count=tbl[seq(4,n,by=2)], stringsAsFactors=FALSE)
+dc <- dx %>% dplyr::mutate(Stamp=Stamp, Status="Confirmed", Count=as.integer(Count)) %>%
+  dplyr::select(Stamp, Status, Region, Count) %>%
+  dplyr::mutate(Region=str_remove(Region,",")) %>%
+  dplyr::mutate(Region=str_replace_all(Region,"[ \\.\\(\\)]","_")) %>%
+  dplyr::mutate(Region=str_replace(Region,"_$",""))
+
+# print a few results to console
+dc %>% tail(n=10) %>% print()
+
+# append new records to datafile
+logMsg(paste("Writing new data to", csvFile))
+dd <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp))
+dd <- rbind(dd,dc)
+write.csv(dd, file=csvFile, row.names=FALSE, quote=FALSE)
+
+logMsg("Done runing data extraction from bmsgpk web pages")
 

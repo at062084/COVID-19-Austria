@@ -8,7 +8,7 @@ library(imputeTS)
 library(tibbletime)
 library(MASS)
 library(scales)
-
+options(error = function() traceback(2))
 
 setwd("/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk")
 

@@ -8,3 +8,27 @@
 20200325-100818.030 WARN: No record for Recovered found 
 20200325-150840.545 Running extraction for 2020-03-25 15:00:00 from ./html/COVID-19-austria.bmsgpk.20200325-1508.html 
 20200325-150840.679 WARN: No record for Recovered found 
+20200325-175756.599 Running COVID-19-bmsgpk-extract.R 
+20200325-181056.167 Analysing dump file html/COVID-19-austria.detail.20200324-1412.dmp 
+20200325-181520.892 Analysing dump file html/COVID-19-austria.detail.20200324-1412.dmp 
+20200325-182118.752 Analysing dump file html/COVID-19-austria.detail.20200325-0940.dmp 
+20200325-182128.479 Aktualisierung 2020-03-25 09:30:00 
+20200325-182128.491 Erkrankungen 5427 
+20200325-182128.505 Hospitalisiert 227 
+20200325-182128.517 IntensivStation 26 
+20200325-182128.534 MilderVerlauf 5200 
+20200325-182403.482 Aktualisierung 2020-03-24 14:00:00 
+20200325-182403.495 Erkrankungen 4846 
+20200325-182403.516 Hospitalisiert 186 
+20200325-182403.531 IntensivStation 18 
+20200325-182403.545 MilderVerlauf 4660 
+20200325-182513.522 Aktualisierung 2020-03-25 09:30:00 
+20200325-182513.538 Erkrankungen 5427 
+20200325-182513.555 Hospitalisiert 227 
+20200325-182513.573 IntensivStation 26 
+20200325-182513.587 MilderVerlauf 5200 
+20200325-182608.184 Aktualisierung 2020-03-25 15:00:00 
+20200325-182608.203 Erkrankungen 5588 
+20200325-182608.221 Hospitalisiert 247 
+20200325-182608.235 IntensivStation 28 
+20200325-182608.369 MilderVerlauf 5341 

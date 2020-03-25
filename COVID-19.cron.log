@@ -94,3 +94,14 @@
 142 2020-03-25 15:00:00 Confirmed  5560 89 161 750 915  516  627 1393 407 702
 143 2020-03-25 15:00:00 Recovered    NA NA  NA  NA  NA   NA   NA   NA  NA  NA
 144 2020-03-25 15:00:00    Deaths    31  2   1   5   2    0    5    4   0  12
+[master 461aec4] 2020-03-25 15:08:38 Auto-Extract data from bmsgpk website
+ 5 files changed, 876 insertions(+)
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200325-1508.html
+ create mode 100644 bmsgpk/html/details.dmp
+
+--------------------------------------------------------------------
+2020-03-25 15:10:02 Running ./COVID-19-cron.sh for SECTION=detail
+2020-03-25 15:10:02 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-03-25 15:10:02 Running auto-dump of COVID-19 detail from bmsgpk infosite
+2020-03-25 15:10:02 /opt/google/chrome/chrome --headless --disable-gpu --dump-dom https://info.gesundheitsministerium.at/ > /home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/html/COVID-19-austria.detail.20200325-1510.dmp
