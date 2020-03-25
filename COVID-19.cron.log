@@ -75,3 +75,22 @@
 138 2020-03-25 08:00:00 Confirmed  5282 88 145 691 860  493  585 1338 404 678
 139 2020-03-25 08:00:00 Recovered    NA NA  NA  NA  NA   NA   NA   NA  NA  NA
 140 2020-03-25 08:00:00    Deaths    30  2   1   4   2    0    5    4   0  12
+[master 9bcf52f] 2020-03-25 10:08:16 Auto-Extract data from bmsgpk website
+ 5 files changed, 1070 insertions(+), 1 deletion(-)
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200325-1008.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.detail.20200325-0940.dmp
+
+--------------------------------------------------------------------
+2020-03-25 15:08:38 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2020-03-25 15:08:38 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-03-25 15:08:38 Running auto-extraction of COVID-19 data from bmsgpk website
+20200325-150840.547 Running extraction for 2020-03-25 15:00:00 from ./html/COVID-19-austria.bmsgpk.20200325-1508.html 
+20200325-150840.680 WARN: No record for Recovered found 
+                  Stamp    Status    AT  B   K Noe Ooe Szbg Stmk    T   V   W
+139 2020-03-25 08:00:00 Recovered    NA NA  NA  NA  NA   NA   NA   NA  NA  NA
+140 2020-03-25 08:00:00    Deaths    30  2   1   4   2    0    5    4   0  12
+141 2020-03-25 15:00:00    Tested 32407 NA  NA  NA  NA   NA   NA   NA  NA  NA
+142 2020-03-25 15:00:00 Confirmed  5560 89 161 750 915  516  627 1393 407 702
+143 2020-03-25 15:00:00 Recovered    NA NA  NA  NA  NA   NA   NA   NA  NA  NA
+144 2020-03-25 15:00:00    Deaths    31  2   1   5   2    0    5    4   0  12
