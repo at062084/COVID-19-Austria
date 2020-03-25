@@ -23,3 +23,29 @@
 134 2020-03-24 15:00:00 Confirmed  4876 84 141 620 795  429  558 1253 379 617
 135 2020-03-24 15:00:00 Recovered    NA NA  NA  NA  NA   NA   NA   NA  NA  NA
 136 2020-03-24 15:00:00    Deaths    28  2   1   3   2    0    5    4   0  11
+[master bd36064] 2020-03-24 16:17:01 Auto-Extract data from bmsgpk website
+ 5 files changed, 1066 insertions(+)
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200324-1618.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.detail.20200324-1412.dmp
+
+--------------------------------------------------------------------
+2020-03-25 00:44:07 Running ./COVID-19-cron.sh for SECTION=detail
+2020-03-25 00:44:07 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-03-25 00:44:07 Running auto-dump of COVID-19 detail from bmsgpk infosite
+2020-03-25 00:44:07 /opt/google/chrome/chrome --headless --disable-gpu --dump-dom https://info.gesundheitsministerium.at/ > /home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/html/COVID-19-austria.detail.20200325-0044.dmp
+
+--------------------------------------------------------------------
+2020-03-25 09:39:43 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2020-03-25 09:39:43 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-03-25 09:39:43 Running auto-extraction of COVID-19 data from bmsgpk website
+20200325-093944.700 Running extraction for 2020-03-25 08:00:00 from ./html/COVID-19-austria.bmsgpk.20200325-0939.html 
+20200325-093944.763 WARN: No record for Recovered found 
+                  Stamp    Status    AT  B   K Noe Ooe Szbg Stmk    T   V   W
+135 2020-03-24 15:00:00 Recovered    NA NA  NA  NA  NA   NA   NA   NA  NA  NA
+136 2020-03-24 15:00:00    Deaths    28  2   1   3   2    0    5    4   0  11
+137 2020-03-25 08:00:00    Tested 32407 NA  NA  NA  NA   NA   NA   NA  NA  NA
+138 2020-03-25 08:00:00 Confirmed    NA 88 145 691 860  493  585 1338 404 678
+139 2020-03-25 08:00:00 Recovered    NA NA  NA  NA  NA   NA   NA   NA  NA  NA
+140 2020-03-25 08:00:00    Deaths    30  2   1   4   2    0    5    4   0  12
