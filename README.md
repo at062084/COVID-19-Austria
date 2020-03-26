@@ -3,6 +3,9 @@
 - Additional visualization, analysis and prediction for the John Hopkins University dataset 
 - 'number of days until times ten cases': This is the main unit for speed of spread of COVID-19 used for all estimates
 
+## News 2020-03-26
+- The bmsgpk info site is currently under maintenance. Manual update of COVID-19-austria.csv from bmsgpk COVID site
+
 ##   bmsgpk - Bundesministerium für Soziales, Gesundheit, Pflege und Konsumentenschutz
 The official statistics for Austria are provided by the 'Sozial Ministerium (bmsgpk)'
 - This dataset starts at 2020-02-25, the day the first COVID-19 case was confirmed in Austria. 

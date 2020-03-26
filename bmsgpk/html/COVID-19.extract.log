@@ -32,3 +32,12 @@
 20200325-182608.221 Hospitalisiert 247 
 20200325-182608.235 IntensivStation 28 
 20200325-182608.369 MilderVerlauf 5341 
+20200326-094812.594 Running COVID-19-bmsgpk-extract.R 
+20200326-094813.215 Dumping bmsgpk page to ./html/COVID-19-austria.bmsgpk.20200326-0948.html 
+20200326-094813.453 Parsing dump of bmsgpk page in ./html/COVID-19-austria.bmsgpk.20200326-0948.html 
+20200326-094820.037 Running extraction for 2020-03-26 09:00:00 from ./html/COVID-19-austria.bmsgpk.20200326-0948.html 
+20200326-094820.052 Tested 35995 
+20200326-094826.619 Confirmed 
+20200326-094826.653 Confirmed 6001 
+20200326-094833.298 WARN: No record for Recovered found 
+20200326-094840.101 Deaths 42 
