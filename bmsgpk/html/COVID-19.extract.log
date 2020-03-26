@@ -41,3 +41,12 @@
 20200326-094826.653 Confirmed 6001 
 20200326-094833.298 WARN: No record for Recovered found 
 20200326-094840.101 Deaths 42 
+20200326-155628.697 Running COVID-19-bmsgpk-extract.R 
+20200326-155628.827 Dumping bmsgpk page to ./html/COVID-19-austria.bmsgpk.20200326-1556.html 
+20200326-155629.289 Parsing dump of bmsgpk page in ./html/COVID-19-austria.bmsgpk.20200326-1556.html 
+20200326-155629.337 Running extraction for 2020-03-26 15:00:00 from ./html/COVID-19-austria.bmsgpk.20200326-1556.html 
+20200326-155629.344 Tested 35995 
+20200326-155629.345 Confirmed 
+20200326-155629.361 Confirmed 6398 
+20200326-155629.363 WARN: No record for Recovered found 
+20200326-155629.376 Deaths 49 

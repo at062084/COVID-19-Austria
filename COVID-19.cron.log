@@ -105,3 +105,25 @@
 --------------------------------------------------------------------
 2020-03-25 15:10:02 Running auto-dump of COVID-19 detail from bmsgpk infosite
 2020-03-25 15:10:02 /opt/google/chrome/chrome --headless --disable-gpu --dump-dom https://info.gesundheitsministerium.at/ > /home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/html/COVID-19-austria.detail.20200325-1510.dmp
+
+--------------------------------------------------------------------
+2020-03-26 15:56:27 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2020-03-26 15:56:27 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-03-26 15:56:27 Running auto-extraction of COVID-19 data from bmsgpk website
+20200326-155628.698 Running COVID-19-bmsgpk-extract.R 
+20200326-155628.827 Dumping bmsgpk page to ./html/COVID-19-austria.bmsgpk.20200326-1556.html 
+20200326-155629.290 Parsing dump of bmsgpk page in ./html/COVID-19-austria.bmsgpk.20200326-1556.html 
+20200326-155629.339 Running extraction for 2020-03-26 15:00:00 from ./html/COVID-19-austria.bmsgpk.20200326-1556.html 
+20200326-155629.344 Tested 35995 
+20200326-155629.345 Confirmed 
+20200326-155629.362 Confirmed 6398 
+20200326-155629.364 WARN: No record for Recovered found 
+20200326-155629.376 Deaths 49 
+                  Stamp    Status    AT   B   K Noe  Ooe Szbg Stmk    T   V   W
+147 2020-03-26 09:00:00 Recovered    NA  NA  NA  NA   NA   NA   NA   NA  NA  NA
+148 2020-03-26 09:00:00    Deaths    42   2   2   7    3    1   11    4   0  12
+149 2020-03-26 15:00:00    Tested 35995  NA  NA  NA   NA   NA   NA   NA  NA  NA
+150 2020-03-26 15:00:00 Confirmed  6398 115 183 873 1054  591  699 1623 435 825
+151 2020-03-26 15:00:00 Recovered    NA  NA  NA  NA   NA   NA   NA   NA  NA  NA
+152 2020-03-26 15:00:00    Deaths    49   2   2  12    3    1   11    4   0  14
