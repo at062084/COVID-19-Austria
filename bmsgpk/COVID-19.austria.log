@@ -1,0 +1,34 @@
+20200326-231608.091 Reading dump from ./html/COVID-19-austria.regions.20200326-2229.dmp 
+20200326-231634.803 Extracting table of Confirmed cases for 100+ regions 
+20200326-234501.268 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200326-234506.660 Dumping page to ./html/COVID-19-austria.bmsgpk.20200326-2229.html 
+20200326-234516.842 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200326-2229.html 
+20200326-234537.196 Last Updated 2020-03-26 15:00:00 
+20200326-234539.950 Tested 35995 
+20200326-234540.360 Confirmed 
+20200326-234541.890 Confirmed 6398 
+20200326-234545.296 WARN: No record for Recovered found 
+20200326-234547.394 Deaths 49 
+20200326-235001.724 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200326-235001.726 Dumping page to ./html/COVID-19-austria.bmsgpk.20200326-2349.html 
+20200326-235002.005 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200326-2349.html 
+20200326-235002.181 Last Updated 2020-03-26 15:00:00 
+20200326-235002.185 Tested 35995 
+20200326-235002.189 Confirmed 
+20200326-235002.198 Confirmed 6398 
+20200326-235002.201 WARN: No record for Recovered found 
+20200326-235002.212 Deaths 49 
+20200326-235007.375 Scraping https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung 
+20200326-235007.376 Dumping page to ./html/COVID-19-austria.regions.20200326-2349.dmp 
+20200326-235007.613 Reading dump from ./html/COVID-19-austria.regions.20200326-2349.dmp 
+20200326-235007.865 Extracting table of Confirmed cases for 100+ regions 
+20200326-235218.604 Scraping https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung 
+20200326-235218.607 Dumping page to ./html/COVID-19-austria.regions.20200326-2349.dmp 
+20200326-235218.838 Reading dump from ./html/COVID-19-austria.regions.20200326-2349.dmp 
+20200326-235218.955 Extracting table of Confirmed cases for 100+ regions 
+20200326-235228.566 Scraping using headless chrome for https://info.gesundheitsministerium.at/ 
+20200326-235228.567 Dumping page to ./html/COVID-19-austria.info.20200326-2349.dmp 
+20200326-235230.989 Analysing dump file ./html/COVID-19-austria.info.20200326-2349.dmp 
+20200326-235231.251 Aktualisierung 2020-03-26 23:00:00 
+20200326-235231.255 Erkrankungen 6898 
+20200326-235231.256 Extracting table of Confirmed in 100+ regions 
