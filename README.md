@@ -4,6 +4,7 @@
 - 'number of days until times ten cases': This is the main unit for speed of spread of COVID-19 used for all estimates
 
 ## News and Enhancements
+- 2020-03-26 21h: bmsgpk info site back online. Modified structure, new page with hopsitalized/intensecare cases per Bundesland
 - 2020-03-26 09h: The bmsgpk info site is currently under maintenance. Manual update of COVID-19-austria.csv from bmsgpk COVID site
 - 2020-03-25: Added datasets for 'Confirmed for 100+ regions in Austria' and 'Numbers for Hospitalization' from bmsgpk info site
 - 2020-03-24: Scripts to support autoupdate of data from bmsgpk sites
@@ -30,7 +31,10 @@ Starting from 2020-03-21 data have been manually extracted from
 
 ### ./bmsgpk/data/COVID-19-austria.info.csv
 - Contains AT wide data for 'hospitalized, seriouslyIll, intensiveCare, mildlyIll' plus Tested,Confirmed,Deaths from COVID-19-austria.csv (from 2020-03-24, extracted from info.sozialministerium.at)
+- info no longer available as of 2020-03-26. Substituted by below data
 
+### ./bmsgpk/data/COVID-19-austria.hospital.csv
+- Contains Bundesland specific data for 'hospitalized, intensiveCare' (from 2020-03-26, extracted from new page linked form info.sozialministerium.at)
 
 ## jhucsse - John Hopkins University - Center for Systems Science and Engineering
 Data published by the John Hopkins University, slightly polished.
