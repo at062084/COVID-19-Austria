@@ -127,3 +127,8 @@
 150 2020-03-26 15:00:00 Confirmed  6398 115 183 873 1054  591  699 1623 435 825
 151 2020-03-26 15:00:00 Recovered    NA  NA  NA  NA   NA   NA   NA   NA  NA  NA
 152 2020-03-26 15:00:00    Deaths    49   2   2  12    3    1   11    4   0  14
+[master ce5662d] 2020-03-26 15:56:27 Auto-Extract data from bmsgpk website
+ 6 files changed, 1607 insertions(+)
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200326-0948.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200326-1556.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.detail.20200325-1531.dmp
