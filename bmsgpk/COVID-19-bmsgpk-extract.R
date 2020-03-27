@@ -12,7 +12,7 @@ setwd("/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk")
 
 
 # do some logging
-logFile <- "./COVID-19.bmsgpk-extract.log"
+logFile <- "./COVID-19-bmsgpk-extract.log"
 logMsg <- function(msg) {
   cat(paste(format(Sys.time(), "%Y%m%d-%H%M%OS3"), msg, "\n"), sep="", file=logFile, append=TRUE)
   cat(paste(format(Sys.time(), "%Y%m%d-%H%M%OS3"), msg, "\n"), sep="")
