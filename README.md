@@ -11,8 +11,7 @@
 - 2020-03-24: Scripts to support autoupdate of data from bmsgpk sites
 
 ## Current situation in Austria
-<p><img src="/blob/master/bmsgpk/thumbs/covid.bmsgpk.stand.Oesterreich.2020-03-27" width="1102" height="826></p>
-
+<p><img src="https://github.com/at062084/COVID-19-Austria/blob/master/bmsgpk/thumbs/covid.bmsgpk.stand.Oesterreich.2020-03-27.png" width="1102" height="826></p>
 
 ##   bmsgpk - Bundesministerium für Soziales, Gesundheit, Pflege und Konsumentenschutz
 The official statistics for Austria are provided by the 'Sozial Ministerium (bmsgpk)'
