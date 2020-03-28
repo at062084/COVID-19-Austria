@@ -4,10 +4,14 @@
 - 'number of days until times ten cases': This is the main unit for speed of spread of COVID-19 used for all estimates
 
 ## News and Enhancements
+- 2020-03-27: Nominated country lead for IBM covid-county data scraper project. New routines to convert to their data format
 - 2020-03-26 21h: bmsgpk info site back online. Modified structure, new page with hopsitalized/intensecare cases per Bundesland
 - 2020-03-26 09h: The bmsgpk info site is currently under maintenance. Manual update of COVID-19-austria.csv from bmsgpk COVID site
 - 2020-03-25: Added datasets for 'Confirmed for 100+ regions in Austria' and 'Numbers for Hospitalization' from bmsgpk info site
 - 2020-03-24: Scripts to support autoupdate of data from bmsgpk sites
+
+## Current situation in Austria
+![Austria bmsgpk data and prediction](./bmsgpk/thumbs/covid.bmsgpk.stand.Oesterreich.2020-03-27)
 
 ##   bmsgpk - Bundesministerium für Soziales, Gesundheit, Pflege und Konsumentenschutz
 The official statistics for Austria are provided by the 'Sozial Ministerium (bmsgpk)'
