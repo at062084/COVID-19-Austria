@@ -132,3 +132,9 @@
  create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200326-0948.html
  create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200326-1556.html
  create mode 100644 bmsgpk/html/COVID-19-austria.detail.20200325-1531.dmp
+
+--------------------------------------------------------------------
+2020-03-28 11:19:41 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2020-03-28 11:19:41 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-03-28 11:19:41 Running auto-extraction of COVID-19 data from bmsgpk website
