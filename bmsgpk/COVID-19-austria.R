@@ -7,6 +7,7 @@ library(lubridate)
 library(imputeTS)
 library(tibbletime)
 library(MASS)
+library(robustbase)
 library(scales)
 options(error = function() traceback(2))
 source("../COVID-19-common.R")
@@ -30,6 +31,7 @@ df <- read.csv(csvFile, stringsAsFactors=FALSE) %>%
 # Bundesländer in Österreich
 db <- data.frame(ID=colnames(df[3:12]),
                  Name=c("Oesterreich","Burgenland","Kaernten","Niederoesterreich","Oberoesterreich","Salzburg","Steiermark","Tirol","Vorarlberg","Wien"),
+                 NameUTF8=c("Österreich","Burgenland","Kärnten","Niederösterreich","Oberösterreich","Salzburg","Steiermark","Tirol","Vorarlberg","Wien"),
                  Population=c(8800, 294, 561, 1684, 1490, 558, 1247, 757, 397, 1900),
                  stringsAsFactors=FALSE)
 
