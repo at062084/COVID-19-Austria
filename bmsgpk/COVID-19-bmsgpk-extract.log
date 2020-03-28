@@ -1,0 +1,133 @@
+20200324-111912.819 Running extraction for 2020-03-24 08:00:00 from ./html/COVID-19-austria.bmsgpk.20200324-1119.html 
+20200324-111912.878 WARN: No record for Recovered found 
+20200324-161817.752 Running extraction for 2020-03-24 15:00:00 from ./html/COVID-19-austria.bmsgpk.20200324-1618.html 
+20200324-161817.804 WARN: No record for Recovered found 
+20200325-093944.699 Running extraction for 2020-03-25 08:00:00 from ./html/COVID-19-austria.bmsgpk.20200325-0939.html 
+20200325-093944.763 WARN: No record for Recovered found 
+20200325-100817.965 Running extraction for 2020-03-25 08:00:00 from ./html/COVID-19-austria.bmsgpk.20200325-1008.html 
+20200325-100818.030 WARN: No record for Recovered found 
+20200325-150840.545 Running extraction for 2020-03-25 15:00:00 from ./html/COVID-19-austria.bmsgpk.20200325-1508.html 
+20200325-150840.679 WARN: No record for Recovered found 
+20200325-175756.599 Running COVID-19-bmsgpk-extract.R 
+20200325-181056.167 Analysing dump file html/COVID-19-austria.detail.20200324-1412.dmp 
+20200325-181520.892 Analysing dump file html/COVID-19-austria.detail.20200324-1412.dmp 
+20200325-182118.752 Analysing dump file html/COVID-19-austria.detail.20200325-0940.dmp 
+20200325-182128.479 Aktualisierung 2020-03-25 09:30:00 
+20200325-182128.491 Erkrankungen 5427 
+20200325-182128.505 Hospitalisiert 227 
+20200325-182128.517 IntensivStation 26 
+20200325-182128.534 MilderVerlauf 5200 
+20200325-182403.482 Aktualisierung 2020-03-24 14:00:00 
+20200325-182403.495 Erkrankungen 4846 
+20200325-182403.516 Hospitalisiert 186 
+20200325-182403.531 IntensivStation 18 
+20200325-182403.545 MilderVerlauf 4660 
+20200325-182513.522 Aktualisierung 2020-03-25 09:30:00 
+20200325-182513.538 Erkrankungen 5427 
+20200325-182513.555 Hospitalisiert 227 
+20200325-182513.573 IntensivStation 26 
+20200325-182513.587 MilderVerlauf 5200 
+20200325-182608.184 Aktualisierung 2020-03-25 15:00:00 
+20200325-182608.203 Erkrankungen 5588 
+20200325-182608.221 Hospitalisiert 247 
+20200325-182608.235 IntensivStation 28 
+20200325-182608.369 MilderVerlauf 5341 
+20200326-094812.594 Running COVID-19-bmsgpk-extract.R 
+20200326-094813.215 Dumping bmsgpk page to ./html/COVID-19-austria.bmsgpk.20200326-0948.html 
+20200326-094813.453 Parsing dump of bmsgpk page in ./html/COVID-19-austria.bmsgpk.20200326-0948.html 
+20200326-094820.037 Running extraction for 2020-03-26 09:00:00 from ./html/COVID-19-austria.bmsgpk.20200326-0948.html 
+20200326-094820.052 Tested 35995 
+20200326-094826.619 Confirmed 
+20200326-094826.653 Confirmed 6001 
+20200326-094833.298 WARN: No record for Recovered found 
+20200326-094840.101 Deaths 42 
+20200326-155628.697 Running COVID-19-bmsgpk-extract.R 
+20200326-155628.827 Dumping bmsgpk page to ./html/COVID-19-austria.bmsgpk.20200326-1556.html 
+20200326-155629.289 Parsing dump of bmsgpk page in ./html/COVID-19-austria.bmsgpk.20200326-1556.html 
+20200326-155629.337 Running extraction for 2020-03-26 15:00:00 from ./html/COVID-19-austria.bmsgpk.20200326-1556.html 
+20200326-155629.344 Tested 35995 
+20200326-155629.345 Confirmed 
+20200326-155629.361 Confirmed 6398 
+20200326-155629.363 WARN: No record for Recovered found 
+20200326-155629.376 Deaths 49 
+20200327-170330.346 Running COVID-19-bmsgpk-extract.R 
+20200327-170330.368 Calling scrapeCovid with 20200327-1703 
+20200327-170330.496 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200327-170330.497 Dumping page to ./html/COVID-19-austria.bmsgpk.20200327-1703.html 
+20200327-170330.681 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200327-1703.html 
+20200327-170330.747 WARN: no LastUpdated found 
+20200327-170330.752 Tested 39552 
+20200327-170330.754 Confirmed 
+20200327-170330.767 Confirmed 7399 
+20200327-170330.770 WARN: No record for Recovered found 
+20200327-170330.777 Deaths 58 
+20200327-170330.788 Calling scrapeHospitalisierung with 20200327-1703 
+20200327-170330.904 Scraping https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung 
+20200327-170330.906 Dumping page to ./html/COVID-19-austria.regions.20200327-1703.dmp 
+20200327-170331.083 Reading dump from ./html/COVID-19-austria.regions.20200327-1703.dmp 
+20200327-170331.138 Extracting table of Confirmed cases for 100+ regions 
+20200327-170331.203 Calling scrapeInfo with 20200327-1703 
+20200327-170331.248 Scraping using headless chrome for https://info.gesundheitsministerium.at/ 
+20200327-170331.249 Dumping page to ./html/COVID-19-austria.info.20200327-1703.dmp 
+20200327-170333.704 Analysing dump file ./html/COVID-19-austria.info.20200327-1703.dmp 
+20200327-170333.842 Aktualisierung 2020-03-27 17:00:00 
+20200327-170333.845 Erkrankungen 7557 
+20200327-170333.847 Extracting table of Confirmed in 100+ regions 
+20200327-170333.918 Writing new data to ./data/COVID-19-austria.csv 
+20200327-170333.947 Writing new data to ./data/COVID-19-austria.hospital.csv 
+20200327-170333.960 Writing new data to ./data/COVID-19-austria.regions.csv 
+20200327-170333.985 Done runing data extraction from bmsgpk web pages 
+20200328-110540.971 Running COVID-19-bmsgpk-extract.R 
+20200328-110540.980 Calling scrapeCovid with 20200328-1105 
+20200328-110541.086 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200328-110541.088 Dumping page to ./html/COVID-19-austria.bmsgpk.20200328-1105.html 
+20200328-110541.277 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200328-1105.html 
+20200328-110541.379 WARN: no LastUpdated found 
+20200328-110541.432 Tested 42750 
+20200328-110541.433 Confirmed 
+20200328-110541.438 Confirmed 7697 
+20200328-110541.440 WARN: No record for Recovered found 
+20200328-110541.445 Deaths 68 
+20200328-110541.467 Calling scrapeHospitalisierung with 20200328-1105 
+20200328-110541.505 Scraping https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung 
+20200328-110541.507 Dumping page to ./html/COVID-19-austria.regions.20200328-1105.dmp 
+20200328-110541.673 Reading dump from ./html/COVID-19-austria.regions.20200328-1105.dmp 
+20200328-110541.732 Extracting table of Confirmed cases for 100+ regions 
+20200328-110541.806 Calling scrapeInfo with 20200328-1105 
+20200328-110541.841 Scraping using headless chrome for https://info.gesundheitsministerium.at/ 
+20200328-110541.842 Dumping page to ./html/COVID-19-austria.info.20200328-1105.dmp 
+20200328-110544.367 Analysing dump file ./html/COVID-19-austria.info.20200328-1105.dmp 
+20200328-110544.541 Aktualisierung 2020-03-28 11:00:00 
+20200328-110544.543 Erkrankungen 7823 
+20200328-110544.544 Extracting table of Confirmed in 100+ regions 
+20200328-110544.594 Writing new data to ./data/COVID-19-austria.csv 
+20200328-110544.605 Writing new data to ./data/COVID-19-austria.hospital.csv 
+20200328-110544.660 Writing new data to ./data/COVID-19-austria.regions.csv 
+20200328-110544.680 Done runing data extraction from bmsgpk web pages 
+20200328-195747.860 Running COVID-19-bmsgpk-extract.R 
+20200328-195747.891 Calling scrapeCovid with 20200328-1957 
+20200328-195748.005 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200328-195748.006 Dumping page to ./html/COVID-19-austria.bmsgpk.20200328-1957.html 
+20200328-195748.184 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200328-1957.html 
+20200328-195748.286 WARN: no LastUpdated found 
+20200328-195748.289 Tested 42750 
+20200328-195748.291 Confirmed 
+20200328-195748.308 Confirmed 7995 
+20200328-195748.311 WARN: No record for Recovered found 
+20200328-195748.317 Deaths 68 
+20200328-195748.324 Calling scrapeHospitalisierung with 20200328-1957 
+20200328-195748.446 Scraping https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung 
+20200328-195748.448 Dumping page to ./html/COVID-19-austria.regions.20200328-1957.dmp 
+20200328-195748.642 Reading dump from ./html/COVID-19-austria.regions.20200328-1957.dmp 
+20200328-195748.697 Extracting table of Confirmed cases for 100+ regions 
+20200328-195748.748 Calling scrapeInfo with 20200328-1957 
+20200328-195748.792 Scraping using headless chrome for https://info.gesundheitsministerium.at/ 
+20200328-195748.793 Dumping page to ./html/COVID-19-austria.info.20200328-1957.dmp 
+20200328-195750.980 Analysing dump file ./html/COVID-19-austria.info.20200328-1957.dmp 
+20200328-195751.059 Aktualisierung 2020-03-28 19:00:00 
+20200328-195751.061 Erkrankungen 8188 
+20200328-195751.062 Extracting table of Confirmed in 100+ regions 
+20200328-195751.189 Writing new data to ./data/COVID-19-austria.csv 
+20200328-195751.198 Writing new data to ./data/COVID-19-austria.hospital.csv 
+20200328-195751.204 Writing new data to ./data/COVID-19-austria.regions.csv 
+20200328-195751.223 Done runing data extraction from bmsgpk web pages 

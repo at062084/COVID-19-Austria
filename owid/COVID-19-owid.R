@@ -7,6 +7,7 @@ library(dplyr)
 library(tidyr)
 library(tibbletime)
 library(lubridate)
+options(error = function() traceback(2))
 
 # manually constructed data for Wien
 #localWienFile <- "COVID-19-AT.local.Wien.csv"

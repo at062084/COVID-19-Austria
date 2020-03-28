@@ -136,12 +136,6 @@ covCounty <- function(Date="2020-03-27", dataDir="./data") {
                    "https://info.gesundheitsministerium.at",
                    "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung")
   
-  BL <- data.frame(ID=colnames(df[3:12]),
-                   Name=c("Oesterreich","Burgenland","Kaernten","Niederoesterreich","Oberoesterreich","Salzburg","Steiermark","Tirol","Vorarlberg","Wien"),
-                   NameUTF8=c("Österreich","Burgenland","Kärnten","Niederösterreich","Oberösterreich","Salzburg","Steiermark","Tirol","Vorarlberg","Wien"),
-                   NameUTF82=c("Österreich gesamt","Burgenland","Kärnten","Niederösterreich","Oberösterreich","Salzburg","Steiermark","Tirol","Vorarlberg","Wien"),
-                   Population=c(8800, 294, 561, 1684, 1490, 558, 1247, 757, 397, 1900),
-                   stringsAsFactors=FALSE)
   
   # create empty dataframe along samples in BOX at https://ibm.ent.box.com/folder/108160857311
   cc <- data.frame(country=character(),
@@ -168,6 +162,14 @@ covCounty <- function(Date="2020-03-27", dataDir="./data") {
   da <- read.csv(csvFile, stringsAsFactors=FALSE) %>% 
     dplyr::mutate(Stamp=as.POSIXct(Stamp)) %>%
     dplyr::filter(date(Stamp)==as.POSIXct("2020-03-27"))
+  
+  BL <- data.frame(ID=colnames(da[3:12]),
+                   Name=c("Oesterreich","Burgenland","Kaernten","Niederoesterreich","Oberoesterreich","Salzburg","Steiermark","Tirol","Vorarlberg","Wien"),
+                   NameUTF8=c("Österreich","Burgenland","Kärnten","Niederösterreich","Oberösterreich","Salzburg","Steiermark","Tirol","Vorarlberg","Wien"),
+                   NameUTF82=c("Österreich gesamt","Burgenland","Kärnten","Niederösterreich","Oberösterreich","Salzburg","Steiermark","Tirol","Vorarlberg","Wien"),
+                   Population=c(8800, 294, 561, 1684, 1490, 558, 1247, 757, 397, 1900),
+                   stringsAsFactors=FALSE)
+  
   
   # read data for Hospitalized
   csvFile <- "/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/data/COVID-19-austria.hospital.csv"
@@ -196,7 +198,7 @@ covCounty <- function(Date="2020-03-27", dataDir="./data") {
   
   # append to box format
   atc <- dplyr::bind_rows(cc, ds)
-  write.csv(atc, file=paste0(dataDir,"/AT_country_",format(as.POSIXct(Date),"%y%m%d"),"160000",".csv"), quote=FALSE, row.names=FALSE)
+  write.csv(atc, file=paste0(dataDir,"/AT_country_",format(as.POSIXct(Date),"%Y%m%d"),"160000",".csv"), quote=FALSE, row.names=FALSE)
   
   BL <- data.frame(ID=colnames(df)[3:12],
                    Name=c("Oesterreich","Burgenland","Kaernten","Niederoesterreich","Oberoesterreich","Salzburg","Steiermark","Tirol","Vorarlberg","Wien"),
@@ -220,7 +222,7 @@ covCounty <- function(Date="2020-03-27", dataDir="./data") {
 
   # append to box format
   ato <- dplyr::bind_rows(cc, dg)
-  write.csv(ato, file=paste0(dataDir,"/AT_states_",format(as.POSIXct(Date),"%y%m%d"),"160000",".csv"), quote=FALSE, row.names=FALSE)
+  write.csv(ato, file=paste0(dataDir,"/AT_states_",format(as.POSIXct(Date),"%Y%m%d"),"160000",".csv"), quote=FALSE, row.names=FALSE)
   
   
   # read data for Bezirke
@@ -246,7 +248,7 @@ covCounty <- function(Date="2020-03-27", dataDir="./data") {
   
   # append to box format
   atu <- dplyr::bind_rows(cc, du)
-  write.csv(atu, file=paste0(dataDir,"/AT_counties_",format(as.POSIXct(Date),"%y%m%d"),"160000",".csv"), quote=FALSE, row.names=FALSE)
+  write.csv(atu, file=paste0(dataDir,"/AT_counties_",format(as.POSIXct(Date),"%Y%m%d"),"160000",".csv"), quote=FALSE, row.names=FALSE)
   
 
 }

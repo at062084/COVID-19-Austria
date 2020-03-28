@@ -7,6 +7,7 @@ library(dplyr)
 library(tidyr)
 library(tibbletime)
 library(lubridate)
+options(error = function() traceback(2))
 
 # git clone git@github.com:CSSEGISandData/COVID-19.git
 # setwd("/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/jhucsse")
@@ -23,13 +24,14 @@ nRegDays <- 4
 
 system2("cat", "01*2020.csv 02*2020.csv | grep -v Confirmed > covid6.csv")
 col.names6 <- c("State","Region","Stamp","Confirmed","Deaths","Recovered")
-colClasses6 <- c("factor","factor","character", rep("numeric",3))
+colClasses6 <- c("character","character","character", rep("numeric",3))
 df6 <- read.csv("covid6.csv", colClasses = colClasses6, col.names=col.names6, header=FALSE, sep=",", quote="\"", stringsAsFactors=FALSE)
 
-system2("cat", "03*2020.csv | grep -v Confirmed > covid8.csv")
+system2("cat", "03-[01]?-2020.csv | grep -v Confirmed > covid8.csv")
 col.names8 <- c("State","Region","Stamp","Confirmed","Deaths","Recovered","Lat","Lon")
-colClasses8 <- c("factor","factor","character", rep("numeric",5))
-df8 <- read.csv("covid8.csv", colClasses = colClasses8, col.names=col.names8, header=FALSE, sep=",", quote="\"", stringsAsFactors=FALSE) %>% dplyr::select(-Lat, -Lon)
+colClasses8 <- c("character","character","character", rep("numeric",5))
+df8 <- read.csv("covid8.csv", colClasses = colClasses8, col.names=col.names8, header=FALSE, sep=",", quote="\"", stringsAsFactors=FALSE) %>% 
+  dplyr::select(-Lat, -Lon)
 
 # Bind different source formats in terms of LonLat provided
 df <- rbind(df6,df8)
@@ -90,7 +92,11 @@ for (k in 1:dim(dfr)[1]) {                               # loop over these state
 }
 # working dataset
 dx <- dx %>% dplyr::mutate(State=factor(State), Region=factor(Region))
+dr <- dx %>% dplyr::filter(Region=="Spain")
 
+
+# persist data
+write.csv(dx, file=paste0(baseDir,"/data/COVID-19-jhucsse.csv"), row.names=FALSE, quote=FALSE)
 
 
 # -----------------------------------------------------------------------------------------------------------------------

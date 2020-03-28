@@ -138,3 +138,29 @@
 2020-03-28 11:19:41 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
 --------------------------------------------------------------------
 2020-03-28 11:19:41 Running auto-extraction of COVID-19 data from bmsgpk website
+[master 5e72368] 2020-03-28 11:19:41 Auto-Extract data from bmsgpk website
+ 28 files changed, 15098 insertions(+)
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200327-1044.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200327-1050.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200327-1051.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200327-1056.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200327-1142.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200327-1155.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200327-1158.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200327-1703.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200328-1105.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200327-1045.dmp
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200327-1050.dmp
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200327-1051.dmp
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200327-1056.dmp
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200327-1158.dmp
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200327-1703.dmp
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200328-1105.dmp
+ create mode 100644 bmsgpk/html/COVID-19-austria.regions.20200327-1044.dmp
+ create mode 100644 bmsgpk/html/COVID-19-austria.regions.20200327-1045.dmp
+ create mode 100644 bmsgpk/html/COVID-19-austria.regions.20200327-1050.dmp
+ create mode 100644 bmsgpk/html/COVID-19-austria.regions.20200327-1051.dmp
+ create mode 100644 bmsgpk/html/COVID-19-austria.regions.20200327-1056.dmp
+ create mode 100644 bmsgpk/html/COVID-19-austria.regions.20200327-1158.dmp
+ create mode 100644 bmsgpk/html/COVID-19-austria.regions.20200327-1703.dmp
+ create mode 100644 bmsgpk/html/COVID-19-austria.regions.20200328-1105.dmp
