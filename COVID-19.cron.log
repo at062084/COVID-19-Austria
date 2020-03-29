@@ -334,3 +334,21 @@
 20200329-163451.602 Writing new data to ./data/COVID-19-austria.hospital.csv 
 20200329-163451.609 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200329-163451.621 Done runing data extraction from bmsgpk web pages 
+[master 9362a2d] 2020-03-29 16:34:47 Auto-Extract data from bmsgpk website
+ 8 files changed, 1970 insertions(+)
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200329-1634.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200329-1634.dmp
+ create mode 100644 bmsgpk/html/COVID-19-austria.regions.20200329-1634.html
+
+--------------------------------------------------------------------
+2020-03-29 16:35:53 Running ./COVID-19-cron.sh for SECTION=county
+2020-03-29 16:35:53 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-03-29 16:35:53 Running conversion of COVID-19 data to covid-county format
+20200329-163554.093 Running COVID-19-covid-county-extract.R 
+20200329-163554.232 Executing covCounty with 2020-03-29 16:35:54 
+20200329-163554.379 Writing ./data/AT_country_20200329163554.csv 
+20200329-163554.407 Writing ./data/AT_states_20200329163554.csv 
+20200329-163554.436 Writing ./data/AT_counties_20200329163554.csv 
+20200329-163554.438 Done executing covCounty 
+20200329-163554.438 Done running COVID-19-covid-county-extract.R 
