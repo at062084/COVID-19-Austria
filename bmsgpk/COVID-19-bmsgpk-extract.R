@@ -232,7 +232,7 @@ scrapeHospitalisierung <- function(ts=format(now(),"%Y%m%d-%H%M")) {
 
   # Stamp of data update
   xpathStand ="/html/body/div[3]/div/div/div/div[2]/main/h2[2]"
-  s <- HTMLdecode(html_text(html_nodes(html, xpath = xpathStand)))
+  s <- html_text(html_nodes(html, xpath = xpathStand))
   # for some reason a ancoding problem has sufaced here. This is a workaround until permanent solution
   t <- stringr::str_match(s,paste0(".*","(\\d\\d\\.\\d\\d\\.\\d\\d\\d\\d)"))[2]
   d <- stringr::str_match(s,paste0("(\\d\\d:\\d\\d)"))[2]
