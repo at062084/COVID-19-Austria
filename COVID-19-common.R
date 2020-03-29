@@ -227,7 +227,7 @@ obr <- matrix(byrow=TRUE, ncol=3,
                 c("Österreich","Vorarlberg","Feldkirch"),
                 c("Österreich","Wien","Wien_Stadt")))
 
-OBR <- data.frame(OBR, stringsAsFactors=FALSE)
+OBR <- data.frame(obr, stringsAsFactors=FALSE)
 colnames(OBR) <- c("country","state","county")
 
 

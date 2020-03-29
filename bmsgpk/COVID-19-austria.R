@@ -41,7 +41,15 @@ for (bl in 1:nrow(db)) {
     # use unquoted variant of dply methods so a string variable can be used for Bundesland
     dplyr::select_("Stamp","Status",db$ID[bl]) %>%
     dplyr::filter(Status!="Tested") %>%
-    dplyr::filter(hour(Stamp)==15) %>%
+    dplyr::mutate(Date=date(Stamp)) %>%
+    dplyr::arrange(Stamp) %>%
+    dplyr::group_by(Date,Status) %>%
+    dplyr::filter(row_number()==n()) %>%   # select latest entry for each status in current day
+    dplyr::ungroup() %>%
+    dplyr::group_by(Date) %>%
+    dplyr::mutate(Stamp=max(Stamp)) %>%    # set all Stamp to latest point in time for current day
+    dplyr::ungroup() %>%
+    dplyr::select(-Date) %>%   
     tidyr::spread_(key="Status", val=db$ID[bl]) %>%
     imputeTS::na_interpolation(method="linear") %>%
     dplyr::mutate(Confirmed=round(Confirmed), Deaths=round(Deaths), Recovered=round(Recovered))
