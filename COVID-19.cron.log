@@ -164,3 +164,53 @@
  create mode 100644 bmsgpk/html/COVID-19-austria.regions.20200327-1158.dmp
  create mode 100644 bmsgpk/html/COVID-19-austria.regions.20200327-1703.dmp
  create mode 100644 bmsgpk/html/COVID-19-austria.regions.20200328-1105.dmp
+
+--------------------------------------------------------------------
+2020-03-29 12:45:02 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2020-03-29 12:45:02 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-03-29 12:45:02 Running auto-extraction of COVID-19 data from bmsgpk website
+20200329-124503.997 Running COVID-19-bmsgpk-extract.R 
+20200329-124504.044 Calling scrapeCovid with 20200329-1245 
+20200329-124504.131 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200329-124504.132 Dumping page to ./html/COVID-19-austria.bmsgpk.20200329-1245.html 
+20200329-124504.312 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200329-1245.html 
+20200329-124504.379 WARN: no LastUpdated found 
+20200329-124504.383 Tested 46441 
+20200329-124504.384 Confirmed 
+20200329-124504.390 Confirmed 8291 
+20200329-124504.392 WARN: No record for Recovered found 
+20200329-124504.399 Deaths 86 
+                Stamp    Status    AT   B   K  Noe  Ooe Szbg Stmk    T   V    W
+1 2020-03-29 08:00:00    Tested 46441  NA  NA   NA   NA   NA   NA   NA  NA   NA
+2 2020-03-29 08:00:00 Confirmed  8291 153 223 1276 1402  793  873 1907 577 1087
+3 2020-03-29 08:00:00 Recovered    NA  NA  NA   NA   NA   NA   NA   NA  NA   NA
+4 2020-03-29 09:30:00    Deaths    86   3   2   19    7    4   19   10   1   21
+20200329-124504.407 Calling scrapeHospitalisierung with 20200329-1245 
+20200329-124504.453 Scraping https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung 
+20200329-124504.455 Dumping page to ./html/COVID-19-austria.regions.20200329-1245.html 
+20200329-124504.616 Reading dump from ./html/COVID-19-austria.regions.20200329-1245.html 
+2: (function () 
+   traceback(2))()
+1: scrapeHospitalisierung(ts = ts)
+20200329-124504.637 Calling scrapeInfo with 20200329-1245 
+20200329-124504.684 Scraping using headless chrome for https://info.gesundheitsministerium.at/ 
+20200329-124504.685 Dumping page to ./html/COVID-19-austria.info.20200329-1245.dmp 
+20200329-124506.783 Analysing dump file ./html/COVID-19-austria.info.20200329-1245.dmp 
+20200329-124506.819 Aktualisierung 2020-03-29 12:00:00 
+20200329-124506.822 Erkrankungen 8411 
+20200329-124506.823 Extracting table of Confirmed in 100+ regions 
+                 Stamp    Status                Region Count
+89 2020-03-29 12:00:00 Confirmed            Wien_Stadt  1093
+90 2020-03-29 12:00:00 Confirmed  Wiener_Neustadt_Land    19
+91 2020-03-29 12:00:00 Confirmed Wiener_Neustadt_Stadt    20
+92 2020-03-29 12:00:00 Confirmed             Wolfsberg    25
+93 2020-03-29 12:00:00 Confirmed           Zell_am_See   207
+94 2020-03-29 12:00:00 Confirmed                Zwettl    19
+20200329-124506.907 Writing new data to ./data/COVID-19-austria.csv 
+20200329-124506.919 Writing new data to ./data/COVID-19-austria.hospital.csv 
+2: (function () 
+   traceback(2))()
+1: rbind(df, dh)
+20200329-124506.930 Writing new data to ./data/COVID-19-austria.regions.csv 
+20200329-124506.944 Done runing data extraction from bmsgpk web pages 
