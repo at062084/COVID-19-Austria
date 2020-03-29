@@ -37,7 +37,7 @@ scrapeCovid <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   
   # read current data to extract data structure
   csvFile <- paste0("./data/COVID-19-austria.csv")
-  df <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp))
+  df <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp, tz="CEST"))
   df <- df[1,]
   df <- df[-1,]
 
@@ -63,7 +63,7 @@ scrapeCovid <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   # -----
   s <- str_extract(html, paste0(atConfirmed,".*",closeAll))
   t <- stringr::str_match(s,paste0("<strong>Stand ","([\\d\\s\\.,:]*)"," Uhr:</strong>"))[2]
-  Stamp <- as.POSIXct(t, format="%d.%m.%Y, %H:%M", tz="CET")
+  Stamp <- as.POSIXct(t, format="%d.%m.%Y, %H:%M", tz="CEST")
   if(is.na(Stamp)) {
     bCalcStamp=TRUE
     logMsg("WARN: no LastUpdated found")
@@ -79,7 +79,7 @@ scrapeCovid <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   totTested <- as.integer(str_remove(t,"\\."))
   if(bCalcStamp) {
     t <- str_match(s, paste0("Aktualisierung des Ist-Standes um ","(.*)"," Uhr\\): </strong>"))[2]
-    Stamp <- as.POSIXct(paste0(format(now(),"%Y-%m-%d "),t), format="%Y-%m-%d %H:%M")
+    Stamp <- as.POSIXct(paste0(format(now(),"%Y-%m-%d "),t), format="%Y-%m-%d %H:%M", tz="CEST")
   }
   df[iTested,"Stamp"] <- Stamp 
   df[iTested,"Status"] <- "Tested"
@@ -93,7 +93,7 @@ scrapeCovid <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   s <- str_extract(html, paste0(atConfirmed,".*",closeAll))
   if(bCalcStamp) {
     t <- str_match(s, paste0("<p><strong>Best&auml;tigte F&auml;lle, Stand ","(.*)"," Uhr:</strong>"))[2]
-    Stamp <- as.POSIXct(t, format="%d.%m.%Y, %H:%M")
+    Stamp <- as.POSIXct(t, format="%d.%m.%Y, %H:%M", tz="CEST")
   }
   df[iConfirmed,"Stamp"] <- Stamp 
   df[iConfirmed,"Status"] <- "Confirmed"
@@ -132,7 +132,7 @@ scrapeCovid <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   s <- str_extract(html, paste0(atDeaths,".*",closeAll))
   if(bCalcStamp) {
     t <- str_match(s, paste0("<p><strong>Todesf&auml;lle</strong>, <strong>Stand ","(.*)"," Uhr:</strong>"))[2]
-    Stamp <- as.POSIXct(t, format="%d.%m.%Y, %H:%M")
+    Stamp <- as.POSIXct(t, format="%d.%m.%Y, %H:%M", tz="CEST")
   }
   df[iDeaths,"Stamp"] <- Stamp 
   df[iDeaths,"Status"] <- "Deaths"
@@ -186,7 +186,7 @@ scrapeInfo <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   # Aktualisierung
   xa <- xml2::xml_find_all(x, xpathAktualisierung)
   xd <- xml2::xml_text(xa, trim=TRUE)
-  Stamp <- as.POSIXct(xd, format="%d.%m.%Y %H:%M.%S")
+  Stamp <- as.POSIXct(xd, format="%d.%m.%Y %H:%M.%S", tz="CEST")
   logMsg(paste("Aktualisierung",Stamp))
 
   # Erkrankungen
@@ -219,7 +219,7 @@ scrapeInfo <- function(ts=format(now(),"%Y%m%d-%H%M")) {
 # --------------------------------------------------------------------------------------------------------
 scrapeHospitalisierung <- function(ts=format(now(),"%Y%m%d-%H%M")) {
 
-  dmpFile=paste0("./html/COVID-19-austria.regions.",ts,".dmp")
+  dmpFile=paste0("./html/COVID-19-austria.regions.",ts,".html")
   url="https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung"
   logMsg(paste("Scraping", url))
   
@@ -232,15 +232,19 @@ scrapeHospitalisierung <- function(ts=format(now(),"%Y%m%d-%H%M")) {
 
   # Stamp of data update
   xpathStand ="/html/body/div[3]/div/div/div/div[2]/main/h2[2]"
-  s <- html_text(html_nodes(html, xpath = xpathStand))
-  t <- stringr::str_match(s,paste0("Stand ","([\\d\\s\\.,:]*)"," Uhr"))[2]
-  Stamp <- as.POSIXct(t, format="%d.%m.%Y, %H:%M", tz="CET")
+  s <- HTMLdecode(html_text(html_nodes(html, xpath = xpathStand)))
+  # for some reason a ancoding problem has sufaced here. This is a workaround until permanent solution
+  t <- stringr::str_match(s,paste0(".*","(\\d\\d\\.\\d\\d\\.\\d\\d\\d\\d)"))[2]
+  d <- stringr::str_match(s,paste0("(\\d\\d:\\d\\d)"))[2]
+  Stamp <- as.POSIXct(paste(t,d), format="%d.%m.%Y %H:%M", tz="CEST")
   
   # Number of confirmed cases
   xpathAnzahl="/html/body/div[3]/div/div/div/div[2]/main/p[1]"
   s <- html_text(html_nodes(html, xpath = xpathAnzahl))
-  t <- stringr::str_match(s,paste0("Anzahl der Testungen: ","([\\d\\s\\.]*)"))[2]
-  nTested <- as.integer(str_remove(t,"\\."))
+  t <- stringr::str_match(s,paste0(".*","(\\d\\d\\.\\d\\d\\.\\d\\d\\d\\d)"))[2]
+  d <- stringr::str_match(s,paste0(".*(\\d\\d:\\d\\d)"))[2]
+  StampTested <- as.POSIXct(paste(t,d), format="%d.%m.%Y %H:%M", tz="CEST")
+  nTested <- as.integer(str_replace(stringr::str_match(s,paste0(".*: ","([\\.\\d]*)"))[2],"\\.",""))
   
   # Extract Bundesländertable
   logMsg("Extracting table of Confirmed cases for 100+ regions")
@@ -268,7 +272,7 @@ scrapeHospitalisierung <- function(ts=format(now(),"%Y%m%d-%H%M")) {
 
 # Bundesländer in Österreich
 csvFile <- paste0("./data/COVID-19-austria.csv")
-df <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp))
+df <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp, tz="CEST"))
 BL <- data.frame(ID=colnames(df[3:12]),
                  Name=c("Oesterreich","Burgenland","Kaernten","Niederoesterreich","Oberoesterreich","Salzburg","Steiermark","Tirol","Vorarlberg","Wien"),
                  NameUTF8=c("Österreich","Burgenland","Kärnten","Niederösterreich","Oberösterreich","Salzburg","Steiermark","Tirol","Vorarlberg","Wien"),
@@ -296,19 +300,19 @@ di <- scrapeInfo(ts=ts)
 
 csvFile <- paste0("./data/COVID-19-austria.csv")
 logMsg(paste("Writing new data to", csvFile))
-df <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp))
+df <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp, tz="CEST"))
 df <- rbind(df,dc)
 write.csv(df, file=csvFile, row.names=FALSE, quote=FALSE)
 
 csvFile <- paste0("./data/COVID-19-austria.hospital.csv")
 logMsg(paste("Writing new data to", csvFile))
-df <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp))
+df <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp, tz="CEST"))
 df <- rbind(df,dh)
 write.csv(df, file=csvFile, row.names=FALSE, quote=FALSE)
 
 csvFile <- paste0("./data/COVID-19-austria.regions.csv")
 logMsg(paste("Writing new data to", csvFile))
-df <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp))
+df <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp, tz="CEST"))
 df <- rbind(df,di)
 write.csv(df, file=csvFile, row.names=FALSE, quote=FALSE)
 
