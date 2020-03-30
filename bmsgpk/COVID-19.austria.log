@@ -37,3 +37,7 @@
 20200330-105636.472 Confirmed 
 20200330-105636.509 Confirmed 8813 
 20200330-105636.625 Deaths 86 
+20200330-234252.565 Running COVID-19-covid-county-extract.R 
+20200330-234252.570 Executing covCounty with 2020-03-30 23:42:52 
+20200330-234252.575 Done executing covCounty 
+20200330-234252.580 Done running COVID-19-covid-county-extract.R 

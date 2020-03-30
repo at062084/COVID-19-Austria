@@ -1,0 +1,11 @@
+country,state,county,cases,deaths,recovered,tested,hospitalized
+Austria,ALL,ALL,8813,108,636,49455,999
+Austria,Burgenland,ALL,171,3,10,NA,10
+Austria,Kaernten,ALL,246,2,13,NA,26
+Austria,Niederoesterreich,ALL,1386,28,86,NA,167
+Austria,Oberoesterreich,ALL,1509,7,101,NA,156
+Austria,Salzburg,ALL,849,7,43,NA,58
+Austria,Steiermark,ALL,929,24,28,NA,147
+Austria,Tirol,ALL,2001,13,270,NA,198
+Austria,Vorarlberg,ALL,606,1,47,NA,49
+Austria,Wien,ALL,1116,23,38,NA,188

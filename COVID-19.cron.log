@@ -577,3 +577,24 @@ Saving to: ‘./html/COVID-19-austria.regions.20200330-1754.html’
 20200330-175417.225 Writing new data to ./data/COVID-19-austria.hospital.csv 
 20200330-175417.238 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200330-175417.266 Done runing data extraction from bmsgpk web pages 
+[master 2f4a39b] 2020-03-30 17:54:12 Auto-Extract data from bmsgpk website
+ 8 files changed, 2040 insertions(+)
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200330-1754.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200330-1754.dmp
+ create mode 100644 bmsgpk/html/COVID-19-austria.regions.20200330-1754.html
+warning: push.default is unset; its implicit value is changing in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the current behavior after the default changes, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+
+To git@github.com:at062084/COVID-19-Austria.git
+   e38cac4..2f4a39b  master -> master

@@ -124,7 +124,7 @@ scrapeCovid <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   df[iRecovered,"Stamp"] <- Stamp 
   df[iRecovered,"Status"] <- "Recovered"
   if (!is.na(s)) {
-    nAT <- as.integer(str_remove(str_match(s,paste0("Uhr:</strong>","([\\d\\. ]*)","</p>"))[2],"\\."))
+    nAT <- as.integer(str_remove(str_match(s,paste0("Uhr:</strong> ","([\\d\\. ]*)",","))[2],"\\."))
     df[iRecovered,"AT"] <- nAT
     for (bl in Bundeslaender$Name) {
       n <- as.integer(str_remove(str_match(s,paste0(bl," \\(","([\\d\\.]*)","\\)"))[2],"\\."))
