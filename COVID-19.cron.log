@@ -352,3 +352,8 @@
 20200329-163554.436 Writing ./data/AT_counties_20200329163554.csv 
 20200329-163554.438 Done executing covCounty 
 20200329-163554.438 Done running COVID-19-covid-county-extract.R 
+[master f1ee8dd] 2020-03-29 16:35:53 Auto-Conversion of bmsgpk data to covid-county format
+ 4 files changed, 125 insertions(+)
+ create mode 100644 bmsgpk/data/AT_counties_20200329163554.csv
+ create mode 100644 bmsgpk/data/AT_country_20200329163554.csv
+ create mode 100644 bmsgpk/data/AT_states_20200329163554.csv
