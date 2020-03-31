@@ -124,11 +124,11 @@ scrapeCovid <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   df[iRecovered,"Stamp"] <- Stamp 
   df[iRecovered,"Status"] <- "Recovered"
   if (!is.na(s)) {
-    nAT <- as.integer(str_remove(str_match(s,paste0("Uhr:</strong> ","([\\d\\. ]*)",","))[2],"\\."))
+    nAT <- as.integer(str_remove(str_match(s,paste0("Uhr:</strong> ","([\\d\\. ]*)","[,<]"))[2],"\\."))
     df[iRecovered,"AT"] <- nAT
     for (bl in Bundeslaender$Name) {
       n <- as.integer(str_remove(str_match(s,paste0(bl," \\(","([\\d\\.]*)","\\)"))[2],"\\."))
-      if (is.na(n)) n <- 0
+      if (is.na(n)) n <- NA
       df[iRecovered,Bundeslaender[Bundeslaender$Name==bl,2]] <-n
     }
     logMsg(paste("Recovered",nAT))
@@ -257,14 +257,15 @@ scrapeHospitalisierung <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   
   # Extract Bundesländertable
   logMsg("Extracting table of Confirmed cases for 100+ regions")
-  tables <- rvest::html_table(html)
+  tables <- rvest::html_table(html, dec="")
   dh <- tables[[1]]
   df <- dh %>% dplyr::inner_join(BL, by=c("Bundesland"="NameUTF82")) %>%
     dplyr::mutate(Stamp=Stamp) %>%
     dplyr::select(Stamp,Region=ID,Hospitalisierung,Intensivstation) %>%
     dplyr::arrange(Region) %>%
     tidyr::gather(key=Status, val=Count, Hospitalisierung, Intensivstation) %>%
-    tidyr::spread(key=Region, val=Count)
+    tidyr::spread(key=Region, val=Count) %>% 
+    dplyr:: mutate_all(str_replace_all, "\\.", "")
 
   df %>% tail() %>% print()
   return (df)
