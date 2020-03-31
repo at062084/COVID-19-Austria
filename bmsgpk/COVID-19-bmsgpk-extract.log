@@ -323,3 +323,57 @@
 20200331-121350.966 Writing new data to ./data/COVID-19-austria.hospital.csv 
 20200331-121350.981 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200331-121351.004 Done runing data extraction from bmsgpk web pages 
+20200331-123659.972 Running COVID-19-bmsgpk-extract.R 
+20200331-123659.991 Calling scrapeCovid with 20200331-1236 
+20200331-123700.300 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200331-123700.302 Dumping page to ./html/COVID-19-austria.bmsgpk.20200331-1236.html 
+20200331-123700.517 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200331-1236.html 
+20200331-123700.593 Last Updated 2020-03-31 08:00:00 
+20200331-123700.597 Tested 52344 
+20200331-123700.598 Confirmed 
+20200331-123700.604 Confirmed 9634 
+20200331-123700.610 Recovered 1095 
+20200331-123700.618 Deaths 128 
+20200331-123700.625 Calling scrapeHospitalisierung with 20200331-1236 
+20200331-123700.761 Scraping https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung 
+20200331-123700.762 Dumping page to ./html/COVID-19-austria.regions.20200331-1236.html 
+20200331-123701.041 Reading dump from ./html/COVID-19-austria.regions.20200331-1236.html 
+20200331-123701.054 Extracting table of Confirmed cases for 100+ regions 
+20200331-123701.100 Calling scrapeInfo with 20200331-1236 
+20200331-123701.212 Scraping using headless chrome for https://info.gesundheitsministerium.at/ 
+20200331-123701.214 Dumping page to ./html/COVID-19-austria.info.20200331-1236.dmp 
+20200331-123703.703 Analysing dump file ./html/COVID-19-austria.info.20200331-1236.dmp 
+20200331-123703.815 Aktualisierung 2020-03-31 12:00:00 
+20200331-123703.818 Erkrankungen 9851 
+20200331-123703.820 Extracting table of Confirmed in 100+ regions 
+20200331-123703.900 Writing new data to ./data/COVID-19-austria.csv 
+20200331-123703.913 Writing new data to ./data/COVID-19-austria.hospital.csv 
+20200331-123704.013 Writing new data to ./data/COVID-19-austria.regions.csv 
+20200331-123704.040 Done runing data extraction from bmsgpk web pages 
+20200331-124052.210 Running COVID-19-bmsgpk-extract.R 
+20200331-124052.251 Calling scrapeCovid with 20200331-1240 
+20200331-124052.348 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200331-124052.350 Dumping page to ./html/COVID-19-austria.bmsgpk.20200331-1240.html 
+20200331-124052.521 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200331-1240.html 
+20200331-124052.588 Last Updated 2020-03-31 08:00:00 
+20200331-124052.595 Tested 52344 
+20200331-124052.597 Confirmed 
+20200331-124052.605 Confirmed 9634 
+20200331-124052.612 Recovered 1095 
+20200331-124052.618 Deaths 128 
+20200331-124052.629 Calling scrapeHospitalisierung with 20200331-1240 
+20200331-124052.672 Scraping https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung 
+20200331-124052.673 Dumping page to ./html/COVID-19-austria.regions.20200331-1240.html 
+20200331-124052.831 Reading dump from ./html/COVID-19-austria.regions.20200331-1240.html 
+20200331-124052.846 Extracting table of Confirmed cases for 100+ regions 
+20200331-124053.004 Calling scrapeInfo with 20200331-1240 
+20200331-124053.036 Scraping using headless chrome for https://info.gesundheitsministerium.at/ 
+20200331-124053.037 Dumping page to ./html/COVID-19-austria.info.20200331-1240.dmp 
+20200331-124055.238 Analysing dump file ./html/COVID-19-austria.info.20200331-1240.dmp 
+20200331-124055.287 Aktualisierung 2020-03-31 12:00:00 
+20200331-124055.289 Erkrankungen 9851 
+20200331-124055.290 Extracting table of Confirmed in 100+ regions 
+20200331-124055.353 Writing new data to ./data/COVID-19-austria.csv 
+20200331-124055.370 Writing new data to ./data/COVID-19-austria.hospital.csv 
+20200331-124055.379 Writing new data to ./data/COVID-19-austria.regions.csv 
+20200331-124055.404 Done runing data extraction from bmsgpk web pages 

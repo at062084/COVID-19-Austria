@@ -700,3 +700,109 @@ Saving to: ‘./html/COVID-19-austria.regions.20200331-1213.html’
 20200331-121350.967 Writing new data to ./data/COVID-19-austria.hospital.csv 
 20200331-121350.982 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200331-121351.004 Done runing data extraction from bmsgpk web pages 
+[master e944743] 2020-03-31 12:13:46 Auto-Extract data from bmsgpk website
+ 8 files changed, 2110 insertions(+), 2 deletions(-)
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200331-1213.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200331-1213.dmp
+ create mode 100644 bmsgpk/html/COVID-19-austria.regions.20200331-1213.html
+To git@github.com:at062084/COVID-19-Austria.git
+   af399d3..e944743  HEAD -> master
+
+--------------------------------------------------------------------
+2020-03-31 12:40:50 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2020-03-31 12:40:50 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-03-31 12:40:50 Running auto-extraction of COVID-19 data from bmsgpk website
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘rvest’
+
+The following object is masked from ‘package:readr’:
+
+    guess_encoding
+
+20200331-124052.211 Running COVID-19-bmsgpk-extract.R 
+20200331-124052.251 Calling scrapeCovid with 20200331-1240 
+20200331-124052.349 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200331-124052.350 Dumping page to ./html/COVID-19-austria.bmsgpk.20200331-1240.html 
+--2020-03-31 12:40:52--  https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html
+Resolving www.sozialministerium.at (www.sozialministerium.at)... 95.131.199.37
+Connecting to www.sozialministerium.at (www.sozialministerium.at)|95.131.199.37|:443... connected.
+HTTP request sent, awaiting response... 200 200
+Length: 38241 (37K) [text/html]
+Saving to: ‘./html/COVID-19-austria.bmsgpk.20200331-1240.html’
+
+     0K .......... .......... .......... .......              100% 1,14M=0,03s
+
+2020-03-31 12:40:52 (1,14 MB/s) - ‘./html/COVID-19-austria.bmsgpk.20200331-1240.html’ saved [38241/38241]
+
+20200331-124052.522 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200331-1240.html 
+20200331-124052.589 Last Updated 2020-03-31 08:00:00 
+20200331-124052.596 Tested 52344 
+20200331-124052.598 Confirmed 
+20200331-124052.606 Confirmed 9634 
+20200331-124052.612 Recovered 1095 
+20200331-124052.619 Deaths 128 
+                Stamp    Status    AT   B   K  Noe  Ooe Szbg Stmk    T   V    W
+1 2020-03-31 08:00:00    Tested 52344  NA  NA   NA   NA   NA   NA   NA  NA   NA
+2 2020-03-31 08:00:00 Confirmed  9634 181 267 1551 1563  909 1000 2234 626 1303
+3 2020-03-31 09:30:00 Recovered  1095  NA  NA   NA   NA   NA   NA   NA  NA   NA
+4 2020-03-31 09:30:00    Deaths   128   3   2   28   10    9   30   19   2   25
+20200331-124052.630 Calling scrapeHospitalisierung with 20200331-1240 
+20200331-124052.673 Scraping https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung 
+20200331-124052.674 Dumping page to ./html/COVID-19-austria.regions.20200331-1240.html 
+--2020-03-31 12:40:52--  https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung
+Resolving www.sozialministerium.at (www.sozialministerium.at)... 95.131.199.37
+Connecting to www.sozialministerium.at (www.sozialministerium.at)|95.131.199.37|:443... connected.
+HTTP request sent, awaiting response... 200 200
+Length: 38346 (37K) [text/html]
+Saving to: ‘./html/COVID-19-austria.regions.20200331-1240.html’
+
+     0K .......... .......... .......... .......              100% 1,07M=0,03s
+
+2020-03-31 12:40:52 (1,07 MB/s) - ‘./html/COVID-19-austria.regions.20200331-1240.html’ saved [38346/38346]
+
+20200331-124052.831 Reading dump from ./html/COVID-19-austria.regions.20200331-1240.html 
+20200331-124052.846 Extracting table of Confirmed cases for 100+ regions 
+                Stamp           Status   AT  B  K Noe Ooe Stmk Szbg   T  V   W
+1 2020-03-31 09:30:00 Hospitalisierung 1110 10 32 223 167  149   63 213 62 191
+2 2020-03-31 09:30:00  Intensivstation  198  3 12  32  27   24    9  57 12  22
+20200331-124053.004 Calling scrapeInfo with 20200331-1240 
+20200331-124053.037 Scraping using headless chrome for https://info.gesundheitsministerium.at/ 
+20200331-124053.039 Dumping page to ./html/COVID-19-austria.info.20200331-1240.dmp 
+20200331-124055.239 Analysing dump file ./html/COVID-19-austria.info.20200331-1240.dmp 
+20200331-124055.288 Aktualisierung 2020-03-31 12:00:00 
+20200331-124055.290 Erkrankungen 9851 
+20200331-124055.291 Extracting table of Confirmed in 100+ regions 
+                 Stamp    Status                Region Count
+88 2020-03-31 12:00:00 Confirmed            Wien_Stadt  1351
+89 2020-03-31 12:00:00 Confirmed  Wiener_Neustadt_Land    26
+90 2020-03-31 12:00:00 Confirmed Wiener_Neustadt_Stadt    23
+91 2020-03-31 12:00:00 Confirmed             Wolfsberg    28
+92 2020-03-31 12:00:00 Confirmed           Zell_am_See   258
+93 2020-03-31 12:00:00 Confirmed                Zwettl    25
+20200331-124055.354 Writing new data to ./data/COVID-19-austria.csv 
+20200331-124055.370 Writing new data to ./data/COVID-19-austria.hospital.csv 
+20200331-124055.380 Writing new data to ./data/COVID-19-austria.regions.csv 
+20200331-124055.405 Done runing data extraction from bmsgpk web pages 
