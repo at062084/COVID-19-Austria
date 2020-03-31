@@ -20,13 +20,22 @@ logMsg <- function(msg) {
 }
 
 setwd("/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk")
-csvFile <- "./data/COVID-19-austria.csv"
 
 #----------------------------------------------------------------------------------------------------
 # Create Standard plot for each Bundesland
 #----------------------------------------------------------------------------------------------------
+
+# read tested, cases, recovered and deaths
+csvFile <- "./data/COVID-19-austria.csv"
 df <- read.csv(csvFile, stringsAsFactors=FALSE) %>% 
   dplyr::mutate(Stamp=as.POSIXct(Stamp))
+
+# read tested, cases, recovered and deaths
+csvFile <- "./data/COVID-19-austria.hospital.csv"
+dh <- read.csv(csvFile, stringsAsFactors=FALSE) %>% 
+  dplyr::mutate(Stamp=as.POSIXct(Stamp))
+
+dg <- rbind(df,dh)
 
 # Bundesländer in Österreich
 db <- data.frame(ID=colnames(df[3:12]),
@@ -37,7 +46,7 @@ db <- data.frame(ID=colnames(df[3:12]),
 
 # Iterate AT and Bundesländer
 for (bl in 1:nrow(db)) {
-  da <- df %>% 
+  da <- dg %>% 
     # use unquoted variant of dply methods so a string variable can be used for Bundesland
     dplyr::select_("Stamp","Status",db$ID[bl]) %>%
     dplyr::filter(Status!="Tested") %>%
@@ -51,9 +60,11 @@ for (bl in 1:nrow(db)) {
     dplyr::ungroup() %>%
     dplyr::select(-Date) %>%   
     tidyr::spread_(key="Status", val=db$ID[bl]) %>%
-    imputeTS::na_interpolation(method="linear") %>%
-    dplyr::mutate(Confirmed=round(Confirmed), Deaths=round(Deaths), Recovered=round(Recovered))
-
+    # imputeTS::na_interpolation(method="linear") %>%
+    dplyr::mutate(Confirmed=round(Confirmed), Deaths=round(Deaths), Recovered=round(Recovered), 
+                  Hospitalized=round(Hospitalisierung), IntenseCare=round(Intensivstation)) %>%
+    dplyr::select(-Hospitalisierung, -Intensivstation)
+  
   covRegionPlot(da, Regions=db$Name[bl], Population=db$Population[bl]*1e3, filePrefix="bmsgpk.stand",
                 nRegDays=4, nCutOff=1, nEstDays=7, ggMinDate=as.POSIXct("2020-02-22"))
 }

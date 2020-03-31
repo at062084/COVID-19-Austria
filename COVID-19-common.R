@@ -11,7 +11,7 @@ options(error = function() traceback(2))
 # -------------------------------------------------------------------------------------------------------------
 covRegionPlot <- function(dr, Regions="World", cutOffDate=as.POSIXct("2020-02-22"), 
                           Population=10e6, bPlot=TRUE, nRegDays=5, nEstDays=10, nCutOff=2, baseDir=".",
-                          ggMinDate=as.POSIXct("2020-02-15"), ggMaxDate=max(dr$Stamp)+days(7), filePrefix="") {
+                          ggMinDate=as.POSIXct("2020-02-15"), ggMaxDate=max(dr$Stamp)+days(10), filePrefix="") {
 # -------------------------------------------------------------------------------------------------------------
   
   # rolling regression
@@ -58,6 +58,24 @@ covRegionPlot <- function(dr, Regions="World", cutOffDate=as.POSIXct("2020-02-22
       dplyr::mutate(rolmDeathsCIu = rolmciu(Stamp,Deaths))
       dfdLast <- tail(dfdr$rolmDeaths,1)
   }
+
+  # calculate rolling estimate of spead of increase of Hospitalized
+  dfh <- dr %>% dplyr::filter(Hospitalized>nCutOff)
+  dfhLast <- NA
+  if (nrow(dfh)>=nRegDays) {
+    dfhr <- dfh %>% 
+      dplyr::mutate(rolmHospitalized = rolm(Stamp,Hospitalized))
+    dfhLast <- tail(dfhr$rolmHospitalized,1)
+  }
+  
+  # calculate rolling estimate of spead of increase of Hospitalized
+  dfi <- dr %>% dplyr::filter(IntenseCare>nCutOff)
+  dfiLast <- NA
+  if (nrow(dfi)>=nRegDays) {
+    dfir <- dfi %>% 
+      dplyr::mutate(rolmIntenseCare = rolm(Stamp,IntenseCare))
+    dfiLast <- tail(dfir$rolmIntenseCare,1)
+  }
   
   # Calculate first period with different window size
   dfdFrst <- NA
@@ -72,14 +90,19 @@ covRegionPlot <- function(dr, Regions="World", cutOffDate=as.POSIXct("2020-02-22
     d <- dfd %>% dplyr::filter(Stamp>max(Stamp)-days(nRegDays+nEstDays),Stamp<=max(Stamp)-days(nRegDays))
     dfdPrev <-  1/log10(exp(as.numeric(coef(lm(log(Deaths)~Stamp, data=d))[2])*24*3600))
   } 
+
   
+  
+    
   # gather Confirmed, Deaths into Status
   dfg <- dfc %>% 
-    tidyr::gather(key=Status, value=Count, Confirmed, Recovered, Deaths) %>%
+    tidyr::gather(key=Status, value=Count, Confirmed, Recovered, Deaths, Hospitalized, IntenseCare) %>%
     dplyr::filter(Count>nCutOff) %>%
     dplyr::mutate(Count=log10(Count))
 
-    
+
+  
+      
   #c <- data.frame(round(max(dfw$sumConfirmed)/(Population*1e6)*1000000), max(dfw$sumConfirmed), max(dfw$sumDeaths), round(MTD,1), 
   #                as.POSIXct(as.character(expBeginC, format="%Y-%m-%d")),round(1/log10(cRate),1),round(1/log10(cRateMin),1),round(1/log10(cRateMax),1),round(1/log10(cRateFst),1),round(1/log10(cRateLst),1),
   #                round(1/log10(cRateCur),1),
@@ -96,15 +119,18 @@ covRegionPlot <- function(dr, Regions="World", cutOffDate=as.POSIXct("2020-02-22
                   method=lm, aes(color=Status, linetype=paste0("Prev",nEstDays,"Days")), fullrange=TRUE, se=FALSE, size=.25) +
       stat_smooth(data=function(x) {x %>% dplyr::filter(Stamp<(min(Stamp)+days(nEstDays)))}, 
                   method=lm, aes(color=Status, linetype=paste0("Zero",nEstDays,"Days")), fullrange=TRUE, se=FALSE, size=.25) +
-      geom_line( data=dfcr, mapping=aes(x=Stamp, y=rolmConfirmed/10), inherit.aes=FALSE, size=1, color="darkgrey") +
-      geom_point(data=dfcr, mapping=aes(x=Stamp, y=rolmConfirmed/10), inherit.aes=FALSE, size=1) +
+      geom_line( data=dfcr, mapping=aes(x=Stamp, y=rolmConfirmed/10), inherit.aes=FALSE, size=1.5, color="darkgrey") +
+      geom_point(data=dfcr, mapping=aes(x=Stamp, y=rolmConfirmed/10), inherit.aes=FALSE, size=1.5) +
       geom_line( data=dfcr, mapping=aes(x=Stamp, y=rolmConfirmedCIl/10), inherit.aes=FALSE, linetype=3, size=.25) +
       geom_line( data=dfcr, mapping=aes(x=Stamp, y=rolmConfirmedCIu/10), inherit.aes=FALSE, linetype=3, size=.25) +
+      geom_line( data=dfdr, mapping=aes(x=Stamp, y=rolmDeaths/10), inherit.aes=FALSE, size=1.5, color="orange") +
+      geom_point(data=dfdr, mapping=aes(x=Stamp, y=rolmDeaths/10), inherit.aes=FALSE, size=1.5, color="darkred") +
       scale_y_continuous(limits=c(0,5), sec.axis = sec_axis(~ . *10, name=paste0("numDays to *10 Confirmed. ",nRegDays," days rolling regression [90% confInterval]"))) +
       xlim(ggMinDate,ggMaxDate) + 
       xlab(paste0("Confirmed*10-Frst", nEstDays,"Days=",round(dfcFrst,1), "d  Deaths*10-Frst",nEstDays,"Days=",round(dfdFrst,1), "d\n",
                   "Confirmed*10-Prev", nEstDays,"Days=",round(dfcPrev,1), "d  Deaths*10-Prev",nEstDays,"Days=",round(dfdPrev,1), "d\n", 
-                  "Confirmed*10-Last", nRegDays,"Days=",round(dfcLast,1), "d  Deaths*10-Last",nRegDays,"Days=",round(dfdLast,1), "d")) +
+                  "Confirmed*10-Last", nRegDays,"Days=",round(dfcLast,1), "d  Deaths*10-Last",nRegDays,"Days=",round(dfdLast,1), "d\n",
+                  "Hospitalized*10-Last", nRegDays,"Days=",round(dfhLast,1), "d  IntenseCare*10-Last",nRegDays,"Days=",round(dfiLast,1), "d")) +
       ggtitle(paste0("Region=",paste(Regions,collapse="-"), " Date=",max(dfg$Stamp,na.rm=TRUE), 
                      "  Population=",round(Population/1e6,1), "Mio Confirmed=",round(max(dfc$Confirmed,na.rm=TRUE)/Population*1e6),"ppm",
                      "  Confirmed=",max(dfc$Confirmed,na.rm=TRUE),"  Recovered=",max(dfc$Recovered,na.rm=TRUE), " Deaths=",max(dfc$Deaths,na.rm=TRUE),
