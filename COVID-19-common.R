@@ -100,7 +100,7 @@ covRegionPlot <- function(dr, Regions="World", cutOffDate=as.POSIXct("2020-02-22
       geom_point(data=dfcr, mapping=aes(x=Stamp, y=rolmConfirmed/5), inherit.aes=FALSE, size=1) +
       geom_line( data=dfcr, mapping=aes(x=Stamp, y=rolmConfirmedCIl/5), inherit.aes=FALSE, linetype=3, size=.25) +
       geom_line( data=dfcr, mapping=aes(x=Stamp, y=rolmConfirmedCIu/5), inherit.aes=FALSE, linetype=3, size=.25) +
-      scale_y_continuous(limits=c(0,5), sec.axis = sec_axis(~ . *5, name=paste0("numDays to *10 Confirmed. ",nRegDays," days rolling regression [90% confInterval]"))) +
+      scale_y_continuous(limits=c(0,5), sec.axis = sec_axis(~ . *10, name=paste0("numDays to *10 Confirmed. ",nRegDays," days rolling regression [90% confInterval]"))) +
       xlim(ggMinDate,ggMaxDate) + 
       xlab(paste0("Confirmed*10-Frst", nEstDays,"Days=",round(dfcFrst,1), "d  Deaths*10-Frst",nEstDays,"Days=",round(dfdFrst,1), "d\n",
                   "Confirmed*10-Prev", nEstDays,"Days=",round(dfcPrev,1), "d  Deaths*10-Prev",nEstDays,"Days=",round(dfdPrev,1), "d\n", 
