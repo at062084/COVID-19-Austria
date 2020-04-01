@@ -18,7 +18,7 @@
 - y-Axis left: log10 of cases: 0=1, 1=10, 2=100, 3=1000, ..
 - y-Axis right: linear. number of days for black line: Number of days until Confirmed *10 calculated from previous 4 days
 - ppm: Number of confirmed cases per million inhabitants. 1000 means one promille.
-<p><img src="https://github.com/at062084/COVID-19-Austria/blob/master/bmsgpk/thumbs/covid.bmsgpk.stand.Oesterreich.2020-03-31.png" alt="covid.bmsgpk.stand.Oesterreich.2020-04-01.png"  width="1102" height="826"/></p>
+<p><img src="https://github.com/at062084/COVID-19-Austria/blob/master/bmsgpk/thumbs/covid.bmsgpk.stand.Oesterreich.2020-04-01.png" alt="covid.bmsgpk.stand.Oesterreich.2020-04-01.png"  width="1102" height="826"/></p>
 
 
 ##   bmsgpk - Bundesministerium für Soziales, Gesundheit, Pflege und Konsumentenschutz
