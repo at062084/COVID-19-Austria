@@ -79,7 +79,8 @@ covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d")
   csvFile <- "/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/data/COVID-19-austria.hospital.csv"
   dh <- read.csv(csvFile, stringsAsFactors=FALSE) %>% 
     dplyr::mutate(Stamp=as.POSIXct(Stamp)) %>%
-    dplyr::filter(date(Stamp)==as.POSIXct(dataDate))
+    dplyr::filter(date(Stamp)==as.POSIXct(dataDate)) %>%
+    dplyr::distinct()
   
   
   # Merge these data and select last record of each Status per day
@@ -127,7 +128,7 @@ covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d")
   # -------------------------------------------------------------------------------------------------------------
   # Write Data file for states
   # -------------------------------------------------------------------------------------------------------------
-  colnames(df) <- c(colnames(df)[1:2],"ALL",BL$Name[2:10],"Date")
+  colnames(df) <- c(colnames(df)[1:2],"ALL",BL$ISO[2:10],"Date")
   
   #dg <- df %>%
   #  dplyr::filter_all(all_vars(!is.na(.))) %>%
@@ -174,9 +175,12 @@ covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d")
     dplyr::group_by(Date,Status,Region) %>%
     dplyr::filter(row_number()==1) %>%
     dplyr::ungroup() %>%
-    dplyr::inner_join(OBR, by=c("Region"="county")) %>%
-    dplyr::mutate(country="AT") %>%
-    dplyr::select(country,state,county=Region,cases=Count)
+    dplyr::inner_join(OBR, by=c("Region"="Bezirk")) %>%
+    dplyr::group_by(Date,Status,NUTS0,NUTS2,NUTS3) %>% 
+    dplyr::summarize(Count=sum(Count)) %>% 
+    dplyr::ungroup() %>%
+    dplyr::select(country=NUTS0,state=NUTS2,county=NUTS3,cases=Count) %>%
+    dplyr::arrange(country,state,county)
   
   
   # Spread Status and mutate to Box format

@@ -66,6 +66,10 @@ for (bl in 1:nrow(db)) {
                   Hospitalized=round(Hospitalisierung), IntenseCare=round(Intensivstation)) %>%
     dplyr::select(-Hospitalisierung, -Intensivstation)
   
+    if (bl != 1) {
+      da <- da %>% dplyr::filter(Status != "Tested")
+    }
+  
   covRegionPlot(da, Regions=db$Name[bl], Population=db$Population[bl]*1e3, filePrefix="bmsgpk.stand",
                 nRegDays=4, nCutOff=1, nEstDays=7, ggMinDate=as.POSIXct("2020-02-22"))
 }
