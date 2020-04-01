@@ -111,7 +111,7 @@ covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d")
   ds <- df %>% 
     dplyr::select(Date,Status,AT) %>%
     tidyr::spread(key=Status, val=AT) %>%
-    dplyr::mutate(country="Austria",county="ALL",state="ALL") %>%
+    dplyr::mutate(country="AT",county="ALL",state="ALL") %>%
     dplyr::rename(cases=Confirmed, deaths=Deaths,tested=Tested, recovered=Recovered, hospitalized=Hospitalisierung) %>%
     dplyr::select(-Intensivstation, -Date) %>% 
     dplyr::select(country,county,state,cases,deaths,recovered,tested,hospitalized)
@@ -146,7 +146,7 @@ covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d")
     dplyr::filter(Status!="Intensivstation") %>%
     tidyr::gather(key=state,val=Count,2:11) %>%
     tidyr::spread(key=Status, val=Count) %>%
-    dplyr::mutate(country="Austria", county="ALL") %>%
+    dplyr::mutate(country="AT", county="ALL") %>%
     dplyr::rename(cases=Confirmed, deaths=Deaths, hospitalized=Hospitalisierung, recovered=Recovered, tested=Tested) %>%
     dplyr::select(-Date) %>%
     dplyr::select(country,state,county,cases,deaths,recovered,tested,hospitalized)
@@ -175,6 +175,7 @@ covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d")
     dplyr::filter(row_number()==1) %>%
     dplyr::ungroup() %>%
     dplyr::inner_join(OBR, by=c("Region"="county")) %>%
+    dplyr::mutate(country="AT") %>%
     dplyr::select(country,state,county=Region,cases=Count)
   
   

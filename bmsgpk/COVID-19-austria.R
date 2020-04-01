@@ -10,7 +10,7 @@ library(MASS)
 library(robustbase)
 library(scales)
 options(error = function() traceback(2))
-source("../COVID-19-common.R")
+
 
 # do some logging
 logFile <- "./COVID-19.austria.log"
@@ -20,6 +20,7 @@ logMsg <- function(msg) {
 }
 
 setwd("/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk")
+source("../COVID-19-common.R")
 
 #----------------------------------------------------------------------------------------------------
 # Create Standard plot for each Bundesland
@@ -49,7 +50,7 @@ for (bl in 1:nrow(db)) {
   da <- dg %>% 
     # use unquoted variant of dply methods so a string variable can be used for Bundesland
     dplyr::select_("Stamp","Status",db$ID[bl]) %>%
-    dplyr::filter(Status!="Tested") %>%
+    # dplyr::filter(Status!="Tested") %>%
     dplyr::mutate(Date=date(Stamp)) %>%
     dplyr::arrange(Stamp) %>%
     dplyr::group_by(Date,Status) %>%

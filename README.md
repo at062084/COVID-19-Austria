@@ -5,7 +5,8 @@
 - 'number of days until times ten cases': This is the main unit for speed of spread of COVID-19 used for all estimates
 
 ## News and Enhancements
-- 2020-04-01: Add line on plot for rolling regression of number of days till deaths*10. Plotted in orange/red
+- 2020-04-01: Add 'Tested' to plot
+- 2020-03-31: Add line on plot for rolling regression of number of days till deaths*10. Plotted in orange/red
 - 2020-03-30: Add extractor for IBM covid-county project. This is scraper platform with a configurable scraper per country
 - 2020-03-29: Create plots of current state of measures taken. *10 for confirmed cases is 24 days now. Not good enough  yet
 - 2020-03-27: Nominated country lead for IBM covid-county data scraper project. New routines to convert to their data format
