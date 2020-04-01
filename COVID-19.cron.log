@@ -1198,3 +1198,131 @@ Saving to: ‘./html/COVID-19-austria.regions.20200401-1250.html’
 20200401-125015.847 Writing new data to ./data/COVID-19-austria.hospital.csv 
 20200401-125015.859 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200401-125015.884 Done runing data extraction from bmsgpk web pages 
+[master 78234b7] 2020-04-01 12:50:10 Auto-Extract data from bmsgpk website
+ 5 files changed, 2011 insertions(+)
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200401-1250.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200401-1250.dmp
+ create mode 100644 bmsgpk/html/COVID-19-austria.regions.20200401-1250.html
+To git@github.com:at062084/COVID-19-Austria.git
+   e01743b..78234b7  HEAD -> master
+
+--------------------------------------------------------------------
+2020-04-01 12:50:40 Running ./COVID-19-cron.sh for SECTION=county
+2020-04-01 12:50:40 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-04-01 12:50:40 Running conversion of COVID-19 data to covid-county format
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘tibbletime’
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:readr’:
+
+    col_factor
+
+
+Attaching package: ‘plotly’
+
+The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+The following object is masked from ‘package:graphics’:
+
+    layout
+
+20200401-125042.357 Running COVID-19-covid-county-extract.R 
+20200401-125042.489 Executing covCounty with 2020-04-01 10:50:42 
+Error: Can't rename columns that don't exist.
+✖ The column `Recovered` doesn't exist.
+Backtrace:
+     █
+  1. ├─global::covCounty(...)
+  2. │ └─`%>%`(...)
+  3. │   ├─base::withVisible(eval(quote(`_fseq`(`_lhs`)), env, env))
+  4. │   └─base::eval(quote(`_fseq`(`_lhs`)), env, env)
+  5. │     └─base::eval(quote(`_fseq`(`_lhs`)), env, env)
+  6. │       └─`_fseq`(`_lhs`)
+  7. │         └─magrittr::freduce(value, `_function_list`)
+  8. │           └─function_list[[i]](value)
+  9. │             ├─dplyr::rename(...)
+ 10. │             └─dplyr:::rename.data.frame(...)
+ 11. │               └─tidyselect::vars_rename(names(.data), !!!enquos(...))
+ 12. │                 └─tidyselect:::rename_impl(NULL, .vars, quo(c(...)), strict = .strict)
+ 13. │                   └─tidyselect:::eval_select_impl(...)
+ 14. │                     ├─tidyselect:::with_subscript_errors(...)
+ 15. │                     │ ├─base::t
+22: (function () 
+    traceback(2))()
+21: stop(fallback)
+20: rlang:::signal_abort(x)
+19: cnd_signal(cnd)
+18: value[[3L]](cond)
+17: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+16: tryCatchList(expr, classes, parentenv, handlers)
+15: tryCatch(instrument_base_errors(expr), vctrs_error_subscript = function(cnd) {
+        cnd$subscript_action <- subscript_action(type)
+        cnd$subscript_elt <- "column"
+        cnd_signal(cnd)
+    })
+14: with_subscript_errors(vars_select_eval(vars, expr, strict, data = x, 
+        name_spec = name_spec, uniquely_named = uniquely_named, type = type), 
+        type = type)
+13: eval_select_impl(x, names, {
+        {
+            sel
+        }
+    }, strict = strict, name_spec = name_spec, type = "rename")
+12: rename_impl(NULL, .vars, quo(c(...)), strict = .strict)
+11: tidyselect::vars_rename(names(.data), !!!enquos(...))
+10: rename.data.frame(., cases = Confirmed, deaths = Deaths, tested = Tested, 
+        recovered = Recovered, hospitalized = Hospitalisierung)
+9: dplyr::rename(., cases = Confirmed, deaths = Deaths, tested = Tested, 
+       recovered = Recovered, hospitalized = Hospitalisierung)
+8: function_list[[i]](value)
+7: freduce(value, `_function_list`)
+6: `_fseq`(`_lhs`)
+5: eval(quote(`_fseq`(`_lhs`)), env, env)
+4: eval(quote(`_fseq`(`_lhs`)), env, env)
+3: withVisible(eval(quote(`_fseq`(`_lhs`)), env, env))
+2: df %>% dplyr::select(Date, Status, AT) %>% tidyr::spread(key = Status, 
+       val = AT) %>% dplyr::mutate(country = "Austria", county = "ALL", 
+       state = "ALL") %>% dplyr::rename(cases = Confirmed, deaths = Deaths, 
+       tested = Tested, recovered = Recovered, hospitalized = Hospitalisierung) %>% 
+       dplyr::select(-Intensivstation, -Date) %>% dplyr::select(country, 
+       county, state, cases, deaths, recovered, tested, hospitalized)
+1: covCounty(scrapeStamp = ts, dataDate = format(ts, "%Y-%m-%d"), 
+       dataDir = "./data")
+20200401-125042.690 Done executing covCounty 
+20200401-125042.690 Done running COVID-19-covid-county-extract.R 
