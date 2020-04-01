@@ -51,14 +51,15 @@ covRegionPlot <- function(dr, Regions="World", cutOffDate=as.POSIXct("2020-02-22
   
   # calculate rolling estimate of spead of increase of fatalities
   dfdLast <- NA
+  dfdr <- NA
   if (nrow(dfd)>=nRegDays) {
     dfdr <- dfd %>% 
       dplyr::mutate(rolmDeaths = rolm(Stamp,Deaths)) %>%
       dplyr::mutate(rolmDeathsCIl = rolmcil(Stamp,Deaths)) %>%
       dplyr::mutate(rolmDeathsCIu = rolmciu(Stamp,Deaths))
       dfdLast <- tail(dfdr$rolmDeaths,1)
-  }
-
+  } 
+  
   # calculate rolling estimate of spead of increase of Hospitalized
   dfh <- dr %>% dplyr::filter(Hospitalized>nCutOff)
   dfhLast <- NA
@@ -92,8 +93,6 @@ covRegionPlot <- function(dr, Regions="World", cutOffDate=as.POSIXct("2020-02-22
   } 
 
   
-  
-    
   # gather Confirmed, Deaths into Status
   dfg <- dfc %>% 
     tidyr::gather(key=Status, value=Count, Confirmed, Recovered, Deaths, Hospitalized, IntenseCare) %>%
