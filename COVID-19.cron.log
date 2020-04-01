@@ -1463,3 +1463,71 @@ The following object is masked from ‘package:graphics’:
 20200401-133146.024 Writing ./data/AT_counties.bmsgpk.csv 
 20200401-133146.026 Done executing covCounty 
 20200401-133146.026 Done running COVID-19-covid-county-extract.R 
+[master 5f3228c] 2020-04-01 13:31:44 Auto-Conversion of bmsgpk data to covid-county format
+ 3 files changed, 66 insertions(+), 2 deletions(-)
+To git@github.com:at062084/COVID-19-Austria.git
+   3c8186f..5f3228c  HEAD -> master
+
+--------------------------------------------------------------------
+2020-04-01 14:02:55 Running ./COVID-19-cron.sh for SECTION=county
+2020-04-01 14:02:55 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-04-01 14:02:55 Running conversion of COVID-19 data to covid-county format
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘tibbletime’
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:readr’:
+
+    col_factor
+
+
+Attaching package: ‘plotly’
+
+The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+The following object is masked from ‘package:graphics’:
+
+    layout
+
+20200401-140257.375 Running COVID-19-covid-county-extract.R 
+20200401-140257.524 Executing covCounty with 2020-04-01 12:02:57 
+20200401-140257.685 Writing ./data/AT_country.bmsgpk.csv 
+20200401-140257.736 Writing ./data/AT_states.bmsgpk.csv 
+20200401-140257.787 Writing ./data/AT_counties.bmsgpk.csv 
+20200401-140257.790 Done executing covCounty 
+20200401-140257.790 Done running COVID-19-covid-county-extract.R 
