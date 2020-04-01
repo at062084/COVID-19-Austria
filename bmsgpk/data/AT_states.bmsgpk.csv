@@ -1,5 +1,5 @@
 country,state,county,cases,deaths,recovered,tested,hospitalized
-Austria,ALL,ALL,10192,146,NA,55863,1071
+Austria,ALL,ALL,10192,146,1436,55863,1071
 Austria,Burgenland,ALL,185,3,NA,NA,10
 Austria,Kaernten,ALL,278,2,NA,NA,29
 Austria,Niederoesterreich,ALL,1637,28,NA,NA,200
