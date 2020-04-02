@@ -50,6 +50,7 @@ scrapeCovid <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   
   # Identifiers of sections  in html response of wget 
   atTested <- "<p><strong>Bisher durchgef&uuml;hrte Testungen in &Ouml;sterreich"
+  # <strong>Bisher durchgeführte Testungen in Österreich (tägliche Aktualisierung des Ist-Standes um 10:00 Uhr): </strong> #2020-04-02
   atConfirmed <- "<p><strong>Best&auml;tigte F&auml;lle, </strong><strong>Stand"
   atConfirmed <- "<p><strong>Best&auml;tigte F&auml;lle, Stand "                  # new as of 2020-03-27
   atRecovered <- "<p><strong>Genesen, Stand "
@@ -79,7 +80,7 @@ scrapeCovid <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   # Extract number of Tested
   # ------------------------
   s <- str_extract(html, paste0(atTested,".*",closeAll))
-  t <- str_match(s,paste0("</strong>","([\\d\\.]*)","</p>"))[,2]
+  t <- str_match(s,paste0("</strong>","([\\d\\. ]*)"))[,2]
   totTested <- as.integer(str_remove(t,"\\."))
   if(bCalcStamp) {
     t <- str_match(s, paste0("Aktualisierung des Ist-Standes um ","(.*)"," Uhr\\): </strong>"))[2]

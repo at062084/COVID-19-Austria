@@ -11,7 +11,7 @@ options(error = function() traceback(2))
 # -------------------------------------------------------------------------------------------------------------
 covRegionPlot <- function(dr, Regions="World", cutOffDate=as.POSIXct("2020-02-22"), 
                           Population=10e6, bPlot=TRUE, nRegDays=5, nEstDays=10, nCutOff=2, baseDir=".",
-                          ggMinDate=as.POSIXct("2020-02-15"), ggMaxDate=max(dr$Stamp)+days(10), filePrefix="") {
+                          ggMinDate=as.POSIXct("2020-02-24"), ggMaxDate=max(dr$Stamp)+days(10), filePrefix="") {
 # -------------------------------------------------------------------------------------------------------------
   
   # rolling regression
@@ -94,7 +94,7 @@ covRegionPlot <- function(dr, Regions="World", cutOffDate=as.POSIXct("2020-02-22
 
   
   # gather Confirmed, Deaths into Status
-  if (Regions == "Oesterreich") {
+  if (Regions == "Oesterreich" || Regions == "AT") {
     dfg <- dfc %>% 
       tidyr::gather(key=Status, value=Count, Confirmed, Recovered, Deaths, Hospitalized, IntenseCare, Tested) %>%
       dplyr::filter(Count>nCutOff) %>%
@@ -114,6 +114,17 @@ covRegionPlot <- function(dr, Regions="World", cutOffDate=as.POSIXct("2020-02-22
   #                as.POSIXct(as.character(expBeginD, format="%Y-%m-%d")),round(1/log10(dRate),1),round(1/log10(dRateMin),1),round(1/log10(dRateMax),1),round(1/log10(dRateFst),1),round(1/log10(dRateLst),1)
   #)
   
+  allGrid=c(1,2,3,4,5,6,7,8,9,10)
+  majGrid=c(10)
+  minGrid=c(1,2,3,4,5,6,7,8,9)
+  yLogTicsLabels <-     as.character(c(allGrid*1e0,allGrid*1e1,allGrid*1e2,allGrid*1e3,allGrid*1e4,allGrid*1e5,allGrid*1e6))
+  yLogTicsLabelsMajor <-as.character(c(majGrid*1e0,majGrid*1e1,majGrid*1e2,majGrid*1e3,majGrid*1e4,majGrid*1e5,majGrid*1e6))
+  yLogTicsBreaksAll <-         log10(c(allGrid*1e0,allGrid*1e1,allGrid*1e2,allGrid*1e3,allGrid*1e4,allGrid*1e5,allGrid*1e6))
+  yLogTicsBreaksMajor <-       log10(c(majGrid*1e0,majGrid*1e1,majGrid*1e2,majGrid*1e3,majGrid*1e4,majGrid*1e5,majGrid*1e6))
+  yLogTicsBreaksMinor <-       log10(c(minGrid*1e0,minGrid*1e1,minGrid*1e2,minGrid*1e3,minGrid*1e4,minGrid*1e5,minGrid*1e6))
+  
+  
+  
   if (bPlot) {
     print(paste0("saveImage: ./covid.",filePrefix,".",paste(Regions,collapse="-"),".",format(max(dfc$Stamp),"%Y-%m-%d"),".png"))
     gg <- ggplot(data=dfg, aes(x=Stamp, y=Count, color=Status, shape=Status)) +
@@ -130,8 +141,9 @@ covRegionPlot <- function(dr, Regions="World", cutOffDate=as.POSIXct("2020-02-22
       geom_line( data=dfcr, mapping=aes(x=Stamp, y=rolmConfirmedCIu/10), inherit.aes=FALSE, linetype=3, size=.25) +
       geom_line( data=dfdr, mapping=aes(x=Stamp, y=rolmDeaths/10), inherit.aes=FALSE, size=1.5, color="orange") +
       geom_point(data=dfdr, mapping=aes(x=Stamp, y=rolmDeaths/10), inherit.aes=FALSE, size=1.5, color="darkred") +
-      scale_y_continuous(limits=c(0,5), sec.axis = sec_axis(~ . *10, name=paste0("Days to *10 of Confirmed(grey) and Deaths(orange) \n",nRegDays," days rolling regression [90% confInterval]"))) +
-      xlim(ggMinDate,ggMaxDate) + 
+      scale_x_datetime(date_breaks="1 week", date_minor_breaks="1 day", labels=date_format("%d.%m"), limits=c(ggMinDate,ggMaxDate)) +
+      scale_y_continuous(limits=c(0,5), labels=yLogTicsLabelsMajor, breaks=yLogTicsBreaksMajor, minor_breaks=yLogTicsBreaksMinor,
+                         sec.axis = sec_axis(~ . *10, name=paste0("Days to *10 of Confirmed(grey) and Deaths(orange) \n",nRegDays," days rolling regression [90% confInterval]"))) +
       xlab(paste0("Confirmed*10-Frst", nEstDays,"Days=",round(dfcFrst,1), "d  Deaths*10-Frst",nEstDays,"Days=",round(dfdFrst,1), "d\n",
                   "Confirmed*10-Prev", nEstDays,"Days=",round(dfcPrev,1), "d  Deaths*10-Prev",nEstDays,"Days=",round(dfdPrev,1), "d\n", 
                   "Confirmed*10-Last", nRegDays,"Days=",round(dfcLast,1), "d  Deaths*10-Last",nRegDays,"Days=",round(dfdLast,1), "d\n",
