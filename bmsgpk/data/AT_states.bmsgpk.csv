@@ -1,5 +1,5 @@
 country,state,county,cases,deaths,recovered,tested,hospitalized
-AT,ALL,ALL,10769,158,1749,NA,1057
+AT,ALL,ALL,10769,158,1749,92190,1057
 AT,AT-1,ALL,198,3,21,NA,13
 AT,AT-2,ALL,295,2,51,NA,28
 AT,AT-3,ALL,1717,28,298,NA,203
