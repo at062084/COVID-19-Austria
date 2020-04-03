@@ -1,8 +1,7 @@
-# COVID-19 data provided by Austrian authoritiese
+# COVID1-9 data provided by Austrian authoritiese
 library(dplyr)
 library(stringr)
 library(ggplot2)
-library(plotly)
 library(lubridate)
 library(imputeTS)
 library(tibbletime)

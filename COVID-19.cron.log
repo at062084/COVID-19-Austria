@@ -2335,3 +2335,10 @@ Saving to: ‘./html/COVID-19-austria.regions.20200403-1604.html’
 20200403-160454.101 Writing new data to ./data/COVID-19-austria.hospital.csv 
 20200403-160454.110 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200403-160454.137 Done runing data extraction from bmsgpk web pages 
+[master c3d26ae] 2020-04-03 16:04:49 Auto-Extract data from bmsgpk website
+ 8 files changed, 2122 insertions(+)
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200403-1604.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200403-1604.dmp
+ create mode 100644 bmsgpk/html/COVID-19-austria.regions.20200403-1604.html
+To git@github.com:at062084/COVID-19-Austria.git
+   ebc7ba4..c3d26ae  HEAD -> master
