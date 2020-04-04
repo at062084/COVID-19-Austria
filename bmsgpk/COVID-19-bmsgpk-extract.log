@@ -620,3 +620,30 @@
 20200404-115950.166 Writing new data to ./data/COVID-19-austria.hospital.csv 
 20200404-115950.177 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200404-115950.213 Done runing data extraction from bmsgpk web pages 
+20200404-195632.075 Running COVID-19-bmsgpk-extract.R 
+20200404-195632.120 Calling scrapeCovid with 20200404-1956 
+20200404-195632.220 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200404-195632.221 Dumping page to ./html/COVID-19-austria.bmsgpk.20200404-1956.html 
+20200404-195632.394 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200404-1956.html 
+20200404-195632.440 WARN: no LastUpdated found 
+20200404-195632.445 Tested 104134 
+20200404-195632.447 Confirmed 
+20200404-195632.452 Confirmed NA 
+20200404-195632.459 Recovered 2507 
+20200404-195632.466 Deaths 186 
+20200404-195632.475 Calling scrapeHospitalisierung with 20200404-1956 
+20200404-195632.513 Scraping https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung 
+20200404-195632.515 Dumping page to ./html/COVID-19-austria.regions.20200404-1956.html 
+20200404-195632.674 Reading dump from ./html/COVID-19-austria.regions.20200404-1956.html 
+20200404-195632.687 Extracting table of Confirmed cases for 100+ regions 
+20200404-195632.816 Calling scrapeInfo with 20200404-1956 
+20200404-195632.843 Scraping using headless chrome for https://info.gesundheitsministerium.at/ 
+20200404-195632.844 Dumping page to ./html/COVID-19-austria.info.20200404-1956.dmp 
+20200404-195634.979 Analysing dump file ./html/COVID-19-austria.info.20200404-1956.dmp 
+20200404-195635.029 Aktualisierung 2020-04-04 19:00:00 
+20200404-195635.032 Erkrankungen 11741 
+20200404-195635.033 Extracting table of Confirmed in 100+ regions 
+20200404-195635.092 Writing new data to ./data/COVID-19-austria.csv 
+20200404-195635.103 Writing new data to ./data/COVID-19-austria.hospital.csv 
+20200404-195635.111 Writing new data to ./data/COVID-19-austria.regions.csv 
+20200404-195635.135 Done runing data extraction from bmsgpk web pages 
