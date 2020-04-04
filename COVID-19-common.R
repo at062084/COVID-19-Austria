@@ -154,9 +154,9 @@ covRegionPlot <- function(dr, Regions="World", cutOffDate=as.POSIXct("2020-02-22
                      "  Recovered=",max(dfc$Recovered,na.rm=TRUE), "  Deaths=",max(dfc$Deaths,na.rm=TRUE)))
     print(gg)
     
-    ggsave(filename=paste0(baseDir,"/thumbs/covid.",filePrefix,".",paste(Regions,collapse="-"),".",format(max(dfc$Stamp),"%Y-%m-%d"),".png"),
+    ggsave(gg, filename=paste0(baseDir,"/thumbs/covid.",filePrefix,".",paste(Regions,collapse="-"),".",format(max(dfc$Stamp),"%Y-%m-%d"),".png"),
            width=200, height=150, units="mm", scale=1.4 ,dpi=100)
-    ggsave(filename=paste0(baseDir,"/plots/covid.",filePrefix,".",paste(Regions,collapse="-"),".",format(max(dfc$Stamp),"%Y-%m-%d"),".png"),
+    ggsave(gg, filename=paste0(baseDir,"/plots/covid.",filePrefix,".",paste(Regions,collapse="-"),".",format(max(dfc$Stamp),"%Y-%m-%d"),".png"),
            width=350, height=200, units="mm", scale=1 ,dpi=150)
   }
   
