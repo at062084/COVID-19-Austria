@@ -44,6 +44,7 @@ then
 
 	echo "$STAMP Running conversion of COVID-19 data to covid-county format"  | tee -a $LOG_FILE
 	/usr/bin/Rscript ./COVID-19-covid-county-extract.R 2>&1 | tee -a  $LOG_FILE
+	for i in ./data/AT_*.bmsgpk.csv; do echo ""; echo $i; head -11 $i; done
 
 	# Update git
 	git add ../*.log
