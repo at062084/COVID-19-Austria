@@ -83,7 +83,7 @@ scrapeCovid <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   t <- str_match(s,paste0("</strong>","([\\d\\. ]*)"))[,2]
   totTested <- as.integer(str_remove(t,"\\."))
   if(bCalcStamp) {
-    t <- str_match(s, paste0("Aktualisierung des Ist-Standes um ","(.*)"," Uhr\\): </strong>"))[2]
+    t <- str_match(s, paste0("Aktualisierung des Ist-Standes um","([\\d :]*)","Uhr"))[2]
     Stamp <- as.POSIXct(paste0(format(now(),"%Y-%m-%d "),t), format="%Y-%m-%d %H:%M", tz="CEST")
   }
   df[iTested,"Stamp"] <- Stamp 
