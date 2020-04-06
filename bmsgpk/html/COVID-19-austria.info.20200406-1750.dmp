@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <title>Amtliches Dashboard COVID19</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="version" content="1.0.0.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="1800">
+    <script type="text/javascript" async="" defer="" src="//an.ehealth.gv.at/matomo.js"></script><script type="text/javascript" src="./data/Geschlechtsverteilung.js"></script>
+    <script type="text/javascript" src="./data/Altersverteilung.js"></script>
+    <script type="text/javascript" src="./data/Bundesland.js"></script>
+    <script type="text/javascript" src="./data/Trend.js"></script>
+    <script type="text/javascript" src="./data/SimpleData.js"></script>
+    <script type="text/javascript" src="./data/Bezirke.js"></script>
+    <!-- style -->
+    <script type="text/javascript" src="./css/bootstrap/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/bootstrap/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="./css/bootstrap/css/bootstrap-reboot.min.css">
+    <script type="text/javascript" src="./css/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        window.onload = function () {
+            var chart1 = new CanvasJS.Chart("cGeschlechtsverteilung", {
+                theme: "dark1", // "light1", "light2", "dark1", "dark2"
+                exportEnabled: false,
+                animationEnabled: true,
+                title: { text: "Geschlechtsverteilung", fontFamily: "calibri", fontSize: 20, fontWeight: "normal" },
+                data: [{
+                    type: "pie",
+                    startAngle: 25,
+                    toolTipContent: "<b>{label}</b>: {y}%",
+                    dataPoints: dpGeschlechtsverteilung
+                }]
+            });
+            chart1.render();
+            var chart2 = new CanvasJS.Chart("cAltersverteilung", {
+                animationEnabled: true,
+                theme: "dark1", // "light1", "light2", "dark1", "dark2"
+                title: { text: "Altersverteilung", fontFamily: "calibri", fontSize: 20, fontWeight: "normal" },
+                data: [{
+                    type: "column",
+                    color: "#e55400",
+                    dataPoints: dpAltersverteilung
+                }]
+            });
+            chart2.render();
+            var chart3 = new CanvasJS.Chart("cBundesland", {
+                animationEnabled: true,
+                theme: "dark1",
+                title: { text: "Fälle je Bundesland", fontFamily: "calibri", fontSize: 20, fontWeight: "normal" },
+                axisX: { interval: 1 },
+                data: [{
+                    type: "bar",
+                    color: "#73bf69",
+                    dataPoints: dpBundesland
+                }]
+            });
+            chart3.render();
+            var chart4 = new CanvasJS.Chart("cTrend", {
+                animationEnabled: true,
+                theme: "dark1",
+                title: {
+                    text: "Nationaler Trend", fontFamily: "calibri", fontSize: 20, fontWeight: "normal"
+                },
+                axisY: {
+                    includeZero: true
+                },
+                data: [{
+                    type: "line",
+                    dataPoints: dpTrend
+                }]
+            });
+            chart4.render();
+            dpBezirke.forEach(GenerateTable);
+            document.getElementById("divErkrankungen").innerText = Erkrankungen;
+            document.getElementById("divLetzteAktualisierung").innerText = LetzteAktualisierung;
+        }
+
+        function GenerateTable(item, index) {
+            var table = document.getElementById("tblBezirke");
+            var row = table.insertRow();
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            cell1.innerHTML = item.label;
+            cell1.className = "tblData1";
+            cell2.innerHTML = item.y;
+            cell2.className = "tblData2";
+        }
+
+    </script>
+</head>
+<body class="bg-dark text-white">
+    <header class="my-4">
+        <div class="container">
+            <h1 class="text-center">Amtliches Dashboard COVID19</h1>
+            <h2 class="text-center">öffentlich zugängliche Informationen</h2>
+        </div>
+    </header>
+    <main role="main" class="my-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-5 col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <img src="./images/BMSGPK-Logo_background.png" class="card-img-top" alt="Bundesministerium Soziales, Gesundheit, Pflege und Konsumentenschutz">
+                        <div class="card-body">
+                            <p class="card-text">
+                                Wir arbeiten laufend an der Optimierung. Als Quelle für alle Diagramme dienen ausschließlich die geprüften und validierten Daten gemäß Epidemiegesetz. Die Daten werden von den Bezirks­verwaltungs­behörden zur Verfügung gestellt. Bei der Übermittlung der Fälle kann es zu Verzögerungen in der Darstellung kommen.
+                            </p>
+                        </div>
+                        <div class="card-footer border-top border-light">
+                            <h5 class="card-title text-center">Letzte Aktualisierung</h5>
+                            <div id="divLetzteAktualisierung" class="text-center">06.04.2020 17:00.00</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-7 col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex flex-row h-100">
+                                <div class="p-2 m-2 bg-gesamtzahl flex-fill text-center" data-toggle="tooltip" title="" data-original-title="Gesamtzahl aller positiv getesteter Personen, inklusive Genesene und Verstorbene">
+                                    Gesamtzahl aller positiv getesteter Personen <div id="divErkrankungen" class="fit">12261</div>
+                                </div>
+                                <div class="flex-fill">
+                                    <div class="d-flex flex-column  h-100">
+                                        <div class="p-2 m-2 bg-detailzahl flex-fill text-center">
+                                            <a class="text-light" href="https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung" target="_blank">hospitalisiert</a>
+                                            <div id="divHospitalisiert" class="fit"></div>
+                                        </div>
+                                        <div class="p-2 m-2 bg-detailzahl flex-fill text-center">
+                                            <a class="text-light" href="https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung" target="_blank">Intensivstation</a>
+                                            <div id="divIntensivstation" class="fit"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <p class="card-text">
+                                </p><div id="cGeschlechtsverteilung" class="h-300"><div class="canvasjs-chart-container" style="position: relative; text-align: left; cursor: auto;"><canvas class="canvasjs-chart-canvas" width="288" height="300" style="position: absolute; user-select: none;"></canvas><canvas class="canvasjs-chart-canvas" width="288" height="300" style="position: absolute; -webkit-tap-highlight-color: transparent; user-select: none;"></canvas><div class="canvasjs-chart-toolbar" style="position: absolute; right: 1px; top: 1px; border: 1px solid transparent;"></div><div class="canvasjs-chart-tooltip" style="position: absolute; height: auto; box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 2px 2px; z-index: 1000; pointer-events: none; display: none; border-radius: 5px;"><div style=" width: auto;height: auto;min-width: 50px;line-height: auto;margin: 0px 0px 0px 0px;padding: 5px;font-family: Calibri, Arial, Georgia, serif;font-weight: normal;font-style: italic;font-size: 14px;color: #000000;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);text-align: left;border: 2px solid gray;background: rgba(255,255,255,.9);text-indent: 0px;white-space: nowrap;border-radius: 5px;-moz-user-select:none;-khtml-user-select: none;-webkit-user-select: none;-ms-user-select: none;user-select: none;} "> Sample Tooltip</div></div></div></div>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+
+                        <div class="card-body">
+                            <p class="card-text">
+                                </p><div id="cAltersverteilung" class="h-400"><div class="canvasjs-chart-container" style="position: relative; text-align: left; cursor: auto;"><canvas class="canvasjs-chart-canvas" width="288" height="400" style="position: absolute; user-select: none;"></canvas><canvas class="canvasjs-chart-canvas" width="288" height="400" style="position: absolute; -webkit-tap-highlight-color: transparent; user-select: none;"></canvas><div class="canvasjs-chart-toolbar" style="position: absolute; right: 1px; top: 1px; border: 1px solid transparent;"></div><div class="canvasjs-chart-tooltip" style="position: absolute; height: auto; box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 2px 2px; z-index: 1000; pointer-events: none; display: none; border-radius: 5px;"><div style=" width: auto;height: auto;min-width: 50px;line-height: auto;margin: 0px 0px 0px 0px;padding: 5px;font-family: Calibri, Arial, Georgia, serif;font-weight: normal;font-style: italic;font-size: 14px;color: #000000;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);text-align: left;border: 2px solid gray;background: rgba(255,255,255,.9);text-indent: 0px;white-space: nowrap;border-radius: 5px;-moz-user-select:none;-khtml-user-select: none;-webkit-user-select: none;-ms-user-select: none;user-select: none;} "> Sample Tooltip</div></div></div></div>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <p class="card-text">
+                                </p><div id="cBundesland" class="h-400"><div class="canvasjs-chart-container" style="position: relative; text-align: left; cursor: auto;"><canvas class="canvasjs-chart-canvas" width="648" height="400" style="position: absolute; user-select: none;"></canvas><canvas class="canvasjs-chart-canvas" width="648" height="400" style="position: absolute; -webkit-tap-highlight-color: transparent; user-select: none;"></canvas><div class="canvasjs-chart-toolbar" style="position: absolute; right: 1px; top: 1px; border: 1px solid transparent;"></div><div class="canvasjs-chart-tooltip" style="position: absolute; height: auto; box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 2px 2px; z-index: 1000; pointer-events: none; display: none; border-radius: 5px;"><div style=" width: auto;height: auto;min-width: 50px;line-height: auto;margin: 0px 0px 0px 0px;padding: 5px;font-family: Calibri, Arial, Georgia, serif;font-weight: normal;font-style: italic;font-size: 14px;color: #000000;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);text-align: left;border: 2px solid gray;background: rgba(255,255,255,.9);text-indent: 0px;white-space: nowrap;border-radius: 5px;-moz-user-select:none;-khtml-user-select: none;-webkit-user-select: none;-ms-user-select: none;user-select: none;} "> Sample Tooltip</div></div></div></div>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <p class="card-text">
+                                </p><div id="cTrend" class="h-400"><div class="canvasjs-chart-container" style="position: relative; text-align: left; cursor: auto;"><canvas class="canvasjs-chart-canvas" width="648" height="400" style="position: absolute; user-select: none;"></canvas><canvas class="canvasjs-chart-canvas" width="648" height="400" style="position: absolute; -webkit-tap-highlight-color: transparent; user-select: none;"></canvas><div class="canvasjs-chart-toolbar" style="position: absolute; right: 1px; top: 1px; border: 1px solid transparent;"></div><div class="canvasjs-chart-tooltip" style="position: absolute; height: auto; box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 2px 2px; z-index: 1000; pointer-events: none; display: none; border-radius: 5px;"><div style=" width: auto;height: auto;min-width: 50px;line-height: auto;margin: 0px 0px 0px 0px;padding: 5px;font-family: Calibri, Arial, Georgia, serif;font-weight: normal;font-style: italic;font-size: 14px;color: #000000;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);text-align: left;border: 2px solid gray;background: rgba(255,255,255,.9);text-indent: 0px;white-space: nowrap;border-radius: 5px;-moz-user-select:none;-khtml-user-select: none;-webkit-user-select: none;-ms-user-select: none;user-select: none;} "> Sample Tooltip</div></div></div></div>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-8 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+
+                            <div id="buttonSwitch" class="float-sm-right">
+                                <a href="#" class="btn btn-outline-light active" data-nr="1">pro 100.000 Einwohner/innen</a>
+                                <a href="#" class="btn btn-outline-light" data-nr="2">absolut</a>
+                            </div>
+                            <h5 class="card-title">Fälle je Bezirk (geografisch)</h5>
+
+                            <div class="d-none" id="radioSwitch">
+                                <label><input type="radio" checked="checked" name="Anzeige" value="relativ"> Anzahl Fälle pro 100.000 Einwohner/innen</label>
+                                <label><input type="radio" name="Anzeige" value="absolut"> Anzahl Fälle absolut</label>
+                            </div>
+
+                            <div id="innerMap"><svg viewBox="0 0 960 500" id="map"></svg></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4 mb-4">
+                    <div class="card h-100" style="max-height: 500px; overflow-y: scroll; overflow-x: hidden;">
+                        <div class="card-body">
+                            <h5 class="card-title">Fälle je Bezirk (absolute Zahlen)</h5>
+                            <table class="table table-sm table-striped table-dark">
+                                <thead>
+                                    <tr><th>Bezirk</th><th>Anzahl</th></tr>
+                                </thead>
+                                <tbody id="tblBezirke"><tr><td class="tblData1">Amstetten</td><td class="tblData2">226</td></tr><tr><td class="tblData1">Baden</td><td class="tblData2">107</td></tr><tr><td class="tblData1">Bludenz</td><td class="tblData2">228</td></tr><tr><td class="tblData1">Braunau am Inn</td><td class="tblData2">90</td></tr><tr><td class="tblData1">Bregenz</td><td class="tblData2">209</td></tr><tr><td class="tblData1">Bruck an der Leitha</td><td class="tblData2">65</td></tr><tr><td class="tblData1">Bruck-Mürzzuschlag</td><td class="tblData2">44</td></tr><tr><td class="tblData1">Deutschlandsberg</td><td class="tblData2">32</td></tr><tr><td class="tblData1">Dornbirn</td><td class="tblData2">124</td></tr><tr><td class="tblData1">Eferding</td><td class="tblData2">41</td></tr><tr><td class="tblData1">Eisenstadt(Stadt)</td><td class="tblData2">13</td></tr><tr><td class="tblData1">Eisenstadt-Umgebung</td><td class="tblData2">20</td></tr><tr><td class="tblData1">Feldkirch</td><td class="tblData2">195</td></tr><tr><td class="tblData1">Feldkirchen</td><td class="tblData2">10</td></tr><tr><td class="tblData1">Freistadt</td><td class="tblData2">98</td></tr><tr><td class="tblData1">Gänserndorf</td><td class="tblData2">64</td></tr><tr><td class="tblData1">Gmünd</td><td class="tblData2">6</td></tr><tr><td class="tblData1">Gmunden</td><td class="tblData2">59</td></tr><tr><td class="tblData1">Graz(Stadt)</td><td class="tblData2">359</td></tr><tr><td class="tblData1">Graz-Umgebung</td><td class="tblData2">134</td></tr><tr><td class="tblData1">Grieskirchen</td><td class="tblData2">63</td></tr><tr><td class="tblData1">Gröbming</td><td class="tblData2">32</td></tr><tr><td class="tblData1">Güssing</td><td class="tblData2">18</td></tr><tr><td class="tblData1">Hallein</td><td class="tblData2">59</td></tr><tr><td class="tblData1">Hartberg-Fürstenfeld</td><td class="tblData2">254</td></tr><tr><td class="tblData1">Hermagor</td><td class="tblData2">1</td></tr><tr><td class="tblData1">Hollabrunn</td><td class="tblData2">21</td></tr><tr><td class="tblData1">Horn</td><td class="tblData2">26</td></tr><tr><td class="tblData1">Imst</td><td class="tblData2">230</td></tr><tr><td class="tblData1">Innsbruck-Land</td><td class="tblData2">340</td></tr><tr><td class="tblData1">Innsbruck-Stadt</td><td class="tblData2">346</td></tr><tr><td class="tblData1">Jennersdorf</td><td class="tblData2">8</td></tr><tr><td class="tblData1">Kirchdorf an der Krems</td><td class="tblData2">35</td></tr><tr><td class="tblData1">Kitzbühel</td><td class="tblData2">309</td></tr><tr><td class="tblData1">Klagenfurt Land</td><td class="tblData2">36</td></tr><tr><td class="tblData1">Klagenfurt Stadt</td><td class="tblData2">63</td></tr><tr><td class="tblData1">Korneuburg</td><td class="tblData2">131</td></tr><tr><td class="tblData1">Krems an der Donau(Stadt)</td><td class="tblData2">29</td></tr><tr><td class="tblData1">Krems(Land)</td><td class="tblData2">122</td></tr><tr><td class="tblData1">Kufstein</td><td class="tblData2">389</td></tr><tr><td class="tblData1">Landeck</td><td class="tblData2">707</td></tr><tr><td class="tblData1">Leibnitz</td><td class="tblData2">160</td></tr><tr><td class="tblData1">Leoben</td><td class="tblData2">23</td></tr><tr><td class="tblData1">Lienz</td><td class="tblData2">119</td></tr><tr><td class="tblData1">Liezen</td><td class="tblData2">36</td></tr><tr><td class="tblData1">Lilienfeld</td><td class="tblData2">38</td></tr><tr><td class="tblData1">Linz(Stadt)</td><td class="tblData2">273</td></tr><tr><td class="tblData1">Linz-Land</td><td class="tblData2">183</td></tr><tr><td class="tblData1">Mattersburg</td><td class="tblData2">32</td></tr><tr><td class="tblData1">Melk</td><td class="tblData2">123</td></tr><tr><td class="tblData1">Mistelbach</td><td class="tblData2">100</td></tr><tr><td class="tblData1">Mödling</td><td class="tblData2">134</td></tr><tr><td class="tblData1">Murau</td><td class="tblData2">5</td></tr><tr><td class="tblData1">Murtal</td><td class="tblData2">31</td></tr><tr><td class="tblData1">Neunkirchen</td><td class="tblData2">158</td></tr><tr><td class="tblData1">Neusiedl am See</td><td class="tblData2">49</td></tr><tr><td class="tblData1">Oberpullendorf</td><td class="tblData2">16</td></tr><tr><td class="tblData1">Oberwart</td><td class="tblData2">76</td></tr><tr><td class="tblData1">Perg</td><td class="tblData2">239</td></tr><tr><td class="tblData1">Reutte</td><td class="tblData2">47</td></tr><tr><td class="tblData1">Ried im Innkreis</td><td class="tblData2">30</td></tr><tr><td class="tblData1">Rohrbach</td><td class="tblData2">129</td></tr><tr><td class="tblData1">Salzburg(Stadt)</td><td class="tblData2">127</td></tr><tr><td class="tblData1">Salzburg-Umgebung</td><td class="tblData2">169</td></tr><tr><td class="tblData1">Sankt Johann im Pongau</td><td class="tblData2">390</td></tr><tr><td class="tblData1">Sankt Pölten(Land)</td><td class="tblData2">222</td></tr><tr><td class="tblData1">Sankt Pölten(Stadt)</td><td class="tblData2">67</td></tr><tr><td class="tblData1">Sankt Veit an der Glan</td><td class="tblData2">39</td></tr><tr><td class="tblData1">Schärding</td><td class="tblData2">49</td></tr><tr><td class="tblData1">Scheibbs</td><td class="tblData2">98</td></tr><tr><td class="tblData1">Schwaz</td><td class="tblData2">293</td></tr><tr><td class="tblData1">Spittal an der Drau</td><td class="tblData2">34</td></tr><tr><td class="tblData1">Steyr(Stadt)</td><td class="tblData2">42</td></tr><tr><td class="tblData1">Steyr-Land</td><td class="tblData2">143</td></tr><tr><td class="tblData1">Südoststeiermark</td><td class="tblData2">42</td></tr><tr><td class="tblData1">Tamsweg</td><td class="tblData2">19</td></tr><tr><td class="tblData1">Tulln</td><td class="tblData2">126</td></tr><tr><td class="tblData1">Urfahr-Umgebung</td><td class="tblData2">266</td></tr><tr><td class="tblData1">Villach Land</td><td class="tblData2">44</td></tr><tr><td class="tblData1">Villach Stadt</td><td class="tblData2">19</td></tr><tr><td class="tblData1">Vöcklabruck</td><td class="tblData2">100</td></tr><tr><td class="tblData1">Voitsberg</td><td class="tblData2">85</td></tr><tr><td class="tblData1">Völkermarkt</td><td class="tblData2">48</td></tr><tr><td class="tblData1">Waidhofen an der Thaya</td><td class="tblData2">14</td></tr><tr><td class="tblData1">Waidhofen an der Ybbs(Stadt)</td><td class="tblData2">22</td></tr><tr><td class="tblData1">Weiz</td><td class="tblData2">112</td></tr><tr><td class="tblData1">Wels(Stadt)</td><td class="tblData2">57</td></tr><tr><td class="tblData1">Wels-Land</td><td class="tblData2">74</td></tr><tr><td class="tblData1">Wien(Stadt)</td><td class="tblData2">1755</td></tr><tr><td class="tblData1">Wiener Neustadt(Land)</td><td class="tblData2">38</td></tr><tr><td class="tblData1">Wiener Neustadt(Stadt)</td><td class="tblData2">31</td></tr><tr><td class="tblData1">Wolfsberg</td><td class="tblData2">35</td></tr><tr><td class="tblData1">Zell am See</td><td class="tblData2">321</td></tr><tr><td class="tblData1">Zwettl</td><td class="tblData2">36</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="my-4">
+        <p class="text-center">© Bundesministerium für Soziales, Gesundheit, Pflege und Konsumentenschutz</p>
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
+            <div class="collapse navbar-collapse justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.sozialministerium.at/Ministerium/Kontakt/Impressum.html" target="_blank">Impressum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.sozialministerium.at/Ministerium/Rechtliches-und-Foerderungen/Datenschutz.html" target="_blank">Datenschutz</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard.html" target="_blank">Erläuterungen</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </footer>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            $('#buttonSwitch a').click(function (e) {
+                e.preventDefault();
+                $('#buttonSwitch a').removeClass('active');
+                $(this).addClass('active').blur();
+                let nr = $(this).data('nr');
+                $('#radioSwitch input').eq(nr - 1).click().trigger('change');
+            });
+            $('#buttonSwitch a').eq(0).click();
+        })
+    </script>
+    <script src="./scripts/canvasjs.min.js"></script>
+    <script src="./scripts/d3.v3.min.js"></script>
+    <script src="./scripts/queue.v1.min.js"></script>
+    <script src="./scripts/d3-legend.min.js"></script>
+    <script src="./scripts/topojson.v1.min.js"></script>
+    <script src="./scripts/d3.tip.v0.6.3.js"></script>
+    <script src="./scripts/script.js"></script><div class="d3-tip" style="position: absolute; opacity: 0;"></div>
+    <!-- Matomo -->
+    <script type="text/javascript">
+
+        var _paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+        _paq.push(["setCookieDomain", "*.info.gesundheitsministerium.at"]);
+        _paq.push(["setDomains", ["*.info.gesundheitsministerium.at", "*.info.gesundheitsministerium.gv.at"]]);
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function () {
+            var u = "//an.ehealth.gv.at/";
+            _paq.push(['setTrackerUrl', u + 'matomo.php']);
+            _paq.push(['setSiteId', '7']);
+            var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+            g.type = 'text/javascript'; g.async = true; g.defer = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g, s);
+        })();
+    </script>
+    <noscript><p><img src="//an.ehealth.gv.at/matomo.php?idsite=7&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+    <!-- End Matomo Code -->
+
+
+<span style="position: absolute; left: 0px; top: -20000px; padding: 0px; margin: 0px; border: none; white-space: pre; line-height: normal; font-family: &quot;Trebuchet MS&quot;, Helvetica, sans-serif; font-size: 14px; font-weight: normal; display: none;">Mpgyi</span></body></html>
