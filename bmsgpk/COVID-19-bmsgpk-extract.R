@@ -62,20 +62,14 @@ scrapeCovid <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   Bundeslaender <- data.frame(Name=c("Burgenland","K&auml;rnten","Nieder&ouml;sterreich","Ober&ouml;sterreich","Salzburg","Steiermark","Tirol","Vorarlberg","Wien"),
                               Letter=c("B","K","Noe","Ooe","Szbg","Stmk","T","V","W"), stringsAsFactors=FALSE)
   
-  # Stamp
-  # -----
-  s <- str_extract(html, paste0(atConfirmed,".*",closeAll))
-  t <- stringr::str_match(s,paste0(" Stand ","([\\d\\s\\.,:]*)"," Uhr:</strong>"))[2]
-  Stamp <- as.POSIXct(t, format="%d.%m.%Y, %H:%M", tz="CEST")
-  if(is.na(Stamp)) {
-    bCalcStamp=TRUE
-    logMsg("WARN: no LastUpdated found")
-  } else {
-    bCalcStamp=FALSE
-    logMsg(paste("Last Updated", Stamp))
-  }
+
+  # default timestamp
+  Stamp <- as.POSIXct(format(now(),"%Y-%m-%d %H:%M"), format="%Y-%m-%d %H:%M", tz="CEST")
+    
   # Pick up individual Stamp anyway
   bCalcStamp=TRUE
+  
+  
   
   # Extract number of Tested
   # ------------------------
@@ -83,8 +77,10 @@ scrapeCovid <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   t <- str_match(s,paste0("</strong>","([\\d\\. ]*)"))[,2]
   totTested <- as.integer(str_remove(t,"\\."))
   if(bCalcStamp) {
-    t <- str_match(s, paste0("Aktualisierung des Ist-Standes um","([\\d :]*)","Uhr"))[2]
-    Stamp <- as.POSIXct(paste0(format(now(),"%Y-%m-%d "),t), format="%Y-%m-%d %H:%M", tz="CEST")
+    # t <- str_match(s, paste0("Aktualisierung des Ist-Standes um","([\\d :]*)","Uhr"))[2]
+    # Stamp <- as.POSIXct(paste0(format(now(),"%Y-%m-%d "),t), format="%Y-%m-%d %H:%M", tz="CEST")
+    t <- str_match(s, paste0("Stand","(.*)","Uhr"))[2]
+    Stamp <- as.POSIXct(t, format="%d.%m.%Y, %H:%M", tz="CEST")
   }
   df[iTested,"Stamp"] <- Stamp 
   df[iTested,"Status"] <- "Tested"
@@ -97,13 +93,13 @@ scrapeCovid <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   logMsg("Confirmed")
   s <- str_extract(html, paste0(atConfirmed,".*",closeAll))
   if(bCalcStamp) {
-    t <- str_match(s, paste0("Stand ","(.*)"," Uhr"))[2]
+    t <- str_match(s, paste0("Stand","(.*)","Uhr"))[2]
     Stamp <- as.POSIXct(t, format="%d.%m.%Y, %H:%M", tz="CEST")
   }
   df[iConfirmed,"Stamp"] <- Stamp 
   df[iConfirmed,"Status"] <- "Confirmed"
   if(!is.na(s)) {
-    nAT <- as.integer(str_remove(str_match(s,paste0("Uhr lt. EMS:</strong>","([\\d\\. ]*)","F&auml;lle,"))[2],"\\."))
+    nAT <- as.integer(str_remove(str_match(s,paste0("</strong>","([\\d\\. ]*)","F&auml;lle,"))[2],"\\."))
     df[iConfirmed,"AT"] <- nAT
     for (bl in Bundeslaender$Name) {
       n <- as.integer(str_remove(str_match(s,paste0(bl," \\(","([\\d\\.]*)","\\)"))[2],"\\."))
@@ -118,7 +114,7 @@ scrapeCovid <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   # ---------------------------------
   s <- str_extract(html, paste0(atRecovered,".*",closeAll))
   if(bCalcStamp) {
-    t <- str_match(s, paste0("Stand ","(.*)"," Uhr"))[2]
+    t <- str_match(s, paste0("Stand","(.*)","Uhr"))[2]
     Stamp <- as.POSIXct(t, format="%d.%m.%Y, %H:%M", tz="CEST")
   }
   
@@ -141,7 +137,7 @@ scrapeCovid <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   # ------------------------
   s <- str_extract(html, paste0(atDeaths,".*",closeAll))
   if(bCalcStamp) {
-    t <- str_match(s, paste0("Stand ","(.*)"," Uhr"))[2]
+    t <- str_match(s, paste0("Stand","(.*)","Uhr"))[2]
     Stamp <- as.POSIXct(t, format="%d.%m.%Y, %H:%M", tz="CEST")
   }
   df[iDeaths,"Stamp"] <- Stamp 
