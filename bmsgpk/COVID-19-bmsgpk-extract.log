@@ -1018,3 +1018,28 @@
 20200410-130226.048 Writing new data to ./data/COVID-19-austria.hospital.csv 
 20200410-130226.056 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200410-130226.090 Done runing data extraction from bmsgpk web pages 
+20200410-155101.206 Running COVID-19-bmsgpk-extract.R 
+20200410-155101.279 Calling scrapeCovid with 20200410-1551 
+20200410-155101.417 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200410-155101.419 Dumping page to ./html/COVID-19-austria.bmsgpk.20200410-1551.html 
+20200410-155101.556 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200410-1551.html 
+20200410-155101.590 Tested NA 
+20200410-155101.594 Confirmed 
+20200410-155101.598 WARN: No record for Confirmed found 
+20200410-155101.602 WARN: No record for Recovered found 
+20200410-155101.606 WARN: No record for Deaths found 
+20200410-155101.617 Calling scrapeHospitalisierung with 20200410-1551 
+20200410-155101.683 Scraping https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung 
+20200410-155101.685 Dumping page to ./html/COVID-19-austria.regions.20200410-1551.html 
+20200410-155101.764 Reading dump from ./html/COVID-19-austria.regions.20200410-1551.html 
+20200410-155101.782 Calling scrapeInfo with 20200410-1551 
+20200410-155101.857 Scraping using headless chrome for https://info.gesundheitsministerium.at/ 
+20200410-155101.860 Dumping page to ./html/COVID-19-austria.info.20200410-1551.dmp 
+20200410-155102.618 Analysing dump file ./html/COVID-19-austria.info.20200410-1551.dmp 
+20200410-155102.623 Aktualisierung  
+20200410-155102.626 Erkrankungen  
+20200410-155102.628 Extracting table of Confirmed in 100+ regions 
+20200410-155102.633 Writing new data to ./data/COVID-19-austria.csv 
+20200410-155102.656 Writing new data to ./data/COVID-19-austria.hospital.csv 
+20200410-155102.666 Writing new data to ./data/COVID-19-austria.regions.csv 
+20200410-155102.703 Done runing data extraction from bmsgpk web pages 

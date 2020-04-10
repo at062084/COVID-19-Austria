@@ -4720,3 +4720,102 @@ The following object is masked from ‘package:graphics’:
 20200410-130242.438 Writing ./data/AT_counties.bmsgpk.csv 
 20200410-130242.439 Done executing covCounty 
 20200410-130242.439 Done running COVID-19-covid-county-extract.R 
+[master 5c3a9fa] 2020-04-10 13:02:40 Auto-Conversion of bmsgpk data to covid-county format
+ 3 files changed, 82 insertions(+), 11 deletions(-)
+To git@github.com:at062084/COVID-19-Austria.git
+   b3f5fcd..5c3a9fa  HEAD -> master
+
+--------------------------------------------------------------------
+2020-04-10 15:50:59 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2020-04-10 15:50:59 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-04-10 15:50:59 Running auto-extraction of COVID-19 data from bmsgpk website
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘rvest’
+
+The following object is masked from ‘package:readr’:
+
+    guess_encoding
+
+20200410-155101.209 Running COVID-19-bmsgpk-extract.R 
+20200410-155101.280 Calling scrapeCovid with 20200410-1551 
+20200410-155101.418 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200410-155101.420 Dumping page to ./html/COVID-19-austria.bmsgpk.20200410-1551.html 
+--2020-04-10 15:51:01--  https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html
+Resolving www.sozialministerium.at (www.sozialministerium.at)... failed: Name or service not known.
+wget: unable to resolve host address ‘www.sozialministerium.at’
+20200410-155101.557 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200410-1551.html 
+20200410-155101.593 Tested NA 
+20200410-155101.595 Confirmed 
+20200410-155101.599 WARN: No record for Confirmed found 
+20200410-155101.603 WARN: No record for Recovered found 
+20200410-155101.606 WARN: No record for Deaths found 
+  Stamp    Status AT  B  K Noe Ooe Szbg Stmk  T  V  W
+1  <NA>    Tested NA NA NA  NA  NA   NA   NA NA NA NA
+2  <NA> Confirmed NA NA NA  NA  NA   NA   NA NA NA NA
+3  <NA> Recovered NA NA NA  NA  NA   NA   NA NA NA NA
+4  <NA>    Deaths NA NA NA  NA  NA   NA   NA NA NA NA
+20200410-155101.618 Calling scrapeHospitalisierung with 20200410-1551 
+20200410-155101.684 Scraping https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung 
+20200410-155101.686 Dumping page to ./html/COVID-19-austria.regions.20200410-1551.html 
+--2020-04-10 15:51:01--  https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung
+Resolving www.sozialministerium.at (www.sozialministerium.at)... failed: Name or service not known.
+wget: unable to resolve host address ‘www.sozialministerium.at’
+20200410-155101.764 Reading dump from ./html/COVID-19-austria.regions.20200410-1551.html 
+Error in UseMethod("xml_find_all") : 
+  no applicable method for 'xml_find_all' applied to an object of class "xml_document"
+Calls: scrapeHospitalisierung ... <Anonymous> -> html_nodes -> html_nodes.default -> <Anonymous>
+7: (function () 
+   traceback(2))()
+6: xml2::xml_find_all(x, make_selector(css, xpath))
+5: html_nodes.default(html, xpath = xpathStand)
+4: html_nodes(html, xpath = xpathStand)
+3: xml2::xml_text(x, trim = trim)
+2: html_text(html_nodes(html, xpath = xpathStand))
+1: scrapeHospitalisierung(ts = ts)
+20200410-155101.796 Calling scrapeInfo with 20200410-1551 
+20200410-155101.859 Scraping using headless chrome for https://info.gesundheitsministerium.at/ 
+20200410-155101.861 Dumping page to ./html/COVID-19-austria.info.20200410-1551.dmp 
+20200410-155102.619 Analysing dump file ./html/COVID-19-austria.info.20200410-1551.dmp 
+20200410-155102.624 Aktualisierung  
+20200410-155102.627 Erkrankungen  
+20200410-155102.629 Extracting table of Confirmed in 100+ regions 
+Error in tables[[1]] : subscript out of bounds
+Calls: scrapeInfo
+2: (function () 
+   traceback(2))()
+1: scrapeInfo(ts = ts)
+20200410-155102.633 Writing new data to ./data/COVID-19-austria.csv 
+20200410-155102.657 Writing new data to ./data/COVID-19-austria.hospital.csv 
+Error in rbind(df, dh) : object 'dh' not found
+2: (function () 
+   traceback(2))()
+1: rbind(df, dh)
+20200410-155102.666 Writing new data to ./data/COVID-19-austria.regions.csv 
+Error in rbind(df, di) : object 'di' not found
+2: (function () 
+   traceback(2))()
+1: rbind(df, di)
+20200410-155102.704 Done runing data extraction from bmsgpk web pages 
