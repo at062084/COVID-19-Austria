@@ -1095,3 +1095,22 @@
 20200411-105406.734 Writing new data to ./data/COVID-19-austria.hospital.csv 
 20200411-105406.741 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200411-105406.773 Done runing data extraction from bmsgpk web pages 
+20200411-110726.787 WARN: No record for Deaths found 
+20200411-110726.910 Running COVID-19-bmsgpk-extract.R 
+20200411-110726.911 Calling scrapeCovid with 20200411-1107 
+20200411-110726.912 Calling scrapeHospitalisierung with 20200411-1107 
+20200411-110726.945 Scraping https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung 
+20200411-110726.946 Dumping page to ./html/COVID-19-austria.regions.20200411-1107.html 
+20200411-110727.129 Reading dump from ./html/COVID-19-austria.regions.20200411-1107.html 
+20200411-110727.168 Extracting table of Confirmed cases for 100+ regions 
+20200411-110727.290 Calling scrapeInfo with 20200411-1107 
+20200411-110727.315 Scraping using headless chrome for https://info.gesundheitsministerium.at/ 
+20200411-110727.316 Dumping page to ./html/COVID-19-austria.info.20200411-1107.dmp 
+20200411-110729.283 Analysing dump file ./html/COVID-19-austria.info.20200411-1107.dmp 
+20200411-110729.330 Aktualisierung 2020-04-11 11:00:00 
+20200411-110729.333 Erkrankungen 13713 
+20200411-110729.334 Extracting table of Confirmed in 100+ regions 
+20200411-110729.385 Writing new data to ./data/COVID-19-austria.csv 
+20200411-110729.401 Writing new data to ./data/COVID-19-austria.hospital.csv 
+20200411-110729.412 Writing new data to ./data/COVID-19-austria.regions.csv 
+20200411-110729.456 Done runing data extraction from bmsgpk web pages 

@@ -5042,3 +5042,114 @@ Saving to: ‘./html/COVID-19-austria.regions.20200411-1054.html’
 20200411-105406.734 Writing new data to ./data/COVID-19-austria.hospital.csv 
 20200411-105406.741 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200411-105406.773 Done runing data extraction from bmsgpk web pages 
+[master bc5d452] 2020-04-11 10:54:01 Auto-Extract data from bmsgpk website
+ 9 files changed, 2355 insertions(+)
+ create mode 100644 bmsgpk/data/COVID-19-austria.sanitized.region.csv
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200411-1054.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200411-1054.dmp
+ create mode 100644 bmsgpk/html/COVID-19-austria.regions.20200411-1054.html
+To git@github.com:at062084/COVID-19-Austria.git
+   c847662..bc5d452  HEAD -> master
+
+--------------------------------------------------------------------
+2020-04-11 11:07:25 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2020-04-11 11:07:25 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-04-11 11:07:25 Running auto-extraction of COVID-19 data from bmsgpk website
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘rvest’
+
+The following object is masked from ‘package:readr’:
+
+    guess_encoding
+
+Error: unexpected 'else' in:
+"    logMsg(paste("Deaths",nAT))
+  } else"
+1: (function () 
+   traceback(2))()
+20200411-110726.788 WARN: No record for Deaths found 
+Error: unexpected '}' in "  }"
+1: (function () 
+   traceback(2))()
+                                              
+1 function (x, df1, df2, ncp, log = FALSE)    
+2 {                                           
+3     if (missing(ncp))                       
+4         .Call(C_df, x, df1, df2, log)       
+5     else .Call(C_dnf, x, df1, df2, ncp, log)
+6 }                                           
+Error: no function to return from, jumping to top level
+1: (function () 
+   traceback(2))()
+Error: unexpected '}' in "}"
+1: (function () 
+   traceback(2))()
+20200411-110726.911 Running COVID-19-bmsgpk-extract.R 
+20200411-110726.912 Calling scrapeCovid with 20200411-1107 
+Error in scrapeCovid(ts = ts) : could not find function "scrapeCovid"
+1: (function () 
+   traceback(2))()
+20200411-110726.913 Calling scrapeHospitalisierung with 20200411-1107 
+20200411-110726.945 Scraping https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung 
+20200411-110726.946 Dumping page to ./html/COVID-19-austria.regions.20200411-1107.html 
+--2020-04-11 11:07:26--  https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung
+Resolving www.sozialministerium.at (www.sozialministerium.at)... 95.131.199.37
+Connecting to www.sozialministerium.at (www.sozialministerium.at)|95.131.199.37|:443... connected.
+HTTP request sent, awaiting response... 200 200
+Length: 38826 (38K) [text/html]
+Saving to: ‘./html/COVID-19-austria.regions.20200411-1107.html’
+
+     0K .......... .......... .......... .......              100%  953K=0,04s
+
+2020-04-11 11:07:27 (953 KB/s) - ‘./html/COVID-19-austria.regions.20200411-1107.html’ saved [38826/38826]
+
+20200411-110727.131 Reading dump from ./html/COVID-19-austria.regions.20200411-1107.html 
+20200411-110727.169 Extracting table of Confirmed cases for 100+ regions 
+                Stamp           Status   AT  B  K Noe Ooe Stmk Szbg   T  V   W
+1 2020-04-11 09:30:00 Hospitalisierung 1036 14 29 236 116  149   88 179 38 187
+2 2020-04-11 09:30:00  Intensivstation  246  3 10  42  29   33   18  63 11  37
+20200411-110727.290 Calling scrapeInfo with 20200411-1107 
+20200411-110727.315 Scraping using headless chrome for https://info.gesundheitsministerium.at/ 
+20200411-110727.316 Dumping page to ./html/COVID-19-austria.info.20200411-1107.dmp 
+20200411-110729.284 Analysing dump file ./html/COVID-19-austria.info.20200411-1107.dmp 
+20200411-110729.331 Aktualisierung 2020-04-11 11:00:00 
+20200411-110729.333 Erkrankungen 13713 
+20200411-110729.334 Extracting table of Confirmed in 100+ regions 
+                 Stamp    Status                Region Count
+88 2020-04-11 11:00:00 Confirmed            Wien_Stadt  1975
+89 2020-04-11 11:00:00 Confirmed  Wiener_Neustadt_Land    54
+90 2020-04-11 11:00:00 Confirmed Wiener_Neustadt_Stadt    36
+91 2020-04-11 11:00:00 Confirmed             Wolfsberg    41
+92 2020-04-11 11:00:00 Confirmed           Zell_am_See   331
+93 2020-04-11 11:00:00 Confirmed                Zwettl    63
+20200411-110729.386 Writing new data to ./data/COVID-19-austria.csv 
+Error in rbind(df, dc) : object 'dc' not found
+2: (function () 
+   traceback(2))()
+1: rbind(df, dc)
+20200411-110729.401 Writing new data to ./data/COVID-19-austria.hospital.csv 
+20200411-110729.413 Writing new data to ./data/COVID-19-austria.regions.csv 
+20200411-110729.456 Done runing data extraction from bmsgpk web pages 
