@@ -1188,3 +1188,29 @@
 20200411-111351.462 Writing new data to ./data/COVID-19-austria.hospital.csv 
 20200411-111351.471 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200411-111351.504 Done runing data extraction from bmsgpk web pages 
+20200411-200058.556 Running COVID-19-bmsgpk-extract.R 
+20200411-200058.593 Calling scrapeCovid with 20200411-2000 
+20200411-200058.676 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200411-200058.678 Dumping page to ./html/COVID-19-austria.bmsgpk.20200411-2000.html 
+20200411-200059.773 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200411-2000.html 
+20200411-200059.821 Tested 140975 
+20200411-200059.822 Confirmed 
+20200411-200059.826 Confirmed 13776 
+20200411-200059.831 Recovered 6604 
+20200411-200059.833 WARN: No record for Deaths found 
+20200411-200059.840 Calling scrapeHospitalisierung with 20200411-2000 
+20200411-200059.871 Scraping https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung 
+20200411-200059.872 Dumping page to ./html/COVID-19-austria.regions.20200411-2000.html 
+20200411-200100.323 Reading dump from ./html/COVID-19-austria.regions.20200411-2000.html 
+20200411-200100.334 Extracting table of Confirmed cases for 100+ regions 
+20200411-200100.449 Calling scrapeInfo with 20200411-2000 
+20200411-200100.476 Scraping using headless chrome for https://info.gesundheitsministerium.at/ 
+20200411-200100.477 Dumping page to ./html/COVID-19-austria.info.20200411-2000.dmp 
+20200411-200104.638 Analysing dump file ./html/COVID-19-austria.info.20200411-2000.dmp 
+20200411-200104.677 Aktualisierung 2020-04-11 20:00:00 
+20200411-200104.679 Erkrankungen 13798 
+20200411-200104.680 Extracting table of Confirmed in 100+ regions 
+20200411-200104.736 Writing new data to ./data/COVID-19-austria.csv 
+20200411-200104.750 Writing new data to ./data/COVID-19-austria.hospital.csv 
+20200411-200104.758 Writing new data to ./data/COVID-19-austria.regions.csv 
+20200411-200104.792 Done runing data extraction from bmsgpk web pages 
