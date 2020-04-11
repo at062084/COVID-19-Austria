@@ -1069,3 +1069,29 @@
 20200410-155257.333 Writing new data to ./data/COVID-19-austria.hospital.csv 
 20200410-155257.344 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200410-155257.386 Done runing data extraction from bmsgpk web pages 
+20200411-105403.145 Running COVID-19-bmsgpk-extract.R 
+20200411-105403.198 Calling scrapeCovid with 20200411-1054 
+20200411-105403.269 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200411-105403.271 Dumping page to ./html/COVID-19-austria.bmsgpk.20200411-1054.html 
+20200411-105403.449 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200411-1054.html 
+20200411-105403.545 Tested 140975 
+20200411-105403.546 Confirmed 
+20200411-105403.551 Confirmed NA 
+20200411-105403.555 Recovered 6604 
+20200411-105403.557 WARN: No record for Deaths found 
+20200411-105403.563 Calling scrapeHospitalisierung with 20200411-1054 
+20200411-105403.595 Scraping https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung 
+20200411-105403.596 Dumping page to ./html/COVID-19-austria.regions.20200411-1054.html 
+20200411-105403.757 Reading dump from ./html/COVID-19-austria.regions.20200411-1054.html 
+20200411-105403.791 Extracting table of Confirmed cases for 100+ regions 
+20200411-105403.955 Calling scrapeInfo with 20200411-1054 
+20200411-105403.979 Scraping using headless chrome for https://info.gesundheitsministerium.at/ 
+20200411-105403.980 Dumping page to ./html/COVID-19-austria.info.20200411-1054.dmp 
+20200411-105406.631 Analysing dump file ./html/COVID-19-austria.info.20200411-1054.dmp 
+20200411-105406.668 Aktualisierung 2020-04-11 10:00:00 
+20200411-105406.670 Erkrankungen 13667 
+20200411-105406.671 Extracting table of Confirmed in 100+ regions 
+20200411-105406.718 Writing new data to ./data/COVID-19-austria.csv 
+20200411-105406.734 Writing new data to ./data/COVID-19-austria.hospital.csv 
+20200411-105406.741 Writing new data to ./data/COVID-19-austria.regions.csv 
+20200411-105406.773 Done runing data extraction from bmsgpk web pages 
