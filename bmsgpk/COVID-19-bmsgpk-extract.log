@@ -1137,3 +1137,28 @@
 20200411-111052.708 Writing new data to ./data/COVID-19-austria.hospital.csv 
 20200411-111052.715 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200411-111052.745 Done runing data extraction from bmsgpk web pages 
+20200411-111200.764 Running COVID-19-bmsgpk-extract.R 
+20200411-111200.801 Calling scrapeCovid with 20200411-1112 
+20200411-111200.903 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200411-111200.905 Dumping page to ./html/COVID-19-austria.bmsgpk.20200411-1112.html 
+20200411-111201.074 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200411-1112.html 
+20200411-111201.145 Tested 140975 
+20200411-111201.146 Confirmed 
+20200411-111201.152 Confirmed 13561 
+20200411-111201.156 Recovered 6604 
+20200411-111201.160 Calling scrapeHospitalisierung with 20200411-1112 
+20200411-111201.191 Scraping https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung 
+20200411-111201.192 Dumping page to ./html/COVID-19-austria.regions.20200411-1112.html 
+20200411-111201.352 Reading dump from ./html/COVID-19-austria.regions.20200411-1112.html 
+20200411-111201.383 Extracting table of Confirmed cases for 100+ regions 
+20200411-111201.501 Calling scrapeInfo with 20200411-1112 
+20200411-111201.528 Scraping using headless chrome for https://info.gesundheitsministerium.at/ 
+20200411-111201.530 Dumping page to ./html/COVID-19-austria.info.20200411-1112.dmp 
+20200411-111203.572 Analysing dump file ./html/COVID-19-austria.info.20200411-1112.dmp 
+20200411-111203.607 Aktualisierung 2020-04-11 11:00:00 
+20200411-111203.609 Erkrankungen 13713 
+20200411-111203.610 Extracting table of Confirmed in 100+ regions 
+20200411-111203.664 Writing new data to ./data/COVID-19-austria.csv 
+20200411-111203.677 Writing new data to ./data/COVID-19-austria.hospital.csv 
+20200411-111203.685 Writing new data to ./data/COVID-19-austria.regions.csv 
+20200411-111203.719 Done runing data extraction from bmsgpk web pages 
