@@ -1318,3 +1318,29 @@
 20200413-111811.186 Writing new data to ./data/COVID-19-austria.hospital.csv 
 20200413-111811.194 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200413-111811.232 Done runing data extraction from bmsgpk web pages 
+20200413-191013.080 Running COVID-19-bmsgpk-extract.R 
+20200413-191013.120 Calling scrapeCovid with 20200413-1910 
+20200413-191013.208 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200413-191013.209 Dumping page to ./html/COVID-19-austria.bmsgpk.20200413-1910.html 
+20200413-191013.401 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200413-1910.html 
+20200413-191013.470 Tested 148412 
+20200413-191013.471 Confirmed 
+20200413-191013.475 Confirmed 13999 
+20200413-191013.479 Recovered 7343 
+20200413-191013.485 Deaths 368 
+20200413-191013.491 Calling scrapeHospitalisierung with 20200413-1910 
+20200413-191013.523 Scraping https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung 
+20200413-191013.525 Dumping page to ./html/COVID-19-austria.regions.20200413-1910.html 
+20200413-191013.694 Reading dump from ./html/COVID-19-austria.regions.20200413-1910.html 
+20200413-191013.723 Extracting table of Confirmed cases for 100+ regions 
+20200413-191013.839 Calling scrapeInfo with 20200413-1910 
+20200413-191013.870 Scraping using headless chrome for https://info.gesundheitsministerium.at/ 
+20200413-191013.871 Dumping page to ./html/COVID-19-austria.info.20200413-1910.dmp 
+20200413-191015.822 Analysing dump file ./html/COVID-19-austria.info.20200413-1910.dmp 
+20200413-191015.861 Aktualisierung 2020-04-13 19:00:00 
+20200413-191015.863 Erkrankungen 14037 
+20200413-191015.864 Extracting table of Confirmed in 100+ regions 
+20200413-191015.917 Writing new data to ./data/COVID-19-austria.csv 
+20200413-191015.929 Writing new data to ./data/COVID-19-austria.hospital.csv 
+20200413-191015.937 Writing new data to ./data/COVID-19-austria.regions.csv 
+20200413-191015.973 Done runing data extraction from bmsgpk web pages 
