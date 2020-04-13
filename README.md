@@ -5,6 +5,8 @@
 - 'number of days until times ten cases': This is the main unit for speed of spread of COVID-19 used for all estimates
 
 ## News and Enhancements
+- 2020-04-13: Update readme and plots
+- 2020-04-12: New repo with dockerized version of scraper. runs on kubernetes. writes dumps to COS. Test mode.
 - 2020-04-04: Confirmed reported as 11781 for 09:30, an obvious data error. Corrected manually to an estimated 11550
 - 2020-04-02: orf.at documents in detail the process of data publication by Sozialminiterium. All observation correct and experienced here during maintainance work on the scrapers. https://orf.at/corona/stories/daten-faq/
 - 2020-04-01: Add 'Tested' to plot
@@ -21,7 +23,7 @@
 - y-Axis left: log10 of cases
 - y-Axis right: linear. number of days for black line: Number of days until Confirmed *10 calculated from previous 4 days
 - ppm: Number of confirmed cases per million inhabitants. 1000 means one promille.
-<p><img src="https://github.com/at062084/COVID-19-Austria/blob/master/bmsgpk/thumbs/covid.bmsgpk.stand.Oesterreich.2020-04-08.png" alt="covid.bmsgpk.stand.Oesterreich.2020-04-08.png"  width="1102" height="826"/></p>
+<p><img src="https://github.com/at062084/COVID-19-Austria/blob/master/bmsgpk/thumbs/covid.bmsgpk.stand.Oesterreich.2020-04-13.png" alt="covid.bmsgpk.stand.Oesterreich.2020-04-13.png"  width="1102" height="826"/></p>
 
 
 ##   bmsgpk - Bundesministerium für Soziales, Gesundheit, Pflege und Konsumentenschutz

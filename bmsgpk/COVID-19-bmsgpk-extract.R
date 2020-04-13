@@ -100,6 +100,9 @@ scrapeCovid <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   df[iConfirmed,"Status"] <- "Confirmed"
   if(!is.na(s)) {
     nAT <- as.integer(str_remove(str_match(s,paste0("</strong>","([\\d\\. ]*)","F&auml;lle,"))[2],"\\."))
+    if(is.na(nAT)) {
+      nAT <- as.integer(str_remove(str_match(s,paste0("<strong>","([\\d\\. ]*)","</strong>F&auml;lle,"))[2],"\\."))
+    }
     df[iConfirmed,"AT"] <- nAT
     for (bl in Bundeslaender$Name) {
       n <- as.integer(str_remove(str_match(s,paste0(bl," \\(","([\\d\\.]*)","\\)"))[2],"\\."))
@@ -143,11 +146,17 @@ scrapeCovid <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   df[iDeaths,"Stamp"] <- Stamp 
   df[iDeaths,"Status"] <- "Deaths"
   sAT <- str_match(s,paste0("Uhr:</strong> ","([\\d\\.]*)",", nach"))[2]
+  if(is.na(sAT)) {
+    sAT <- str_match(s,paste0("strong>","([ \\d\\.]*)",", nach"))[2]
+  }
+  if(is.na(sAT)) {
+    sAT <- str_match(s,paste0("strong>","([ \\d\\.]*)",", "))[2]
+  }
   if (!is.na(sAT)) {
     nAT <- as.integer(str_remove(sAT,"\\."))
     df[iDeaths,"AT"] <- nAT
     for (bl in Bundeslaender$Name) {
-      n <- n <- as.integer(str_remove(str_match(s,paste0(bl," \\(","([\\d\\.]*)","\\)"))[2],"\\."))
+      n <- as.integer(str_remove(str_match(s,paste0(bl," \\(","([\\d\\.]*)","\\)"))[2],"\\."))
       if (is.na(n)) n <- 0
       df[iDeaths,Bundeslaender[Bundeslaender$Name==bl,2]] <-n
     }
