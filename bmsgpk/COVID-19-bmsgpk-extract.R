@@ -183,6 +183,7 @@ scrapeInfo <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   dmpFile=paste0("./html/COVID-19-austria.info.",ts,".dmp")
   
   url="https://info.gesundheitsministerium.at/"
+  url="https://info.gesundheitsministerium.at/dashboard_Epidem.html?l=de"
   logMsg(paste("Scraping using headless chrome for", url))
   
   chrome="/opt/google/chrome/chrome"
@@ -191,30 +192,32 @@ scrapeInfo <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   system2(chrome,paste(url, flags, ">", dmpFile))
 
   # xpath anchor points in dump of info.gesundheitsministerium.at
-  xpathAktualisierung  <- '//*[@id="divLetzteAktualisierung"]'
-  xpathErkrankungen    <- '//*[@id="divErkrankungen"]'
+  #xpathAktualisierung  <- '//*[@id="divLetzteAktualisierung"]'
+  #xpathErkrankungen    <- '//*[@id="divErkrankungen"]'
 
   # use xml2 methods to extract information from dump
   logMsg(paste("Analysing dump file", dmpFile))
   x <- xml2::read_html(dmpFile)
   
   # Aktualisierung
-  xa <- xml2::xml_find_all(x, xpathAktualisierung)
-  xd <- xml2::xml_text(xa, trim=TRUE)
-  Stamp <- as.POSIXct(xd, format="%d.%m.%Y %H:%M.%S", tz="CEST")
-  logMsg(paste("Aktualisierung",Stamp))
+  #xa <- xml2::xml_find_all(x, xpathAktualisierung)
+  #xd <- xml2::xml_text(xa, trim=TRUE)
+  #Stamp <- as.POSIXct(xd, format="%d.%m.%Y %H:%M.%S", tz="CEST")
+  #logMsg(paste("Aktualisierung",Stamp))
 
+  #xpathErkrankungen <- "/html/body/main/div/div/div[7]/div/div/table"
+  
   # Erkrankungen
-  xa <- xml2::xml_find_all(x, xpathErkrankungen)
-  xd <- xml2::xml_text(xa, trim=TRUE)
-  nErkrankungen <- as.integer(xd)
-  logMsg(paste("Erkrankungen",nErkrankungen))  
+  #xa <- xml2::xml_find_all(x, xpathErkrankungen)
+  #xd <- xml2::xml_text(xa, trim=TRUE)
+  #nErkrankungen <- as.integer(xd)
+  #logMsg(paste("Erkrankungen",nErkrankungen))  
   
   logMsg(paste("Extracting table of Confirmed in 100+ regions"))
+  Stamp <- as.POSIXct(now(), format="%Y-%m-%d %H:%M:%S", tz="CEST")
   tables <- rvest::html_table(x)
   dx <- tables[[1]]
   colnames(dx) <- c("Region","Count")
-  dx <- dx[-1,]
 
   dc <- dx %>% dplyr::mutate(Stamp=Stamp, Status="Confirmed", Count=as.integer(Count)) %>%
     dplyr::select(Stamp, Status, Region, Count) %>%
@@ -262,7 +265,7 @@ scrapeHospitalisierung <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   nTested <- as.integer(str_replace(stringr::str_match(s,paste0(".*: ","([\\.\\d]*)"))[2],"\\.",""))
   
   # Extract Bundesländertable
-  logMsg("Extracting table of Confirmed cases for 100+ regions")
+  logMsg("Extracting table of Hospitalized cases for Bundeslaender")
   tables <- rvest::html_table(html, dec="")
   dh <- tables[[1]]
   df <- dh %>% dplyr::inner_join(BL, by=c("Bundesland"="NameUTF82")) %>%
