@@ -65,15 +65,6 @@ covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d")
     dplyr::mutate(Stamp=as.POSIXct(Stamp)) %>%
     dplyr::filter(date(Stamp)==as.POSIXct(dataDate))
   
-  # check if all required data available
-  failStamp <- max(da$Stamp)
-  nr <- nrow(da)
-  for (s in c("Tested","Confirmed","Recovered","Deaths")) {
-    if (!s %in% da$Status) {
-      da[nr+1,"Status"] <- s
-      da[nr+1,"Stamp"] <- failStamp
-    }
-  }
   
   # read data for Hospitalized
   csvFile <- "/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/data/COVID-19-austria.hospital.csv"
@@ -91,9 +82,17 @@ covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d")
     dplyr::filter(row_number()==1) %>%
 #    dplyr::filter(!is.na(AT)) %>%
     dplyr::ungroup()
-  
-  publishStamp <- max(df$Stamp)
 
+  # check if all required data available
+  failStamp <- max(df$Stamp)
+  for (s in c("Tested","Confirmed","Recovered","Deaths","Hospitalisierung","Intensivstation")) {
+    nr <- nrow(df)
+    if (!s %in% df$Status) {
+      df[nr+1,"Status"] <- s
+      df[nr+1,"Stamp"] <- failStamp
+    }
+  }
+  
   
   # -------------------------------------------------------------------------------------------------------------
   # Write Data file for country 
