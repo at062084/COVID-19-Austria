@@ -309,8 +309,8 @@ logMsg(paste("Calling scrapeCovid with", ts))
 dc <- scrapeCovid(ts=ts)
 
 # scrapeHospitalisierung
-logMsg(paste("Calling scrapeHospitalisierung with", ts))
-dh <- scrapeHospitalisierung(ts=ts)
+#logMsg(paste("Calling scrapeHospitalisierung with", ts))
+#dh <- scrapeHospitalisierung(ts=ts)
 
 # OK scrapeInfo
 logMsg(paste("Calling scrapeInfo with", ts))
@@ -323,11 +323,11 @@ df <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp, tz="CEST"
 df <- rbind(df,dc)
 write.csv(df, file=csvFile, row.names=FALSE, quote=FALSE)
 
-csvFile <- paste0("./data/COVID-19-austria.hospital.csv")
-logMsg(paste("Writing new data to", csvFile))
-df <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp, tz="CEST"))
-df <- rbind(df,dh)
-write.csv(df, file=csvFile, row.names=FALSE, quote=FALSE)
+#csvFile <- paste0("./data/COVID-19-austria.hospital.csv")
+#logMsg(paste("Writing new data to", csvFile))
+#df <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp, tz="CEST"))
+#df <- rbind(df,dh)
+#write.csv(df, file=csvFile, row.names=FALSE, quote=FALSE)
 
 csvFile <- paste0("./data/COVID-19-austria.regions.csv")
 logMsg(paste("Writing new data to", csvFile))
