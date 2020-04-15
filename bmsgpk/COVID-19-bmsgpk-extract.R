@@ -281,6 +281,24 @@ scrapeHospitalisierung <- function(ts=format(now(),"%Y%m%d-%H%M")) {
 }
 
 
+# --------------------------------------------------------------------------------------------------------
+# Confirmed cases by Bezirk from info.gesundheitsministerium.at
+# --------------------------------------------------------------------------------------------------------
+scrapeZIP <- function(ts=format(now(),"%Y-%m-%d_%H%M")) {
+  
+  zipFile=paste0("./data/zip/COVID-19-austria.V0414.",ts,".zip")
+  zipDir=paste0("./data/zip/",ts)
+  url="https://info.gesundheitsministerium.at/data/data.zip"
+  
+  logMsg(paste("Downloading", url, "to", zipFile))
+  cmd <- paste0("\"",url,"\"", " -O ", zipFile)
+  system2("wget", cmd)
+  cmd <- paste(zipFile, "-d", zipDir)
+  system2("unzip",cmd)
+  
+  return(0)
+}
+
 
 
 
@@ -309,12 +327,16 @@ logMsg(paste("Calling scrapeCovid with", ts))
 dc <- scrapeCovid(ts=ts)
 
 # scrapeHospitalisierung
-#logMsg(paste("Calling scrapeHospitalisierung with", ts))
+logMsg(paste("DISABLED: Calling scrapeHospitalisierung with", ts))
 #dh <- scrapeHospitalisierung(ts=ts)
 
 # OK scrapeInfo
 logMsg(paste("Calling scrapeInfo with", ts))
 di <- scrapeInfo(ts=ts)
+
+# OK scrapeInfo
+logMsg(paste("Calling scrapeZIP with", ts))
+z <- scrapeZIP(ts=ts)
 
 
 csvFile <- paste0("./data/COVID-19-austria.csv")
