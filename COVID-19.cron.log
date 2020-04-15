@@ -6990,3 +6990,123 @@ Backtrace:
        dataDir = "./data")
 20200415-122937.852 Done executing covCounty 
 20200415-122937.852 Done running COVID-19-covid-county-extract.R 
+[master 456df82] 2020-04-15 12:29:36 Auto-Conversion of bmsgpk data to covid-county format
+ 1 file changed, 145 insertions(+)
+To git@github.com:at062084/COVID-19-Austria.git
+   e9d0795..456df82  HEAD -> master
+
+--------------------------------------------------------------------
+2020-04-15 12:42:25 Running ./COVID-19-cron.sh for SECTION=county
+2020-04-15 12:42:25 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-04-15 12:42:25 Running conversion of COVID-19 data to covid-county format
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘tibbletime’
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:readr’:
+
+    col_factor
+
+
+Attaching package: ‘plotly’
+
+The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+The following object is masked from ‘package:graphics’:
+
+    layout
+
+20200415-124226.613 Running COVID-19-covid-county-extract.R 
+20200415-124226.747 Executing covCounty with 2020-04-15 10:42:26 
+Error: Can't subset columns that don't exist.
+✖ The column `Intensivstation` doesn't exist.
+Backtrace:
+     █
+  1. ├─global::covCounty(...)
+  2. │ └─`%>%`(...)
+  3. │   ├─base::withVisible(eval(quote(`_fseq`(`_lhs`)), env, env))
+  4. │   └─base::eval(quote(`_fseq`(`_lhs`)), env, env)
+  5. │     └─base::eval(quote(`_fseq`(`_lhs`)), env, env)
+  6. │       └─`_fseq`(`_lhs`)
+  7. │         └─magrittr::freduce(value, `_function_list`)
+  8. │           └─function_list[[i]](value)
+  9. │             ├─dplyr::select(., -Intensivstation, -Date)
+ 10. │             └─dplyr:::select.data.frame(., -Intensivstation, -Date)
+ 11. │               └─tidyselect::vars_select(tbl_vars(.data), !!!enquos(...))
+ 12. │                 └─tidyselect:::eval_select_impl(...)
+ 13. │                   ├─tidyselect:::with_subscript_errors(...)
+ 14. │                   │ ├─base::tryCatch(...)
+ 15. │                   │ │ └
+21: (function () 
+    traceback(2))()
+20: stop(fallback)
+19: rlang:::signal_abort(x)
+18: cnd_signal(cnd)
+17: value[[3L]](cond)
+16: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+15: tryCatchList(expr, classes, parentenv, handlers)
+14: tryCatch(instrument_base_errors(expr), vctrs_error_subscript = function(cnd) {
+        cnd$subscript_action <- subscript_action(type)
+        cnd$subscript_elt <- "column"
+        cnd_signal(cnd)
+    })
+13: with_subscript_errors(vars_select_eval(vars, expr, strict, data = x, 
+        name_spec = name_spec, uniquely_named = uniquely_named, type = type), 
+        type = type)
+12: eval_select_impl(NULL, .vars, expr(c(!!!dots)), include = .include, 
+        exclude = .exclude, strict = .strict, name_spec = unique_name_spec, 
+        uniquely_named = TRUE)
+11: tidyselect::vars_select(tbl_vars(.data), !!!enquos(...))
+10: select.data.frame(., -Intensivstation, -Date)
+9: dplyr::select(., -Intensivstation, -Date)
+8: function_list[[i]](value)
+7: freduce(value, `_function_list`)
+6: `_fseq`(`_lhs`)
+5: eval(quote(`_fseq`(`_lhs`)), env, env)
+4: eval(quote(`_fseq`(`_lhs`)), env, env)
+3: withVisible(eval(quote(`_fseq`(`_lhs`)), env, env))
+2: df %>% dplyr::select(Date, Status, AT) %>% tidyr::spread(key = Status, 
+       val = AT) %>% dplyr::mutate(country = "AT", county = "ALL", 
+       state = "ALL") %>% dplyr::rename(cases = Confirmed, deaths = Deaths, 
+       tested = Tested, recovered = Recovered, hospitalized = Hospitalisierung) %>% 
+       dplyr::select(-Intensivstation, -Date) %>% dplyr::select(country, 
+       county, state, cases, deaths, recovered, tested, hospitalized)
+1: covCounty(scrapeStamp = ts, dataDate = format(ts, "%Y-%m-%d"), 
+       dataDir = "./data")
+20200415-124227.010 Done executing covCounty 
+20200415-124227.010 Done running COVID-19-covid-county-extract.R 
