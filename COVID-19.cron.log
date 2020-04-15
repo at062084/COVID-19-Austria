@@ -7110,3 +7110,71 @@ Backtrace:
        dataDir = "./data")
 20200415-124227.010 Done executing covCounty 
 20200415-124227.010 Done running COVID-19-covid-county-extract.R 
+[master aebabc9] 2020-04-15 12:42:25 Auto-Conversion of bmsgpk data to covid-county format
+ 1 file changed, 120 insertions(+)
+To git@github.com:at062084/COVID-19-Austria.git
+   456df82..aebabc9  HEAD -> master
+
+--------------------------------------------------------------------
+2020-04-15 12:43:54 Running ./COVID-19-cron.sh for SECTION=county
+2020-04-15 12:43:54 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-04-15 12:43:54 Running conversion of COVID-19 data to covid-county format
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘tibbletime’
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:readr’:
+
+    col_factor
+
+
+Attaching package: ‘plotly’
+
+The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+The following object is masked from ‘package:graphics’:
+
+    layout
+
+20200415-124355.490 Running COVID-19-covid-county-extract.R 
+20200415-124355.610 Executing covCounty with 2020-04-15 10:43:55 
+20200415-124355.780 Writing ./data/AT_country.bmsgpk.csv 
+20200415-124355.836 Writing ./data/AT_states.bmsgpk.csv 
+20200415-124355.935 Writing ./data/AT_counties.bmsgpk.csv 
+20200415-124355.936 Done executing covCounty 
+20200415-124355.936 Done running COVID-19-covid-county-extract.R 

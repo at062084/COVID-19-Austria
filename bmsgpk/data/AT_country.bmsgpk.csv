@@ -1,2 +1,3 @@
 country,county,state,cases,deaths,recovered,tested,hospitalized
-AT,ALL,ALL,14060,384,7633,151796,1002
+AT,ALL,ALL,14246,393,8098,156801,NA
+AT,ALL,ALL,NA,NA,NA,NA,NA
