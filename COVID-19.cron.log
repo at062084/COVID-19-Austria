@@ -7451,3 +7451,92 @@ Archive:  ./data/zip/COVID-19-austria.V0414.20200415-1830.zip
 20200415-183041.141 Writing new data to ./data/COVID-19-austria.csv 
 20200415-183041.159 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200415-183041.204 Done runing data extraction from bmsgpk web pages 
+[master a6e8c3d] 2020-04-15 18:30:36 Auto-Extract data from bmsgpk website
+ 25 files changed, 3683 insertions(+)
+ create mode 100644 bmsgpk/data/zip/20200415-1830/AllgemeinDaten.csv
+ create mode 100644 bmsgpk/data/zip/20200415-1830/Altersverteilung.csv
+ create mode 100644 bmsgpk/data/zip/20200415-1830/AltersverteilungTodesfaelle.csv
+ create mode 100644 bmsgpk/data/zip/20200415-1830/AltersverteilungTodesfaelleDemogr.csv
+ create mode 100644 bmsgpk/data/zip/20200415-1830/Bezirke.csv
+ create mode 100644 bmsgpk/data/zip/20200415-1830/Bundesland.csv
+ create mode 100644 bmsgpk/data/zip/20200415-1830/Epikurve.csv
+ create mode 100644 bmsgpk/data/zip/20200415-1830/GenesenTimeline.csv
+ create mode 100644 bmsgpk/data/zip/20200415-1830/GenesenTodesFaelleBL.csv
+ create mode 100644 bmsgpk/data/zip/20200415-1830/Geschlechtsverteilung.csv
+ create mode 100644 bmsgpk/data/zip/20200415-1830/IBAuslastung.csv
+ create mode 100644 bmsgpk/data/zip/20200415-1830/IBKapazitaeten.csv
+ create mode 100644 bmsgpk/data/zip/20200415-1830/NBAuslastung.csv
+ create mode 100644 bmsgpk/data/zip/20200415-1830/NBKapazitaeten.csv
+ create mode 100644 bmsgpk/data/zip/20200415-1830/TodesfaelleTimeline.csv
+ create mode 100644 bmsgpk/data/zip/20200415-1830/VerstorbenGeschlechtsverteilung.csv
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V0414.20200415-1830.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200415-1555.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200415-1741.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200415-1830.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200415-1830.dmp
+To git@github.com:at062084/COVID-19-Austria.git
+   de0fad8..a6e8c3d  HEAD -> master
+
+--------------------------------------------------------------------
+2020-04-15 18:38:53 Running ./COVID-19-cron.sh for SECTION=county
+2020-04-15 18:38:53 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-04-15 18:38:53 Running conversion of COVID-19 data to covid-county format
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘tibbletime’
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:readr’:
+
+    col_factor
+
+
+Attaching package: ‘plotly’
+
+The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+The following object is masked from ‘package:graphics’:
+
+    layout
+
+20200415-183855.099 Running COVID-19-covid-county-extract.R 
+20200415-183855.206 Executing covCounty with 2020-04-15 16:38:55 
+20200415-183855.357 Writing ./data/AT_country.bmsgpk.csv 
+20200415-183855.419 Writing ./data/AT_states.bmsgpk.csv 
+20200415-183855.537 Writing ./data/AT_counties.bmsgpk.csv 
+20200415-183855.539 Done executing covCounty 
+20200415-183855.539 Done running COVID-19-covid-county-extract.R 
