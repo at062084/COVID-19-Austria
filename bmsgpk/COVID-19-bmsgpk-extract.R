@@ -7,6 +7,7 @@ library(xml2)
 library(rvest)
 
 options(error = function() traceback(2))
+options(width=256)
 
 setwd("/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk")
 
@@ -16,6 +17,54 @@ logFile <- "./COVID-19-bmsgpk-extract.log"
 logMsg <- function(msg) {
   cat(paste(format(Sys.time(), "%Y%m%d-%H%M%OS3"), msg, "\n"), sep="", file=logFile, append=TRUE)
   cat(paste(format(Sys.time(), "%Y%m%d-%H%M%OS3"), msg, "\n"), sep="")
+}
+
+scrapeCovid2 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
+
+  # get html page from bmsgpk
+  bmsgpkFile <- paste0("./html/COVID-19-austria.bmsgpk.",ts,".html")
+  url="\"https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html\""
+  logMsg(paste("Scraping", url))
+  logMsg(paste("Dumping page to", bmsgpkFile))
+  cmd <- paste(url, "-O", bmsgpkFile)
+  system2("wget", cmd)
+  
+  #xpathTable <- "/html/body/div[3]/div/div/div/div[2]/main/div[2]/table"
+  #xt <- xml2::xml_find_all(html, xpathTable)
+
+  logMsg(paste("Parsing dump in", bmsgpkFile))
+  html <- xml2::read_html(bmsgpkFile)
+  
+  logMsg(paste("Extracting Status table in Bundesländer"))
+  tables <- rvest::html_table(html)
+  dx <- tables[[1]]
+  
+  # Extract Stamp and Status from first col
+  S0 <- dx[,1]
+  S1 <- str_match(S0, paste0("(.*)","\\\n\\\t\\\t\\\t\\("))[,2]
+  S2 <- str_split_fixed(S1, "\\(", n=2)[,1]
+  Status <- str_split_fixed(S2, "\\*",n=2)[,1]
+  Stamp <- as.POSIXct(str_match(S0, paste0("Stand","(.*)","Uhr"))[,2],format="%d.%m.%Y, %H:%M")
+
+  df <- dx %>%
+    dplyr::select(11,2:10) %>% mutate_all(funs(str_replace(., "\\.", ""))) %>% mutate_all(funs(as.integer(.))) %>%
+    dplyr::mutate(Stamp=Stamp,Status=Status)  %>%
+    dplyr::select(Stamp,Status,1:10) 
+  colnames(df) <- c("Stamp","Status",BL$ID)
+
+  # Rename Status to previous Labels
+  StatusMap <- data.frame(
+    from=c("Bestätigte Fälle","Todesfälle","Genesen","Hospitalisierung","Intensivstation","Testungen"),
+    to=c("Confirmed","Deaths","Recovered","Hospitalisierung","Intensivstation","Tested"), stringsAsFactors=FALSE)
+  
+  for (s in 1:nrow(df)) {
+    n = which(df$Status[s]==StatusMap$from)
+    df$Status[s] <- StatusMap$to[n]
+  }
+  
+  # Print to console
+  df %>% tail(n=10) %>% print()
+  return(df)
 }
 
 
@@ -323,8 +372,8 @@ ts=format(now(),"%Y%m%d-%H%M")
 logMsg(paste("Running COVID-19-bmsgpk-extract.R"))
 
 # OK scrapeCovid
-logMsg(paste("Calling scrapeCovid with", ts))
-dc <- scrapeCovid(ts=ts)
+logMsg(paste("Calling scrapeCovid2 with", ts))
+dc <- scrapeCovid2(ts=ts)
 
 # scrapeHospitalisierung
 logMsg(paste("DISABLED: Calling scrapeHospitalisierung with", ts))
