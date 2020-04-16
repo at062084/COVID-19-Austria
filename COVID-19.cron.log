@@ -8130,3 +8130,122 @@ The following object is masked from ‘package:graphics’:
 20200416-110056.111 Writing ./data/AT_counties.bmsgpk.csv 
 20200416-110056.113 Done executing covCounty 
 20200416-110056.113 Done running COVID-19-covid-county-extract.R 
+[master 3814344] 2020-04-16 11:00:54 Auto-Conversion of bmsgpk data to covid-county format
+ 4 files changed, 131 insertions(+), 11 deletions(-)
+warning: push.default is unset; its implicit value is changing in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the current behavior after the default changes, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+
+To git@github.com:at062084/COVID-19-Austria.git
+   7633db0..3814344  master -> master
+
+--------------------------------------------------------------------
+2020-04-16 12:15:46 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2020-04-16 12:15:46 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-04-16 12:15:46 Running auto-extraction of COVID-19 data from bmsgpk website
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘rvest’
+
+The following object is masked from ‘package:readr’:
+
+    guess_encoding
+
+20200416-121547.224 Running COVID-19-bmsgpk-extract.R 
+20200416-121547.256 Calling scrapeCovid2 with 20200416-1215 
+20200416-121547.291 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200416-121547.292 Dumping page to ./html/COVID-19-austria.bmsgpk.20200416-1215.html 
+--2020-04-16 12:15:47--  https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html
+Resolving www.sozialministerium.at (www.sozialministerium.at)... 95.131.199.37
+Connecting to www.sozialministerium.at (www.sozialministerium.at)|95.131.199.37|:443... connected.
+HTTP request sent, awaiting response... 200 200
+Length: 40696 (40K) [text/html]
+Saving to: ‘./html/COVID-19-austria.bmsgpk.20200416-1215.html’
+
+     0K .......... .......... .......... .........            100%  945K=0,04s
+
+2020-04-16 12:15:47 (945 KB/s) - ‘./html/COVID-19-austria.bmsgpk.20200416-1215.html’ saved [40696/40696]
+
+20200416-121547.464 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200416-1215.html 
+20200416-121547.474 Extracting Status table in Bundesländer 
+                Stamp           Status     AT    B    K   Noe   Ooe  Szbg  Stmk     T    V     W
+1 2020-04-16 08:00:00        Confirmed  14370  280  388  2427  2171  1182  1604  3362  851  2105
+2 2020-04-16 09:30:00           Deaths    410    6    8    73    34    27    93    80    7    82
+3 2020-04-16 09:30:00        Recovered   8986  165  269  1415  1714   790   661  2244  654  1074
+4 2020-04-16 09:30:00 Hospitalisierung    967   17   23   236   109    88   141   144   29   180
+5 2020-04-16 09:30:00  Intensivstation    238    4   10    46    31    15    21    54   11    46
+6 2020-04-16 09:30:00           Tested 162816 2020 6767 17410 27453 13288 16996 38388 6887 33607
+Warning message:
+funs() is soft deprecated as of dplyr 0.8.0
+Please use a list of either functions or lambdas: 
+
+  # Simple named list: 
+  list(mean = mean, median = median)
+
+  # Auto named with `tibble::lst()`: 
+  tibble::lst(mean, median)
+
+  # Using lambdas
+  list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
+This warning is displayed once per session. 
+20200416-121547.558 DISABLED: Calling scrapeHospitalisierung with 20200416-1215 
+20200416-121547.559 Calling scrapeInfo with 20200416-1215 
+20200416-121547.581 Scraping using headless chrome for https://info.gesundheitsministerium.at/dashboard_Epidem.html?l=de 
+20200416-121547.582 Dumping page to ./html/COVID-19-austria.info.20200416-1215.dmp 
+20200416-121549.731 Analysing dump file ./html/COVID-19-austria.info.20200416-1215.dmp 
+20200416-121549.767 Extracting table of Confirmed in 100+ regions 
+                 Stamp    Status                Region Count
+88 2020-04-16 12:15:49 Confirmed            Wien_Stadt  2114
+89 2020-04-16 12:15:49 Confirmed  Wiener_Neustadt_Land    63
+90 2020-04-16 12:15:49 Confirmed Wiener_Neustadt_Stadt    39
+91 2020-04-16 12:15:49 Confirmed             Wolfsberg    42
+92 2020-04-16 12:15:49 Confirmed           Zell_am_See   336
+93 2020-04-16 12:15:49 Confirmed                Zwettl    66
+20200416-121549.821 Calling scrapeZIP with 20200416-1215 
+20200416-121549.823 Downloading https://info.gesundheitsministerium.at/data/data.zip to ./data/zip/COVID-19-austria.V0414.20200416-1215.zip 
+--2020-04-16 12:15:49--  https://info.gesundheitsministerium.at/data/data.zip
+Resolving info.gesundheitsministerium.at (info.gesundheitsministerium.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to info.gesundheitsministerium.at (info.gesundheitsministerium.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 5713 (5,6K) [application/zip]
+Saving to: ‘./data/zip/COVID-19-austria.V0414.20200416-1215.zip’
+
+     0K .....                                                 100%  109K=0,05s
+
+2020-04-16 12:15:50 (109 KB/s) - ‘./data/zip/COVID-19-austria.V0414.20200416-1215.zip’ saved [5713/5713]
+
+20200416-121550.061 Writing new data to ./data/COVID-19-austria.csv 
+20200416-121550.110 Writing new data to ./data/COVID-19-austria.regions.csv 
+20200416-121550.160 Done runing data extraction from bmsgpk web pages 
