@@ -18,30 +18,9 @@ logMsg <- function(msg) {
 }
 
 
-
 # -------------------------------------------------------------------------------------------------------------
 covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d"), dataDir="./data") {
 # -------------------------------------------------------------------------------------------------------------  
-  # create empty dataframe along samples in BOX at https://ibm.ent.box.com/folder/108160857311
-  cc <- data.frame(country=character(),
-                   state=character(),
-                   county=character(),
-                   cases=integer(),
-                   deaths=integer(),
-                   recovered=integer(),
-                   tested=integer(),
-                   tests=integer(),
-                   public_tests=integer(),
-                   private_tests=integer(),
-                   hospitalized=integer(),
-                   presumed_cases=integer(),
-                   monitoring=integer(),
-                   Attribution=character(),
-                   AttributionURL=character(),
-                   publication_date=numeric(),
-                   scrape_date=numeric(),
-                   source_links=character(),stringsAsFactors=FALSE)
-
   
   # -------------------------------------------------------------------------------------------------------------
   # Data files for country and state
@@ -99,8 +78,7 @@ covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d")
   logMsg(paste("Writing", fileName))
   write.csv(ds, file=fileName, quote=FALSE, row.names=FALSE)
 
-  
-  
+
   # -------------------------------------------------------------------------------------------------------------
   # Write Data file for states
   # -------------------------------------------------------------------------------------------------------------
@@ -121,7 +99,6 @@ covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d")
   fileName <- paste0(dataDir,"/AT_states.bmsgpk.csv")
   logMsg(paste("Writing", fileName))
   write.csv(dg, file=fileName, quote=FALSE, row.names=FALSE)
-  
   
   
   # -------------------------------------------------------------------------------------------------------------
@@ -151,7 +128,6 @@ covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d")
   logMsg(paste("Writing", fileName))
   write.csv(dt, file=fileName, quote=FALSE, row.names=FALSE)
 }
-
 
 
 # --------------------------------------------------------------------------------------------------------
