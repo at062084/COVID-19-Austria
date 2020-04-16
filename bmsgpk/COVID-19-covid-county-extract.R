@@ -22,18 +22,6 @@ logMsg <- function(msg) {
 # -------------------------------------------------------------------------------------------------------------
 covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d"), dataDir="./data") {
 # -------------------------------------------------------------------------------------------------------------  
-  #csvFileStates <- "/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/covid-county/DE_states_202003261407.csv"
-  #states <- read.csv(csvFileStates, stringsAsFactors=FALSE)
-  #str(states)
-  #colnames(states)
-  
-  #setwd("/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk")
-  
-  sourceLinks <- c("https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html",
-                   "https://info.gesundheitsministerium.at",
-                   "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Dashboard/Zahlen-zur-Hospitalisierung")
-  
-  
   # create empty dataframe along samples in BOX at https://ibm.ent.box.com/folder/108160857311
   cc <- data.frame(country=character(),
                    state=character(),
@@ -66,16 +54,17 @@ covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d")
     dplyr::filter(date(Stamp)==as.POSIXct(dataDate))
   
   
-  # read data for Hospitalized
-  csvFile <- "/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/data/COVID-19-austria.hospital.csv"
-  dh <- read.csv(csvFile, stringsAsFactors=FALSE) %>% 
-    dplyr::mutate(Stamp=as.POSIXct(Stamp)) %>%
-    dplyr::filter(date(Stamp)==as.POSIXct(dataDate)) %>%
-    dplyr::distinct()
+  # DISABLED: read data for Hospitalized. Data now already in above file
+  #csvFile <- "/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/data/COVID-19-austria.hospital.csv"
+  #dh <- read.csv(csvFile, stringsAsFactors=FALSE) %>% 
+  #  dplyr::mutate(Stamp=as.POSIXct(Stamp)) %>%
+  #  dplyr::filter(date(Stamp)==as.POSIXct(dataDate)) %>%
+  #  dplyr::distinct()
   
   
   # Merge these data and select last record of each Status per day
-  df <- rbind(da,dh) %>% 
+  # df <- rbind(da,dh) %>% 
+  df <- da %>% 
     dplyr::mutate(Date=date(Stamp)) %>%
     dplyr::arrange(Stamp) %>%
     dplyr::group_by(Date,Status) %>%
@@ -93,20 +82,10 @@ covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d")
     }
   }
   
-  
   # -------------------------------------------------------------------------------------------------------------
   # Write Data file for country 
   # -------------------------------------------------------------------------------------------------------------
   
-  # Spread Status and mutate to Box format
-  #ds <- df %>% 
-  #  dplyr::select(Date,Status,AT) %>%
-  #  tidyr::spread(key=Status, val=AT) %>%
-  #  dplyr::mutate(country="Austria",county="ALL",state="ALL",publication_date=as.numeric(publishStamp),scrape_date=as.numeric(scrapeStamp)) %>%
-  #  dplyr::rename(cases=Confirmed, deaths=Deaths,tested=Tested, hospitalized=Hospitalisierung) %>%
-  #  dplyr::select(-Intensivstation, -Date) %>%
-  #  dplyr::mutate(source_links=paste(sourceLinks[1:2],collapse=","))
-
   # simplified format for PR
   ds <- df %>% 
     dplyr::select(Date,Status,AT) %>%
@@ -117,7 +96,6 @@ covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d")
     dplyr::select(country,county,state,cases,deaths,recovered,tested,hospitalized)
   
   # Write country file for covid-county
-  #atc <- dplyr::bind_rows(cc, ds)
   fileName <- paste0(dataDir,"/AT_country.bmsgpk.csv")
   logMsg(paste("Writing", fileName))
   write.csv(ds, file=fileName, quote=FALSE, row.names=FALSE)
@@ -128,17 +106,6 @@ covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d")
   # Write Data file for states
   # -------------------------------------------------------------------------------------------------------------
   colnames(df) <- c(colnames(df)[1:2],"ALL",BL$ISO[2:10],"Date")
-  
-  #dg <- df %>%
-  #  dplyr::filter_all(all_vars(!is.na(.))) %>%
-  #  dplyr::select(-Stamp) %>%
-  #  dplyr::filter(Status!="Intensivstation") %>%
-  #  tidyr::gather(key=state,val=Count,2:11) %>%
-  #  tidyr::spread(key=Status, val=Count) %>%
-  #  dplyr::mutate(country="Austria",county="ALL",publication_date=as.numeric(publishStamp),scrape_date=as.numeric(scrapeStamp)) %>%
-  #  dplyr::rename(cases=Confirmed, deaths=Deaths, hospitalized=Hospitalisierung) %>%
-  #  dplyr::select(-Date) %>%
-  #  dplyr::mutate(source_links=paste(sourceLinks[1:2],collapse=","))
   
   # simplified format
   dg <- df %>%
@@ -152,7 +119,6 @@ covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d")
     dplyr::select(country,state,county,cases,deaths,recovered,tested,hospitalized)
   
   # Write state file for covid-county
-  # ato <- dplyr::bind_rows(cc, dg)
   fileName <- paste0(dataDir,"/AT_states.bmsgpk.csv")
   logMsg(paste("Writing", fileName))
   write.csv(dg, file=fileName, quote=FALSE, row.names=FALSE)
@@ -166,7 +132,7 @@ covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d")
   csvFile <- "/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/data/COVID-19-austria.regions.csv"
   dr <- read.csv(csvFile, stringsAsFactors=FALSE) %>% 
     dplyr::mutate(Stamp=as.POSIXct(Stamp)) %>%
-    dplyr::filter(date(Stamp)==as.POSIXct("2020-03-27"))
+    dplyr::filter(date(Stamp)==as.POSIXct(dataDate))
   
   dt <- dr %>% 
     dplyr::mutate(Date=date(Stamp)) %>%
@@ -181,17 +147,7 @@ covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d")
     dplyr::select(country=NUTS0,state=NUTS2,county=NUTS3,cases=Count) %>%
     dplyr::arrange(country,state,county)
   
-  
-  # Spread Status and mutate to Box format
-  #du <- dt %>% 
-  #  dplyr::mutate(country="Austria",state="ALL",county=Region,
-  #                publication_date=as.numeric(publishStamp), scrape_date=as.numeric(scrapeStamp)) %>%
-  #  dplyr::rename(cases=Count) %>%
-  #  dplyr::select(-Date,-Status,-Stamp,-Region) %>%
-  #  dplyr::mutate(source_links=sourceLinks[3])
-  
   # append to box format
-  # atu <- dplyr::bind_rows(cc, du)
   fileName <- paste0(dataDir,"/AT_counties.bmsgpk.csv")
   logMsg(paste("Writing", fileName))
   write.csv(dt, file=fileName, quote=FALSE, row.names=FALSE)
