@@ -346,8 +346,9 @@ scrapeZIP <- function(ts=format(now(),"%Y-%m-%d_%H%M")) {
   logMsg(paste("Downloading", url, "to", zipFile))
   cmd <- paste0("\"",url,"\"", " -O ", zipFile)
   system2("wget", cmd)
-  cmd <- paste(zipFile, "-d", zipDir)
-  system2("unzip",cmd)
+  
+  #cmd <- paste(zipFile, "-d", zipDir)
+  #system2("unzip",cmd)
   
   return(0)
 }
