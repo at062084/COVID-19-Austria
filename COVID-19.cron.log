@@ -8249,3 +8249,88 @@ Saving to: ‘./data/zip/COVID-19-austria.V0414.20200416-1215.zip’
 20200416-121550.061 Writing new data to ./data/COVID-19-austria.csv 
 20200416-121550.110 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200416-121550.160 Done runing data extraction from bmsgpk web pages 
+[master 0df2866] 2020-04-16 12:15:46 Auto-Extract data from bmsgpk website
+ 7 files changed, 1480 insertions(+)
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V0414.20200416-1215.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200416-1215.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200416-1215.dmp
+warning: push.default is unset; its implicit value is changing in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the current behavior after the default changes, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+
+To git@github.com:at062084/COVID-19-Austria.git
+   9219ec2..0df2866  master -> master
+
+--------------------------------------------------------------------
+2020-04-16 12:16:04 Running ./COVID-19-cron.sh for SECTION=county
+2020-04-16 12:16:04 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-04-16 12:16:04 Running conversion of COVID-19 data to covid-county format
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘tibbletime’
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:readr’:
+
+    col_factor
+
+
+Attaching package: ‘plotly’
+
+The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+The following object is masked from ‘package:graphics’:
+
+    layout
+
+20200416-121605.640 Running COVID-19-covid-county-extract.R 
+20200416-121605.701 Executing covCounty with 2020-04-16 10:16:05 
+20200416-121605.843 Writing ./data/AT_country.bmsgpk.csv 
+20200416-121605.896 Writing ./data/AT_states.bmsgpk.csv 
+20200416-121605.995 Writing ./data/AT_counties.bmsgpk.csv 
+20200416-121605.997 Done executing covCounty 
+20200416-121605.997 Done running COVID-19-covid-county-extract.R 
