@@ -8416,3 +8416,85 @@ The following object is masked from ‘package:graphics’:
 20200416-124355.336 Writing ./data/AT_counties.bmsgpk.csv 
 20200416-124355.337 Done executing covCounty 
 20200416-124355.337 Done running COVID-19-covid-county-extract.R 
+[master d668be9] 2020-04-16 12:43:53 Auto-Conversion of bmsgpk data to covid-county format
+ 3 files changed, 86 insertions(+), 4 deletions(-)
+warning: push.default is unset; its implicit value is changing in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the current behavior after the default changes, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+
+To git@github.com:at062084/COVID-19-Austria.git
+   6a7b136..d668be9  master -> master
+
+--------------------------------------------------------------------
+2020-04-16 12:58:17 Running ./COVID-19-cron.sh for SECTION=county
+2020-04-16 12:58:17 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-04-16 12:58:17 Running conversion of COVID-19 data to covid-county format
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘tibbletime’
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:readr’:
+
+    col_factor
+
+
+Attaching package: ‘plotly’
+
+The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+The following object is masked from ‘package:graphics’:
+
+    layout
+
+20200416-125818.638 Running COVID-19-covid-county-extract.R 
+20200416-125818.772 Executing covCounty with 2020-04-16 10:58:18 
+20200416-125818.919 Writing ./data/AT_country.bmsgpk.csv 
+20200416-125818.971 Writing ./data/AT_states.bmsgpk.csv 
+20200416-125819.073 Writing ./data/AT_counties.bmsgpk.csv 
+20200416-125819.075 Done executing covCounty 
+20200416-125819.075 Done running COVID-19-covid-county-extract.R 
