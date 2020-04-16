@@ -268,11 +268,15 @@ scrapeInfo <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   dx <- tables[[1]]
   colnames(dx) <- c("Region","Count")
 
-  dc <- dx %>% dplyr::mutate(Stamp=Stamp, Status="Confirmed", Count=as.integer(Count)) %>%
+  dc <- dx %>% 
+    dplyr::mutate_all(funs(str_replace(., "\\.000", ""))) %>% 
+    dplyr::mutate_all(funs(str_replace(., "\\.", ""))) %>% 
+    dplyr::mutate(Stamp=Stamp, Status="Confirmed", Count=as.integer(Count)) %>%
     dplyr::select(Stamp, Status, Region, Count) %>%
     dplyr::mutate(Region=str_remove(Region,",")) %>%
     dplyr::mutate(Region=str_replace_all(Region,"[ \\.\\(\\)]","_")) %>%
     dplyr::mutate(Region=str_replace(Region,"_$",""))
+    
   
   # print a few results to console
   dc %>% tail() %>% print()
