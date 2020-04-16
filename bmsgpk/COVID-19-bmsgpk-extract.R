@@ -36,7 +36,7 @@ scrapeCovid2 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   html <- xml2::read_html(bmsgpkFile)
   
   logMsg(paste("Extracting Status table in Bundesländer"))
-  tables <- rvest::html_table(html)
+  tables <- rvest::html_table(html,dec=",")
   dx <- tables[[1]]
   
   # Extract Stamp and Status from first col
@@ -47,7 +47,9 @@ scrapeCovid2 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   Stamp <- as.POSIXct(str_match(S0, paste0("Stand","(.*)","Uhr"))[,2],format="%d.%m.%Y, %H:%M")
 
   df <- dx %>%
-    dplyr::select(11,2:10) %>% mutate_all(funs(str_replace(., "\\.", ""))) %>% mutate_all(funs(as.integer(.))) %>%
+    dplyr::select(11,2:10) %>% 
+    mutate_all(funs(str_replace(., "\\.", ""))) %>% 
+    mutate_all(funs(as.integer(.))) %>%
     dplyr::mutate(Stamp=Stamp,Status=Status)  %>%
     dplyr::select(Stamp,Status,1:10) 
   colnames(df) <- c("Stamp","Status",BL$ID)
@@ -264,12 +266,12 @@ scrapeInfo <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   
   logMsg(paste("Extracting table of Confirmed in 100+ regions"))
   Stamp <- as.POSIXct(now(), format="%Y-%m-%d %H:%M:%S", tz="CEST")
-  tables <- rvest::html_table(x)
+  tables <- rvest::html_table(x, dec=",")
   dx <- tables[[1]]
   colnames(dx) <- c("Region","Count")
 
   dc <- dx %>% 
-    dplyr::mutate_all(funs(str_replace(., "\\.000", ""))) %>% 
+    #dplyr::mutate_all(funs(str_replace(., "\\.000", ""))) %>% 
     dplyr::mutate_all(funs(str_replace(., "\\.", ""))) %>% 
     dplyr::mutate(Stamp=Stamp, Status="Confirmed", Count=as.integer(Count)) %>%
     dplyr::select(Stamp, Status, Region, Count) %>%
