@@ -54,17 +54,16 @@ covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d")
     dplyr::filter(date(Stamp)==as.POSIXct(dataDate))
   
   
-  # DISABLED: read data for Hospitalized. Data now already in above file
-  #csvFile <- "/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/data/COVID-19-austria.hospital.csv"
-  #dh <- read.csv(csvFile, stringsAsFactors=FALSE) %>% 
-  #  dplyr::mutate(Stamp=as.POSIXct(Stamp)) %>%
-  #  dplyr::filter(date(Stamp)==as.POSIXct(dataDate)) %>%
-  #  dplyr::distinct()
+  # read data for Hospitalized. Data now already in above file
+  csvFile <- "/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/data/COVID-19-austria.hospital.csv"
+  dh <- read.csv(csvFile, stringsAsFactors=FALSE) %>% 
+    dplyr::mutate(Stamp=as.POSIXct(Stamp)) %>%
+    dplyr::filter(date(Stamp)==as.POSIXct(dataDate)) %>%
+    dplyr::distinct()
   
   
   # Merge these data and select last record of each Status per day
-  # df <- rbind(da,dh) %>% 
-  df <- da %>% 
+  df <- rbind(da,dh) %>% 
     dplyr::mutate(Date=date(Stamp)) %>%
     dplyr::arrange(Stamp) %>%
     dplyr::group_by(Date,Status) %>%
