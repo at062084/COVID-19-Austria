@@ -8027,3 +8027,106 @@ Archive:  ./data/zip/COVID-19-austria.V0414.20200416-1058.zip
 20200416-105854.083 Writing new data to ./data/COVID-19-austria.csv 
 20200416-105854.099 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200416-105854.142 Done runing data extraction from bmsgpk web pages 
+[master 2593364] 2020-04-16 10:58:49 Auto-Extract data from bmsgpk website
+ 24 files changed, 2572 insertions(+)
+ create mode 100644 bmsgpk/data/zip/20200416-1058/AllgemeinDaten.csv
+ create mode 100644 bmsgpk/data/zip/20200416-1058/Altersverteilung.csv
+ create mode 100644 bmsgpk/data/zip/20200416-1058/AltersverteilungTodesfaelle.csv
+ create mode 100644 bmsgpk/data/zip/20200416-1058/AltersverteilungTodesfaelleDemogr.csv
+ create mode 100644 bmsgpk/data/zip/20200416-1058/Bezirke.csv
+ create mode 100644 bmsgpk/data/zip/20200416-1058/Bundesland.csv
+ create mode 100644 bmsgpk/data/zip/20200416-1058/Epikurve.csv
+ create mode 100644 bmsgpk/data/zip/20200416-1058/GenesenTimeline.csv
+ create mode 100644 bmsgpk/data/zip/20200416-1058/GenesenTodesFaelleBL.csv
+ create mode 100644 bmsgpk/data/zip/20200416-1058/Geschlechtsverteilung.csv
+ create mode 100644 bmsgpk/data/zip/20200416-1058/IBAuslastung.csv
+ create mode 100644 bmsgpk/data/zip/20200416-1058/IBKapazitaeten.csv
+ create mode 100644 bmsgpk/data/zip/20200416-1058/NBAuslastung.csv
+ create mode 100644 bmsgpk/data/zip/20200416-1058/NBKapazitaeten.csv
+ create mode 100644 bmsgpk/data/zip/20200416-1058/TodesfaelleTimeline.csv
+ create mode 100644 bmsgpk/data/zip/20200416-1058/VerstorbenGeschlechtsverteilung.csv
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V0414.20200416-1058.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200416-1058.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200416-1049.dmp
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200416-1051.dmp
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200416-1058.dmp
+warning: push.default is unset; its implicit value is changing in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the current behavior after the default changes, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+
+To git@github.com:at062084/COVID-19-Austria.git
+   072ccf5..2593364  master -> master
+
+--------------------------------------------------------------------
+2020-04-16 11:00:54 Running ./COVID-19-cron.sh for SECTION=county
+2020-04-16 11:00:54 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-04-16 11:00:54 Running conversion of COVID-19 data to covid-county format
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘tibbletime’
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:readr’:
+
+    col_factor
+
+
+Attaching package: ‘plotly’
+
+The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+The following object is masked from ‘package:graphics’:
+
+    layout
+
+20200416-110055.625 Running COVID-19-covid-county-extract.R 
+20200416-110055.753 Executing covCounty with 2020-04-16 09:00:55 
+20200416-110055.920 Writing ./data/AT_country.bmsgpk.csv 
+20200416-110055.989 Writing ./data/AT_states.bmsgpk.csv 
+20200416-110056.111 Writing ./data/AT_counties.bmsgpk.csv 
+20200416-110056.113 Done executing covCounty 
+20200416-110056.113 Done running COVID-19-covid-county-extract.R 
