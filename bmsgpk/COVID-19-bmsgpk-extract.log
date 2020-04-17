@@ -1556,3 +1556,20 @@
 20200416-174822.135 Writing new data to ./data/COVID-19-austria.csv 
 20200416-174822.155 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200416-174822.200 Done runing data extraction from bmsgpk web pages 
+20200417-114341.925 Running COVID-19-bmsgpk-extract.R 
+20200417-114341.970 Calling scrapeCovid2 with 20200417-1143 
+20200417-114342.029 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200417-114342.030 Dumping page to ./html/COVID-19-austria.bmsgpk.20200417-1143.html 
+20200417-114347.539 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200417-1143.html 
+20200417-114347.547 Extracting Status table in Bundesländer 
+20200417-114347.628 DISABLED: Calling scrapeHospitalisierung with 20200417-1143 
+20200417-114347.629 Calling scrapeInfo with 20200417-1143 
+20200417-114347.652 Scraping using headless chrome for https://info.gesundheitsministerium.at/dashboard_Epidem.html?l=de 
+20200417-114347.653 Dumping page to ./html/COVID-19-austria.info.20200417-1143.dmp 
+20200417-114350.656 Analysing dump file ./html/COVID-19-austria.info.20200417-1143.dmp 
+20200417-114350.694 Extracting table of Confirmed in 100+ regions 
+20200417-114350.757 Calling scrapeZIP with 20200417-1143 
+20200417-114350.758 Downloading https://info.gesundheitsministerium.at/data/data.zip to ./data/zip/COVID-19-austria.V0414.20200417-1143.zip 
+20200417-114356.108 Writing new data to ./data/COVID-19-austria.csv 
+20200417-114356.129 Writing new data to ./data/COVID-19-austria.regions.csv 
+20200417-114356.178 Done runing data extraction from bmsgpk web pages 
