@@ -9141,3 +9141,74 @@ Saving to: ‘./data/zip/COVID-19-austria.V0414.20200418-1137.zip’
 20200418-113736.683 Writing new data to ./data/COVID-19-austria.csv 
 20200418-113736.703 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200418-113736.750 Done runing data extraction from bmsgpk web pages 
+[master a829309] 2020-04-18 11:37:32 Auto-Extract data from bmsgpk website
+ 7 files changed, 1470 insertions(+)
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V0414.20200418-1137.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200418-1137.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200418-1137.dmp
+To git@github.com:at062084/COVID-19-Austria.git
+   5a5a052..a829309  HEAD -> master
+
+--------------------------------------------------------------------
+2020-04-18 11:38:04 Running ./COVID-19-cron.sh for SECTION=county
+2020-04-18 11:38:04 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-04-18 11:38:04 Running conversion of COVID-19 data to covid-county format
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘tibbletime’
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:readr’:
+
+    col_factor
+
+
+Attaching package: ‘plotly’
+
+The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+The following object is masked from ‘package:graphics’:
+
+    layout
+
+20200418-113805.771 Running COVID-19-covid-county-extract.R 
+20200418-113805.885 Executing covCounty with 2020-04-18 09:38:05 
+20200418-113806.013 Writing ./data/AT_country.bmsgpk.csv 
+20200418-113806.051 Writing ./data/AT_states.bmsgpk.csv 
+20200418-113806.147 Writing ./data/AT_counties.bmsgpk.csv 
+20200418-113806.149 Done executing covCounty 
+20200418-113806.149 Done running COVID-19-covid-county-extract.R 
