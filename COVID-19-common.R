@@ -124,7 +124,7 @@ covRegionPlot <- function(dr, Regions="World", cutOffDate=as.POSIXct("2020-02-22
   yLogTicsBreaksMinor <-       log10(c(minGrid*1e0,minGrid*1e1,minGrid*1e2,minGrid*1e3,minGrid*1e4,minGrid*1e5,minGrid*1e6))
   
   
-  
+  scale10 <- 50
   if (bPlot) {
     print(paste0("saveImage: ./covid.",filePrefix,".",paste(Regions,collapse="-"),".",format(max(dfc$Stamp),"%Y-%m-%d"),".png"))
     gg <- ggplot(data=dfg, aes(x=Stamp, y=Count, color=Status, shape=Status)) +
@@ -135,15 +135,15 @@ covRegionPlot <- function(dr, Regions="World", cutOffDate=as.POSIXct("2020-02-22
                   method=lm, aes(color=Status, linetype="Prev7Days"), fullrange=TRUE, se=FALSE, size=.25) +
       stat_smooth(data=function(x) {x %>% dplyr::filter(Stamp<(min(Stamp)+days(nEstDays)))}, 
                   method=lm, aes(color=Status, linetype="Zero7Days"), fullrange=TRUE, se=FALSE, size=.25) +
-      geom_line( data=dfcr, mapping=aes(x=Stamp, y=rolmConfirmed/20), inherit.aes=FALSE, size=1.5, color="darkgrey") +
-      geom_point(data=dfcr, mapping=aes(x=Stamp, y=rolmConfirmed/20), inherit.aes=FALSE, size=1.5) +
-      geom_line( data=dfcr, mapping=aes(x=Stamp, y=rolmConfirmedCIl/20), inherit.aes=FALSE, linetype=3, size=.25) +
-      geom_line( data=dfcr, mapping=aes(x=Stamp, y=rolmConfirmedCIu/20), inherit.aes=FALSE, linetype=3, size=.25) +
-      geom_line( data=dfdr, mapping=aes(x=Stamp, y=rolmDeaths/20), inherit.aes=FALSE, size=1.5, color="orange") +
-      geom_point(data=dfdr, mapping=aes(x=Stamp, y=rolmDeaths/20), inherit.aes=FALSE, size=1.5, color="darkred") +
+      geom_line( data=dfcr, mapping=aes(x=Stamp, y=rolmConfirmed/scale10), inherit.aes=FALSE, size=1.5, color="darkgrey") +
+      geom_point(data=dfcr, mapping=aes(x=Stamp, y=rolmConfirmed/scale10), inherit.aes=FALSE, size=1.5) +
+      geom_line( data=dfcr, mapping=aes(x=Stamp, y=rolmConfirmedCIl/scale10), inherit.aes=FALSE, linetype=3, size=.25) +
+      geom_line( data=dfcr, mapping=aes(x=Stamp, y=rolmConfirmedCIu/scale10), inherit.aes=FALSE, linetype=3, size=.25) +
+      geom_line( data=dfdr, mapping=aes(x=Stamp, y=rolmDeaths/scale10), inherit.aes=FALSE, size=1.5, color="orange") +
+      geom_point(data=dfdr, mapping=aes(x=Stamp, y=rolmDeaths/scale10), inherit.aes=FALSE, size=1.5, color="darkred") +
       scale_x_datetime(date_breaks="1 week", date_minor_breaks="1 day", labels=date_format("%d.%m"), limits=c(ggMinDate,ggMaxDate)) +
-      scale_y_continuous(limits=c(0,5.5), labels=yLogTicsLabelsMajor, breaks=yLogTicsBreaksMajor, minor_breaks=yLogTicsBreaksMinor,
-                         sec.axis = sec_axis(~ . *20, breaks=seq(0,100,by=10),name=paste0("Days to *10 of Confirmed(grey) and Deaths(orange) \n",nRegDays," days rolling regression [90% confInterval]"))) +
+      scale_y_continuous(limits=c(0,6), labels=yLogTicsLabelsMajor, breaks=yLogTicsBreaksMajor, minor_breaks=yLogTicsBreaksMinor,
+                         sec.axis = sec_axis(~ . *scale10, breaks=seq(0,500,by=10),name=paste0("Days to *10 of Confirmed(grey) and Deaths(orange) \n",nRegDays," days rolling regression [90% confInterval]"))) +
       xlab(paste0("Confirmed*10-Frst", nEstDays,"Days=",round(dfcFrst,1), "d  Deaths*10-Frst",nEstDays,"Days=",round(dfdFrst,1), "d\n",
                   "Confirmed*10-Prev", nEstDays,"Days=",round(dfcPrev,1), "d  Deaths*10-Prev",nEstDays,"Days=",round(dfdPrev,1), "d\n", 
                   "Confirmed*10-Last", nRegDays,"Days=",round(dfcLast,1), "d  Deaths*10-Last",nRegDays,"Days=",round(dfdLast,1), "d\n",

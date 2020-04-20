@@ -9780,3 +9780,10 @@ Saving to: ‘./data/zip/COVID-19-austria.V0414.20200420-1544.zip’
 20200420-154458.956 Writing new data to ./data/COVID-19-austria.csv 
 20200420-154458.976 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200420-154459.037 Done runing data extraction from bmsgpk web pages 
+[master 4e47af4] 2020-04-20 15:44:54 Auto-Extract data from bmsgpk website
+ 7 files changed, 1468 insertions(+)
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V0414.20200420-1544.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200420-1544.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200420-1544.dmp
+To git@github.com:at062084/COVID-19-Austria.git
+   532b462..4e47af4  HEAD -> master
