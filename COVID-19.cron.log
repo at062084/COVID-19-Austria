@@ -13543,3 +13543,77 @@ Saving to: ‘./data/zip/COVID-19-austria.V0414.20200503-2338.zip’
 20200503-233810.028 Writing new data to ./data/COVID-19-austria.csv 
 20200503-233810.046 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200503-233810.111 Done runing data extraction from bmsgpk web pages 
+[master ff1d953] 2020-05-03 23:38:06 Auto-Extract data from bmsgpk website
+ 7 files changed, 1520 insertions(+)
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V0414.20200503-2338.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200503-2338.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200503-2338.dmp
+To git@github.com:at062084/COVID-19-Austria.git
+   f2ffb72..ff1d953  HEAD -> master
+
+--------------------------------------------------------------------
+2020-05-04 18:45:43 Running ./COVID-19-cron.sh for SECTION=county
+2020-05-04 18:45:43 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-05-04 18:45:43 Running conversion of COVID-19 data to covid-county format
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘tibbletime’
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:readr’:
+
+    col_factor
+
+
+Attaching package: ‘plotly’
+
+The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+The following object is masked from ‘package:graphics’:
+
+    layout
+
+20200504-184545.354 Running COVID-19-covid-county-extract.R 
+20200504-184545.505 Executing covCounty with 2020-05-04 16:45:45 
+20200504-184545.694 Writing ./data/AT_country.bmsgpk.csv 
+20200504-184545.745 Writing ./data/AT_states.bmsgpk.csv 
+20200504-184545.906 Writing ./data/AT_counties.bmsgpk.csv 
+Warning message:
+In max.default(numeric(0), na.rm = FALSE) :
+  no non-missing arguments to max; returning -Inf
+20200504-184545.908 Done executing covCounty 
+20200504-184545.908 Done running COVID-19-covid-county-extract.R 
