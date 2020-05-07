@@ -14585,3 +14585,10 @@ Error in rbind(df, dc) : object 'dc' not found
 1: rbind(df, dc)
 20200507-133027.705 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200507-133027.793 Done runing data extraction from bmsgpk web pages 
+[master ce4797c] 2020-05-07 13:30:23 Auto-Extract data from bmsgpk website
+ 6 files changed, 1467 insertions(+)
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V0414.20200507-1330.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200507-1330.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200507-1330.dmp
+To git@github.com:at062084/COVID-19-Austria.git
+   dc0b98b..ce4797c  HEAD -> master

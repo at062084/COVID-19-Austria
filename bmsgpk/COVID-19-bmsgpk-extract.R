@@ -41,8 +41,8 @@ scrapeCovid2 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   
   # Extract Stamp and Status from first col
   S0 <- dx[,1]
-  S1 <- str_match(S0, paste0("(.*)","\\\n\\\t\\\t\\\t\\("))[,2]
-  S2 <- str_split_fixed(S1, "\\(", n=2)[,1]
+  # S1 <- str_match(S0, paste0("(.*)","\\\n\\\t\\\t\\\t\\("))[,2]
+  S2 <- str_split_fixed(S0, "\\(", n=2)[,1]
   Status <- str_split_fixed(S2, "\\*",n=2)[,1]
   Stamp <- as.POSIXct(str_match(S0, paste0("Stand","(.*)","Uhr"))[,2],format="%d.%m.%Y, %H:%M")
 
@@ -56,7 +56,7 @@ scrapeCovid2 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
 
   # Rename Status to previous Labels
   StatusMap <- data.frame(
-    from=c("Bestätigte Fälle","Todesfälle","Genesen","Hospitalisierung","Intensivstation","Testungen"),
+    from=c("Bestätigte Fälle ","Todesfälle","Genesen ","Hospitalisierung","Intensivstation","Testungen"),
     to=c("Confirmed","Deaths","Recovered","Hospitalisierung","Intensivstation","Tested"), stringsAsFactors=FALSE)
   
   for (s in 1:nrow(df)) {
