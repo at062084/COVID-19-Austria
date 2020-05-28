@@ -18651,3 +18651,113 @@ Error in rbind(df, dc) : object 'dc' not found
 1: rbind(df, dc)
 20200528-154346.887 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200528-154346.990 Done runing data extraction from bmsgpk web pages 
+[master ae9d686] 2020-05-28 15:43:42 Auto-Extract data from bmsgpk website
+ 6 files changed, 1469 insertions(+)
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V0414.20200528-1543.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200528-1543.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200528-1543.dmp
+To git@github.com:at062084/COVID-19-Austria.git
+   ff5bda8..ae9d686  HEAD -> master
+
+--------------------------------------------------------------------
+2020-05-28 15:44:22 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2020-05-28 15:44:22 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-05-28 15:44:22 Running auto-extraction of COVID-19 data from bmsgpk website
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘rvest’
+
+The following object is masked from ‘package:readr’:
+
+    guess_encoding
+
+20200528-154423.401 Running COVID-19-bmsgpk-extract.R 
+20200528-154423.440 Calling scrapeCovid2 with 20200528-1544 
+20200528-154423.480 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200528-154423.481 Dumping page to ./html/COVID-19-austria.bmsgpk.20200528-1544.html 
+--2020-05-28 15:44:23--  https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html
+Resolving www.sozialministerium.at (www.sozialministerium.at)... 95.131.199.37
+Connecting to www.sozialministerium.at (www.sozialministerium.at)|95.131.199.37|:443... connected.
+HTTP request sent, awaiting response... 200 200
+Length: 41892 (41K) [text/html]
+Saving to: ‘./html/COVID-19-austria.bmsgpk.20200528-1544.html’
+
+     0K .......... .......... .......... ..........           100%  723K=0,06s
+
+2020-05-28 15:44:23 (723 KB/s) - ‘./html/COVID-19-austria.bmsgpk.20200528-1544.html’ saved [41892/41892]
+
+20200528-154423.697 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200528-1544.html 
+20200528-154423.710 Extracting Status table in Bundesländer 
+Error in df$Status[s] <- StatusMap$to[n] : replacement has length zero
+Calls: scrapeCovid2
+In addition: Warning message:
+funs() is soft deprecated as of dplyr 0.8.0
+Please use a list of either functions or lambdas: 
+
+  # Simple named list: 
+  list(mean = mean, median = median)
+
+  # Auto named with `tibble::lst()`: 
+  tibble::lst(mean, median)
+
+  # Using lambdas
+  list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
+This warning is displayed once per session. 
+2: (function () 
+   traceback(2))()
+1: scrapeCovid2(ts = ts)
+20200528-154423.788 DISABLED: Calling scrapeHospitalisierung with 20200528-1544 
+20200528-154423.789 Calling scrapeInfo with 20200528-1544 
+20200528-154423.828 Scraping using headless chrome for https://info.gesundheitsministerium.at/dashboard_Epidem.html?l=de 
+20200528-154423.829 Dumping page to ./html/COVID-19-austria.info.20200528-1544.dmp 
+20200528-154426.117 Analysing dump file ./html/COVID-19-austria.info.20200528-1544.dmp 
+20200528-154426.157 Extracting table of Confirmed in 100+ regions 
+                 Stamp    Status                Region Count
+88 2020-05-28 15:44:26 Confirmed            Wien_Stadt  3147
+89 2020-05-28 15:44:26 Confirmed  Wiener_Neustadt_Land    86
+90 2020-05-28 15:44:26 Confirmed Wiener_Neustadt_Stadt    56
+91 2020-05-28 15:44:26 Confirmed             Wolfsberg    43
+92 2020-05-28 15:44:26 Confirmed           Zell_am_See   360
+93 2020-05-28 15:44:26 Confirmed                Zwettl    73
+20200528-154426.219 Calling scrapeZIP with 20200528-1544 
+20200528-154426.220 Downloading https://info.gesundheitsministerium.at/data/data.zip to ./data/zip/COVID-19-austria.V0414.20200528-1544.zip 
+--2020-05-28 15:44:26--  https://info.gesundheitsministerium.at/data/data.zip
+Resolving info.gesundheitsministerium.at (info.gesundheitsministerium.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to info.gesundheitsministerium.at (info.gesundheitsministerium.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 8466 (8,3K) [application/zip]
+Saving to: ‘./data/zip/COVID-19-austria.V0414.20200528-1544.zip’
+
+     0K ........                                              100%  138K=0,06s
+
+2020-05-28 15:44:26 (138 KB/s) - ‘./data/zip/COVID-19-austria.V0414.20200528-1544.zip’ saved [8466/8466]
+
+20200528-154426.503 Writing new data to ./data/COVID-19-austria.csv 
+Error in rbind(df, dc) : object 'dc' not found
+2: (function () 
+   traceback(2))()
+1: rbind(df, dc)
+20200528-154426.529 Writing new data to ./data/COVID-19-austria.regions.csv 
+20200528-154426.639 Done runing data extraction from bmsgpk web pages 
