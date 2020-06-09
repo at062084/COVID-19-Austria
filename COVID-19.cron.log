@@ -21359,3 +21359,49 @@ The following object is masked from ‘package:graphics’:
 20200609-003434.245 Writing ./data/AT_counties.bmsgpk.csv 
 20200609-003434.247 Done executing covCounty 
 20200609-003434.247 Done running COVID-19-covid-county-extract.R 
+[master 7ca2ebd] 2020-06-09 00:34:32 Auto-Conversion of bmsgpk data to covid-county format
+ 4 files changed, 88 insertions(+), 17 deletions(-)
+To git@github.com:at062084/COVID-19-Austria.git
+   e2a97c2..7ca2ebd  HEAD -> master
+
+--------------------------------------------------------------------
+2020-06-09 08:55:12 Running ./COVID-19-cron.sh for SECTION=county
+2020-06-09 08:55:12 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-06-09 08:55:12 Running conversion of COVID-19 data to covid-county format
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘tibbletime’
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:readr’:
+
+    col_factor
+
