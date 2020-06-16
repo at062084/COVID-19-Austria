@@ -23130,3 +23130,75 @@ Saving to: ‘./data/zip/COVID-19-austria.V0414.20200616-1131.zip’
 20200616-113342.599 Writing new data to ./data/COVID-19-austria.csv 
 20200616-113342.625 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200616-113342.750 Done runing data extraction from bmsgpk web pages 
+[master f3122a8] 2020-06-16 11:31:03 Auto-Extract data from bmsgpk website
+ 7 files changed, 1475 insertions(+)
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V0414.20200616-1131.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200616-1131.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200616-1131.dmp
+Warning: Permanently added the RSA host key for IP address '140.82.112.4' to the list of known hosts.
+To git@github.com:at062084/COVID-19-Austria.git
+   21d5866..f3122a8  HEAD -> master
+
+--------------------------------------------------------------------
+2020-06-16 11:38:50 Running ./COVID-19-cron.sh for SECTION=county
+2020-06-16 11:38:50 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-06-16 11:38:50 Running conversion of COVID-19 data to covid-county format
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘tibbletime’
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:readr’:
+
+    col_factor
+
+
+Attaching package: ‘plotly’
+
+The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+The following object is masked from ‘package:graphics’:
+
+    layout
+
+20200616-113851.828 Running COVID-19-covid-county-extract.R 
+20200616-113851.945 Executing covCounty with 2020-06-16 09:38:51 
+20200616-113852.076 Writing ./data/AT_country.bmsgpk.csv 
+20200616-113852.113 Writing ./data/AT_states.bmsgpk.csv 
+20200616-113852.336 Writing ./data/AT_counties.bmsgpk.csv 
+20200616-113852.337 Done executing covCounty 
+20200616-113852.338 Done running COVID-19-covid-county-extract.R 
