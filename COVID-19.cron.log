@@ -25242,3 +25242,79 @@ Saving to: ‘./data/zip/COVID-19-austria.V0414.20200628-0004.zip’
 20200628-000406.638 Writing new data to ./data/COVID-19-austria.csv 
 20200628-000406.698 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200628-000406.814 Done runing data extraction from bmsgpk web pages 
+[master b4dc14f] 2020-06-28 00:03:59 Auto-Extract data from bmsgpk website
+ 7 files changed, 1477 insertions(+)
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V0414.20200628-0004.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200628-0004.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200628-0004.dmp
+To git@github.com:at062084/COVID-19-Austria.git
+   eb388a5..b4dc14f  HEAD -> master
+
+--------------------------------------------------------------------
+2020-06-28 00:04:15 Running ./COVID-19-cron.sh for SECTION=county7
+2020-06-28 00:04:15 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+
+--------------------------------------------------------------------
+2020-06-28 00:04:17 Running ./COVID-19-cron.sh for SECTION=county
+2020-06-28 00:04:17 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-06-28 00:04:17 Running conversion of COVID-19 data to covid-county format
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘tibbletime’
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:readr’:
+
+    col_factor
+
+
+Attaching package: ‘plotly’
+
+The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+The following object is masked from ‘package:graphics’:
+
+    layout
+
+20200628-000418.823 Running COVID-19-covid-county-extract.R 
+20200628-000418.885 Executing covCounty with 2020-06-27 22:04:18 
+20200628-000419.018 Writing ./data/AT_country.bmsgpk.csv 
+20200628-000419.057 Writing ./data/AT_states.bmsgpk.csv 
+20200628-000419.290 Writing ./data/AT_counties.bmsgpk.csv 
+20200628-000419.294 Done executing covCounty 
+20200628-000419.295 Done running COVID-19-covid-county-extract.R 
