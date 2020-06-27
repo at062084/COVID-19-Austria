@@ -25082,3 +25082,55 @@ The following object is masked from ‘package:graphics’:
 20200626-230829.412 Writing ./data/AT_counties.bmsgpk.csv 
 20200626-230829.416 Done executing covCounty 
 20200626-230829.416 Done running COVID-19-covid-county-extract.R 
+[master 9fb6a22] 2020-06-26 23:08:27 Auto-Conversion of bmsgpk data to covid-county format
+ 4 files changed, 96 insertions(+), 25 deletions(-)
+ rewrite bmsgpk/data/AT_states.bmsgpk.csv (84%)
+To git@github.com:at062084/COVID-19-Austria.git
+   dbd5649..9fb6a22  HEAD -> master
+
+--------------------------------------------------------------------
+2020-06-28 00:00:56 Running ./COVID-19-cron.sh for SECTION=bmsgpk7
+2020-06-28 00:00:56 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+
+--------------------------------------------------------------------
+2020-06-28 00:00:59 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2020-06-28 00:00:59 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-06-28 00:00:59 Running auto-extraction of COVID-19 data from bmsgpk website
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘rvest’
+
+The following object is masked from ‘package:readr’:
+
+    guess_encoding
+
+20200628-000100.875 Running COVID-19-bmsgpk-extract.R 
+20200628-000100.926 Calling scrapeCovid2 with 20200628-0001 
+20200628-000100.960 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200628-000100.961 Dumping page to ./html/COVID-19-austria.bmsgpk.20200628-0001.html 
+--2020-06-28 00:01:00--  https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html
+Resolving www.sozialministerium.at (www.sozialministerium.at)... 95.131.199.37
+Connecting to www.sozialministerium.at (www.sozialministerium.at)|95.131.199.37|:443... connected.
