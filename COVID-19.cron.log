@@ -27288,3 +27288,113 @@ The following object is masked from ‘package:graphics’:
 20200707-131649.633 Writing ./data/AT_counties.bmsgpk.csv 
 20200707-131649.635 Done executing covCounty 
 20200707-131649.635 Done running COVID-19-covid-county-extract.R 
+[master 0155921] 2020-07-07 13:16:47 Auto-Conversion of bmsgpk data to covid-county format
+ 4 files changed, 118 insertions(+), 47 deletions(-)
+ rewrite bmsgpk/data/AT_counties.bmsgpk.csv (65%)
+ rewrite bmsgpk/data/AT_states.bmsgpk.csv (84%)
+To git@github.com:at062084/COVID-19-Austria.git
+   9c62587..0155921  HEAD -> master
+
+--------------------------------------------------------------------
+2020-07-07 18:43:03 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2020-07-07 18:43:03 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-07-07 18:43:03 Running auto-extraction of COVID-19 data from bmsgpk website
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘rvest’
+
+The following object is masked from ‘package:readr’:
+
+    guess_encoding
+
+20200707-184304.964 Running COVID-19-bmsgpk-extract.R 
+20200707-184305.001 Calling scrapeCovid2 with 20200707-1843 
+20200707-184305.044 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200707-184305.045 Dumping page to ./html/COVID-19-austria.bmsgpk.20200707-1843.html 
+--2020-07-07 18:43:05--  https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html
+Resolving www.sozialministerium.at (www.sozialministerium.at)... 95.131.199.37
+Connecting to www.sozialministerium.at (www.sozialministerium.at)|95.131.199.37|:443... connected.
+HTTP request sent, awaiting response... 200 200
+Length: 181113 (177K) [text/html]
+Saving to: ‘./html/COVID-19-austria.bmsgpk.20200707-1843.html’
+
+     0K .......... .......... .......... .......... .......... 28%  610K 0s
+    50K .......... .......... .......... .......... .......... 56%  791K 0s
+   100K .......... .......... .......... .......... .......... 84%  883K 0s
+   150K .......... .......... ......                          100% 1,09M=0,2s
+
+2020-07-07 18:43:05 (783 KB/s) - ‘./html/COVID-19-austria.bmsgpk.20200707-1843.html’ saved [181113/181113]
+
+20200707-184305.432 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200707-1843.html 
+20200707-184305.444 Extracting Status table in Bundesländer 
+                Stamp           Status     AT     B     K    Noe   Ooe  Szbg  Stmk     T     V      W
+1 2020-07-07 15:00:00        Confirmed  18376   362   435   3038  2800  1270  1908  3571   912   4080
+2 2020-07-07 09:30:00           Deaths    706    11    13    104    61    38   154   108    19    198
+3 2020-07-07 09:30:00        Recovered  16686   337   407   2831  2295  1213  1688  3448   891   3576
+4 2020-07-07 09:30:00 Hospitalisierung     91     2     2     13    19     2     2     2     0     49
+5 2020-07-07 09:30:00  Intensivstation     10     0     0      2     0     0     1     0     0      7
+6 2020-07-07 09:30:00           Tested 660149 17535 29631 119295 87381 39881 68290 88866 31142 178128
+Warning message:
+funs() is soft deprecated as of dplyr 0.8.0
+Please use a list of either functions or lambdas: 
+
+  # Simple named list: 
+  list(mean = mean, median = median)
+
+  # Auto named with `tibble::lst()`: 
+  tibble::lst(mean, median)
+
+  # Using lambdas
+  list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
+This warning is displayed once per session. 
+20200707-184305.528 DISABLED: Calling scrapeHospitalisierung with 20200707-1843 
+20200707-184305.529 Calling scrapeInfo with 20200707-1843 
+20200707-184305.552 Scraping using headless chrome for https://info.gesundheitsministerium.at/dashboard_Epidem.html?l=de 
+20200707-184305.553 Dumping page to ./html/COVID-19-austria.info.20200707-1843.dmp 
+20200707-184307.751 Analysing dump file ./html/COVID-19-austria.info.20200707-1843.dmp 
+20200707-184307.792 Extracting table of Confirmed in 100+ regions 
+                 Stamp    Status                Region Count
+88 2020-07-07 18:43:07 Confirmed            Wien_Stadt  4083
+89 2020-07-07 18:43:07 Confirmed  Wiener_Neustadt_Land    92
+90 2020-07-07 18:43:07 Confirmed Wiener_Neustadt_Stadt    61
+91 2020-07-07 18:43:07 Confirmed             Wolfsberg    48
+92 2020-07-07 18:43:07 Confirmed           Zell_am_See   364
+93 2020-07-07 18:43:07 Confirmed                Zwettl    73
+20200707-184307.855 Calling scrapeZIP with 20200707-1843 
+20200707-184307.856 Downloading https://info.gesundheitsministerium.at/data/data.zip to ./data/zip/COVID-19-austria.V0414.20200707-1843.zip 
+--2020-07-07 18:43:07--  https://info.gesundheitsministerium.at/data/data.zip
+Resolving info.gesundheitsministerium.at (info.gesundheitsministerium.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to info.gesundheitsministerium.at (info.gesundheitsministerium.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 8692 (8,5K) [application/zip]
+Saving to: ‘./data/zip/COVID-19-austria.V0414.20200707-1843.zip’
+
+     0K ........                                              100% 1,29M=0,006s
+
+2020-07-07 18:43:08 (1,29 MB/s) - ‘./data/zip/COVID-19-austria.V0414.20200707-1843.zip’ saved [8692/8692]
+
+20200707-184308.098 Writing new data to ./data/COVID-19-austria.csv 
+20200707-184308.138 Writing new data to ./data/COVID-19-austria.regions.csv 
+20200707-184308.273 Done runing data extraction from bmsgpk web pages 
