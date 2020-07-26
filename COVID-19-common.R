@@ -124,7 +124,7 @@ covRegionPlot <- function(dr, Regions="World", cutOffDate=as.POSIXct("2020-02-22
   yLogTicsBreaksMinor <-       log10(c(minGrid*1e0,minGrid*1e1,minGrid*1e2,minGrid*1e3,minGrid*1e4,minGrid*1e5,minGrid*1e6))
   
   
-  scale10 <- 50
+  scale10 <- 100
   if (bPlot) {
     print(paste0("saveImage: ./covid.",filePrefix,".",paste(Regions,collapse="-"),".",format(max(dfc$Stamp),"%Y-%m-%d"),".png"))
     gg <- ggplot(data=dfg, aes(x=Stamp, y=Count, color=Status, shape=Status)) +
@@ -143,7 +143,7 @@ covRegionPlot <- function(dr, Regions="World", cutOffDate=as.POSIXct("2020-02-22
       geom_point(data=dfdr, mapping=aes(x=Stamp, y=rolmDeaths/scale10), inherit.aes=FALSE, size=1.5, color="darkred") +
       scale_x_datetime(date_breaks="1 week", date_minor_breaks="1 day", labels=date_format("%d.%m"), limits=c(ggMinDate,ggMaxDate)) +
       scale_y_continuous(limits=c(0,6), labels=yLogTicsLabelsMajor, breaks=yLogTicsBreaksMajor, minor_breaks=yLogTicsBreaksMinor,
-                         sec.axis = sec_axis(~ . *scale10, breaks=seq(0,500,by=10),name=paste0("Days to *10 of Confirmed(grey) and Deaths(orange) \n",nRegDays," days rolling regression [90% confInterval]"))) +
+                         sec.axis = sec_axis(~ . *scale10, breaks=seq(0,700,by=25),name=paste0("Days to *10 of Confirmed(grey) and Deaths(orange) \n",nRegDays," days rolling regression [90% confInterval]"))) +
       xlab(paste0("Confirmed*10-Frst", nEstDays,"Days=",round(dfcFrst,1), "d  Deaths*10-Frst",nEstDays,"Days=",round(dfdFrst,1), "d\n",
                   "Confirmed*10-Prev", nEstDays,"Days=",round(dfcPrev,1), "d  Deaths*10-Prev",nEstDays,"Days=",round(dfdPrev,1), "d\n", 
                   "Confirmed*10-Last", nRegDays,"Days=",round(dfcLast,1), "d  Deaths*10-Last",nRegDays,"Days=",round(dfdLast,1), "d\n",
@@ -273,4 +273,78 @@ obr <- matrix(byrow=TRUE, ncol=7,
 OBR <- data.frame(obr, stringsAsFactors=FALSE)
 colnames(OBR) <- c("Land","NUTS0","Bundesland","NUTS2","NUTS3","Bezirk","county")
 
+
+
+# input should be a quasi linear timeseries df$dt0~df$Stamp
+covRolledDeriv <- function (df,dt0, nWindowDays=7) {
+
+  rolm <-    rollify(.f = function(x, y) {lm(y~x)$fitted.values[nWindowDays]}, window=nWindowDays)
+  
+  dt <- df %>%
+    dplyr::arrange(Date) %>%
+    dplyr::mutate(dt0s=rolm(Date,{{ dt0 }})) %>%             # Force-defuse data-variables
+    dplyr::mutate(dt1s=dt0s-lag(dt0s), dt2s=dt1s-lag(dt1s))  %>%
+    dplyr::select(Date,dt0s,dt1s,dt2s) %>%
+    dplyr::filter(!is.na(dt2s))
+  
+  ds <- dt %>%
+    dplyr::mutate(dt0s_10=dt0s/10) %>%
+    dplyr::select(Date, dt0s_10, dt1s,dt2s) %>%
+    tidyr::gather(key=Derivative, value=Value,dt0s_10, dt1s, dt2s)
+  
+  ggplot(data=ds, aes(x=Date, y=Value, colour=Derivative)) + geom_line() +
+    scale_x_date(date_breaks="1 week", date_minor_breaks="1 day", labels=date_format("%d.%m")) +
+    ggtitle(paste0("Derivatives of '", dt0, "' smoothed by rolling regression of windows size ", nWindowDays))
+    
+}
+
+nop <- function() {
+  dx <- df %>% 
+    dplyr::select(Date,Confirmed,newConfirmed) %>% 
+    dplyr::mutate(logConfirmed=log(Confirmed), 
+                  logNewConfirmed=log(newConfirmed), 
+                  logNewConf=logNewConfirmed/logConfirmed)
+  
+  dy <- dw %>% 
+    dplyr::select(Date,Confirmed,newConfirmed) %>% 
+    dplyr::mutate(logConfirmed=log(Confirmed), 
+                  logNewConfirmed=log(newConfirmed), 
+                  logNewConf=logNewConfirmed/logConfirmed)
+}
+
+# input should be a quasi linear timeseries df$dt0~df$Stamp
+covSmoothDeriv <- function (df, sx, sy, span=.5) {
+
+  symx <- sym(sx)
+  symy <- sym(sy)  
+  
+  dt <- df %>%
+    dplyr::select(!!sx:={{ symx }}, !!sy:={{ symy }}, x={{ sx }}, y={{ symy }}) %>%
+    dplyr::mutate(t=as.numeric(x), dt0=y) %>%
+    dplyr::arrange(t) %>%
+    dplyr::mutate(dt0s=loess(dt0~t, span=span)$fitted) %>% 
+    dplyr::mutate(dt1s=dt0s-lag(dt0s), dt2s=dt1s-lag(dt1s))  %>%
+    dplyr::select({{ symx }},{{ symy }}, t,dt0s,dt1s,dt2s) %>%
+    dplyr::filter(!is.na(dt2s))
+  
+  ds <- dt %>%
+    dplyr::mutate(dt0s_10=dt0s/10) %>%
+    dplyr::select({{ symx }}, {{ symy }}, t, dt0s_10, dt1s, dt2s) %>%
+    tidyr::gather(key=Derivative, value=Value, dt0s_10, dt1s, dt2s)
+  
+  if (sx=="Date") {
+    ggplot(data=ds, aes(x=Date, y=Value, colour=Derivative)) + 
+      geom_line() + geom_point(size=.5) + 
+      geom_point(aes(x=Date, y={{ symy }}/10), size=.5, colour="black") +
+      geom_line(aes(x=Date, y={{ symy }}/10), size=.25, colour="grey") +
+      scale_x_date(date_breaks="1 week", date_minor_breaks="1 day", labels=date_format("%d.%m")) +
+      ggtitle(paste0("Derivatives of loess(",sy,",span=",span,"):  d/dt(", sy, ")~", sx))
+  } 
+  else {
+    ggplot(data=ds, aes(x={{ symx }}, y=Value, colour=Derivative)) + geom_line() +
+      geom_point(aes(x={{ symx }}, y={{ symy }}/10), size=.5, colour="black") +
+      geom_line(aes(x={{ symx }}, y={{ symy }}/10), size=.25, colour="grey") +
+      ggtitle(paste0("Derivatives of '", dt0, "' smoothed by rolling regression of windows size ", nWindowDays))
+  }
+}
 
