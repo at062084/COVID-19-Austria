@@ -36446,3 +36446,89 @@ The following object is masked from ‘package:graphics’:
 20200820-164034.999 Writing ./data/AT_counties.bmsgpk.csv 
 20200820-164035.001 Done executing covCounty 
 20200820-164035.001 Done running COVID-19-covid-county-extract.R 
+[master 2c79a52] 2020-08-20 16:40:32 Auto-Conversion of bmsgpk data to covid-county format
+ 4 files changed, 118 insertions(+), 47 deletions(-)
+ rewrite bmsgpk/data/AT_counties.bmsgpk.csv (81%)
+ rewrite bmsgpk/data/AT_states.bmsgpk.csv (84%)
+To git@github.com:at062084/COVID-19-Austria.git
+   2f065db..2c79a52  HEAD -> master
+
+--------------------------------------------------------------------
+2020-08-23 01:23:26 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2020-08-23 01:23:26 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-08-23 01:23:26 Running auto-extraction of COVID-19 data from bmsgpk website
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘rvest’
+
+The following object is masked from ‘package:readr’:
+
+    guess_encoding
+
+20200823-012327.256 Running COVID-19-bmsgpk-extract.R 
+20200823-012327.290 Calling scrapeCovid2 with 20200823-0123 
+20200823-012327.325 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200823-012327.327 Dumping page to ./html/COVID-19-austria.bmsgpk.20200823-0123.html 
+--2020-08-23 01:23:27--  https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html
+Resolving www.sozialministerium.at (www.sozialministerium.at)... failed: Name or service not known.
+wget: unable to resolve host address ‘www.sozialministerium.at’
+20200823-012327.376 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200823-0123.html 
+20200823-012327.382 Extracting Status table in Bundesländer 
+Error in UseMethod("xml_find_all") : 
+  no applicable method for 'xml_find_all' applied to an object of class "xml_document"
+Calls: scrapeCovid2 ... <Anonymous> -> html_table.xml_document -> <Anonymous>
+5: (function () 
+   traceback(2))()
+4: xml2::xml_find_all(x, ".//table")
+3: html_table.xml_document(html, dec = ",")
+2: rvest::html_table(html, dec = ",")
+1: scrapeCovid2(ts = ts)
+20200823-012327.383 DISABLED: Calling scrapeHospitalisierung with 20200823-0123 
+20200823-012327.384 Calling scrapeInfo with 20200823-0123 
+20200823-012327.406 Scraping using headless chrome for https://info.gesundheitsministerium.at/dashboard_Epidem.html?l=de 
+20200823-012327.408 Dumping page to ./html/COVID-19-austria.info.20200823-0123.dmp 
+20200823-012327.967 Analysing dump file ./html/COVID-19-austria.info.20200823-0123.dmp 
+20200823-012327.970 Extracting table of Confirmed in 100+ regions 
+Error in tables[[1]] : subscript out of bounds
+Calls: scrapeInfo
+2: (function () 
+   traceback(2))()
+1: scrapeInfo(ts = ts)
+20200823-012327.974 Calling scrapeZIP with 20200823-0123 
+20200823-012327.975 Downloading https://info.gesundheitsministerium.at/data/data.zip to ./data/zip/COVID-19-austria.V0414.20200823-0123.zip 
+--2020-08-23 01:23:28--  https://info.gesundheitsministerium.at/data/data.zip
+Resolving info.gesundheitsministerium.at (info.gesundheitsministerium.at)... failed: Name or service not known.
+wget: unable to resolve host address ‘info.gesundheitsministerium.at’
+20200823-012328.026 Writing new data to ./data/COVID-19-austria.csv 
+Error in rbind(df, dc) : object 'dc' not found
+2: (function () 
+   traceback(2))()
+1: rbind(df, dc)
+20200823-012328.059 Writing new data to ./data/COVID-19-austria.regions.csv 
+Error in rbind(df, di) : object 'di' not found
+2: (function () 
+   traceback(2))()
+1: rbind(df, di)
+20200823-012328.243 Done runing data extraction from bmsgpk web pages 
