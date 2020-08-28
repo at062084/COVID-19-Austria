@@ -5,32 +5,83 @@ library(dplyr)
 library(tidyr)
 library(lubridate)
 library(optimx)
+library(doMC)
+registerDoMC(cores=4)
+
+# ---------------------------------------------------------------------------------------
+# COVID-19 dataset for Austria
+# data downloaded and extracted from https://info.gesundheitsministerium.at/data/data.zip
+# ---------------------------------------------------------------------------------------
+# Date Grid
+begDate <- as.Date("2020-02-25")
+endDate <- as.Date("2020-07-15")
+df <- data.frame(Date=(seq(from=begDate,to=endDate,by=1)))
+
+# New Cases
+newcon <- read.csv("/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/CovFit/Epikurve.csv", stringsAsFactors=FALSE, sep=";")
+colnames(newcon) <- c("time","newcon","TimeStamp")
+newcon <- newcon %>% 
+  dplyr::mutate(Date=as.Date(time, format="%d.%m.%Y")) %>% 
+  dplyr::mutate(confirmed=cumsum(newcon)) %>%
+  dplyr::select(Date,newcon,confirmed)
+
+# Deaths
+deaths <- read.csv("/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/CovFit/TodesfaelleTimeline.csv", stringsAsFactors=FALSE, sep=";")
+colnames(deaths) <- c("time","deaths","TimeStamp")
+deaths <- deaths %>% 
+  dplyr::mutate(Date=as.Date(time, format="%d.%m.%Y")) %>% 
+  dplyr::select(Date,deaths)
+
+# Recovered
+recovs <- read.csv("/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/CovFit/GenesenTimeline.csv", stringsAsFactors=FALSE, sep=";")
+colnames(recovs) <- c("time","recovered","TimeStamp")
+recovs <- recovs %>% 
+  dplyr::mutate(Date=as.Date(time, format="%d.%m.%Y")) %>%
+  dplyr::select(Date,recovered)
+
+# Join together
+df <- df %>% left_join(deaths) %>% left_join(recovs) %>% left_join(newcon)
+df$deaths[1]=0
+df$recovered[1]=0
+df <- df[1:141,]
+df <- df %>% 
+  dplyr::mutate(newrec=recovered-lag(recovered,1)) %>%
+  dplyr::mutate(newdeaths=deaths-lag(deaths,1))
+  
+dg <- df %>% tidyr::gather(key=Status, value=Count, newcon, newrec, newdeaths)
+ggplot(data=dg, aes(x=Date, y=Count, colour=Status)) + geom_line() + 
+  scale_y_continuous(trans = 'log10', breaks=10^(0:6)) +
+  scale_x_date(limits=c(min(dg$Date+days(5)),min(dg$Date)+days(75)))
+
+
 
 
 icrd.fun <- function(parms) {
   # Parameters
-  ISF=2
-  daysI=2
-  daysR=3
-  daysD=5
-  CFP=0
-  SDD=9
+  # parms=c(1,10,21,14,0.05,21,0,21,4)
+  ISF=1
+  daysI=10
+  daysR=21
+  daysD=14
+  CFP=0.05
+  SDD=20
   SDSF=0
-  N=16
+  N=35
+  I=4
   
   # Parameters for optimization
   ISF=parms[1]
   daysI=parms[2]
-  daysR=parms[3]
-  daysD=parms[4]
-  CFP=parms[5]
-  SDD=parms[6]
-  SDSF=parms[7]
-  N=parms[8]
+  #daysR=parms[3]
+  #daysD=parms[4]
+  #CFP=parms[5]
+  SDD=parms[3]
+  #SDSF=parms[7]
+  #N=parms[8]
+  #I=parms[9]
   
   
   # Constants
-  I <- 1
   #ISF <- 1.25    # InfectionSpreadFactor
   #CFP <- .05     # CaseFatalityProportion
   #daysI <- 7
@@ -71,9 +122,12 @@ icrd.fun <- function(parms) {
   nI[t]=dI[t]=cI[t]=tI[t]=I
   fC <- icd(t,nI[t],daysI) # new infection to cases time distribution
   fCn <- length(fC)-1
-  mC[t,t:min(t+fCn,N)] <- fC[1:(min(t+fCn+1,N)-t)]
+  # mC[t,t:min(t+fCn,N)] <- fC[1:(min(t+fCn+1,N)-t)]
+  fCm <- t:min(t+fCn,N)
+  mC[t,fCm] <- fC[1:length(fCm)]
   
-  cat(" fun: ", ISF, daysI, daysR, daysD, CFP, "\n")
+  # cat(" fun: ", ISF, daysI, daysR, daysD, CFP)
+  cat(" fun: ", ISF, daysI)
   
   for (t in 2:N) {
     # cat(paste(t,""))
@@ -137,43 +191,76 @@ icrd.fun <- function(parms) {
 }
 
 # ground truth data
-parms=c(0.8,4,10,14,0.1,21,0.1,49)
-(gt <- icrd.fun(parms))
+parms=c(0.65,7,20,14,0.05,8,0,8,4)
+parms=c(1,10,20,14,0.05,20,0,40,4)
+#parms=c(1.05,12,21,14,0.1,21,0,21,4)
+gt <- icrd.fun(parms)
+dp <- gt %>% tidyr::gather(key=Status, val=Count, newInfectious, newConfirmed, newRecovered, newDeaths)
+ggplot(data=dp, aes(x=Day, y=Count, col=Status, shape=Status)) + geom_line() + geom_point(size=3) +
+  ggtitle(paste("Ground Truth",parms[1],parms[2])) +
+  scale_x_continuous(breaks=1:10*7) #+ scale_y_continuous(trans="log10")
+#print(gg)
 
 #cat("\n")
 # dp <- gt %>% tidyr::gather(key=Status, val=Count, Infectious, Confirmed, Recovered, Deaths, newInfectious, newConfirmed, newRecovered, newDeaths)
-dp <- gt %>% tidyr::gather(key=Status, val=Count, Confirmed, Deaths, newInfectious, newConfirmed, newRecovered, curInfectious, curConfirmed)
-gg <- ggplot(data=dp, aes(x=Day, y=Count, col=Status, shape=Status)) + geom_line() + geom_point(size=3) + ggtitle(paste("Ground Truth",parms[1],parms[2])) #+ scale_y_continuous(trans="log10")
-print(gg)
+# dp <- gt %>% tidyr::gather(key=Status, val=Count, Confirmed, Deaths, newInfectious, newConfirmed, newRecovered, newDeaths, curInfectious, curConfirmed)
  
 icrd.rss <- function(params) {
   df <- icrd.fun(params)
-  rss.in <- sum(gt$newInfectious-df$newInfectious)^2
-  rss.cn <- sum(gt$newConfirmed-df$newConfirmed)^2
-  rss.rn <- sum(gt$newRecovered-df$newRecovered)^2
-  rss.dn <- sum(gt$newDeaths-df$newDeaths)^2
+  #rss.in <- sum(gt$newInfectious-df$newInfectious)^2
+  rss.cn <- sum(log(gt$newConfirmed+1)-log(df$newConfirmed+1))^2
+  #rss.rn <- sum(gt$newRecovered-df$newRecovered)^2
+  #rss.dn <- sum(gt$newDeaths-df$newDeaths)^2
   #rss.i <- sum((gt$Infectious-df$Infectious)^2)
   #rss.r <- sum((gt$Recovered-df$Recovered)^2)
-  rss <- rss.in + rss.rn
-  cat(" rss: " , params, max(df$Infectious), 
-      format(rss.in, scientific=TRUE, digits=3), 
-      format(rss.cn, scientific=TRUE, digits=3), 
-      format(rss.rn, scientific=TRUE, digits=3), 
-      format(rss.dn, scientific=TRUE, digits=3),
+  rss <- rss.cn
+  cat(" rss: " , params, rss, 
+      #format(rss.in, scientific=TRUE, digits=3), 
+      #format(rss.cn, scientific=TRUE, digits=3), 
+      #format(rss.rn, scientific=TRUE, digits=3), 
+      #format(rss.dn, scientific=TRUE, digits=3),
       format(rss, scientific=TRUE, digits=3), "\n")  
   return(rss)
 }
 
 # Search for parameters that fit the generated ground truth data
-optx <- optimx(par=c(1.5),
+optx <- optimx(par=c(0.65,7,8),
              fn=icrd.rss,
-             method = c("Nelder-Mead"),
-             #lower = c(1.0,10),
-             #upper = c(2.0,20),
-             # control=list(all.methods=TRUE, save.failures=TRUE, maxit=1000)
-             control=list(save.failures=TRUE, maxit=10000)
+             # method = c("Nelder-Mead"),
+             lower = c(0.5,3,5),
+             upper = c(1.0,10,15),
+             # tnmax=1000,
+             control=list(all.methods=TRUE, save.failures=TRUE, parscale=c(1,10), ndeps=c(0.05,1))
+             # control=list(save.failures=TRUE, maxit=10000)
              # control=list(ndeps=c(.01,1), parscale=c(1,1))
 )
+optx
+
+
+pms <- expand.grid(seq(.75,1.25,by=.05),seq(5,15,by=1))
+pms$rss <- 0
+colnames(pms) <- c("ISF","daysI","rss")
+set.seed(12345)
+for(k in 1:dim(pms)[1]) {
+  pms$rss[k] <- icrd.rss(params=c(pms[k,1],pms[k,2]))
+}
+ggplot(pms, aes(x=ISF, y=daysI)) + geom_raster(aes(fill=log(rss)))
+
+m <- which(pms$rss==min(pms$rss))
+pms[m,]
+
+
+pms <- expand.grid(seq(1-.1,1+.1,by=.005),seq(8,12,by=.1))
+pms$rss <- 0
+colnames(pms) <- c("ISF","daysI","rss")
+set.seed(12345)
+for(k in 1:dim(pms)[1]) {
+  pms$rss[k] <- icrd.rss(params=c(pms[k,1],pms[k,2]))
+}
+ggplot(pms, aes(x=ISF, y=daysI)) + geom_raster(aes(fill=log(rss)))
+
+
+dim(pms)
 
 
 opt = matrix(0, nrow=5, ncol=3)

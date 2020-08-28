@@ -1,0 +1,462 @@
+---
+title: "COVID-19-Austria: Evidence of spread slowing down"
+author: "Thomas.Strehl@at.ibm.com"
+date: "Mai 03, 2020"
+geometry: "left=1.5cm,right=1cm,top=1.5cm,bottom=1.5cm"
+output: 
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    fig_width: 7
+    fig_height: 4
+    fig_caption: false
+    number_sections: true     
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
+```
+
+```{r, echo=FALSE}
+library(lubridate)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(forcats)
+```
+
+\newpage
+
+# Status 
+
+## Prepare data
+```{r}
+csvFile <- "/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/data/COVID-19-austria.states.curated.status.csv"
+dv <- read.csv(csvFile, stringsAsFactors=FALSE) %>% 
+  dplyr::mutate(Stamp=as.POSIXct(Stamp), Date=date(Stamp)) 
+
+df <- dv %>% 
+  dplyr::arrange(Stamp) %>%
+  dplyr::group_by(Date,Status) %>%
+  dplyr::filter(row_number()==n()) %>%
+  dplyr::ungroup() %>%
+  dplyr::select(Date,Status,Count=AT) %>%
+  tidyr::spread(key=Status, val=Count) %>%
+  dplyr::mutate(newConfirmed=Confirmed-lag(Confirmed),newDeaths=Deaths-lag(Deaths)) %>%
+  dplyr::filter(!is.na(newConfirmed), newConfirmed>0) %>%
+  dplyr::select(1,8,2,9,3:7)
+tail(df,12)
+
+# Vienna:
+dw <- dv %>% 
+  dplyr::arrange(Stamp) %>%
+  dplyr::group_by(Date,Status) %>%
+  dplyr::filter(row_number()==n()) %>%
+  dplyr::ungroup() %>%
+  dplyr::select(Date,Status,Count=W) %>%
+  tidyr::spread(key=Status, val=Count) %>%
+  dplyr::mutate(newConfirmed=Confirmed-lag(Confirmed),newDeaths=Deaths-lag(Deaths)) %>%
+  dplyr::filter(!is.na(newConfirmed), newConfirmed>0) %>%
+  dplyr::select(1,8,2,9,3:7)
+tail(dw,12)
+```
+
+
+## Status ~ Stamp
+
+### Status ~ Stamp (all)
+
+```{r}
+ggplot(data=df %>% tidyr::gather(key=Status,val=Count, 2:8), aes(x=Date, y=Count, colour=Status, shape=Status)) + 
+  geom_point() + geom_line(linetype=3) +
+  stat_smooth(span=0.5, se=FALSE, size=.33) +
+  scale_x_date(date_breaks = "1 week", date_labels="%d.%m") +
+  scale_y_continuous(trans = 'log10') +
+  ggtitle("x=Date, y=log10(Count)")
+```
+
+### Status ~ Stamp (selected)
+
+```{r}
+ggplot(data=df %>% tidyr::gather(key=Status,val=Count, 2:8) %>% dplyr::filter(Status!="Tested", Status !="Confirmed", Status!="Recovered"), 
+       aes(x=Date, y=Count, colour=Status, shape=Status)) + 
+  geom_point() + geom_line(linetype=3) +
+  stat_smooth(span=0.5, se=FALSE, size=.33) +
+  scale_x_date(date_breaks = "1 week", date_labels="%d.%m") +
+  scale_y_continuous() +
+  ggtitle("x=Date, y=Count")
+```
+
+### Confirmed ~ Stamp
+```{r}
+ggplot(data=df, aes(x=Date, y=Confirmed)) + 
+  geom_point() + geom_line(linetype=3) +
+  stat_smooth(span=0.33, se=FALSE, size=.33) +
+  scale_x_date(date_breaks = "1 week", date_labels="%d.%m") +
+  scale_y_continuous(breaks=0:13*1000) +
+  ggtitle("x=Date, y=Confirmed")
+```
+
+## Tested
+### Confirmed/Tested ~ Tested
+
+```{r}
+ggplot(data=df, aes(x=Tested, y=Confirmed/Tested)) + 
+  geom_point() + geom_line(linetype=3) + 
+  scale_x_continuous(breaks=seq(0,300000,by=20000)) +
+#  scale_y_continuous(trans = 'log10') +
+  stat_smooth(span=0.5, se=FALSE, size=.33) +
+  ggtitle("x=Tested, y=Confirmed/Tested")
+```
+
+## newConfirmed
+### newConfirmed ~ Stamp
+```{r}
+ggplot(data=df, aes(x=Date, y=newConfirmed)) + 
+  geom_point() + geom_line(linetype=3) +
+  stat_smooth(span=0.25, se=FALSE, size=.33) +
+  scale_x_date(date_breaks = "1 week", date_labels="%d.%m") +
+  ggtitle("x=Date, y=newConfirmed")
+```
+
+### newConfirmed ~ Confirmed
+```{r}
+ggplot(data=df, aes(x=Confirmed, y=newConfirmed)) + 
+  geom_point() + geom_line(linetype=3) +
+  scale_x_continuous(breaks=0:100*1000) +
+  stat_smooth(span=0.33, se=FALSE, size=.33) +
+  ggtitle("x=Confirmed, y=newConfirmed")
+```
+
+### newConfirmed ~ log10(Confirmed)
+```{r}
+ggplot(data=df, aes(x=Confirmed, y=newConfirmed)) + 
+  scale_x_continuous(trans = 'log10', breaks=c(10,20,50,100,200,500,1000,2000,5000,10000)) +
+#  scale_y_continuous(trans = 'log10') +
+  geom_point() + geom_line(linetype=3) +
+  stat_smooth(span=0.33, se=FALSE, size=.5) +
+  ggtitle("x=log10(Confirmed), y=newConfirmed")
+```
+
+
+
+## newConfirmed/Confirmed
+### newConfirmed/Confirmed ~ Date
+```{r}
+ggplot(data=df, aes(x=Date, y=newConfirmed/Confirmed)) + 
+  geom_point() + geom_line(linetype=3) +
+  stat_smooth(span=0.5, se=FALSE, size=.33) +
+  scale_x_date(date_breaks = "1 week", date_labels="%d.%m") +
+  ggtitle("x=Date, y=newConfirmed/Confirmed")
+```
+
+### newConfirmed/Confirmed ~ Confirmed
+```{r}
+ggplot(data=df, aes(x=(Confirmed), y=newConfirmed/Confirmed)) + 
+  geom_point() + geom_line(linetype=3) +
+   stat_smooth(span=0.5, se=FALSE, size=.33) +
+  scale_x_continuous(breaks=0:100*1000) +
+  ggtitle("x=Confirmed, y=newConfirmed/Confirmed")
+```
+
+### newConfirmed/Confirmed ~ log10(Confirmed)
+```{r}
+ggplot(data=df, aes(x=Confirmed, y=newConfirmed/Confirmed)) + 
+  scale_x_continuous(trans = 'log10') +
+  #scale_y_continuous(trans = 'log10') +
+  geom_point() + geom_line(linetype=3) +
+  stat_smooth(span=0.5, se=FALSE, size=.33) +
+  ggtitle("x=log10(Confirmed), y=newConfirmed/Confirmed")
+```
+### log10(newConfirmed) ~ log10(Confirmed)
+
+```{r}
+ggplot(data=df, aes(x=Confirmed, y=newConfirmed)) + 
+  geom_point() + geom_line(linetype=3) +
+  scale_x_continuous(trans = 'log10') +
+  scale_y_continuous(trans = 'log10') +
+  stat_smooth(span=0.5, se=FALSE, size=.33) +
+  ggtitle("x=Confirmed, y=newConfirmed")
+```
+
+
+## newConfirmed/yesterdayConfirmed
+### newConfirmed/yesterdayConfirmed ~ Stamp
+```{r}
+df %>%
+  mutate(yesterdayConfirmed=dplyr::lag(newConfirmed)) %>%
+  ggplot(aes(x=as.POSIXct(Date), y=newConfirmed/yesterdayConfirmed)) + 
+  geom_point() + geom_line(linetype=3) +
+  stat_smooth(span=0.75, se=FALSE, size=.33) +
+  scale_x_datetime(date_breaks = "1 week", date_labels="%d.%m") +
+  scale_y_continuous(limits=c(0,3)) +
+  ggtitle("x=Date, y=newConfirmed/yesterdayConfirmed")
+```
+
+
+### newConfirmed/yesterdayConfirmed ~ Confirmed
+```{r}
+df %>%
+  mutate(yesterdayConfirmed=dplyr::lag(newConfirmed)) %>%
+  ggplot(aes(x=Confirmed, y=newConfirmed/yesterdayConfirmed)) + 
+  geom_point() + geom_line(linetype=3) +
+  stat_smooth(span=0.75, se=FALSE, size=.33) +
+  scale_x_continuous(breaks=0:100*1000) +
+  scale_y_continuous(limits=c(0,3)) +
+  ggtitle("x=Date, y=newConfirmed/yesterdayConfirmed")
+```
+
+
+### newConfirmed/yesterdayConfirmed ~ log10(Confirmed)
+```{r}
+df %>%
+  mutate(yesterdayConfirmed=dplyr::lag(newConfirmed)) %>%
+  ggplot(aes(x=Confirmed, y=newConfirmed/yesterdayConfirmed)) + 
+  geom_point() + geom_line(linetype=3) +
+  stat_smooth(span=0.75, se=FALSE, size=.33) +
+  scale_x_continuous(trans = 'log10') +
+  scale_y_continuous(limits=c(0,3)) +
+  ggtitle("x=Date, y=newConfirmed/yesterdayConfirmed")
+```
+
+
+
+# Confirmed and Deaths growth
+
+## Align growth curves from origin
+Idea here is to compare the growth of Confirmed and Death counts from their respective beginning
+
+- First 'Death' occurs 20 days after first 'Confirmed'
+- Shift the 'Deaths' curve 20 days to left ('lagDeaths') and compare it with 'Confirmed'
+
+```{r}
+dd <- df %>%
+  dplyr::select(Date, Confirmed, Deaths) %>%
+  dplyr::mutate(lagDeaths=lead(Deaths,20))  %>%
+  dplyr::filter(Date<as.POSIXct("2020-03-16"))
+```
+  
+  
+###  Confirmed+lagDeaths ~ Stamp (shifted)
+```{r}
+dd %>%
+  tidyr::gather(key=Status, val=Count, Confirmed, lagDeaths) %>%
+  ggplot(aes(x=Date, y=Count, colour=Status)) +
+  scale_x_date(date_breaks = "2 day", date_labels="%d.%m") +
+  scale_y_continuous(trans = 'log10', limits=c(1,1000)) +
+  geom_point() + geom_line() +
+  stat_smooth(span=0.85, se=FALSE, size=.33) +
+  ggtitle("x=Date (shifted 20d), y=Confirmed,lagDeaths")
+```
+
+### lagDeaths/Confirmed ~ Stamp
+```{r}
+dd %>%
+  ggplot(aes(x=Date, y=lagDeaths/Confirmed)) +
+  geom_point() + geom_line(linetype=3) +
+  stat_smooth(span=0.85, se=FALSE, size=.33) +
+  scale_x_date(date_breaks = "2 day", date_labels="%d.%m") +
+  scale_y_continuous(breaks=seq(0,1.5,by=.25), limits=c(0,1.5)) +
+   ggtitle("x=Date, y=lagDeaths/Confirmed")
+```
+
+
+## Align growth cureves from n=10
+Idea here is again to compare the increase of Confirmed and Death counts
+
+- Start from 10 cases
+- Compare increase
+
+```{r}
+nRoot=10
+rootDeaths <- df$Deaths[!is.na(df$Deaths) & df$Deaths>=nRoot]
+rootConfirmed <- df$Confirmed[df$Confirmed>=nRoot][1:length(rootDeaths)]
+```
+
+### log10(Deaths) ~ log10(Confirmed) aligned on n=10
+```{r}
+dr <- data.frame(rConfirmed=rootConfirmed, rDeaths=rootDeaths)
+rlm <- MASS::rlm(y=log10(dr$rDeaths),x=log10(dr$rConfirmed))
+summary(rlm)
+ggplot(data=dr, aes(x=rConfirmed,y=rDeaths)) + 
+  geom_point() + geom_line(linetype=3) +
+  scale_x_continuous(trans = 'log10', breaks=c(10,20,50,100,200,500,1000,2000,5000,10000,20000)) +
+  scale_y_continuous(trans = 'log10', limits=c(10,NA), breaks=c(10,20,50,100,200,500,1000)) +
+  stat_smooth(span=0.5, se=FALSE, size=.5) +
+  ggtitle("")
+```
+  
+
+### log10(Deaths) ~ log10(Confirmed )
+
+```{r}
+dal <- df %>% dplyr::filter(Deaths>1)
+rlm <- MASS::rlm(x=log10(dal$Deaths),y=log10(dal$Confirmed))
+ggplot(data=df%>% dplyr::filter(Deaths>1), aes(x=Confirmed, y=Deaths)) + 
+  geom_point() + geom_line(linetype=3) + 
+  stat_smooth(method=MASS::rlm, fullrange=TRUE, se=TRUE, size=.25) +
+  scale_x_continuous(trans = 'log10', breaks=c(1000,2000,5000,10000),limits=c(1000,NA)) +
+  scale_y_continuous(trans = 'log10') +
+  ggtitle("x=Confirmed, y=Deaths")
+```
+
+
+
+# Hospitalisierung, Intensivstation
+### Intensivstation/Hospitalisierung ~ Hospitalisierung
+
+```{r}
+ggplot(data=df%>% dplyr::filter(Hospitalisierung>0), aes(x=Hospitalisierung, y=Intensivstation/Hospitalisierung)) + 
+  geom_point() + geom_line(linetype=3) +
+  stat_smooth(span=0.8, se=FALSE, size=.25) +
+  #scale_x_continuous(trans = 'log10') +
+  scale_y_continuous(limits=c(0,NA)) +
+  ggtitle("x=Hospitalisierung, y=Intensivstation/Hospitalisierung")
+```
+
+### newDeaths/Intensivstation ~ Stamp
+
+```{r}
+ggplot(data=df%>% dplyr::filter(Intensivstation>0), aes(x=Date, y=newDeaths/Intensivstation)) + 
+  geom_point() + geom_line(linetype=3) + 
+  stat_smooth(span=0.8, se=FALSE, size=.25) +
+  #scale_x_continuous(trans = 'log10') +
+  scale_y_continuous(limits=c(0,NA)) +
+  ggtitle("x=Date, y=newDeaths/Intensivstation")
+```
+
+
+### newDeaths/Intensivstation ~ Intensivstation
+```{r}
+ggplot(data=df%>% dplyr::filter(Intensivstation>0), aes(x=Intensivstation, y=newDeaths/Intensivstation)) + 
+  geom_point() + geom_line(linetype=3) + 
+  stat_smooth(span=0.8, se=FALSE, size=.25) +
+  #scale_x_continuous(trans = 'log10') +
+  scale_y_continuous(limits=c(0,NA)) +
+  ggtitle("x=Intensivstation, y=newDeaths/Intensivstation")
+```
+
+\newpage
+
+# Derivatives
+## LogScale
+### logConfirmed~Date, span=.33
+```{r}
+dd <- dw %>% 
+  dplyr::mutate(logConfirmed0=log(Confirmed),
+                logConfirmed1=logConfirmed0-lag(logConfirmed0),
+                logConfirmed2=logConfirmed1-lag(logConfirmed1)) %>%
+  dplyr::select(Date,Confirmed, logConfirmed0,logConfirmed1, logConfirmed2) %>%
+  dplyr::arrange(Date) %>%
+  dplyr::mutate(nID=1:n())
+
+span=.33
+lss <- loess(logConfirmed1~nID, data=dd, span=span)
+
+de <- dd %>%
+  dplyr::mutate(logConfirmed1s = c(NA,lss$fitted)) %>%
+  dplyr::mutate(logConfirmed2s=logConfirmed1s-lag(logConfirmed1s)) %>%
+  dplyr::filter(!is.na(logConfirmed2))
+
+ds <- de %>%
+  dplyr::mutate(logConfirmed_20=logConfirmed0/20) %>%
+  dplyr::select(Date, logConfirmed_20, logConfirmed1s,logConfirmed2s) %>%
+  tidyr::gather(key=Derivative, value=Value,logConfirmed_20,logConfirmed1s,logConfirmed2s)
+
+ggplot(data=ds, aes(x=Date, y=Value, colour=Derivative)) + geom_line() +
+    scale_x_date(date_breaks = "1 week", date_labels="%d.%m") + 
+    ggtitle(paste0("Derivatives of loess(logConfirmed, span=",span,"):  d/dt(logConfirmed~Date"))
+
+
+```
+
+### logConfirmed~Date, span=.25
+```{r}
+dd <- dw %>% 
+  dplyr::mutate(logConfirmed0=log(Confirmed),
+                logConfirmed1=logConfirmed0-lag(logConfirmed0),
+                logConfirmed2=logConfirmed1-lag(logConfirmed1)) %>%
+  dplyr::select(Date,Confirmed, logConfirmed0,logConfirmed1, logConfirmed2) %>%
+  dplyr::arrange(Date) %>%
+  dplyr::mutate(nID=1:n())
+
+span=.25
+lss <- loess(logConfirmed1~nID, data=dd, span=span)
+
+de <- dd %>%
+  dplyr::mutate(logConfirmed1s = c(NA,lss$fitted)) %>%
+  dplyr::mutate(logConfirmed2s=logConfirmed1s-lag(logConfirmed1s)) %>%
+  dplyr::filter(!is.na(logConfirmed2))
+
+ds <- de %>%
+  dplyr::mutate(logConfirmed_20=logConfirmed0/20) %>%
+  dplyr::select(Date, logConfirmed_20, logConfirmed1s,logConfirmed2s) %>%
+  tidyr::gather(key=Derivative, value=Value,logConfirmed_20,logConfirmed1s,logConfirmed2s)
+
+ggplot(data=ds, aes(x=Date, y=Value, colour=Derivative)) + geom_line() +
+    scale_x_date(date_breaks = "1 week", date_labels="%d.%m") + 
+    ggtitle(paste0("Derivatives of loess(logConfirmed, span=",span,"):  d/dt(logConfirmed~Date"))
+
+
+```
+
+### logConfirmed~Date, span=.20
+```{r}
+dd <- dw %>% 
+  dplyr::mutate(logConfirmed0=log(Confirmed),
+                logConfirmed1=logConfirmed0-lag(logConfirmed0),
+                logConfirmed2=logConfirmed1-lag(logConfirmed1)) %>%
+  dplyr::select(Date,Confirmed, logConfirmed0,logConfirmed1, logConfirmed2) %>%
+  dplyr::arrange(Date) %>%
+  dplyr::mutate(nID=1:n())
+
+span=.20
+lss <- loess(logConfirmed1~nID, data=dd, span=span)
+
+de <- dd %>%
+  dplyr::mutate(logConfirmed1s = c(NA,lss$fitted)) %>%
+  dplyr::mutate(logConfirmed2s=logConfirmed1s-lag(logConfirmed1s)) %>%
+  dplyr::filter(!is.na(logConfirmed2))
+
+ds <- de %>%
+  dplyr::mutate(logConfirmed_20=logConfirmed0/20) %>%
+  dplyr::select(Date, logConfirmed_20, logConfirmed1s,logConfirmed2s) %>%
+  tidyr::gather(key=Derivative, value=Value,logConfirmed_20,logConfirmed1s,logConfirmed2s)
+
+ggplot(data=ds, aes(x=Date, y=Value, colour=Derivative)) + geom_line() +
+    scale_x_date(date_breaks = "1 week", date_labels="%d.%m") + 
+    ggtitle(paste0("Derivatives of loess(logConfirmed, span=",span,"):  d/dt(logConfirmed~Date"))
+
+
+```
+
+### logConfirmed~Date, span=.15
+```{r}
+dd <- dw %>% 
+  dplyr::mutate(logConfirmed0=log(Confirmed),
+                logConfirmed1=logConfirmed0-lag(logConfirmed0),
+                logConfirmed2=logConfirmed1-lag(logConfirmed1)) %>%
+  dplyr::select(Date,Confirmed, logConfirmed0,logConfirmed1, logConfirmed2) %>%
+  dplyr::arrange(Date) %>%
+  dplyr::mutate(nID=1:n())
+
+span=.15
+lss <- loess(logConfirmed1~nID, data=dd, span=span)
+
+de <- dd %>%
+  dplyr::mutate(logConfirmed1s = c(NA,lss$fitted)) %>%
+  dplyr::mutate(logConfirmed2s=logConfirmed1s-lag(logConfirmed1s)) %>%
+  dplyr::filter(!is.na(logConfirmed2))
+
+ds <- de %>%
+  dplyr::mutate(logConfirmed_20=logConfirmed0/20) %>%
+  dplyr::select(Date, logConfirmed_20, logConfirmed1s,logConfirmed2s) %>%
+  tidyr::gather(key=Derivative, value=Value,logConfirmed_20,logConfirmed1s,logConfirmed2s)
+
+ggplot(data=ds, aes(x=Date, y=Value, colour=Derivative)) + geom_line() +
+    scale_x_date(date_breaks = "1 week", date_labels="%d.%m") + 
+    ggtitle(paste0("Derivatives of loess(logConfirmed, span=",span,"):  d/dt(logConfirmed~Date"))
+
+
+```
+
