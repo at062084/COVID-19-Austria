@@ -38093,3 +38093,90 @@ Saving to: ‘./data/zip/COVID-19-austria.V0414.20200828-1845.zip’
 20200828-184534.359 Writing new data to ./data/COVID-19-austria.csv 
 20200828-184534.395 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200828-184534.581 Done runing data extraction from bmsgpk web pages 
+[master 4a61653] 2020-08-28 18:45:04 Auto-Extract data from bmsgpk website
+ 7 files changed, 4058 insertions(+)
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V0414.20200828-1845.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200828-1845.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200828-1845.dmp
+To git@github.com:at062084/COVID-19-Austria.git
+   c26d2a1..4a61653  HEAD -> master
+
+--------------------------------------------------------------------
+2020-08-29 09:49:35 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2020-08-29 09:49:35 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-08-29 09:49:35 Running auto-extraction of COVID-19 data from bmsgpk website
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘rvest’
+
+The following object is masked from ‘package:readr’:
+
+    guess_encoding
+
+20200829-094936.210 Running COVID-19-bmsgpk-extract.R 
+20200829-094936.246 Calling scrapeCovid2 with 20200829-0949 
+20200829-094936.286 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20200829-094936.287 Dumping page to ./html/COVID-19-austria.bmsgpk.20200829-0949.html 
+--2020-08-29 09:49:36--  https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html
+Resolving www.sozialministerium.at (www.sozialministerium.at)... failed: Name or service not known.
+wget: unable to resolve host address ‘www.sozialministerium.at’
+20200829-094936.337 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200829-0949.html 
+20200829-094936.341 Extracting Status table in Bundesländer 
+Error in UseMethod("xml_find_all") : 
+  no applicable method for 'xml_find_all' applied to an object of class "xml_document"
+Calls: scrapeCovid2 ... <Anonymous> -> html_table.xml_document -> <Anonymous>
+5: (function () 
+   traceback(2))()
+4: xml2::xml_find_all(x, ".//table")
+3: html_table.xml_document(html, dec = ",")
+2: rvest::html_table(html, dec = ",")
+1: scrapeCovid2(ts = ts)
+20200829-094936.343 DISABLED: Calling scrapeHospitalisierung with 20200829-0949 
+20200829-094936.344 Calling scrapeInfo with 20200829-0949 
+20200829-094936.370 Scraping using headless chrome for https://info.gesundheitsministerium.at/dashboard_Epidem.html?l=de 
+20200829-094936.371 Dumping page to ./html/COVID-19-austria.info.20200829-0949.dmp 
+20200829-094936.886 Analysing dump file ./html/COVID-19-austria.info.20200829-0949.dmp 
+20200829-094936.889 Extracting table of Confirmed in 100+ regions 
+Error in tables[[1]] : subscript out of bounds
+Calls: scrapeInfo
+2: (function () 
+   traceback(2))()
+1: scrapeInfo(ts = ts)
+20200829-094936.893 Calling scrapeZIP with 20200829-0949 
+20200829-094936.894 Downloading https://info.gesundheitsministerium.at/data/data.zip to ./data/zip/COVID-19-austria.V0414.20200829-0949.zip 
+--2020-08-29 09:49:36--  https://info.gesundheitsministerium.at/data/data.zip
+Resolving info.gesundheitsministerium.at (info.gesundheitsministerium.at)... failed: Name or service not known.
+wget: unable to resolve host address ‘info.gesundheitsministerium.at’
+20200829-094936.948 Writing new data to ./data/COVID-19-austria.csv 
+Error in rbind(df, dc) : object 'dc' not found
+2: (function () 
+   traceback(2))()
+1: rbind(df, dc)
+20200829-094936.980 Writing new data to ./data/COVID-19-austria.regions.csv 
+Error in rbind(df, di) : object 'di' not found
+2: (function () 
+   traceback(2))()
+1: rbind(df, di)
+20200829-094937.164 Done runing data extraction from bmsgpk web pages 
