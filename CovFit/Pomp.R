@@ -120,6 +120,10 @@ ggplot(data=dt, aes(x=xt, y=Count, color=Status)) + geom_line() + scale_y_log10(
 
 # Generate hidden and observed data with sensible values of parameters (ISF=1, daysI=7, daysR=21, daysD=14, SDD=21)
 source("./CovFit/CovGenICRD.R")
+parms=c(1.00,7,21,14,0.05,21,0,70,4)
+gt <- CovGenICRD(parms)
+dh <- gt %>% select(xt=Day, newInfectious, newConfirmed, newRecovered, newDeaths)
+str(dh)
 
 icrd_rProc <- function(t, I,C,R,D, dh, delta.t=1, ...) {
   c(I=dh[t+1,"newInfectious"], C=dh[t+1,"newConfirmed"], R=dh[t+1,"newRecovered"], D=dh[t+1,"newDeaths"])
@@ -224,6 +228,8 @@ ggplot(data=simt,aes(x=xt,y=count, color=interaction(.id,key))) +
 #  DR = R + dN_IR; 
 #  DC = dN_SI; ")
 
+# ------------------------------------------------------------------------------------------
+# Working experiment
 # ------------------------------------------------------------------------------------------
 # hidden data
 det_rProc <- function (S, I, R, C, mu_SI, mu_IR, delta.t=1,...) {
@@ -334,6 +340,9 @@ plot(dg$xt,dg$newConfirmed)
 lines(dp$xt,dp$C, type="l")
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+# End working experiment
+# ------------------------------------------------------------------------------------------
+
 
 # if: for particle filtering only, that is, not applicable to deterministic models
 mf <- det_Pomp %>%
@@ -351,7 +360,7 @@ mf <- det_Pomp %>%
 
 
 # ==============================================================================
-# non Markov model with hidden states from external array
+# PoC: non Markov model with hidden states from external array
 # ==============================================================================
 h = seq(1,19,by=2) # data field used infuse deterministic model into pomp as 'pre'
 d = data.frame(Day=1:10, Count=seq(1,10)) # observed data
@@ -375,9 +384,80 @@ p <- pomp(data=d, times="Day", t0=1,
 ) 
 p %>% trajectory(format="data.frame", verbose=TRUE)
 tofun <- p %>% traj_objfun()
-tofun(par=NULL) # likelyhood of observed data given hidden state
+# likelyhood of observed data given hidden state calculated with params=par which are handed to skeleton
+# which in turn calls rpoc(t,states,params,...) rpoc needs to access the userdata array.
+# This array needs to be created for each run with a specific parameter set, that is, in rinit !!!
+# --> Do not know how to create a userdataset in rinit, that is visible to the other mode components <--
+# --> need to resort to creating a likelihood surface in a two dim loop that creates the userdata upfront
+# as the userdataset is created from a stochastic process, convergence of the optimizer is not guarantied !
+tofun(par=NULL) 
+fit <- subplex(initparms=NULL,fn=tofun) # 
 # -> test sucessfull, could ransfer data from array into skeleton function.
 # -> care must be taken with rinit data format and to get the first two records right !
+
+# ==============================================================================
+# PoC: non Markov model with hidden states from array generated in rinit()
+# ==============================================================================
+ic_rpfun <- function(t,I,C,IC, ...) {
+  cat('ic_rpfun:', t, IC[t,"icInfectious"], IC[t,"icConfirmed"], '\n')
+  c(I=as.numeric(IC[t+1,"icInfectious"]),C=as.numeric(IC[t+1,"icConfirmed"]))
+}
+ic_ifun <- function(t0, IC, ...) {
+  cat('ic_ifun:', t0, IC[t0,"newInfectious"], IC[t0,"newConfirmed"], '\n')
+  c(I=as.numeric(IC[t0,"icInfectious"]),C=as.numeric(IC[t0,"icConfirmed"]))
+}
+ic_dmfun <- function(t,newConfirmed, C, ..., log) {
+  d <- dpois(newConfirmed, lambda=C, log=log)
+  cat('ic_dmfun:', t, newConfirmed, C, log, d, '\n')
+  #dpois(newConfirmed, lambda=C, log=log)
+  #d <- dpois(newConfirmed, lambda=C, log=log)
+  #if (d==-Inf) d=2e-307
+  #if (d==Inf) d=2e+307
+  d
+}
+
+ic_pgrid <- expand.grid(
+  ISF=seq(0.1,1,by=0.1),
+  SDSF=seq(0.0,0.25,by=0.05)
+)
+parms=c(ISF=1,SDSF=0.1)
+
+f <- foreach(parms=iter(ic_pgrid,"row"), 
+             .combine=rbind, .inorder=FALSE, .options.multicore=list(set.seed=TRUE)) %dopar%
+  {
+    library(pomp)
+    ic <- CovGenIC(parms) %>% select(icInfectious=newInfectious, icConfirmed=newConfirmed )
+    
+    pm <- pomp(data=df, times="xt", t0=1,
+              IC = ic,
+              skeleton = pomp::map(ic_rpfun, delta.t=1),
+              rinit = ic_ifun,
+              dmeasure = ic_dmfun,
+              statenames=c("I","C"),
+              #paramnames=c("ISF","SDSF"),
+              #params=c(ISF=1,SDSF=0.1),
+              verbose=TRUE
+    
+    )
+    ic_tofun <- pm %>% traj_objfun()
+    # ic_tofun <- pm %>% traj_objfun(est=c("ISF","SDSF"))
+    parms$logLik <- ic_tofun(par=parms) # --> TODO: 20200829 11h: logLik=INF
+    parms
+  }
+
+spy(pomp)
+p %>% trajectory(format="data.frame", verbose=TRUE)
+tofun <- p %>% traj_objfun()
+tofun(par=NULL) # likelyhood of observed data given hidden state
+
+
+o <- det_Inits[which(f$logLik==min(f$logLik,na.rm=TRUE)),]
+plot(tapply(f$logLik,f$N,min), type="b")
+
+ggplot(data=f, aes(x=mu_SI, y=mu_IR, fill=logLik)) +
+  geom_tile() + 
+  facet_wrap(N~.) +
+  scale_fill_gradient(low="white", high="black")
 
 # ==============================================================================
 # non Markov model 

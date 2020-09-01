@@ -4,6 +4,80 @@ library(dplyr)
 library(tidyr)
 library(lubridate)
 
+CovGenIC <- function(parms) {
+  # Default Parameters
+  # parms=c(1,7,21,0,70,4)
+  ISF=1          # Infection Spread Factor
+  SDSF=0         # ShutDown Spread Factor (percentage)
+  daysI=5        # Number of days specimen is infectios
+  SDD=21         # ShutDown Day
+  N=70           # Number of days to calculate data
+  I=4            # Initial number of Infections
+  
+  # Parameters for optimization
+  ISF=parms[1]
+  SDSF=parms[2]
+  #daysI=parms[3]
+  #SDD=parms[4]
+  #N=parms[5]
+  #I=parms[6]
+  # cat(" fun: ", ISF, daysI, daysR, daysD, CFP)
+  cat(" CovGenIC params: ", ISF, daysI, SDD, SDSF,'\n')
+  
+  
+  # Calculate values of time varying parameters
+  isf <- function(t=0) {k=ISF; if(t>=SDD)k=SDSF*ISF; return(k)} # infection spread factor
+
+  # Distribute case states on timeline: infectious->confirmed, confirmed->recovered, confirmed->dead
+  icd <- function(t=0,n,daysI) {k<-rpois(n,daysI-1)+1; km<-max(k); h<-hist(k,breaks=0:km,plot=FALSE)$counts; return(h)}
+
+  # Initialize arrays
+  nI=dI=cI=tI=rep(0,N)
+  nC=tC=rep(0,N)
+  mC <- matrix(data=0, nrow=N, ncol=N)
+  
+  # Initialize infection
+  t=1
+  nI[t]=dI[t]=cI[t]=tI[t]=I
+  fC <- icd(t,nI[t],daysI) # new infection to cases time distribution
+  fCn <- length(fC)-1
+  # mC[t,t:min(t+fCn,N)] <- fC[1:(min(t+fCn+1,N)-t)]
+  fCm <- t:min(t+fCn,N)
+  mC[t,fCm] <- fC[1:length(fCm)]
+ 
+  for (t in 2:N) {
+    
+    # Compartment I (Infectious)
+    nI[t] <- round(cI[t-1] * isf(t-1))
+    
+    # Compartment C (Cases, tested positiv) 
+    if(nI[t]>0) {
+      fC <- icd(t,nI[t],daysI) # new infection to cases time distribution
+      # record future cases arising from new infections to row t of the new cases matrix
+      fCn <- length(fC)-1
+      fCm <- t:min(t+fCn,N)
+      mC[t,fCm] <- fC[1:length(fCm)]
+    }
+    
+    # new Confirmed cases of today (spread out on previous days)
+    nC[t] <- sum(mC[,t])        # new Cases
+    tC[t] <- tC[t-1] + nC[t]
+    
+    # add new infections and remove new Cases to/from the Infectious compartment
+    dI[t] <- nI[t] - nC[t]      # difference to yesterday (remove cases propagated to confirmed)
+    cI[t] <- cI[t-1] + dI[t]    # current infectious
+    tI[t] <- tI[t-1] + nI[t]    # total number of ever infectious
+  }  
+  
+  # Data Frame
+  dd <- data.frame(Day=1:N,
+                   totInfectious=tI, totConfirmed=tC,
+                   curInfectious=cI,
+                   newInfectious=nI, newConfirmed=nC)
+  dd <- cbind(dd, as.data.frame(mC, colnames=paste0("day",1:N)))
+  return(dd)
+}
+
 
 CovGenICRD <- function(parms) {
   # Default Parameters
@@ -120,11 +194,11 @@ CovGenICRD <- function(parms) {
 }
 
 # ground truth data
-parms=c(0.65,7,20,14,0.05, 8,0, 8,4)
-parms=c(1.00,7,21,14,0.05,21,0,70,4)
-gt <- CovGenICRD(parms)
-dh <- gt %>% select(xt=Day, newInfectious, newConfirmed, newRecovered, newDeaths)
-str(dh)
+#parms=c(0.65,7,20,14,0.05, 8,0, 8,4)
+#parms=c(1.00,7,21,14,0.05,21,0,70,4)
+#gt <- CovGenICRD(parms)
+#dh <- gt %>% select(xt=Day, newInfectious, newConfirmed, newRecovered, newDeaths)
+#str(dh)
 #dp <- gt %>% tidyr::gather(key=Status, val=Count, newInfectious, newConfirmed, newRecovered, newDeaths) %>% select(Day,Status,Count)
 #ggplot(data=dp, aes(x=Day, y=Count, col=Status, shape=Status)) + geom_line() + geom_point(size=3) #+
   #ggtitle(paste("Ground Truth",parms[1],parms[2])) +
