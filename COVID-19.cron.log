@@ -40611,3 +40611,118 @@ Saving to: ‘./data/zip/COVID-19-austria.V0414.20200904-1406.zip’
 20200904-140615.771 Writing new data to ./data/COVID-19-austria.csv 
 20200904-140615.809 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200904-140616.005 Done runing data extraction from bmsgpk web pages 
+[master 0db97f7] 2020-09-04 14:06:04 Auto-Extract data from bmsgpk website
+ 10 files changed, 7786 insertions(+)
+ create mode 100644 bmsgpk/data/ampel/CoronaAmpel-20200904.js
+ create mode 100644 bmsgpk/data/ampel/CoronaAmpel.20200904-1403.js
+ create mode 100644 bmsgpk/data/ampel/Warnstufen_Corona_Ampel_aktuell.json
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V0414.20200904-1406.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200904-1406.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200904-1406.dmp
+To git@github.com:at062084/COVID-19-Austria.git
+   93c6737..0db97f7  HEAD -> master
+
+--------------------------------------------------------------------
+2020-09-04 15:01:39 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2020-09-04 15:01:39 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-09-04 15:01:39 Running auto-extraction of COVID-19 data from bmsgpk website
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘rvest’
+
+The following object is masked from ‘package:readr’:
+
+    guess_encoding
+
+20200904-150140.531 Running COVID-19-bmsgpk-extract.R 
+20200904-150140.571 Calling scrapeCovid2 with 20200904-1501 
+20200904-150140.614 Download Ampel data from "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+Error in paste("Storing Ampel data to", bmsgpkFile) : 
+  object 'bmsgpkFile' not found
+Calls: scrapeCovid2 -> logMsg -> cat -> paste -> paste
+6: (function () 
+   traceback(2))()
+5: paste("Storing Ampel data to", bmsgpkFile)
+4: paste(format(Sys.time(), "%Y%m%d-%H%M%OS3"), msg, "\n")
+3: cat(paste(format(Sys.time(), "%Y%m%d-%H%M%OS3"), msg, "\n"), 
+       sep = "", file = logFile, append = TRUE)
+2: logMsg(paste("Storing Ampel data to", bmsgpkFile))
+1: scrapeCovid2(ts = ts)
+20200904-150140.617 DISABLED: Calling scrapeHospitalisierung with 20200904-1501 
+20200904-150140.618 Calling scrapeInfo with 20200904-1501 
+20200904-150140.641 Scraping using headless chrome for https://info.gesundheitsministerium.at/dashboard_Epidem.html?l=de 
+20200904-150140.642 Dumping page to ./html/COVID-19-austria.info.20200904-1501.dmp 
+MESA-LOADER: failed to retrieve device information
+gbm: failed to open any driver (search paths /usr/lib64/dri)
+gbm: Last dlopen error: /usr/lib64/dri/i915_dri.so: cannot open shared object file: Operation not permitted
+failed to load driver: i915
+gbm: failed to open any driver (search paths /usr/lib64/dri)
+gbm: Last dlopen error: /usr/lib64/dri/kms_swrast_dri.so: cannot open shared object file: Operation not permitted
+failed to load driver: kms_swrast
+gbm: failed to open any driver (search paths /usr/lib64/dri)
+gbm: Last dlopen error: /usr/lib64/dri/swrast_dri.so: cannot open shared object file: Operation not permitted
+failed to load swrast driver
+20200904-150142.794 Analysing dump file ./html/COVID-19-austria.info.20200904-1501.dmp 
+20200904-150142.843 Extracting table of Confirmed in 100+ regions 
+                 Stamp    Status                Region Count
+89 2020-09-04 15:01:42 Confirmed            Wien_Stadt  8615
+90 2020-09-04 15:01:42 Confirmed  Wiener_Neustadt_Land   162
+91 2020-09-04 15:01:42 Confirmed Wiener_Neustadt_Stadt   132
+92 2020-09-04 15:01:42 Confirmed             Wolfsberg    72
+93 2020-09-04 15:01:42 Confirmed           Zell_am_See   409
+94 2020-09-04 15:01:42 Confirmed                Zwettl    84
+Warning message:
+funs() is soft deprecated as of dplyr 0.8.0
+Please use a list of either functions or lambdas: 
+
+  # Simple named list: 
+  list(mean = mean, median = median)
+
+  # Auto named with `tibble::lst()`: 
+  tibble::lst(mean, median)
+
+  # Using lambdas
+  list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
+This warning is displayed once per session. 
+20200904-150142.942 Calling scrapeZIP with 20200904-1501 
+20200904-150142.943 Downloading https://info.gesundheitsministerium.at/data/data.zip to ./data/zip/COVID-19-austria.V0414.20200904-1501.zip 
+--2020-09-04 15:01:42--  https://info.gesundheitsministerium.at/data/data.zip
+Resolving info.gesundheitsministerium.at (info.gesundheitsministerium.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to info.gesundheitsministerium.at (info.gesundheitsministerium.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 10066 (9,8K) [application/zip]
+Saving to: ‘./data/zip/COVID-19-austria.V0414.20200904-1501.zip’
+
+     0K .........                                             100%  499K=0,02s
+
+2020-09-04 15:01:43 (499 KB/s) - ‘./data/zip/COVID-19-austria.V0414.20200904-1501.zip’ saved [10066/10066]
+
+20200904-150143.178 Writing new data to ./data/COVID-19-austria.csv 
+Error in rbind(df, dc) : object 'dc' not found
+2: (function () 
+   traceback(2))()
+1: rbind(df, dc)
+20200904-150143.225 Writing new data to ./data/COVID-19-austria.regions.csv 
+20200904-150143.448 Done runing data extraction from bmsgpk web pages 
