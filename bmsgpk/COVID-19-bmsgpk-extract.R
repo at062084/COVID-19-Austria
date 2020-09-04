@@ -21,6 +21,15 @@ logMsg <- function(msg) {
 
 scrapeCovid2 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
 
+  # wget -O CoronaAmpel-20200904.js https://corona-ampel.gv.at/sites/corona-ampel.gv.at/files/assets/Warnstufen_Corona_Ampel_aktuell.json
+  
+  ampelFile <- paste0("./data/ampel/CoronaAmpel.",ts,".js")
+  url="\"https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html\""
+  logMsg(paste("Download Ampel data from", url))
+  logMsg(paste("Storing Ampel data to", bmsgpkFile))
+  cmd <- paste(url, "-O", ampelFile)
+  system2("wget", cmd)
+  
   # get html page from bmsgpk
   bmsgpkFile <- paste0("./html/COVID-19-austria.bmsgpk.",ts,".html")
   url="\"https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html\""
