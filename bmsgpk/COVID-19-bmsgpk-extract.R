@@ -26,7 +26,7 @@ scrapeCovid2 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   ampelFile <- paste0("./data/ampel/CoronaAmpel.",ts,".js")
   url="\"https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html\""
   logMsg(paste("Download Ampel data from", url))
-  logMsg(paste("Storing Ampel data to", bmsgpkFile))
+  logMsg(paste("Storing Ampel data to", ampelFile))
   cmd <- paste(url, "-O", ampelFile)
   system2("wget", cmd)
   
