@@ -59,7 +59,7 @@ scrapeCovid2 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
 
   df <- dx %>%
     dplyr::select(11,2:10) %>% 
-    mutate_all(funs(str_replace(., "\\.", ""))) %>% 
+    mutate_all(funs(str_replace_all(., "\\.", ""))) %>% 
     mutate_all(funs(as.integer(.))) %>%
     dplyr::mutate(Stamp=Stamp,Status=Status)  %>%
     dplyr::select(Stamp,Status,1:10) 
