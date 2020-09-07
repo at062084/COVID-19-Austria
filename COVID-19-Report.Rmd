@@ -23,42 +23,183 @@ library(dplyr)
 library(tidyr)
 library(ggplot2)
 library(forcats)
+library(zoo)
 ```
 
 \newpage
 
-# Status 
+# Corections to data
+```{r}
+# Several reported 'Tested' records seem to be wrong. 
+# Here obvious errors are promoted to imputation
+err <- data.frame(rbind(
+c("B","2020-05-16","Tested",NA),
+c("B","2020-05-31","Tested",NA),
+c("B","2020-06-01","Tested",NA),
+c("B","2020-06-21","Tested",NA),
+c("B","2020-06-26","Tested",NA),
+c("K","2020-06-21","Tested",NA),
+c("Szb","2020-05-06","Tested",NA),
+c("Szb","2020-06-09","Tested",NA),
+c("Szb","2020-06-10","Tested",NA),
+c("W","2020-04-15","Tested",32660),
+c("W","2020-04-22","Tested",NA),
+c("W","2020-04-23","Tested",NA)
+), stringsAsFactors=FALSE)
+colnames(err)<-c("County","Date","Status","Value")
+err$Value <- as.integer(err$Value)
+```
 
+# Status 
 ## Prepare data
 ```{r}
 csvFile <- "/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/data/COVID-19-austria.states.curated.status.csv"
 dv <- read.csv(csvFile, stringsAsFactors=FALSE) %>% 
   dplyr::mutate(Stamp=as.POSIXct(Stamp), Date=date(Stamp)) 
 
-df <- dv %>% 
+# Bug fix for wrong 'Tested' data from 14.8.2020 to 4.9.2020
+idxStamp <- dv$Stamp>=strptime("2020-08-14", format="%Y-%m-%d") & dv$Stamp<=strptime("2020-09-05", format="%Y-%m-%d")
+idxStatus <- dv$Status=="Tested"
+idx <- idxStamp & idxStatus
+dv[idx,"AT"] <- dv[idx,"AT"]*1000
+
+# Correct 'Tested' data along err
+for(k in 1:dim(err)[1]) {
+  dv[dv$Date==strptime(err[k,"Date"],format="%Y-%m-%d") & dv$Status==err[k,"Status"] ,err[k,"County"]] <- err[k,"Value"] 
+}
+
+# All Counties
+db <- dv %>% 
   dplyr::arrange(Stamp) %>%
   dplyr::group_by(Date,Status) %>%
   dplyr::filter(row_number()==n()) %>%
-  dplyr::ungroup() %>%
-  dplyr::select(Date,Status,Count=AT) %>%
+  dplyr::ungroup() %>% dplyr::ungroup() %>%
+  dplyr::select(-Stamp) %>%
+  tidyr::gather(key=County, value=Count, c(-Status,-Date)) %>%
   tidyr::spread(key=Status, val=Count) %>%
-  dplyr::mutate(newConfirmed=Confirmed-lag(Confirmed),newDeaths=Deaths-lag(Deaths)) %>%
-  dplyr::filter(!is.na(newConfirmed), newConfirmed>0) %>%
-  dplyr::select(1,8,2,9,3:7)
-tail(df,12)
+  dplyr::arrange(County,Date) %>%
+  dplyr::group_by(County, add=FALSE) %>% 
+  # impute missing values. Was difficult to get the syntax working !
+  dplyr::mutate_at(vars(-group_cols()), imputeTS::na_interpolation, option="linear", maxgap=3) %>% 
+  dplyr::ungroup() %>%
+  dplyr::mutate(newConfirmed=Confirmed-lag(Confirmed)) %>%
+  dplyr::mutate(newDeaths=Deaths-lag(Deaths)) %>%
+  dplyr::mutate(newTested=Tested-lag(Tested)) %>%
+  dplyr::mutate(newRecovered=Recovered-lag(Recovered)) %>%
+  dplyr::select(1,2, 1+c(10,7, 8,2, 11,6, 9,3, 4,5))
+tail(db,12)
+
+# apply rolling mean to 'new*' cols
+drm <- db %>%
+  dplyr::arrange(Date, County) %>%
+  dplyr::group_by(County) %>%
+  dplyr::mutate_at(vars(starts_with("new")), rollmean, k=7, fill=NA, align="right") %>%
+  dplyr::ungroup()
+
+# KW's
+dkw <- db %>% 
+  dplyr::mutate(KW=week(Date)) %>% 
+  dplyr::select(-Date) %>%
+  dplyr::group_by(County, KW) %>%
+  dplyr::summarise_all(sum) %>%
+  dplyr::ungroup()
+
+# AT
+df <- db %>% 
+  dplyr::filter(County=="AT") %>%
+  dplyr::select(-County) 
+
+dfrm <- drm %>% 
+  dplyr::filter(County=="AT") %>%
+  dplyr::select(-County) 
 
 # Vienna:
-dw <- dv %>% 
-  dplyr::arrange(Stamp) %>%
-  dplyr::group_by(Date,Status) %>%
-  dplyr::filter(row_number()==n()) %>%
-  dplyr::ungroup() %>%
-  dplyr::select(Date,Status,Count=W) %>%
-  tidyr::spread(key=Status, val=Count) %>%
-  dplyr::mutate(newConfirmed=Confirmed-lag(Confirmed),newDeaths=Deaths-lag(Deaths)) %>%
-  dplyr::filter(!is.na(newConfirmed), newConfirmed>0) %>%
-  dplyr::select(1,8,2,9,3:7)
-tail(dw,12)
+dw <- db %>% 
+  dplyr::filter(County=="W") %>%
+  dplyr::select(-County) 
+
+dwrm <- drm %>% 
+  dplyr::filter(County=="W") %>%
+  dplyr::select(-County) 
+
+#dt <- ds %>% dplyr::filter(newConfirmed/newTested<.1, newTested>0)  
+
+# newTested
+ggplot(data=drm%>%dplyr::filter(County!="AT"), aes(x=Date, y=newTested, color=County)) + 
+    geom_point(size=3, aes(shape=County)) +
+    geom_line() +
+    scale_shape_manual(values=c(1:10)) +
+    #scale_x_continuous(limits=c(17,NA)) +
+    scale_x_date(limits=c(as.Date(strptime("2020-05-01",format="%Y-%m-%d")),NA)) +
+    scale_y_continuous(limits=c(0,5000))
+
+#ggplot(data=drm%>%dplyr::filter(County!="AT"), aes(x=KW, y=newTested, color=County)) + 
+#    geom_point(size=3, aes(shape=County)) +
+#    geom_line() +
+#    scale_shape_manual(values=c(1:10)) +
+#    scale_x_continuous(limits=c(17,NA)) +
+#    scale_y_continuous(limits=c(0,35000))
+
+# newConfirmed
+ggplot(data=drm%>%dplyr::filter(County!="AT"), aes(x=Date, y=newConfirmed, color=County)) + 
+    geom_point(size=3, aes(shape=County)) +
+    geom_line() +
+    scale_shape_manual(values=c(1:10)) +
+    #scale_x_continuous(limits=c(17,NA)) +
+    scale_x_date(limits=c(as.Date(strptime("2020-05-01",format="%Y-%m-%d")),NA)) +
+    scale_y_continuous(limits=c(0,150))
+#ggplot(data=drm%>%dplyr::filter(County!="AT"), aes(x=KW, y=newConfirmed, color=County)) + 
+#    geom_point(size=3, aes(shape=County)) +
+#    geom_line() +
+#    scale_shape_manual(values=c(1:10)) +
+#    scale_x_continuous(limits=c(17,NA)) +
+#    scale_y_continuous(limits=c(0,1000))
+
+# newConfirmed/newTested
+ggplot(data=drm, aes(x=Date, y=newConfirmed/newTested, color=County)) + 
+  geom_point(size=3, aes(shape=County)) +
+  geom_line() +
+  scale_shape_manual(values=c(1:10)) +
+  #scale_x_continuous(limits=c(17,NA)) +
+  scale_x_date(limits=c(as.Date(strptime("2020-05-01",format="%Y-%m-%d")),NA)) +
+  scale_y_continuous(limits=c(0,.06), breaks=seq(0,.06,by=.01))
+
+#ggplot(data=dt, aes(x=KW, y=newConfirmed/newTested, color=County)) + 
+#  geom_point(size=3, aes(shape=County)) +
+#  geom_line() +
+#  scale_shape_manual(values=c(1:10)) +
+#  scale_x_continuous(limits=c(17,NA)) +
+#  scale_y_continuous(limits=c(0,.06), breaks=seq(0,.06,by=.01))
+
+dc <- dw %>% 
+  #dplyr::filter(!is.na(Tested)) %>% 
+  dplyr::filter(month(Date)>=4) %>%
+  dplyr::filter(newTested<20000) %>%
+  dplyr::select(Date,newConfirmed,Confirmed,Tested,newTested)
+
+ggplot(data=dc, aes(x=newTested, y=newConfirmed/newTested, shape=factor(month(Date)), color=month(Date))) +   geom_point(size=4) + 
+  scale_y_continuous(limits=c(0,.075)) + 
+  scale_color_gradient2(low = "red", mid="white", high="blue", midpoint=6.5) +
+  scale_shape_manual(values=14+c(1:12)) + 
+  scale_fill_brewer()
+
+# TODO replace stat_smooth with rolling mean !!!
+scaled=50000
+ggplot(data=dwrm, aes(x=Date, y=newConfirmed/newTested)) +
+  scale_x_date(limits=c(as.Date(strptime("2020-05-01",format="%Y-%m-%d")),NA)) +
+  scale_y_continuous(limits=c(0,NA), breaks=seq(0,.1,by=.01), 
+                     sec.axis = sec_axis(~ . *scaled, breaks=seq(0,10000,by=500))) +
+  geom_point(size=1, color="blue") + 
+  geom_line(color="blue") +
+  #scale_y_continuous(limits=c(0,.11), breaks=seq(0,.15,by=.01)) +
+  #stat_smooth(span=.4) +
+  geom_point(aes(y=newTested/50000, color="red"), shape=1) +
+  geom_line(aes(y=newTested/50000, color="red")) +
+  geom_point(aes(y=newConfirmed/5000, color="green"), shape=2) +
+  geom_line(aes(y=newConfirmed/5000, color="green"))
+  #stat_smooth(aes(y=newConfirmed/1000), span=.4, col="red") +
+  #stat_smooth(aes(y=newTested/50000), span=.4, col="green")
+
 ```
 
 

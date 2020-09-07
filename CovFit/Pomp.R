@@ -3,6 +3,7 @@ library(ggplot2)
 library(magrittr)
 library(tidyverse)
 library(pomp)
+library(iterators)
 
 library(doMC)
 registerDoMC(cores=6)
@@ -399,34 +400,39 @@ fit <- subplex(initparms=NULL,fn=tofun) #
 # PoC: non Markov model with hidden states from array generated in rinit()
 # ==============================================================================
 ic_rpfun <- function(t,I,C,IC, ...) {
-  cat('ic_rpfun:', t, IC[t,"icInfectious"], IC[t,"icConfirmed"], '\n')
+  #cat('ic_rpfun:', t, IC[t,"icInfectious"], IC[t,"icConfirmed"], '\n')
   c(I=as.numeric(IC[t+1,"icInfectious"]),C=as.numeric(IC[t+1,"icConfirmed"]))
 }
 ic_ifun <- function(t0, IC, ...) {
-  cat('ic_ifun:', t0, IC[t0,"newInfectious"], IC[t0,"newConfirmed"], '\n')
+  #cat('ic_ifun:', t0, IC[t0,"newInfectious"], IC[t0,"newConfirmed"], '\n')
   c(I=as.numeric(IC[t0,"icInfectious"]),C=as.numeric(IC[t0,"icConfirmed"]))
 }
 ic_dmfun <- function(t,newConfirmed, C, ..., log) {
-  d <- dpois(newConfirmed, lambda=C, log=log)
-  cat('ic_dmfun:', t, newConfirmed, C, log, d, '\n')
+  # Workaround: in case expected number of newConfirmed C==0, dpois cannot be calculated.
+  if(C==0) C=.001
+  dpois(newConfirmed, lambda=C, log=log)
+  #cat('ic_dmfun:', t, newConfirmed, C, log, d, '\n')
   #dpois(newConfirmed, lambda=C, log=log)
   #d <- dpois(newConfirmed, lambda=C, log=log)
   #if (d==-Inf) d=2e-307
   #if (d==Inf) d=2e+307
-  d
+  # d
 }
 
 ic_pgrid <- expand.grid(
   ISF=seq(0.1,1,by=0.1),
-  SDSF=seq(0.0,0.25,by=0.05)
+  SDSF=seq(0.1,0.5,by=0.05)
 )
-parms=c(ISF=1,SDSF=0.1)
+p=c(ISF=1,SDSF=0.1)
 
 f <- foreach(parms=iter(ic_pgrid,"row"), 
-             .combine=rbind, .inorder=FALSE, .options.multicore=list(set.seed=TRUE)) %dopar%
+             .combine=rbind, 
+             .inorder=FALSE, 
+             .options.multicore=list(set.seed=TRUE)) %dopar%
   {
     library(pomp)
-    ic <- CovGenIC(parms) %>% select(icInfectious=newInfectious, icConfirmed=newConfirmed )
+    p <- as.vector(unlist(parms))
+    ic <- CovGenIC(p) %>% select(icInfectious=newInfectious, icConfirmed=newConfirmed )
     
     pm <- pomp(data=df, times="xt", t0=1,
               IC = ic,
@@ -441,9 +447,20 @@ f <- foreach(parms=iter(ic_pgrid,"row"),
     )
     ic_tofun <- pm %>% traj_objfun()
     # ic_tofun <- pm %>% traj_objfun(est=c("ISF","SDSF"))
-    parms$logLik <- ic_tofun(par=parms) # --> TODO: 20200829 11h: logLik=INF
-    parms
+    logLik <- unlist(ic_tofun(par=p)) # --> TODO: 20200829 11h: logLik=INF
+    p$logLik <- as.numeric(logLik)
+    #cat(p[1],p[2],p[3],'\n')
+    unlist(p)
   }
+f <- as.data.frame(f)
+colnames(f)=c("ISF","SDSF","logLik")
+head(f)
+
+ggplot(data=f, aes(x=ISF, y=SDSF, fill=log(logLik))) +
+  geom_tile() + 
+  scale_fill_gradient(low="white", high="black")
+
+
 
 spy(pomp)
 p %>% trajectory(format="data.frame", verbose=TRUE)
@@ -456,7 +473,7 @@ plot(tapply(f$logLik,f$N,min), type="b")
 
 ggplot(data=f, aes(x=mu_SI, y=mu_IR, fill=logLik)) +
   geom_tile() + 
-  facet_wrap(N~.) +
+  #facet_wrap(N~.) +
   scale_fill_gradient(low="white", high="black")
 
 # ==============================================================================

@@ -474,6 +474,30 @@ weed.f <- function(b,mydata){
 weed.optx <- optimx(par=start1, fn=weed.f, mydata=weeds, control=list(all.methods=TRUE, save.failures=TRUE, maxit=2500))
 print(weed.optx)
 
-
-
-
+library(magrittr)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+cvr <- read.csv("/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/data/COVID-19-austria.regions.csv", stringsAsFactors=FALSE)
+str(cvr)
+df <- cvr %>% 
+  dplyr::select(-Status) %>%
+  dplyr::mutate(Date=as.Date(Stamp), Confirmed=Count) %>%
+  dplyr::group_by(Date,Region) %>%
+  dplyr::summarize(Confirmed=last(Confirmed)) %>%
+  dplyr::ungroup() %>%
+  dplyr::filter(Date>=as.Date("2020-06-29")) %>%
+  dplyr::filter(!is.na(Confirmed)) %>%
+  dplyr::group_by(Region) %>%
+  dplyr::mutate(newConfirmed=Confirmed-dplyr::lag(Confirmed, n=1, order_by=Date)) %>%
+  dplyr::ungroup() %>%
+  dplyr::filter(!is.na(newConfirmed)) %>%
+  dplyr::group_by(Region) %>%
+  dplyr::mutate(hotSpot=max(newConfirmed)>12) %>%
+  dplyr::ungroup() %>%
+  dplyr::filter(hotSpot==TRUE, Region!="Wien_Stadt", Region!="Linz-Land", Region!="Linz_Stadt")
+str(df)
+ggplot(data=df, aes(x=Date, y=newConfirmed, col=Region)) +  
+  geom_point(aes(shape=Region), size=3) + 
+  geom_line(aes(linetype=Region),size=1.5)
+  
