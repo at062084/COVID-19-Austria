@@ -5,6 +5,7 @@
 - 'number of days until times ten cases': This is the main unit for speed of spread of COVID-19 used for all estimates
 
 ## News and Enhancements
+- 2020-04-20: Update readme and plots. The measures taken on 15.3. clearly manifest in a pronounced increase of the *10 days 2-3 weeks later
 - 2020-04-13: Update readme and plots
 - 2020-04-12: New repo with dockerized version of scraper. runs on kubernetes. writes dumps to COS. Test mode.
 - 2020-04-04: Confirmed reported as 11781 for 09:30, an obvious data error. Corrected manually to an estimated 11550

@@ -4,6 +4,18 @@ library(dplyr)
 library(tidyr)
 library(lubridate)
 
+# Calculate values of time varying parameters
+isf <- function(t=0, ISF, SDD, SDSF) {k=ISF; if(t>=SDD)k=SDSF*ISF; return(k)} # infection spread factor
+
+# Distribute case states on timeline: infectious->confirmed, confirmed->recovered, confirmed->dead
+icd <- function(t=0,n,daysI) {k<-rpois(n,daysI-1)+1; km<-max(k); h<-hist(k,breaks=0:km,plot=FALSE)$counts; return(h)}
+icD <- function(t=0,n,daysI) {
+  # poisson density function on scale up 5 times mean
+  g <- c(0,dpois(0:(daysI*5),daysI-1))*n
+  h <- smart.round(g)
+  return (h[1:max(which(h==0))])
+}
+
 CovGenIC <- function(parms) {
   # Default Parameters
   # parms=c(1,7,21,0,70,4)
@@ -22,15 +34,8 @@ CovGenIC <- function(parms) {
   #N=parms[5]
   #I=parms[6]
   # cat(" fun: ", ISF, daysI, daysR, daysD, CFP)
-  cat(" CovGenIC params: ", ISF, daysI, SDD, SDSF,'\n')
+  # cat(" CovGenIC params: ", ISF, daysI, SDD, SDSF,'\n')
   
-  
-  # Calculate values of time varying parameters
-  isf <- function(t=0) {k=ISF; if(t>=SDD)k=SDSF*ISF; return(k)} # infection spread factor
-
-  # Distribute case states on timeline: infectious->confirmed, confirmed->recovered, confirmed->dead
-  icd <- function(t=0,n,daysI) {k<-rpois(n,daysI-1)+1; km<-max(k); h<-hist(k,breaks=0:km,plot=FALSE)$counts; return(h)}
-
   # Initialize arrays
   nI=dI=cI=tI=rep(0,N)
   nC=tC=rep(0,N)
@@ -39,7 +44,7 @@ CovGenIC <- function(parms) {
   # Initialize infection
   t=1
   nI[t]=dI[t]=cI[t]=tI[t]=I
-  fC <- icd(t,nI[t],daysI) # new infection to cases time distribution
+  fC <- icD(t,nI[t],daysI) # new infection to cases time distribution
   fCn <- length(fC)-1
   # mC[t,t:min(t+fCn,N)] <- fC[1:(min(t+fCn+1,N)-t)]
   fCm <- t:min(t+fCn,N)
@@ -48,11 +53,11 @@ CovGenIC <- function(parms) {
   for (t in 2:N) {
     
     # Compartment I (Infectious)
-    nI[t] <- round(cI[t-1] * isf(t-1))
+    nI[t] <- round(cI[t-1] * isf(t-1, ISF, SDD, SDSF))
     
     # Compartment C (Cases, tested positiv) 
     if(nI[t]>0) {
-      fC <- icd(t,nI[t],daysI) # new infection to cases time distribution
+      fC <- icD(t,nI[t],daysI) # new infection to cases time distribution
       # record future cases arising from new infections to row t of the new cases matrix
       fCn <- length(fC)-1
       fCm <- t:min(t+fCn,N)
@@ -193,6 +198,18 @@ CovGenICRD <- function(parms) {
   return(dd)
 }
 
+
+# Use gamma instead of poisson distribution: mu=shape*scale, var=shape*scale^2
+# N=50
+# mu = nDays
+# rsd=1/sqrt(mu)/2; Relative Standard Deviation 
+# k=1/rsd/rsd; t=mu*rsd*rsd; 
+# plot(dgamma(0:N,shape=k, scale=t),type="l", col="green"); 
+# lines(dpois(0:N,mu), col="blue"); grid()
+# lines(dlnorm(0:N, meanlog=log(mu), sdlog=.1), col="red"); grid()
+
+
+
 # ground truth data
 #parms=c(0.65,7,20,14,0.05, 8,0, 8,4)
 #parms=c(1.00,7,21,14,0.05,21,0,70,4)
@@ -205,3 +222,9 @@ CovGenICRD <- function(parms) {
 #  scale_y_continuous(trans="log10")
 #  scale_x_continuous(breaks=1:10*7) 
 
+smart.round <- function(x) {
+  y <- floor(x)
+  indices <- tail(order(x-y), round(sum(x)) - sum(y))
+  y[indices] <- y[indices] + 1
+  y
+}

@@ -411,54 +411,97 @@ ic_dmfun <- function(t,newConfirmed, C, ..., log) {
   # Workaround: in case expected number of newConfirmed C==0, dpois cannot be calculated.
   if(C==0) C=.001
   dpois(newConfirmed, lambda=C, log=log)
-  #cat('ic_dmfun:', t, newConfirmed, C, log, d, '\n')
-  #dpois(newConfirmed, lambda=C, log=log)
-  #d <- dpois(newConfirmed, lambda=C, log=log)
-  #if (d==-Inf) d=2e-307
-  #if (d==Inf) d=2e+307
-  # d
 }
 
+# Grid for logLik surface
 ic_pgrid <- expand.grid(
-  ISF=seq(0.1,1,by=0.1),
-  SDSF=seq(0.1,0.5,by=0.05)
+  ISF=seq(0.45,0.6,by=0.005),
+  SDSF=seq(0.15,0.45,by=0.005)
 )
-p=c(ISF=1,SDSF=0.1)
 
-f <- foreach(parms=iter(ic_pgrid,"row"), 
+# Calculate logLik surface
+pl <- foreach(parms=iter(ic_pgrid,"row"), 
              .combine=rbind, 
              .inorder=FALSE, 
-             .options.multicore=list(set.seed=TRUE)) %dopar%
-  {
-    library(pomp)
-    p <- as.vector(unlist(parms))
-    ic <- CovGenIC(p) %>% select(icInfectious=newInfectious, icConfirmed=newConfirmed )
-    
-    pm <- pomp(data=df, times="xt", t0=1,
-              IC = ic,
-              skeleton = pomp::map(ic_rpfun, delta.t=1),
-              rinit = ic_ifun,
-              dmeasure = ic_dmfun,
-              statenames=c("I","C"),
-              #paramnames=c("ISF","SDSF"),
-              #params=c(ISF=1,SDSF=0.1),
-              verbose=TRUE
-    
-    )
-    ic_tofun <- pm %>% traj_objfun()
-    # ic_tofun <- pm %>% traj_objfun(est=c("ISF","SDSF"))
-    logLik <- unlist(ic_tofun(par=p)) # --> TODO: 20200829 11h: logLik=INF
-    p$logLik <- as.numeric(logLik)
-    #cat(p[1],p[2],p[3],'\n')
-    unlist(p)
-  }
-f <- as.data.frame(f)
-colnames(f)=c("ISF","SDSF","logLik")
-head(f)
+             .options.multicore=list(set.seed=TRUE)) %dopar%  { ic_pomp(parms, bPlot=FALSE, bLogLik=FALSE) }
 
-ggplot(data=f, aes(x=ISF, y=SDSF, fill=log(logLik))) +
+# calculate logLik for parms
+# p=data.frame(ISF=.53,SDSF=0.25)
+ic_pomp <- function(parms, bPlot=FALSE, bLogLik=TRUE) {
+
+  p <- data.frame(parms)
+  
+  # calculate 'Hidden Data' as stochastic process with infectious period poison distributed
+  # parameters: ISF: Disease Spread Factor during Infectious period. SDSF: Spread Factor after ShutDow
+  ic <- CovGenIC(unlist(p)) %>%
+    dplyr::select(icInfectious=newInfectious, icConfirmed=newConfirmed)
+  
+  pm <- pomp(data=df, times="xt", t0=1,
+             IC = ic,
+             skeleton = pomp::map(ic_rpfun, delta.t=1),
+             rinit = ic_ifun,
+             dmeasure = ic_dmfun,
+             statenames=c("I","C"),
+             #paramnames=c("ISF","SDSF"),
+             #params=c(ISF=1,SDSF=0.1),
+             verbose=FALSE
+             
+  )
+  ic_tofun <- pm %>% traj_objfun()
+  p$logLik <- ic_tofun(par=unlist(p))
+  # cat(p[1,1],p[1,2],p[1,3],'\n')
+  
+  if(bPlot) {
+    fileName=paste0("./CovFit/plots/",paste("ic_pomp",p[1,1],p[1,2],round(p[1,3]),sep="_"), ".png")
+    
+    #dp <- pm %>% pomp::trajectory(params=NULL,format="data.frame")
+    dg <- cbind(df,ic)
+    
+    gg <- ggplot(data=dg, aes(x=xt, y=newConfirmed)) + geom_line() + geom_point() +
+      geom_line(aes(y=icConfirmed)) + geom_point(aes(y=icConfirmed)) +
+      ggtitle(fileName)
+    ggsave(fileName, gg, scale=2, width=4, height=3, dpi=300, units="in")
+  }
+  
+  # subplex wants logLik only
+  if (bLogLik) {
+    p$logLik[1]
+  } else {
+    p
+  }
+}
+
+#colnames(f)=c("ISF","SDSF","logLik")
+head(pl)
+pl[which(pl$logLik==min(pl$logLik)),]
+
+gg <- ggplot(data=pl, aes(x=ISF, y=SDSF, fill=log(logLik))) +
   geom_tile() + 
   scale_fill_gradient(low="white", high="black")
+fileName=paste0("./CovFit/plots/",paste("ic_pomp","logLikSurface-%3d",sep="_"), ".png")
+ggsave(fileName, gg, scale=2, width=4, height=3, dpi=300, units="in")
+
+# calculate single logLik for parms
+ic_pomp(c(0.5,.35), bPlot=TRUE, bLogLik=FALSE)
+
+# Optimize parameter estimation using subplex
+sp <- subplex(c(0.50,.40),fn=ic_pomp, control=list(reltol=1e-3, parscale=.1))
+sp$par
+
+# Calculate and plot hidden process for optimum solution
+ic <- CovGenIC(sp$par) %>% select(icInfectious=newInfectious, icConfirmed=newConfirmed )
+dg <- cbind(df,ic)
+gg <- ggplot(data=dg, aes(x=xt, y=newConfirmed)) + geom_line() + geom_point() +
+  geom_line(aes(y=icConfirmed)) + geom_point(aes(y=icConfirmed)) +
+  ggtitle(paste(round(sp$par[1],3),round(sp$par[2],3)))
+fileName=paste0("./CovFit/plots/",paste("ic_pomp","logLikSubPlex-%3d",sep="_"), ".png")
+ggsave(fileName, gg, scale=2, width=4, height=3, dpi=300, units="in")
+# ==============================================================================
+
+
+
+
+
 
 
 
@@ -479,7 +522,25 @@ ggplot(data=f, aes(x=mu_SI, y=mu_IR, fill=logLik)) +
 # ==============================================================================
 # non Markov model 
 # ==============================================================================
+p <- c(0.57, 0.36)
+nGenerates=100
+for (k in 1:nGenerates) {
+  ic <- CovGenIC(unlist(p)) %>% 
+    dplyr::select(icInfectious=newInfectious, icConfirmed=newConfirmed) %>%
+    dplyr::mutate(ID=1:n(), k=k)
+  
+  if(k==1)
+    ick <- ic
+  else
+    ick <- rbind(ick,ic)
+}
+ic <- ick %>% 
+  group_by(ID) %>% 
+  summarize(icInfectious=mean(icInfectious), icConfirmed=mean(icConfirmed)) %>%
+  ungroup()
 
+ggplot(data=ick, aes(x=ID, y=icInfectious, group=k, color=k)) + geom_line() + 
+  geom_line(data=ic, aes(x=ID, y=icInfectious), colour="white")
 
  
 

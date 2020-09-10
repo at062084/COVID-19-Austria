@@ -43072,3 +43072,7 @@ The following object is masked from ‘package:graphics’:
 20200910-232319.271 Writing ./data/AT_counties.bmsgpk.csv 
 20200910-232319.273 Done executing covCounty 
 20200910-232319.273 Done running COVID-19-covid-county-extract.R 
+[master e3aa6b2] 2020-09-10 23:23:17 Auto-Conversion of bmsgpk data to covid-county format
+ 1 file changed, 72 insertions(+)
+To git@github.com:at062084/COVID-19-Austria.git
+   a3a9eb7..e3aa6b2  HEAD -> master
