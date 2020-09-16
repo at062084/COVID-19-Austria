@@ -44963,3 +44963,76 @@ Saving to: ‘./data/zip/COVID-19-austria.V0414.20200916-1758.zip’
 20200916-175833.375 Writing new data to ./data/COVID-19-austria.csv 
 20200916-175833.425 Writing new data to ./data/COVID-19-austria.regions.csv 
 20200916-175833.655 Done runing data extraction from bmsgpk web pages 
+[master 62385fc] 2020-09-16 17:58:26 Auto-Extract data from bmsgpk website
+ 9 files changed, 11109 insertions(+)
+ create mode 100644 bmsgpk/data/ampel/CoronaAmpel.20200916-1758.js
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V0414.20200916-1758.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200916-1719.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20200916-1758.html
+ create mode 100644 bmsgpk/html/COVID-19-austria.info.20200916-1758.dmp
+To git@github.com:at062084/COVID-19-Austria.git
+   728de9e..62385fc  HEAD -> master
+
+--------------------------------------------------------------------
+2020-09-16 17:58:44 Running ./COVID-19-cron.sh for SECTION=county
+2020-09-16 17:58:44 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-09-16 17:58:44 Running conversion of COVID-19 data to covid-county format
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘tibbletime’
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:readr’:
+
+    col_factor
+
+
+Attaching package: ‘plotly’
+
+The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+The following object is masked from ‘package:graphics’:
+
+    layout
+
+20200916-175846.345 Running COVID-19-covid-county-extract.R 
+20200916-175846.415 Executing covCounty with 2020-09-16 15:58:46 
+20200916-175846.586 Writing ./data/AT_country.bmsgpk.csv 
+20200916-175846.637 Writing ./data/AT_states.bmsgpk.csv 
+20200916-175847.095 Writing ./data/AT_counties.bmsgpk.csv 
+20200916-175847.097 Done executing covCounty 
+20200916-175847.097 Done running COVID-19-covid-county-extract.R 
