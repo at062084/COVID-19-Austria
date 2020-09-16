@@ -55,7 +55,8 @@ scrapeCovid2 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   Status <- str_split_fixed(S2, "\\*",n=2)[,1]
   Status <- str_match(Status,"[a-zA-Z0-9äöüÄÖÜß ]*")
   Status <- trimws(Status)
-  Stamp <- as.POSIXct(str_match(S0, paste0("Stand","(.*)","Uhr"))[,2],format="%d.%m.%Y, %H:%M")
+  # Must watchout for invisible blank characters that are encoded as '&nbsp;' in original html
+  Stamp <- as.POSIXct(str_replace_all(str_match(S0, paste0("Stand","(.*)","Uhr"))[,2],"[^0-9:.,]",""),format="%d.%m.%Y,%H:%M")
 
   df <- dx %>%
     dplyr::select(11,2:10) %>% 
