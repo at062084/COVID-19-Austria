@@ -45,8 +45,8 @@ scrapeCovid2 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   html <- xml2::read_html(bmsgpkFile)
   
   logMsg(paste("Extracting Status table in Bundesländer"))
-  tables <- rvest::html_table(html,dec=",")
-  dx <- tables[[1]]
+  tables <- rvest::html_table(html, dec=",", fill=TRUE)
+  dx <- tables[[1]][,1:11]
   
   # Extract Stamp and Status from first col
   S0 <- dx[,1]
