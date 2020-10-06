@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <title>AGES Dashboard COVID19</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="refresh" content="1800">
+    <link rel="stylesheet" href="./css/bootstrap-4.5.0/css/bootstrap-custom.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/styles2.css">
+    <script type="text/javascript" src="./scripts/jquery.min.js" defer=""></script>
+    <script type="text/javascript" src="./scripts/script2.js" defer=""></script>
+
+</head>
+<body>
+    <header>
+
+        <div class="container pt-4 d-md-flex " id="mainnav">
+            <div class=" ">
+                <h1 data-l10n="r00">AGES Dashboard COVID19</h1>
+                <p><span data-l10n="r66">zuletzt aktualisiert</span> <span class="lastupdate"></span></p>
+            </div>
+            <div class="ml-auto langnav text-right mt-4 mt-md-0">
+                <a href="?l=en" class="lang-en-btn">EN</a> / <a href="?l=de" class="lang-de-btn">DE</a>
+
+                <a href="https://www.ages.at"><img src="images/ages_logo_weiss_FD.png" alt="AGES Logo" class="ml-4" style="margin-top:-20px; width: 130px;"></a>
+            </div>
+
+        </div>
+
+
+        <div id="menupos">
+
+
+
+            <div class="container mt-3 mt-lg-0">
+                <nav class="navbar navbar-expand-lg navbar-ages bg-dark mb-3 p-0">
+                    <a href="https://www.ages.at" class="text-light ml-4 d-inline-block d-lg-none mybreadcrumb">
+                        <!--img src="images/home.gif" width="18" alt="Home" class="mr-2" /-->
+                        AGES
+                    </a>
+
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="dashboard.html" data-l10n="r31">Aktuelle Situation</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="dashboard_Hosp.html" data-l10n="r33">Hospitalisierungen</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="dashboard_Tod.html" data-l10n="r78">Todesfälle</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav mr-0 ml-auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Download
+                                </a>
+                                <div class="dropdown-menu pl-2 border-0 boder-lg-1" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="./data/data.zip" data-l10n="r61">CSV</a>
+                                    <a class="dropdown-item" href="https://www.data.gv.at/covid-19/" target="_blank" data-l10n="r68">Open Data Download</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+            </div>
+        </div>
+
+    </header><main>
+
+
+        <article class="container">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2><span class="stateLabel"></span> <span data-l10n="r01">Zeitraum 27.02.2020 bis</span> <span class="lastupdate"></span></h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-6 col-lg mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex flex-row h-100">
+                                <div class="p-2 m-2 bg-sand flex-fill text-center">
+                                    <p class="twolines" data-l10n="r40">Testungen</p>
+                                    <div data-src="json" data-key="dpGesTestungen" class="fit"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex flex-row h-100">
+                                <div class="p-2 m-2 bg-sand flex-fill text-center">
+                                    <p class="twolines" data-l10n="r39">Laborbestätigte Fälle</p>
+                                    <div data-src="json" data-key="dpPositivGetestet" class="fit"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex flex-row h-100">
+                                <div class="p-2 m-2 bg-sand flex-fill text-center">
+                                    <p class="twolines" data-l10n="r49">Genesene</p>
+                                    <div data-src="json" data-key="dpGenesen" class="fit"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex flex-row h-100">
+                                <div class="p-2 m-2 bg-sand flex-fill text-center">
+                                    <p class="twolines" data-l10n="r69">Verstorbene</p>
+                                    <div data-src="json" data-key="dpTotBestaetigt" class="fit"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex flex-row h-100">
+                                <div class="p-2 m-2 bg-sand flex-fill text-center">
+                                    <p class="twolines" data-l10n="r38">Aktive Fälle</p>
+                                    <div data-src="json" data-key="dpAktuelleErkrankungen" class="fit"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body" data-l10n="r02">
+                    Die Zahlen geben die absolute Anzahl der Testungen bzw. Fälle wieder.
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-lg-8 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+
+                            <div>
+                                <h3 data-l10n="r03"></h3>
+                                <p class="austria-level" data-l10n="r07">Durch Klick auf ein Bundesland werden die jeweiligen Landeszahlen angezeigt</p>
+                                <a class="btn btn-outline-light mr-3 state-level" href="?area=10" data-l10n="r08">Gesamt Österreich</a>
+                                <div id="buttonSwitch" class="float-xl-right mt-3 mt-xl-0">
+                                    <a href="#" class="btn btn-outline-light active" data-val="rel" data-l10n="r15">pro 100.000 Einwohner/innen</a>
+                                    <a href="#" class="btn btn-outline-light" data-val="abs" data-l10n="r16">absolut</a>
+                                </div>
+                                <div id="newmap-10" class="themap"></div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4 mb-4">
+
+                    <div class="card h-100 state-level" style="max-height: 500px; overflow-y: scroll; overflow-x: hidden;">
+                        <div class="card-header" data-l10n="r04">
+                            Bezogen auf die vergangenen 7 Tage
+                        </div>
+                        <div class="card-body">
+
+                            <table class="table table-dark table-bordered table-sm table-striped " id="tblBezirke">
+                                <thead>
+                                    <tr>
+                                        <th data-l10n="r20">Bezirk</th>
+                                        <th class="dispAbs" data-l10n="r81">Fallzahl</th>
+                                        <th class="dispRel" data-l10n="r82">Inzidenz / 100.000 EW</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot class="bg-light text-dark"></tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+
+                    <div class="card h-100 austria-level">
+                        <div class="card-header" data-l10n="r04">
+                            Bezogen auf die vergangenen 7 Tage
+                        </div>
+                        <div class="card-body">
+                            <div class="card-text">
+                                <div class="table-responsive">
+                                    <table id="tblLaender" class="table table-dark table-bordered table-sm table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th data-l10n="r55">Bundesland</th>
+                                                <th class="dispAbs" data-l10n="r81">Fallzahl</th>
+                                                <th class="dispRel" data-l10n="r82">Inzidenz / 100.000 EW</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                        <tfoot class="bg-light text-dark"></tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="card-text">
+                                <div id="cEpikurve" class="h-400"></div>
+                            </div>
+                        </div>
+                        <div class="card-footer border-top border-dark">
+                            <p data-l10n="r36">Neu identifizierte Fälle von bestätigter SARS-CoV2 Infektion nach Tag der Labordiagnose bzw. 1. positiver Labormeldung</p>
+                            <p data-l10n="r37">Zum Eingrenzen eines Zeitraumes markieren Sie den gewünschten Bereich im Diagramm.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <h3 data-l10n="r86">Fälle pro 100.000 und Fälle absolut nach Altersgruppen und Geschlecht <span class="stateLabel"></span></h3>
+            <div class="row">
+                <div class="col-12 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="card-text">
+                                <div id="cAlter" class="h-400"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="card-text">
+                                <div id="cAlterInzidenz" class="h-400"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+        </article>
+    </main>
+    <footer>
+        <div class="container d-flex py-2" id="footernav">
+            <div>© <a href="https://www.ages.at">AGES</a>, <a href="mailto:covid19-dashboard@ages.at">covid19-dashboard@ages.at</a></div>
+            <div class="ml-auto mr-0">
+                <ul>
+                    <li>
+                        <a href="https://www.ages.at/ages/allgemeines/rechtliches/impressum/" target="_blank" data-l10n="r22">Impressum</a>
+                    </li>
+                    <li>
+                        <a href="https://www.ages.at/ages/allgemeines/rechtliches/datenschutzerklaerung/" target="_blank" data-l10n="r23">Datenschutz</a>
+                    </li>
+                    <li>
+                        <a href="basisinfo.html" target="_blank" data-l10n="r62" data-l10n-href="r63">Basisinformation</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <noscript><p><img src="//an.ehealth.gv.at/matomo.php?idsite=7&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+    <script type="text/javascript">
+        var ua = window.navigator.userAgent;
+        var isIE = /MSIE|Trident/.test(ua);
+        if (isIE) {
+            document.getElementsByTagName('article')[0].innerHTML = '<h1>Internet Explorer wird von dieser Seite nicht unterstützt</h1><h2>Bitte verwenden Sie einen aktuellen Browser</h2>';
+        }
+    </script>
+
+
+</body></html>

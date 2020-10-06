@@ -5764,3 +5764,848 @@
 20200928-003657.153 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200927-2340.html 
 20200928-003657.161 Extracting Status table in Bundesländer 
 20200928-003657.261 Writing reconstructed datafile ./data/COVID-19-austria.reconstructed.csv 
+20201006-175201.486 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200322-1905.html 
+20201006-175201.506 Extracting Status table in Bundesländer 
+20201006-175201.511 ERROR: ./html/COVID-19-austria.bmsgpk.20200322-1905.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175201.513 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200323-0902.html 
+20201006-175201.522 Extracting Status table in Bundesländer 
+20201006-175201.524 ERROR: ./html/COVID-19-austria.bmsgpk.20200323-0902.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175201.529 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200323-1536.html 
+20201006-175201.538 Extracting Status table in Bundesländer 
+20201006-175201.540 ERROR: ./html/COVID-19-austria.bmsgpk.20200323-1536.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175201.544 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200324-1039.html 
+20201006-175201.621 Extracting Status table in Bundesländer 
+20201006-175201.624 ERROR: ./html/COVID-19-austria.bmsgpk.20200324-1039.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175201.629 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200324-1618.html 
+20201006-175201.641 Extracting Status table in Bundesländer 
+20201006-175201.644 ERROR: ./html/COVID-19-austria.bmsgpk.20200324-1618.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175201.653 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200325-0939.html 
+20201006-175201.662 Extracting Status table in Bundesländer 
+20201006-175201.665 ERROR: ./html/COVID-19-austria.bmsgpk.20200325-0939.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175201.672 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200325-1008.html 
+20201006-175201.679 Extracting Status table in Bundesländer 
+20201006-175201.681 ERROR: ./html/COVID-19-austria.bmsgpk.20200325-1008.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175201.686 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200325-1508.html 
+20201006-175201.691 Extracting Status table in Bundesländer 
+20201006-175201.693 ERROR: ./html/COVID-19-austria.bmsgpk.20200325-1508.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175201.699 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200326-0948.html 
+20201006-175201.705 Extracting Status table in Bundesländer 
+20201006-175201.707 ERROR: ./html/COVID-19-austria.bmsgpk.20200326-0948.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175201.713 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200326-1556.html 
+20201006-175201.721 Extracting Status table in Bundesländer 
+20201006-175201.723 ERROR: ./html/COVID-19-austria.bmsgpk.20200326-1556.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175201.729 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200326-2229.html 
+20201006-175201.736 Extracting Status table in Bundesländer 
+20201006-175201.738 ERROR: ./html/COVID-19-austria.bmsgpk.20200326-2229.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175201.747 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200326-2349.html 
+20201006-175201.754 Extracting Status table in Bundesländer 
+20201006-175201.756 ERROR: ./html/COVID-19-austria.bmsgpk.20200326-2349.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175201.769 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200327-1044.html 
+20201006-175201.848 Extracting Status table in Bundesländer 
+20201006-175201.850 ERROR: ./html/COVID-19-austria.bmsgpk.20200327-1044.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175201.860 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200327-1050.html 
+20201006-175201.868 Extracting Status table in Bundesländer 
+20201006-175201.870 ERROR: ./html/COVID-19-austria.bmsgpk.20200327-1050.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175201.878 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200327-1051.html 
+20201006-175201.886 Extracting Status table in Bundesländer 
+20201006-175201.888 ERROR: ./html/COVID-19-austria.bmsgpk.20200327-1051.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175201.903 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200327-1056.html 
+20201006-175201.925 Extracting Status table in Bundesländer 
+20201006-175201.927 ERROR: ./html/COVID-19-austria.bmsgpk.20200327-1056.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175201.940 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200327-1142.html 
+20201006-175201.946 Extracting Status table in Bundesländer 
+20201006-175201.950 ERROR: ./html/COVID-19-austria.bmsgpk.20200327-1142.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175201.986 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200327-1155.html 
+20201006-175201.992 Extracting Status table in Bundesländer 
+20201006-175201.994 ERROR: ./html/COVID-19-austria.bmsgpk.20200327-1155.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.004 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200327-1158.html 
+20201006-175202.010 Extracting Status table in Bundesländer 
+20201006-175202.012 ERROR: ./html/COVID-19-austria.bmsgpk.20200327-1158.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.021 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200327-1703.html 
+20201006-175202.027 Extracting Status table in Bundesländer 
+20201006-175202.029 ERROR: ./html/COVID-19-austria.bmsgpk.20200327-1703.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.037 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200328-1105.html 
+20201006-175202.043 Extracting Status table in Bundesländer 
+20201006-175202.045 ERROR: ./html/COVID-19-austria.bmsgpk.20200328-1105.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.056 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200328-1957.html 
+20201006-175202.137 Extracting Status table in Bundesländer 
+20201006-175202.138 ERROR: ./html/COVID-19-austria.bmsgpk.20200328-1957.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.151 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200329-1107.html 
+20201006-175202.158 Extracting Status table in Bundesländer 
+20201006-175202.159 ERROR: ./html/COVID-19-austria.bmsgpk.20200329-1107.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.181 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200329-1245.html 
+20201006-175202.193 Extracting Status table in Bundesländer 
+20201006-175202.195 ERROR: ./html/COVID-19-austria.bmsgpk.20200329-1245.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.207 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200329-1250.html 
+20201006-175202.213 Extracting Status table in Bundesländer 
+20201006-175202.215 ERROR: ./html/COVID-19-austria.bmsgpk.20200329-1250.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.227 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200329-1634.html 
+20201006-175202.233 Extracting Status table in Bundesländer 
+20201006-175202.235 ERROR: ./html/COVID-19-austria.bmsgpk.20200329-1634.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.249 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200330-1041.html 
+20201006-175202.255 Extracting Status table in Bundesländer 
+20201006-175202.257 ERROR: ./html/COVID-19-austria.bmsgpk.20200330-1041.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.270 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200330-1104.html 
+20201006-175202.276 Extracting Status table in Bundesländer 
+20201006-175202.277 ERROR: ./html/COVID-19-austria.bmsgpk.20200330-1104.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.386 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200330-1754.html 
+20201006-175202.393 Extracting Status table in Bundesländer 
+20201006-175202.395 ERROR: ./html/COVID-19-austria.bmsgpk.20200330-1754.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.411 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200331-1213.html 
+20201006-175202.420 Extracting Status table in Bundesländer 
+20201006-175202.423 ERROR: ./html/COVID-19-austria.bmsgpk.20200331-1213.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.443 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200331-1217.html 
+20201006-175202.451 Extracting Status table in Bundesländer 
+20201006-175202.453 ERROR: ./html/COVID-19-austria.bmsgpk.20200331-1217.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.478 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200331-1236.html 
+20201006-175202.484 Extracting Status table in Bundesländer 
+20201006-175202.486 ERROR: ./html/COVID-19-austria.bmsgpk.20200331-1236.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.496 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200331-1240.html 
+20201006-175202.502 Extracting Status table in Bundesländer 
+20201006-175202.504 ERROR: ./html/COVID-19-austria.bmsgpk.20200331-1240.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.575 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200331-1600.html 
+20201006-175202.652 Extracting Status table in Bundesländer 
+20201006-175202.654 ERROR: ./html/COVID-19-austria.bmsgpk.20200331-1600.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.671 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200401-1226.html 
+20201006-175202.677 Extracting Status table in Bundesländer 
+20201006-175202.678 ERROR: ./html/COVID-19-austria.bmsgpk.20200401-1226.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.696 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200401-1250.html 
+20201006-175202.703 Extracting Status table in Bundesländer 
+20201006-175202.706 ERROR: ./html/COVID-19-austria.bmsgpk.20200401-1250.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.724 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200401-1637.html 
+20201006-175202.732 Extracting Status table in Bundesländer 
+20201006-175202.734 ERROR: ./html/COVID-19-austria.bmsgpk.20200401-1637.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.761 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200402-1243.html 
+20201006-175202.767 Extracting Status table in Bundesländer 
+20201006-175202.769 ERROR: ./html/COVID-19-austria.bmsgpk.20200402-1243.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.781 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200402-1624.html 
+20201006-175202.787 Extracting Status table in Bundesländer 
+20201006-175202.789 ERROR: ./html/COVID-19-austria.bmsgpk.20200402-1624.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.801 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200403-1114.html 
+20201006-175202.806 Extracting Status table in Bundesländer 
+20201006-175202.882 ERROR: ./html/COVID-19-austria.bmsgpk.20200403-1114.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.918 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200403-1604.html 
+20201006-175202.924 Extracting Status table in Bundesländer 
+20201006-175202.925 ERROR: ./html/COVID-19-austria.bmsgpk.20200403-1604.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.945 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200404-1159.html 
+20201006-175202.953 Extracting Status table in Bundesländer 
+20201006-175202.955 ERROR: ./html/COVID-19-austria.bmsgpk.20200404-1159.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175202.981 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200404-1956.html 
+20201006-175202.988 Extracting Status table in Bundesländer 
+20201006-175202.990 ERROR: ./html/COVID-19-austria.bmsgpk.20200404-1956.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175203.040 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200405-1240.html 
+20201006-175203.119 Extracting Status table in Bundesländer 
+20201006-175203.121 ERROR: ./html/COVID-19-austria.bmsgpk.20200405-1240.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175203.142 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200405-1247.html 
+20201006-175203.149 Extracting Status table in Bundesländer 
+20201006-175203.151 ERROR: ./html/COVID-19-austria.bmsgpk.20200405-1247.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175203.174 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200405-1250.html 
+20201006-175203.181 Extracting Status table in Bundesländer 
+20201006-175203.183 ERROR: ./html/COVID-19-austria.bmsgpk.20200405-1250.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175203.830 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200405-1916.html 
+20201006-175203.840 Extracting Status table in Bundesländer 
+20201006-175203.842 ERROR: ./html/COVID-19-austria.bmsgpk.20200405-1916.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175203.862 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200406-1202.html 
+20201006-175203.869 Extracting Status table in Bundesländer 
+20201006-175203.871 ERROR: ./html/COVID-19-austria.bmsgpk.20200406-1202.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175203.894 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200406-1746.html 
+20201006-175203.901 Extracting Status table in Bundesländer 
+20201006-175203.902 ERROR: ./html/COVID-19-austria.bmsgpk.20200406-1746.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175203.933 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200406-1750.html 
+20201006-175203.938 Extracting Status table in Bundesländer 
+20201006-175203.939 ERROR: ./html/COVID-19-austria.bmsgpk.20200406-1750.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175203.955 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200407-1232.html 
+20201006-175203.960 Extracting Status table in Bundesländer 
+20201006-175203.962 ERROR: ./html/COVID-19-austria.bmsgpk.20200407-1232.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175203.985 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200407-1257.html 
+20201006-175203.991 Extracting Status table in Bundesländer 
+20201006-175203.993 ERROR: ./html/COVID-19-austria.bmsgpk.20200407-1257.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175204.010 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200407-1719.html 
+20201006-175204.016 Extracting Status table in Bundesländer 
+20201006-175204.017 ERROR: ./html/COVID-19-austria.bmsgpk.20200407-1719.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175204.625 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200408-1209.html 
+20201006-175204.634 Extracting Status table in Bundesländer 
+20201006-175204.636 ERROR: ./html/COVID-19-austria.bmsgpk.20200408-1209.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175204.661 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200408-1654.html 
+20201006-175204.670 Extracting Status table in Bundesländer 
+20201006-175204.673 ERROR: ./html/COVID-19-austria.bmsgpk.20200408-1654.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175204.701 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200409-1236.html 
+20201006-175204.709 Extracting Status table in Bundesländer 
+20201006-175204.711 ERROR: ./html/COVID-19-austria.bmsgpk.20200409-1236.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175204.743 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200409-1729.html 
+20201006-175204.749 Extracting Status table in Bundesländer 
+20201006-175204.751 ERROR: ./html/COVID-19-austria.bmsgpk.20200409-1729.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175204.769 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200410-1302.html 
+20201006-175204.847 Extracting Status table in Bundesländer 
+20201006-175204.850 ERROR: ./html/COVID-19-austria.bmsgpk.20200410-1302.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175204.887 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200410-1551.html 
+20201006-175204.890 Extracting Status table in Bundesländer 
+20201006-175204.891 ERROR: ./html/COVID-19-austria.bmsgpk.20200410-1551.html Error in UseMethod("xml_find_all"): no applicable method for 'xml_find_all' applied to an object of class "xml_document"
+ 
+20201006-175204.919 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200410-1552.html 
+20201006-175204.925 Extracting Status table in Bundesländer 
+20201006-175204.927 ERROR: ./html/COVID-19-austria.bmsgpk.20200410-1552.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175204.959 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200411-1054.html 
+20201006-175204.967 Extracting Status table in Bundesländer 
+20201006-175204.969 ERROR: ./html/COVID-19-austria.bmsgpk.20200411-1054.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175205.005 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200411-1110.html 
+20201006-175205.013 Extracting Status table in Bundesländer 
+20201006-175205.015 ERROR: ./html/COVID-19-austria.bmsgpk.20200411-1110.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175205.040 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200411-1112.html 
+20201006-175205.046 Extracting Status table in Bundesländer 
+20201006-175205.047 ERROR: ./html/COVID-19-austria.bmsgpk.20200411-1112.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175205.154 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200411-1113.html 
+20201006-175205.160 Extracting Status table in Bundesländer 
+20201006-175205.162 ERROR: ./html/COVID-19-austria.bmsgpk.20200411-1113.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175205.197 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200411-2000.html 
+20201006-175205.203 Extracting Status table in Bundesländer 
+20201006-175205.205 ERROR: ./html/COVID-19-austria.bmsgpk.20200411-2000.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175205.236 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200411-2008.html 
+20201006-175205.242 Extracting Status table in Bundesländer 
+20201006-175205.243 ERROR: ./html/COVID-19-austria.bmsgpk.20200411-2008.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175205.271 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200411-2014.html 
+20201006-175205.278 Extracting Status table in Bundesländer 
+20201006-175205.279 ERROR: ./html/COVID-19-austria.bmsgpk.20200411-2014.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175205.927 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200412-1354.html 
+20201006-175205.934 Extracting Status table in Bundesländer 
+20201006-175205.937 ERROR: ./html/COVID-19-austria.bmsgpk.20200412-1354.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175205.984 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200412-1724.html 
+20201006-175205.992 Extracting Status table in Bundesländer 
+20201006-175205.994 ERROR: ./html/COVID-19-austria.bmsgpk.20200412-1724.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175206.511 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200413-1118.html 
+20201006-175206.518 Extracting Status table in Bundesländer 
+20201006-175206.519 ERROR: ./html/COVID-19-austria.bmsgpk.20200413-1118.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175206.624 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200413-1910.html 
+20201006-175206.632 Extracting Status table in Bundesländer 
+20201006-175206.634 ERROR: ./html/COVID-19-austria.bmsgpk.20200413-1910.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175206.668 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200414-1113.html 
+20201006-175206.673 Extracting Status table in Bundesländer 
+20201006-175206.675 ERROR: ./html/COVID-19-austria.bmsgpk.20200414-1113.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175206.727 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200414-1735.html 
+20201006-175206.735 Extracting Status table in Bundesländer 
+20201006-175206.737 ERROR: ./html/COVID-19-austria.bmsgpk.20200414-1735.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175206.768 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200415-1118.html 
+20201006-175206.774 Extracting Status table in Bundesländer 
+20201006-175206.776 ERROR: ./html/COVID-19-austria.bmsgpk.20200415-1118.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175206.907 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200415-1229.html 
+20201006-175206.923 Extracting Status table in Bundesländer 
+20201006-175206.926 ERROR: ./html/COVID-19-austria.bmsgpk.20200415-1229.html Error in tables[[1]]: subscript out of bounds
+ 
+20201006-175206.973 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200415-1549.html 
+20201006-175207.207 Extracting Status table in Bundesländer 
+20201006-175207.280 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200415-1555.html 
+20201006-175207.288 Extracting Status table in Bundesländer 
+20201006-175207.456 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200415-1741.html 
+20201006-175207.462 Extracting Status table in Bundesländer 
+20201006-175207.719 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200415-1830.html 
+20201006-175207.726 Extracting Status table in Bundesländer 
+20201006-175207.936 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200415-1916.html 
+20201006-175207.943 Extracting Status table in Bundesländer 
+20201006-175208.027 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200416-1040.html 
+20201006-175208.115 Extracting Status table in Bundesländer 
+20201006-175208.659 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200416-1058.html 
+20201006-175208.666 Extracting Status table in Bundesländer 
+20201006-175208.734 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200416-1215.html 
+20201006-175208.741 Extracting Status table in Bundesländer 
+20201006-175208.882 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200416-1748.html 
+20201006-175208.889 Extracting Status table in Bundesländer 
+20201006-175208.974 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200417-1143.html 
+20201006-175208.981 Extracting Status table in Bundesländer 
+20201006-175209.133 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200417-1654.html 
+20201006-175209.146 Extracting Status table in Bundesländer 
+20201006-175209.215 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200418-1137.html 
+20201006-175209.220 Extracting Status table in Bundesländer 
+20201006-175209.355 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200419-1313.html 
+20201006-175209.363 Extracting Status table in Bundesländer 
+20201006-175209.447 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200419-1927.html 
+20201006-175209.454 Extracting Status table in Bundesländer 
+20201006-175209.551 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200420-1126.html 
+20201006-175209.637 Extracting Status table in Bundesländer 
+20201006-175209.713 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200420-1544.html 
+20201006-175209.719 Extracting Status table in Bundesländer 
+20201006-175210.273 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200421-1018.html 
+20201006-175210.281 Extracting Status table in Bundesländer 
+20201006-175210.344 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200421-1326.html 
+20201006-175210.352 Extracting Status table in Bundesländer 
+20201006-175210.427 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200422-1502.html 
+20201006-175210.434 Extracting Status table in Bundesländer 
+20201006-175210.488 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200422-1705.html 
+20201006-175210.495 Extracting Status table in Bundesländer 
+20201006-175210.557 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200423-1205.html 
+20201006-175210.565 Extracting Status table in Bundesländer 
+20201006-175210.704 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200423-1853.html 
+20201006-175210.710 Extracting Status table in Bundesländer 
+20201006-175211.174 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200424-1058.html 
+20201006-175211.254 Extracting Status table in Bundesländer 
+20201006-175211.431 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200424-1644.html 
+20201006-175211.440 Extracting Status table in Bundesländer 
+20201006-175211.512 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200425-1201.html 
+20201006-175211.517 Extracting Status table in Bundesländer 
+20201006-175211.684 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200425-2214.html 
+20201006-175211.691 Extracting Status table in Bundesländer 
+20201006-175211.761 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200426-1321.html 
+20201006-175211.767 Extracting Status table in Bundesländer 
+20201006-175211.917 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200427-1136.html 
+20201006-175211.924 Extracting Status table in Bundesländer 
+20201006-175211.998 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200427-1855.html 
+20201006-175212.004 Extracting Status table in Bundesländer 
+20201006-175212.142 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200428-1008.html 
+20201006-175212.152 Extracting Status table in Bundesländer 
+20201006-175212.223 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200428-1040.html 
+20201006-175212.230 Extracting Status table in Bundesländer 
+20201006-175212.777 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200428-1640.html 
+20201006-175212.784 Extracting Status table in Bundesländer 
+20201006-175212.851 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200429-1159.html 
+20201006-175212.856 Extracting Status table in Bundesländer 
+20201006-175212.929 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200430-0140.html 
+20201006-175212.936 Extracting Status table in Bundesländer 
+20201006-175212.995 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200430-1152.html 
+20201006-175213.001 Extracting Status table in Bundesländer 
+20201006-175213.057 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200430-1701.html 
+20201006-175213.141 Extracting Status table in Bundesländer 
+20201006-175213.223 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200430-2352.html 
+20201006-175213.231 Extracting Status table in Bundesländer 
+20201006-175213.294 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200501-2319.html 
+20201006-175213.300 Extracting Status table in Bundesländer 
+20201006-175213.459 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200502-1041.html 
+20201006-175213.463 Extracting Status table in Bundesländer 
+20201006-175213.464 ERROR: ./html/COVID-19-austria.bmsgpk.20200502-1041.html Error in UseMethod("xml_find_all"): no applicable method for 'xml_find_all' applied to an object of class "xml_document"
+ 
+20201006-175213.501 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200502-1051.html 
+20201006-175213.512 Extracting Status table in Bundesländer 
+20201006-175213.679 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200503-1306.html 
+20201006-175213.684 Extracting Status table in Bundesländer 
+20201006-175213.757 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200503-2338.html 
+20201006-175213.764 Extracting Status table in Bundesländer 
+20201006-175213.900 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200504-1846.html 
+20201006-175213.907 Extracting Status table in Bundesländer 
+20201006-175213.989 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200505-1037.html 
+20201006-175213.995 Extracting Status table in Bundesländer 
+20201006-175214.148 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200505-1936.html 
+20201006-175214.156 Extracting Status table in Bundesländer 
+20201006-175214.713 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200506-1235.html 
+20201006-175214.720 Extracting Status table in Bundesländer 
+20201006-175214.791 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200507-1111.html 
+20201006-175214.797 Extracting Status table in Bundesländer 
+20201006-175214.940 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200507-1113.html 
+20201006-175214.946 Extracting Status table in Bundesländer 
+20201006-175215.492 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200507-1330.html 
+20201006-175215.498 Extracting Status table in Bundesländer 
+20201006-175215.661 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200507-1333.html 
+20201006-175215.669 Extracting Status table in Bundesländer 
+20201006-175215.748 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200507-1341.html 
+20201006-175215.759 Extracting Status table in Bundesländer 
+20201006-175215.905 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200508-1114.html 
+20201006-175215.912 Extracting Status table in Bundesländer 
+20201006-175215.985 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200508-1611.html 
+20201006-175215.993 Extracting Status table in Bundesländer 
+20201006-175216.060 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200510-2251.html 
+20201006-175216.069 Extracting Status table in Bundesländer 
+20201006-175216.213 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200511-1546.html 
+20201006-175216.219 Extracting Status table in Bundesländer 
+20201006-175216.283 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200512-1038.html 
+20201006-175216.290 Extracting Status table in Bundesländer 
+20201006-175216.444 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200512-1835.html 
+20201006-175216.450 Extracting Status table in Bundesländer 
+20201006-175216.531 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200513-1227.html 
+20201006-175216.615 Extracting Status table in Bundesländer 
+20201006-175216.688 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200513-1912.html 
+20201006-175216.696 Extracting Status table in Bundesländer 
+20201006-175216.765 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200514-1023.html 
+20201006-175216.772 Extracting Status table in Bundesländer 
+20201006-175216.912 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200515-1044.html 
+20201006-175216.921 Extracting Status table in Bundesländer 
+20201006-175217.008 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200515-1749.html 
+20201006-175217.015 Extracting Status table in Bundesländer 
+20201006-175217.167 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200517-0031.html 
+20201006-175217.179 Extracting Status table in Bundesländer 
+20201006-175217.717 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200517-1330.html 
+20201006-175217.725 Extracting Status table in Bundesländer 
+20201006-175217.798 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200518-1325.html 
+20201006-175217.805 Extracting Status table in Bundesländer 
+20201006-175217.938 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200519-1043.html 
+20201006-175217.945 Extracting Status table in Bundesländer 
+20201006-175218.025 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200519-2324.html 
+20201006-175218.031 Extracting Status table in Bundesländer 
+20201006-175218.173 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200520-1415.html 
+20201006-175218.180 Extracting Status table in Bundesländer 
+20201006-175218.732 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200521-2200.html 
+20201006-175218.740 Extracting Status table in Bundesländer 
+20201006-175218.881 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200522-2038.html 
+20201006-175218.890 Extracting Status table in Bundesländer 
+20201006-175218.969 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200523-2029.html 
+20201006-175218.979 Extracting Status table in Bundesländer 
+20201006-175219.118 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200524-1213.html 
+20201006-175219.126 Extracting Status table in Bundesländer 
+20201006-175219.200 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200524-2243.html 
+20201006-175219.211 Extracting Status table in Bundesländer 
+20201006-175219.275 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200525-1913.html 
+20201006-175219.280 Extracting Status table in Bundesländer 
+20201006-175219.800 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200526-1117.html 
+20201006-175219.807 Extracting Status table in Bundesländer 
+20201006-175219.877 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200526-1756.html 
+20201006-175219.883 Extracting Status table in Bundesländer 
+20201006-175219.957 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200527-1358.html 
+20201006-175219.965 Extracting Status table in Bundesländer 
+20201006-175220.018 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200528-1543.html 
+20201006-175220.024 Extracting Status table in Bundesländer 
+20201006-175220.187 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200528-1544.html 
+20201006-175220.202 Extracting Status table in Bundesländer 
+20201006-175220.274 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200528-1546.html 
+20201006-175220.280 Extracting Status table in Bundesländer 
+20201006-175220.450 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200528-1559.html 
+20201006-175220.472 Extracting Status table in Bundesländer 
+20201006-175220.538 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200528-1707.html 
+20201006-175220.544 Extracting Status table in Bundesländer 
+20201006-175220.686 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200529-1700.html 
+20201006-175220.693 Extracting Status table in Bundesländer 
+20201006-175220.765 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200530-1416.html 
+20201006-175220.771 Extracting Status table in Bundesländer 
+20201006-175220.838 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200531-0038.html 
+20201006-175220.915 Extracting Status table in Bundesländer 
+20201006-175220.996 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200531-1350.html 
+20201006-175221.007 Extracting Status table in Bundesländer 
+20201006-175221.162 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200531-2308.html 
+20201006-175221.172 Extracting Status table in Bundesländer 
+20201006-175221.243 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200601-2053.html 
+20201006-175221.249 Extracting Status table in Bundesländer 
+20201006-175221.322 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200602-1634.html 
+20201006-175221.410 Extracting Status table in Bundesländer 
+20201006-175221.477 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200603-2346.html 
+20201006-175221.484 Extracting Status table in Bundesländer 
+20201006-175222.019 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200605-1128.html 
+20201006-175222.027 Extracting Status table in Bundesländer 
+20201006-175222.168 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200606-1322.html 
+20201006-175222.176 Extracting Status table in Bundesländer 
+20201006-175222.252 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200607-1504.html 
+20201006-175222.263 Extracting Status table in Bundesländer 
+20201006-175222.402 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200608-0135.html 
+20201006-175222.410 Extracting Status table in Bundesländer 
+20201006-175222.485 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200608-1349.html 
+20201006-175222.494 Extracting Status table in Bundesländer 
+20201006-175222.636 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200608-1932.html 
+20201006-175222.642 Extracting Status table in Bundesländer 
+20201006-175223.176 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200609-0033.html 
+20201006-175223.184 Extracting Status table in Bundesländer 
+20201006-175223.251 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200609-0855.html 
+20201006-175223.257 Extracting Status table in Bundesländer 
+20201006-175223.397 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200609-1237.html 
+20201006-175223.403 Extracting Status table in Bundesländer 
+20201006-175223.960 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200609-1913.html 
+20201006-175223.968 Extracting Status table in Bundesländer 
+20201006-175224.040 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200610-1051.html 
+20201006-175224.047 Extracting Status table in Bundesländer 
+20201006-175224.194 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200610-1640.html 
+20201006-175224.205 Extracting Status table in Bundesländer 
+20201006-175224.300 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200611-1605.html 
+20201006-175224.306 Extracting Status table in Bundesländer 
+20201006-175224.451 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200613-1058.html 
+20201006-175224.459 Extracting Status table in Bundesländer 
+20201006-175224.542 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200613-1939.html 
+20201006-175224.629 Extracting Status table in Bundesländer 
+20201006-175224.697 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200614-1055.html 
+20201006-175224.703 Extracting Status table in Bundesländer 
+20201006-175225.240 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200614-2254.html 
+20201006-175225.243 Extracting Status table in Bundesländer 
+20201006-175225.245 ERROR: ./html/COVID-19-austria.bmsgpk.20200614-2254.html Error in UseMethod("xml_find_all"): no applicable method for 'xml_find_all' applied to an object of class "xml_document"
+ 
+20201006-175225.279 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200614-2257.html 
+20201006-175225.286 Extracting Status table in Bundesländer 
+20201006-175225.431 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200615-2043.html 
+20201006-175225.438 Extracting Status table in Bundesländer 
+20201006-175225.517 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200616-1131.html 
+20201006-175225.525 Extracting Status table in Bundesländer 
+20201006-175225.666 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200617-1103.html 
+20201006-175225.673 Extracting Status table in Bundesländer 
+20201006-175225.758 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200617-2212.html 
+20201006-175225.765 Extracting Status table in Bundesländer 
+20201006-175225.914 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200618-2324.html 
+20201006-175225.923 Extracting Status table in Bundesländer 
+20201006-175225.992 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200619-1758.html 
+20201006-175225.999 Extracting Status table in Bundesländer 
+20201006-175226.128 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200620-1618.html 
+20201006-175226.134 Extracting Status table in Bundesländer 
+20201006-175226.204 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200621-2225.html 
+20201006-175226.211 Extracting Status table in Bundesländer 
+20201006-175226.287 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200622-2225.html 
+20201006-175226.295 Extracting Status table in Bundesländer 
+20201006-175226.425 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200623-2114.html 
+20201006-175226.432 Extracting Status table in Bundesländer 
+20201006-175226.516 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200624-2230.html 
+20201006-175226.522 Extracting Status table in Bundesländer 
+20201006-175226.662 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200625-2239.html 
+20201006-175226.669 Extracting Status table in Bundesländer 
+20201006-175226.742 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200626-2307.html 
+20201006-175226.749 Extracting Status table in Bundesländer 
+20201006-175227.280 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200628-0001.html 
+20201006-175227.283 Extracting Status table in Bundesländer 
+20201006-175227.285 ERROR: ./html/COVID-19-austria.bmsgpk.20200628-0001.html Error in UseMethod("xml_find_all"): no applicable method for 'xml_find_all' applied to an object of class "xml_document"
+ 
+20201006-175227.321 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200628-0004.html 
+20201006-175227.402 Extracting Status table in Bundesländer 
+20201006-175227.480 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200628-2350.html 
+20201006-175227.487 Extracting Status table in Bundesländer 
+20201006-175227.646 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200629-1232.html 
+20201006-175227.653 Extracting Status table in Bundesländer 
+20201006-175227.727 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200630-1306.html 
+20201006-175227.734 Extracting Status table in Bundesländer 
+20201006-175227.900 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200630-1730.html 
+20201006-175227.906 Extracting Status table in Bundesländer 
+20201006-175227.988 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200701-1850.html 
+20201006-175228.001 Extracting Status table in Bundesländer 
+20201006-175228.143 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200702-2254.html 
+20201006-175228.155 Extracting Status table in Bundesländer 
+20201006-175228.226 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200703-1627.html 
+20201006-175228.238 Extracting Status table in Bundesländer 
+20201006-175228.321 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200704-2008.html 
+20201006-175228.334 Extracting Status table in Bundesländer 
+20201006-175228.476 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200706-0822.html 
+20201006-175228.488 Extracting Status table in Bundesländer 
+20201006-175228.570 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200706-1652.html 
+20201006-175228.656 Extracting Status table in Bundesländer 
+20201006-175229.199 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200707-1316.html 
+20201006-175229.211 Extracting Status table in Bundesländer 
+20201006-175229.286 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200707-1843.html 
+20201006-175229.297 Extracting Status table in Bundesländer 
+20201006-175229.435 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200708-1127.html 
+20201006-175229.453 Extracting Status table in Bundesländer 
+20201006-175229.565 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200709-1449.html 
+20201006-175229.577 Extracting Status table in Bundesländer 
+20201006-175229.719 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200710-0921.html 
+20201006-175229.733 Extracting Status table in Bundesländer 
+20201006-175229.816 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200710-1551.html 
+20201006-175229.905 Extracting Status table in Bundesländer 
+20201006-175229.987 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200711-1627.html 
+20201006-175229.992 Extracting Status table in Bundesländer 
+20201006-175229.994 ERROR: ./html/COVID-19-austria.bmsgpk.20200711-1627.html Error in UseMethod("xml_find_all"): no applicable method for 'xml_find_all' applied to an object of class "xml_document"
+ 
+20201006-175230.034 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200711-1628.html 
+20201006-175230.047 Extracting Status table in Bundesländer 
+20201006-175230.193 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200713-0044.html 
+20201006-175230.210 Extracting Status table in Bundesländer 
+20201006-175230.384 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200713-1641.html 
+20201006-175230.401 Extracting Status table in Bundesländer 
+20201006-175230.505 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200714-1749.html 
+20201006-175230.518 Extracting Status table in Bundesländer 
+20201006-175230.692 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200715-1151.html 
+20201006-175230.703 Extracting Status table in Bundesländer 
+20201006-175230.796 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200716-1329.html 
+20201006-175230.808 Extracting Status table in Bundesländer 
+20201006-175230.978 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200717-1056.html 
+20201006-175231.005 Extracting Status table in Bundesländer 
+20201006-175231.093 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200717-1646.html 
+20201006-175231.195 Extracting Status table in Bundesländer 
+20201006-175231.272 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200720-0854.html 
+20201006-175231.283 Extracting Status table in Bundesländer 
+20201006-175231.440 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200721-0938.html 
+20201006-175231.453 Extracting Status table in Bundesländer 
+20201006-175231.526 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200721-1549.html 
+20201006-175231.538 Extracting Status table in Bundesländer 
+20201006-175231.704 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200722-1856.html 
+20201006-175231.719 Extracting Status table in Bundesländer 
+20201006-175231.786 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200724-1703.html 
+20201006-175231.797 Extracting Status table in Bundesländer 
+20201006-175231.941 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200726-1833.html 
+20201006-175231.965 Extracting Status table in Bundesländer 
+20201006-175232.050 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200727-1236.html 
+20201006-175232.062 Extracting Status table in Bundesländer 
+20201006-175232.219 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200727-1725.html 
+20201006-175232.232 Extracting Status table in Bundesländer 
+20201006-175232.310 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200728-1101.html 
+20201006-175232.322 Extracting Status table in Bundesländer 
+20201006-175232.482 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200729-1041.html 
+20201006-175232.494 Extracting Status table in Bundesländer 
+20201006-175232.680 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200729-1638.html 
+20201006-175232.705 Extracting Status table in Bundesländer 
+20201006-175233.263 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200730-1139.html 
+20201006-175233.275 Extracting Status table in Bundesländer 
+20201006-175233.348 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200730-1917.html 
+20201006-175233.431 Extracting Status table in Bundesländer 
+20201006-175233.511 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200731-2351.html 
+20201006-175233.514 Extracting Status table in Bundesländer 
+20201006-175233.516 ERROR: ./html/COVID-19-austria.bmsgpk.20200731-2351.html Error in UseMethod("xml_find_all"): no applicable method for 'xml_find_all' applied to an object of class "xml_document"
+ 
+20201006-175234.058 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200731-2353.html 
+20201006-175234.071 Extracting Status table in Bundesländer 
+20201006-175234.144 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200802-1147.html 
+20201006-175234.156 Extracting Status table in Bundesländer 
+20201006-175234.228 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200802-1911.html 
+20201006-175234.243 Extracting Status table in Bundesländer 
+20201006-175234.324 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200803-1009.html 
+20201006-175234.335 Extracting Status table in Bundesländer 
+20201006-175234.524 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200804-2312.html 
+20201006-175234.537 Extracting Status table in Bundesländer 
+20201006-175234.697 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200805-1249.html 
+20201006-175234.709 Extracting Status table in Bundesländer 
+20201006-175234.788 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200806-1240.html 
+20201006-175234.801 Extracting Status table in Bundesländer 
+20201006-175234.933 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200806-1647.html 
+20201006-175234.949 Extracting Status table in Bundesländer 
+20201006-175235.021 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200807-1403.html 
+20201006-175235.032 Extracting Status table in Bundesländer 
+20201006-175235.585 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200808-1744.html 
+20201006-175235.596 Extracting Status table in Bundesländer 
+20201006-175235.665 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200809-2332.html 
+20201006-175235.677 Extracting Status table in Bundesländer 
+20201006-175235.745 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200810-1112.html 
+20201006-175235.758 Extracting Status table in Bundesländer 
+20201006-175235.832 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200810-2353.html 
+20201006-175235.923 Extracting Status table in Bundesländer 
+20201006-175235.996 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200811-1323.html 
+20201006-175236.009 Extracting Status table in Bundesländer 
+20201006-175236.168 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200811-1548.html 
+20201006-175236.179 Extracting Status table in Bundesländer 
+20201006-175236.261 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200812-1215.html 
+20201006-175236.275 Extracting Status table in Bundesländer 
+20201006-175236.436 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200813-0009.html 
+20201006-175236.453 Extracting Status table in Bundesländer 
+20201006-175236.533 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200813-1447.html 
+20201006-175236.545 Extracting Status table in Bundesländer 
+20201006-175236.683 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200813-1912.html 
+20201006-175236.695 Extracting Status table in Bundesländer 
+20201006-175236.785 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200814-1329.html 
+20201006-175236.797 Extracting Status table in Bundesländer 
+20201006-175236.947 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200815-2120.html 
+20201006-175236.960 Extracting Status table in Bundesländer 
+20201006-175237.064 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200816-1230.html 
+20201006-175237.154 Extracting Status table in Bundesländer 
+20201006-175237.234 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200816-2031.html 
+20201006-175237.243 Extracting Status table in Bundesländer 
+20201006-175237.388 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200817-1158.html 
+20201006-175237.405 Extracting Status table in Bundesländer 
+20201006-175237.489 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200818-1145.html 
+20201006-175237.500 Extracting Status table in Bundesländer 
+20201006-175237.565 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200818-1822.html 
+20201006-175237.577 Extracting Status table in Bundesländer 
+20201006-175237.736 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200819-1620.html 
+20201006-175237.748 Extracting Status table in Bundesländer 
+20201006-175237.824 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200820-1640.html 
+20201006-175237.906 Extracting Status table in Bundesländer 
+20201006-175237.992 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200823-0123.html 
+20201006-175237.994 Extracting Status table in Bundesländer 
+20201006-175237.996 ERROR: ./html/COVID-19-austria.bmsgpk.20200823-0123.html Error in UseMethod("xml_find_all"): no applicable method for 'xml_find_all' applied to an object of class "xml_document"
+ 
+20201006-175238.033 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200823-0124.html 
+20201006-175238.045 Extracting Status table in Bundesländer 
+20201006-175238.204 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200824-0037.html 
+20201006-175238.216 Extracting Status table in Bundesländer 
+20201006-175238.769 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200824-1908.html 
+20201006-175238.781 Extracting Status table in Bundesländer 
+20201006-175238.854 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200825-1028.html 
+20201006-175238.937 Extracting Status table in Bundesländer 
+20201006-175239.009 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200826-1108.html 
+20201006-175239.020 Extracting Status table in Bundesländer 
+20201006-175239.198 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200827-1431.html 
+20201006-175239.210 Extracting Status table in Bundesländer 
+20201006-175239.289 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200827-1949.html 
+20201006-175239.304 Extracting Status table in Bundesländer 
+20201006-175239.466 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200828-1051.html 
+20201006-175239.478 Extracting Status table in Bundesländer 
+20201006-175239.561 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200828-1845.html 
+20201006-175239.655 Extracting Status table in Bundesländer 
+20201006-175240.199 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200829-0949.html 
+20201006-175240.202 Extracting Status table in Bundesländer 
+20201006-175240.204 ERROR: ./html/COVID-19-austria.bmsgpk.20200829-0949.html Error in UseMethod("xml_find_all"): no applicable method for 'xml_find_all' applied to an object of class "xml_document"
+ 
+20201006-175240.240 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200829-0951.html 
+20201006-175240.252 Extracting Status table in Bundesländer 
+20201006-175240.321 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200831-0838.html 
+20201006-175240.333 Extracting Status table in Bundesländer 
+20201006-175240.949 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200831-1112.html 
+20201006-175240.963 Extracting Status table in Bundesländer 
+20201006-175241.055 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200831-1503.html 
+20201006-175241.068 Extracting Status table in Bundesländer 
+20201006-175241.211 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200831-1556.html 
+20201006-175241.222 Extracting Status table in Bundesländer 
+20201006-175241.308 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200901-1041.html 
+20201006-175241.320 Extracting Status table in Bundesländer 
+20201006-175241.464 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200902-0022.html 
+20201006-175241.478 Extracting Status table in Bundesländer 
+20201006-175242.019 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200902-1220.html 
+20201006-175242.031 Extracting Status table in Bundesländer 
+20201006-175242.102 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200902-2006.html 
+20201006-175242.184 Extracting Status table in Bundesländer 
+20201006-175242.255 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200902-2008.html 
+20201006-175242.268 Extracting Status table in Bundesländer 
+20201006-175242.431 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200903-1036.html 
+20201006-175242.443 Extracting Status table in Bundesländer 
+20201006-175242.514 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200903-2344.html 
+20201006-175242.532 Extracting Status table in Bundesländer 
+20201006-175243.116 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200904-1348.html 
+20201006-175243.126 Extracting Status table in Bundesländer 
+20201006-175243.190 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200904-1406.html 
+20201006-175243.200 Extracting Status table in Bundesländer 
+20201006-175243.263 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200904-1502.html 
+20201006-175243.275 Extracting Status table in Bundesländer 
+20201006-175243.427 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200904-2126.html 
+20201006-175243.439 Extracting Status table in Bundesländer 
+20201006-175243.514 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200905-1435.html 
+20201006-175243.526 Extracting Status table in Bundesländer 
+20201006-175244.101 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200905-1658.html 
+20201006-175244.113 Extracting Status table in Bundesländer 
+20201006-175244.205 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200906-1716.html 
+20201006-175244.217 Extracting Status table in Bundesländer 
+20201006-175244.279 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200907-1026.html 
+20201006-175244.294 Extracting Status table in Bundesländer 
+20201006-175244.462 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200907-1550.html 
+20201006-175244.474 Extracting Status table in Bundesländer 
+20201006-175244.546 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200908-1014.html 
+20201006-175244.560 Extracting Status table in Bundesländer 
+20201006-175245.100 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200908-1407.html 
+20201006-175245.114 Extracting Status table in Bundesländer 
+20201006-175245.200 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200909-1157.html 
+20201006-175245.211 Extracting Status table in Bundesländer 
+20201006-175245.290 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200909-1839.html 
+20201006-175245.301 Extracting Status table in Bundesländer 
+20201006-175245.464 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200910-1355.html 
+20201006-175245.476 Extracting Status table in Bundesländer 
+20201006-175245.556 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200910-2322.html 
+20201006-175245.566 Extracting Status table in Bundesländer 
+20201006-175246.188 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200911-1443.html 
+20201006-175246.201 Extracting Status table in Bundesländer 
+20201006-175246.273 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200913-0016.html 
+20201006-175246.285 Extracting Status table in Bundesländer 
+20201006-175246.425 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200913-1110.html 
+20201006-175246.437 Extracting Status table in Bundesländer 
+20201006-175246.530 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200913-2336.html 
+20201006-175246.541 Extracting Status table in Bundesländer 
+20201006-175246.696 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200914-1711.html 
+20201006-175246.708 Extracting Status table in Bundesländer 
+20201006-175247.257 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200915-1154.html 
+20201006-175247.269 Extracting Status table in Bundesländer 
+20201006-175247.415 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200915-1713.html 
+20201006-175247.428 Extracting Status table in Bundesländer 
+20201006-175247.530 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200916-1059.html 
+20201006-175247.545 Extracting Status table in Bundesländer 
+20201006-175247.754 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200916-1657.html 
+20201006-175247.768 Extracting Status table in Bundesländer 
+20201006-175247.916 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200916-1659.html 
+20201006-175247.928 Extracting Status table in Bundesländer 
+20201006-175248.486 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200916-1719.html 
+20201006-175248.500 Extracting Status table in Bundesländer 
+20201006-175248.656 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200916-1758.html 
+20201006-175248.670 Extracting Status table in Bundesländer 
+20201006-175248.745 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200917-1111.html 
+20201006-175248.757 Extracting Status table in Bundesländer 
+20201006-175248.845 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200917-1841.html 
+20201006-175248.857 Extracting Status table in Bundesländer 
+20201006-175249.004 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200918-1132.html 
+20201006-175249.017 Extracting Status table in Bundesländer 
+20201006-175249.569 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200918-1834.html 
+20201006-175249.583 Extracting Status table in Bundesländer 
+20201006-175249.723 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200920-2140.html 
+20201006-175249.735 Extracting Status table in Bundesländer 
+20201006-175249.816 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200920-2206.html 
+20201006-175249.829 Extracting Status table in Bundesländer 
+20201006-175250.010 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200921-1039.html 
+20201006-175250.022 Extracting Status table in Bundesländer 
+20201006-175250.092 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200921-1759.html 
+20201006-175250.179 Extracting Status table in Bundesländer 
+20201006-175250.758 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200922-1251.html 
+20201006-175250.771 Extracting Status table in Bundesländer 
+20201006-175250.921 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200922-1836.html 
+20201006-175250.934 Extracting Status table in Bundesländer 
+20201006-175251.000 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200923-1152.html 
+20201006-175251.013 Extracting Status table in Bundesländer 
+20201006-175251.206 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200924-0033.html 
+20201006-175251.220 Extracting Status table in Bundesländer 
+20201006-175251.292 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200924-1233.html 
+20201006-175251.303 Extracting Status table in Bundesländer 
+20201006-175251.922 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200924-2337.html 
+20201006-175251.935 Extracting Status table in Bundesländer 
+20201006-175252.026 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200925-1139.html 
+20201006-175252.041 Extracting Status table in Bundesländer 
+20201006-175252.114 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200925-1620.html 
+20201006-175252.197 Extracting Status table in Bundesländer 
+20201006-175252.289 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200926-2032.html 
+20201006-175252.301 Extracting Status table in Bundesländer 
+20201006-175252.452 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200927-1232.html 
+20201006-175252.464 Extracting Status table in Bundesländer 
+20201006-175252.539 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200927-2340.html 
+20201006-175252.560 Extracting Status table in Bundesländer 
+20201006-175252.712 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200928-1142.html 
+20201006-175252.725 Extracting Status table in Bundesländer 
+20201006-175252.804 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200928-1747.html 
+20201006-175252.816 Extracting Status table in Bundesländer 
+20201006-175252.970 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200929-1333.html 
+20201006-175252.996 Extracting Status table in Bundesländer 
+20201006-175253.166 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200929-1704.html 
+20201006-175253.179 Extracting Status table in Bundesländer 
+20201006-175253.245 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200930-1206.html 
+20201006-175253.257 Extracting Status table in Bundesländer 
+20201006-175253.351 Parsing dump in ./html/COVID-19-austria.bmsgpk.20200930-1555.html 
+20201006-175253.364 Extracting Status table in Bundesländer 
+20201006-175253.788 Writing reconstructed datafile ./data/COVID-19-austria.reconstructed.csv 
