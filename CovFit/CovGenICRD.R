@@ -5,7 +5,11 @@ library(tidyr)
 library(lubridate)
 
 # Calculate values of time varying parameters
-isf <- function(t=0, ISF, SDD, SDSF) {k=ISF; if(t>=SDD)k=SDSF*ISF; return(k)} # infection spread factor
+isf <- function(t=0, ISF=.5, ISFD=1, SDD=21, SDSF=.1) {
+  k=ISF*(ISFD^t)
+  if(t>=SDD) k=ISF*SDSF
+  return(k)
+} # infection spread factor
 
 # Distribute case states on timeline: infectious->confirmed, confirmed->recovered, confirmed->dead
 icd <- function(t=0,n,daysI) {k<-rpois(n,daysI-1)+1; km<-max(k); h<-hist(k,breaks=0:km,plot=FALSE)$counts; return(h)}
@@ -20,6 +24,7 @@ CovGenIC <- function(parms) {
   # Default Parameters
   # parms=c(1,7,21,0,70,4)
   ISF=1          # Infection Spread Factor
+  ISFD=1         # ISF daming factor
   SDSF=0         # ShutDown Spread Factor (percentage)
   daysI=5        # Number of days specimen is infectios
   SDD=21         # ShutDown Day
@@ -28,7 +33,8 @@ CovGenIC <- function(parms) {
   
   # Parameters for optimization
   ISF=parms[1]
-  SDSF=parms[2]
+  ISFD=parms[2]
+  SDSF=parms[3]
   #daysI=parms[3]
   #SDD=parms[4]
   #N=parms[5]
@@ -53,7 +59,7 @@ CovGenIC <- function(parms) {
   for (t in 2:N) {
     
     # Compartment I (Infectious)
-    nI[t] <- round(cI[t-1] * isf(t-1, ISF, SDD, SDSF))
+    nI[t] <- round(cI[t-1] * isf(t-1, ISF=ISF, ISFD=ISFD, SDD=SDD, SDSF=SDSF))
     
     # Compartment C (Cases, tested positiv) 
     if(nI[t]>0) {

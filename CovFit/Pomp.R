@@ -415,10 +415,11 @@ ic_dmfun <- function(t,newConfirmed, C, ..., log) {
 
 # Grid for logLik surface
 ic_pgrid <- expand.grid(
-  ISF=seq(0.45,0.6,by=0.005),
-  SDSF=seq(0.15,0.45,by=0.005)
+  ISF=seq(0.45,0.80,by=0.025),
+  ISFD=seq(0.97,1.00,by=0.0025),
+  SDSF=seq(0.15,0.45,by=0.025)
 )
-
+str(ic_pgrid)
 # Calculate logLik surface
 pl <- foreach(parms=iter(ic_pgrid,"row"), 
              .combine=rbind, 
@@ -426,7 +427,7 @@ pl <- foreach(parms=iter(ic_pgrid,"row"),
              .options.multicore=list(set.seed=TRUE)) %dopar%  { ic_pomp(parms, bPlot=FALSE, bLogLik=FALSE) }
 
 # calculate logLik for parms
-# p=data.frame(ISF=.53,SDSF=0.25)
+# p=data.frame(ISF=.65,ISDF=.97, SDSF=0.1)
 ic_pomp <- function(parms, bPlot=FALSE, bLogLik=TRUE) {
 
   p <- data.frame(parms)
@@ -452,7 +453,7 @@ ic_pomp <- function(parms, bPlot=FALSE, bLogLik=TRUE) {
   # cat(p[1,1],p[1,2],p[1,3],'\n')
   
   if(bPlot) {
-    fileName=paste0("./CovFit/plots/",paste("ic_pomp",p[1,1],p[1,2],round(p[1,3]),sep="_"), ".png")
+    fileName=paste0("./CovFit/plots/",paste("ic_pomp",p[1,1],p[1,2],p[1,3],round(p[1,4]),sep="_"), ".png")
     
     #dp <- pm %>% pomp::trajectory(params=NULL,format="data.frame")
     dg <- cbind(df,ic)
@@ -472,28 +473,37 @@ ic_pomp <- function(parms, bPlot=FALSE, bLogLik=TRUE) {
 }
 
 #colnames(f)=c("ISF","SDSF","logLik")
-head(pl)
+pl[order(pl$logLik),] %>% head(n=12)
 pl[which(pl$logLik==min(pl$logLik)),]
 
-gg <- ggplot(data=pl, aes(x=ISF, y=SDSF, fill=log(logLik))) +
+ggplot(data=pl, aes(x=ISF, y=SDSF, fill=log(logLik))) +
   geom_tile() + 
-  scale_fill_gradient(low="white", high="black")
+  scale_fill_gradient(low="white", high="black") +
+  facet_wrap(.~ISFD, nrow=4)
+
 fileName=paste0("./CovFit/plots/",paste("ic_pomp","logLikSurface-%3d",sep="_"), ".png")
 ggsave(fileName, gg, scale=2, width=4, height=3, dpi=300, units="in")
 
 # calculate single logLik for parms
-ic_pomp(c(0.5,.35), bPlot=TRUE, bLogLik=FALSE)
+ic_pomp(c(0.65,.98,.20), bPlot=TRUE, bLogLik=FALSE)
 
 # Optimize parameter estimation using subplex
-sp <- subplex(c(0.50,.40),fn=ic_pomp, control=list(reltol=1e-3, parscale=.1))
+sp <- subplex(c(0.4,.99,.25),fn=ic_pomp, control=list(reltol=1e-3, parscale=.1))
 sp$par
+# "0.665 0.976 0.24"
+# 0.7711271 0.9608891 0.2096121
+# 0.6344581 0.9809003 0.2503852
+# 0.5501013 0.9944705 0.2895110
+# 0.4728322 1.0095516 0.3269710
 
 # Calculate and plot hidden process for optimum solution
-ic <- CovGenIC(sp$par) %>% select(icInfectious=newInfectious, icConfirmed=newConfirmed )
+par=unlist(pl[863,1:3])
+ic <- CovGenIC(par) %>% select(icInfectious=newInfectious, icConfirmed=newConfirmed )
 dg <- cbind(df,ic)
-gg <- ggplot(data=dg, aes(x=xt, y=newConfirmed)) + geom_line() + geom_point() +
+ggplot(data=dg, aes(x=xt, y=newConfirmed)) + geom_line() + geom_point() +
   geom_line(aes(y=icConfirmed)) + geom_point(aes(y=icConfirmed)) +
-  ggtitle(paste(round(sp$par[1],3),round(sp$par[2],3)))
+  geom_line(aes(y=icInfectious)) + geom_point(aes(y=icInfectious)) +
+  ggtitle(paste(round(sp$par[1],3),round(sp$par[2],3),round(sp$par[3],3)))
 fileName=paste0("./CovFit/plots/",paste("ic_pomp","logLikSubPlex-%3d",sep="_"), ".png")
 ggsave(fileName, gg, scale=2, width=4, height=3, dpi=300, units="in")
 # ==============================================================================
