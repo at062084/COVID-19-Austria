@@ -297,6 +297,66 @@ scrapeInfo <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   return(dc)
 }
 
+scrapeInfo2 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
+  
+  # xpath of Bundesländer data on info site
+  # /html/body/div[2]/div[2]/div[3]/div[2]/div/canvas[2]
+  
+  # crawl and dump javascripted site using chrome headless
+  dmpFile=paste0("./html/COVID-19-austria.info.",ts,".dmp")
+  
+  #url="https://info.gesundheitsministerium.at/"
+  #url="https://info.gesundheitsministerium.at/dashboard_Epidem.html?l=de"
+  url="https://covid19-dashboard.ages.at/dashboard.html"
+  logMsg(paste("Scraping using headless chrome for", url))
+  
+  chrome="/opt/google/chrome/chrome"
+  flags="--headless --disable-gpu --dump-dom"
+  logMsg(paste("Dumping page to", dmpFile))
+  system2(chrome,paste(url, flags, ">", dmpFile))
+  
+  # xpath anchor points in dump of info.gesundheitsministerium.at
+  #xpathAktualisierung  <- '//*[@id="divLetzteAktualisierung"]'
+  #xpathErkrankungen    <- '//*[@id="divErkrankungen"]'
+  
+  # use xml2 methods to extract information from dump
+  logMsg(paste("Analysing dump file", dmpFile))
+  x <- xml2::read_html(dmpFile)
+  
+  # Aktualisierung
+  #xa <- xml2::xml_find_all(x, xpathAktualisierung)
+  #xd <- xml2::xml_text(xa, trim=TRUE)
+  #Stamp <- as.POSIXct(xd, format="%d.%m.%Y %H:%M.%S", tz="CEST")
+  #logMsg(paste("Aktualisierung",Stamp))
+  
+  #xpathErkrankungen <- "/html/body/main/div/div/div[7]/div/div/table"
+  
+  # Erkrankungen
+  #xa <- xml2::xml_find_all(x, xpathErkrankungen)
+  #xd <- xml2::xml_text(xa, trim=TRUE)
+  #nErkrankungen <- as.integer(xd)
+  #logMsg(paste("Erkrankungen",nErkrankungen))  
+  
+  logMsg(paste("Extracting table of Confirmed in 100+ regions"))
+  Stamp <- as.POSIXct(now(), format="%Y-%m-%d %H:%M:%S", tz="CEST")
+  tables <- rvest::html_table(x, dec=",")
+  dx <- tables[[1]]
+  colnames(dx) <- c("Region","Count")
+  
+  dc <- dx %>% 
+    #dplyr::mutate_all(funs(str_replace(., "\\.000", ""))) %>% 
+    dplyr::mutate_all(funs(str_replace(., "\\.", ""))) %>% 
+    dplyr::mutate(Stamp=Stamp, Status="Confirmed", Count=as.integer(Count)) %>%
+    dplyr::select(Stamp, Status, Region, Count) %>%
+    dplyr::mutate(Region=str_remove(Region,",")) %>%
+    dplyr::mutate(Region=str_replace_all(Region,"[ \\.\\(\\)]","_")) %>%
+    dplyr::mutate(Region=str_replace(Region,"_$",""))
+  
+  
+  # print a few results to console
+  dc %>% tail() %>% print()
+  return(dc)
+}
 
 
 # --------------------------------------------------------------------------------------------------------
@@ -354,7 +414,7 @@ scrapeHospitalisierung <- function(ts=format(now(),"%Y%m%d-%H%M")) {
 scrapeZIP <- function(ts=format(now(),"%Y-%m-%d_%H%M")) {
   
   zipFile=paste0("./data/zip/COVID-19-austria.V0414.",ts,".zip")
-  zipDir=paste0("./data/zip/",ts)
+  #zipDir=paste0("./data/zip/",ts)
   url="https://info.gesundheitsministerium.at/data/data.zip"
   
   logMsg(paste("Downloading", url, "to", zipFile))
@@ -366,7 +426,31 @@ scrapeZIP <- function(ts=format(now(),"%Y-%m-%d_%H%M")) {
   
   return(0)
 }
+scrapeZIP_AGES <- function(ts=format(now(),"%Y-%m-%d_%H%M")) {
+  
+  zipFile=paste0("./data/zip/COVID-19-austria.V1006.",ts,".zip")
+  unzipDir="./data/unzip"
+  agesDir="./data/ages"
+  url="https://covid19-dashboard.ages.at/data/data.zip"
+  
+  logMsg(paste("Downloading", url, "to", zipFile))
+  cmd <- paste0("\"",url,"\"", " -O ", zipFile)
+  system2("wget", cmd)
+  
+  cmd <- paste("-fo", zipFile, "-d", unzipDir)
+  system2("unzip",cmd)
+  
+  parms <- paste0("-f ",unzipDir, "/Covid*", " ", agesDir)
+  system2("cp", parms)
+  
+  parms <- paste0("-f ", unzipDir, "/*Time*", " ", agesDir)
+  system2("cp", parms)
 
+  parms <- paste0("-f ", unzipDir, "/Epikurve.csv", " ", agesDir)
+  system2("cp", parms)
+  
+  return(0)
+}
 
 
 
@@ -399,14 +483,14 @@ logMsg(paste("DISABLED: Calling scrapeHospitalisierung with", ts))
 #dh <- scrapeHospitalisierung(ts=ts)
 
 # OK scrapeInfo
-logMsg(paste("Calling scrapeInfo with", ts))
-di <- scrapeInfo(ts=ts)
+logMsg(paste("DISABLED: Calling scrapeInfo with", ts))
+#di <- scrapeInfo(ts=ts)
 
 # OK scrapeInfo
-logMsg(paste("Calling scrapeZIP with", ts))
-z <- scrapeZIP(ts=ts)
+logMsg(paste("Calling scrapeZIP_AGES with", ts))
+z <- scrapeZIP_AGES(ts=ts)
 
-
+# Persist data
 csvFile <- paste0("./data/COVID-19-austria.csv")
 logMsg(paste("Writing new data to", csvFile))
 df <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp, tz="CEST"))
@@ -420,10 +504,10 @@ write.csv(df, file=csvFile, row.names=FALSE, quote=FALSE)
 #write.csv(df, file=csvFile, row.names=FALSE, quote=FALSE)
 
 csvFile <- paste0("./data/COVID-19-austria.regions.csv")
-logMsg(paste("Writing new data to", csvFile))
-df <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp, tz="CEST"))
-df <- rbind(df,di)
-write.csv(df, file=csvFile, row.names=FALSE, quote=FALSE)
+logMsg(paste("DISABLED: Writing new data to", csvFile))
+#df <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp, tz="CEST"))
+#df <- rbind(df,di)
+#write.csv(df, file=csvFile, row.names=FALSE, quote=FALSE)
 
 logMsg("Done runing data extraction from bmsgpk web pages")
 
