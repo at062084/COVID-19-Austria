@@ -10,7 +10,7 @@ output:
     fig_width: 7
     fig_height: 4
     fig_caption: false
-    number_sections: true     
+    number_sections: true      
 ---
 
 ```{r global_options, include=FALSE}
@@ -44,7 +44,10 @@ c("Szb","2020-06-09","Tested",NA),
 c("Szb","2020-06-10","Tested",NA),
 c("W","2020-04-15","Tested",32660),
 c("W","2020-04-22","Tested",NA),
-c("W","2020-04-23","Tested",NA)
+c("W","2020-04-23","Tested",NA),
+c("W","2020-08-14","Tested",NA),
+c("W","2020-08-15","Tested",NA),
+c("W","2020-07-13","Tested",NA)
 ), stringsAsFactors=FALSE)
 colnames(err)<-c("County","Date","Status","Value")
 err$Value <- as.integer(err$Value)
@@ -53,20 +56,30 @@ err$Value <- as.integer(err$Value)
 # Status 
 ## Prepare data
 ```{r}
-csvFile <- "/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/data/COVID-19-austria.states.curated.status.csv"
+#csvFile <- "/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/data/COVID-19-austria.states.curated.status.csv"
+csvFile <- "/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/data/COVID-19-austria.reconstructed.csv"
 dv <- read.csv(csvFile, stringsAsFactors=FALSE) %>% 
   dplyr::mutate(Stamp=as.POSIXct(Stamp), Date=date(Stamp)) 
 
+# grid of dates from first day
+gridDate <- seq(ymd("2020-02-24"),ymd(format(now(),"%Y-%m-%d")), by='day')
+gridStati=c("Tested", "Confirmed","Recovered","Deaths","Hospitalisierung","Intensivstation")
+gridStatus <- rep(gridStati,length(gridDate))
+gridDateStatus <- data.frame(Date=rep(gridDate,each=length(gridStati)), Status=rep(gridStati,times=length(gridDate)), stringsAsFactors=FALSE)
+
+dv <- gridDateStatus %>% dplyr::left_join(dv, by=c("Date","Status"))
+
 # Bug fix for wrong 'Tested' data from 14.8.2020 to 4.9.2020
-idxStamp <- dv$Stamp>=strptime("2020-08-14", format="%Y-%m-%d") & dv$Stamp<=strptime("2020-09-05", format="%Y-%m-%d")
-idxStatus <- dv$Status=="Tested"
-idx <- idxStamp & idxStatus
-dv[idx,"AT"] <- dv[idx,"AT"]*1000
+#idxStamp <- dv$Stamp>=strptime("2020-08-14", format="%Y-%m-%d") & dv$Stamp<=strptime("2020-09-05", #format="%Y-%m-%d")
+#idxStatus <- dv$Status=="Tested"
+#idx <- idxStamp & idxStatus
+#idx[is.na(idx)]<- FALSE
+#dv[idx,"AT"] <- dv[idx,"AT"]*1000
 
 # Correct 'Tested' data along err
-for(k in 1:dim(err)[1]) {
-  dv[dv$Date==strptime(err[k,"Date"],format="%Y-%m-%d") & dv$Status==err[k,"Status"] ,err[k,"County"]] <- err[k,"Value"] 
-}
+#for(k in 1:dim(err)[1]) {
+#  dv[dv$Date==strptime(err[k,"Date"],format="%Y-%m-%d") & dv$Status==err[k,"Status"] ,err[k,"County"]] <- #err[k,"Value"] 
+#}
 
 # All Counties
 db <- dv %>% 
@@ -131,7 +144,9 @@ ggplot(data=drm%>%dplyr::filter(County!="AT"), aes(x=Date, y=newTested, color=Co
     scale_shape_manual(values=c(1:10)) +
     #scale_x_continuous(limits=c(17,NA)) +
     scale_x_date(limits=c(as.Date(strptime("2020-05-01",format="%Y-%m-%d")),NA)) +
-    scale_y_continuous(limits=c(0,5000))
+    scale_y_continuous(limits=c(0,5000)) +
+    ggtitle("newTested ~ Date | County. Avg=7days")
+  
 
 #ggplot(data=drm%>%dplyr::filter(County!="AT"), aes(x=KW, y=newTested, color=County)) + 
 #    geom_point(size=3, aes(shape=County)) +
@@ -147,7 +162,9 @@ ggplot(data=drm%>%dplyr::filter(County!="AT"), aes(x=Date, y=newConfirmed, color
     scale_shape_manual(values=c(1:10)) +
     #scale_x_continuous(limits=c(17,NA)) +
     scale_x_date(limits=c(as.Date(strptime("2020-05-01",format="%Y-%m-%d")),NA)) +
-    scale_y_continuous(limits=c(0,150))
+    scale_y_continuous(limits=c(0,350)) +
+    ggtitle("newConfirmed ~ Date | County. Avg=7days")
+
 #ggplot(data=drm%>%dplyr::filter(County!="AT"), aes(x=KW, y=newConfirmed, color=County)) + 
 #    geom_point(size=3, aes(shape=County)) +
 #    geom_line() +
@@ -162,7 +179,18 @@ ggplot(data=drm, aes(x=Date, y=newConfirmed/newTested, color=County)) +
   scale_shape_manual(values=c(1:10)) +
   #scale_x_continuous(limits=c(17,NA)) +
   scale_x_date(limits=c(as.Date(strptime("2020-05-01",format="%Y-%m-%d")),NA)) +
-  scale_y_continuous(limits=c(0,.06), breaks=seq(0,.06,by=.01))
+  scale_y_continuous(limits=c(0,.06), breaks=seq(0,.06,by=.01))+
+  ggtitle("newConfirmed/newTested ~ Date | County. Avg=7days")
+
+ggplot(data=drm %>% dplyr::filter(County %in% c("AT","B", "Ooe","W")), 
+       aes(x=Date, y=newConfirmed/newTested, color=County)) + 
+  geom_point(size=2, aes(shape=County)) +
+  geom_line() +
+  scale_shape_manual(values=c(1:10)) +
+  #scale_x_continuous(limits=c(17,NA)) +
+  scale_x_date(limits=c(as.Date(strptime("2020-05-01",format="%Y-%m-%d")),NA)) +
+  scale_y_continuous(limits=c(0,.1), breaks=seq(0,.1,by=.01))+
+  ggtitle("newConfirmed/newTested ~ Date | 3Counties. Avg=7days")
 
 #ggplot(data=dt, aes(x=KW, y=newConfirmed/newTested, color=County)) + 
 #  geom_point(size=3, aes(shape=County)) +
@@ -183,22 +211,36 @@ ggplot(data=dc, aes(x=newTested, y=newConfirmed/newTested, shape=factor(month(Da
   scale_shape_manual(values=14+c(1:12)) + 
   scale_fill_brewer()
 
-# TODO replace stat_smooth with rolling mean !!!
-scaled=50000
-ggplot(data=dwrm, aes(x=Date, y=newConfirmed/newTested)) +
-  scale_x_date(limits=c(as.Date(strptime("2020-05-01",format="%Y-%m-%d")),NA)) +
-  scale_y_continuous(limits=c(0,NA), breaks=seq(0,.1,by=.01), 
-                     sec.axis = sec_axis(~ . *scaled, breaks=seq(0,10000,by=500))) +
-  geom_point(size=1, color="blue") + 
-  geom_line(color="blue") +
-  #scale_y_continuous(limits=c(0,.11), breaks=seq(0,.15,by=.01)) +
-  #stat_smooth(span=.4) +
-  geom_point(aes(y=newTested/50000, color="red"), shape=1) +
-  geom_line(aes(y=newTested/50000, color="red")) +
-  geom_point(aes(y=newConfirmed/5000, color="green"), shape=2) +
-  geom_line(aes(y=newConfirmed/5000, color="green"))
-  #stat_smooth(aes(y=newConfirmed/1000), span=.4, col="red") +
-  #stat_smooth(aes(y=newTested/50000), span=.4, col="green")
+# Vienna tested and confirmed in one plot
+scaled=1000
+dwrmc <- dwrm %>% 
+  dplyr::mutate(relConfirmedTested=newConfirmed/newTested*100, newTested=newTested/1000, newConfirmed_x10=newConfirmed/100) %>%
+  dplyr::select(Date, relConfirmedTested, newTested, newConfirmed_x10) %>% 
+  tidyr::gather(key=Status, val=Count, relConfirmedTested, newTested, newConfirmed_x10)
+
+ggplot(data=dwrmc, aes(x=Date, y=Count, color=Status)) +
+  scale_x_date(limits=c(as.Date(strptime("2020-07-01",format="%Y-%m-%d")),NA),
+               date_breaks="1 weeks", date_labels="%a.%d.%m") +
+  scale_y_continuous(limits=c(0,10), breaks=seq(0,10,by=1), 
+                     sec.axis = sec_axis(~ . *scaled, breaks=seq(0,10000,by=1000))) +
+  geom_point(size=1) + 
+  geom_line() +
+  ggtitle("newConfirmed,newTested ~ Date | Vienna. Avg=7days")
+
+
+scaled=1000
+dwrmr <- db %>% dplyr::filter(County=="W") %>% 
+  dplyr::mutate(relConfirmedTested=newConfirmed/newTested*100, newTested=newTested/1000, newConfirmed_x10=newConfirmed/100) %>%
+  dplyr::select(Date, relConfirmedTested, newTested, newConfirmed_x10) %>% 
+  tidyr::gather(key=Status, val=Count, relConfirmedTested, newTested, newConfirmed_x10)
+
+ggplot(data=dwrmr, aes(x=Date, y=Count, color=Status)) +
+  scale_x_date(limits=c(as.Date(strptime("2020-07-01",format="%Y-%m-%d")),NA), 
+               date_breaks="1 weeks", date_labels="%a.%d.%m") +
+  scale_y_continuous(limits=c(0,10), breaks=seq(0,18,by=1), 
+                     sec.axis = sec_axis(~ . *scaled, breaks=seq(0,18000,by=1000))) +
+  geom_point(size=2) + 
+  geom_line() 
 
 ```
 
