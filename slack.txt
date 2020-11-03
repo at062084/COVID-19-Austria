@@ -1,0 +1,25 @@
+App Credentials
+
+These credentials allow your app to access the Slack API. They are secret. Please don't share your app credentials with anyone, include them in public code repositories, or store them in insecure ways.
+App ID A011NG6RMRQ
+Date of App Creation April 12, 2020
+Client ID 51458274613.1056550871874
+Client Secret cfe423cbb62be5baa6db2c13cdbf2860
+You'll need to send this secret along with your client ID when making your oauth.v2.access request.
+Signing Secret 6401aa09edc97ba18c56a8a6c3fbefbe
+Slack signs the requests we send you using this secret. Confirm that each request comes from Slack by verifying its unique signature.
+Verification Token 7bNI5hzdGvyupuF9a7tvJTDP
+This deprecated Verification Token can still be used to verify that requests come from Slack, but we strongly recommend using the above, more secure, signing secret instead.
+
+OAuth token:
+xoxb-51458274613-1047116098695-6zucvFGkJkiR5qF81LPP3Y27
+
+curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"}' 
+https://hooks.slack.com/services/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
+
+https://hooks.slack.com/services/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
+
+https://hooks.slack.com/services/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
+
+
+
