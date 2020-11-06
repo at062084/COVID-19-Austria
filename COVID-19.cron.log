@@ -63712,3 +63712,197 @@ Archive:  ./data/zip/COVID-19-austria.V1006.20201105-2304.zip
 20201105-230425.762 Writing new data to ./data/COVID-19-austria.csv 
 20201105-230425.808 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
 20201105-230425.809 Done runing data extraction from bmsgpk web pages 
+[master b32e98f] 2020-11-05 23:04:23 Auto-Extract data from bmsgpk website
+ 6 files changed, 7231 insertions(+)
+ create mode 100644 bmsgpk/data/ampel/CoronaAmpel.20201105-2304.js
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V1006.20201105-2304.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20201105-2304.html
+To git@github.com:at062084/COVID-19-Austria.git
+   ffaccc4..b32e98f  HEAD -> master
+
+--------------------------------------------------------------------
+2020-11-06 12:02:31 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2020-11-06 12:02:31 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-11-06 12:02:31 Running auto-extraction of COVID-19 data from bmsgpk website
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘rvest’
+
+The following object is masked from ‘package:readr’:
+
+    guess_encoding
+
+20201106-120232.352 Running COVID-19-bmsgpk-extract.R 
+20201106-120232.388 Calling scrapeCovid2 with 20201106-1202 
+20201106-120232.431 Download Ampel data from "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20201106-120232.432 Storing Ampel data to ./data/ampel/CoronaAmpel.20201106-1202.js 
+--2020-11-06 12:02:32--  https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html
+Resolving www.sozialministerium.at (www.sozialministerium.at)... 95.131.199.37
+Connecting to www.sozialministerium.at (www.sozialministerium.at)|95.131.199.37|:443... connected.
+HTTP request sent, awaiting response... 200 200
+Length: 189296 (185K) [text/html]
+Saving to: ‘./data/ampel/CoronaAmpel.20201106-1202.js’
+
+     0K .......... .......... .......... .......... .......... 27%  631K 0s
+    50K .......... .......... .......... .......... .......... 54%  795K 0s
+   100K .......... .......... .......... .......... .......... 81%  914K 0s
+   150K .......... .......... .......... ....                 100% 1,09M=0,2s
+
+2020-11-06 12:02:32 (811 KB/s) - ‘./data/ampel/CoronaAmpel.20201106-1202.js’ saved [189296/189296]
+
+20201106-120232.813 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20201106-120232.815 Dumping page to ./html/COVID-19-austria.bmsgpk.20201106-1202.html 
+--2020-11-06 12:02:32--  https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html
+Resolving www.sozialministerium.at (www.sozialministerium.at)... 95.131.199.37
+Connecting to www.sozialministerium.at (www.sozialministerium.at)|95.131.199.37|:443... connected.
+HTTP request sent, awaiting response... 200 200
+Length: 189296 (185K) [text/html]
+Saving to: ‘./html/COVID-19-austria.bmsgpk.20201106-1202.html’
+
+     0K .......... .......... .......... .......... .......... 27%  609K 0s
+    50K .......... .......... .......... .......... .......... 54%  717K 0s
+   100K .......... .......... .......... .......... .......... 81%  700K 0s
+   150K .......... .......... .......... ....                 100% 1,13M=0,3s
+
+2020-11-06 12:02:33 (729 KB/s) - ‘./html/COVID-19-austria.bmsgpk.20201106-1202.html’ saved [189296/189296]
+
+20201106-120233.206 Parsing dump in ./html/COVID-19-austria.bmsgpk.20201106-1202.html 
+20201106-120233.220 Extracting Status table in Bundesländer 
+                Stamp           Status      AT     B      K    Noe    Ooe   Szbg   Stmk      T      V      W
+1 2020-11-06 08:00:00        Confirmed  139120  3565   4319  20957  25346   9628  13700  16847   7535  37223
+2 2020-11-06 09:30:00           Deaths    1340    31     36    220    174     57    257    145     45    375
+3 2020-11-06 09:30:00        Recovered   83707  1737   2138  12605  14545   4903   6007  11872   4500  25400
+4 2020-11-06 09:30:00 Hospitalisierung    2925    47    128    448    738    138    486    263    145    532
+5 2020-11-06 09:30:00  Intensivstation     421     0     11     61     79     21     66     44     28    111
+6 2020-11-06 09:30:00           Tested 2396015 75130 114365 397922 313094 132857 245277 319681 133723 663966
+Warning message:
+funs() is soft deprecated as of dplyr 0.8.0
+Please use a list of either functions or lambdas: 
+
+  # Simple named list: 
+  list(mean = mean, median = median)
+
+  # Auto named with `tibble::lst()`: 
+  tibble::lst(mean, median)
+
+  # Using lambdas
+  list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
+This warning is displayed once per session. 
+20201106-120233.308 DISABLED: Calling scrapeHospitalisierung with 20201106-1202 
+20201106-120233.309 DISABLED: Calling scrapeInfo with 20201106-1202 
+20201106-120233.310 Calling scrapeZIP_AGES with 20201106-1202 
+20201106-120233.321 Downloading https://covid19-dashboard.ages.at/data/data.zip to ./data/zip/COVID-19-austria.V1006.20201106-1202.zip 
+--2020-11-06 12:02:33--  https://covid19-dashboard.ages.at/data/data.zip
+Resolving covid19-dashboard.ages.at (covid19-dashboard.ages.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to covid19-dashboard.ages.at (covid19-dashboard.ages.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 339404 (331K) [application/zip]
+Saving to: ‘./data/zip/COVID-19-austria.V1006.20201106-1202.zip’
+
+     0K .......... .......... .......... .......... .......... 15%  895K 0s
+    50K .......... .......... .......... .......... .......... 30% 1,67M 0s
+   100K .......... .......... .......... .......... .......... 45% 1,23M 0s
+   150K .......... .......... .......... .......... .......... 60% 1,33M 0s
+   200K .......... .......... .......... .......... .......... 75% 1,33M 0s
+   250K .......... .......... .......... .......... .......... 90% 1,37M 0s
+   300K .......... .......... .......... .                    100% 1,76M=0,3s
+
+2020-11-06 12:02:33 (1,29 MB/s) - ‘./data/zip/COVID-19-austria.V1006.20201106-1202.zip’ saved [339404/339404]
+
+Archive:  ./data/zip/COVID-19-austria.V1006.20201106-1202.zip
+20201106-120233.854 Writing new data to ./data/COVID-19-austria.csv 
+20201106-120233.902 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
+20201106-120233.903 Done runing data extraction from bmsgpk web pages 
+[master a0137dc] 2020-11-06 12:02:31 Auto-Extract data from bmsgpk website
+ 5 files changed, 7113 insertions(+)
+ create mode 100644 bmsgpk/data/ampel/CoronaAmpel.20201106-1202.js
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V1006.20201106-1202.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20201106-1202.html
+To git@github.com:at062084/COVID-19-Austria.git
+   b32e98f..a0137dc  HEAD -> master
+
+--------------------------------------------------------------------
+2020-11-06 12:02:45 Running ./COVID-19-cron.sh for SECTION=county
+2020-11-06 12:02:45 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-11-06 12:02:45 Running conversion of COVID-19 data to covid-county format
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘tibbletime’
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:readr’:
+
+    col_factor
+
+
+Attaching package: ‘plotly’
+
+The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+The following object is masked from ‘package:graphics’:
+
+    layout
+
+20201106-120246.663 Running COVID-19-covid-county-extract.R 
+20201106-120246.735 Executing covCounty with 2020-11-06 10:02:46 
+20201106-120246.909 Writing ./data/AT_country.bmsgpk.csv 
+20201106-120246.949 Writing ./data/AT_states.bmsgpk.csv 
+20201106-120247.449 Writing ./data/AT_counties.bmsgpk.csv 
+20201106-120247.451 Done executing covCounty 
+20201106-120247.451 Done running COVID-19-covid-county-extract.R 
