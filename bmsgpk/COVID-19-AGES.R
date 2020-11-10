@@ -1,12 +1,31 @@
-# -------------------------------------------------------------------------------------------------
+# =================================================================================================
 # main
-# -------------------------------------------------------------------------------------------------
+# =================================================================================================
 wd <- "/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk"
 setwd(wd)
 source("./COVID-19-AGES-Data.R")
 
 # read Ages Data
 df <- caAgesRead_tlrm()
+
+# -------------------------------------------------------------------------------------------------
+# rm7NewConfPop ~ Date | Region
+# -------------------------------------------------------------------------------------------------
+ggplot(data=df, 
+       aes(x=Date, y=rm7NewConfPop, color=Region, shape=Region)) +
+  scale_shape_manual(values=c(1:10)) +
+  scale_x_date(limits=c(as.Date(strptime("2020-10-01",format="%Y-%m-%d")),NA), 
+               date_breaks="1 weeks", date_labels="%d.%m") +
+  scale_y_continuous(limits=c(.1,110), breaks=c(seq(.1,1,by=.1),1:10,seq(10,110,by=10)), position="right") + 
+  geom_point(size=3) + 
+  geom_line() +
+  geom_line(data=df %>% dplyr::filter(Region=="Österreich"), aes(x=Date, y=rm7NewConfPop), color="darkgreen", size=1) +
+  geom_line(data=df %>% dplyr::filter(Region=="Wien"), aes(x=Date, y=rm7NewConfPop), color="red", size=1) +
+  geom_line(data=df %>% dplyr::filter(Region=="Österreich") %>% dplyr::filter(Date>=max(Date-days(7))), aes(x=Date, y=newConfPop), color="darkgreen", size=.5, linetype=3) +
+  geom_line(data=df %>% dplyr::filter(Region=="Wien") %>% dplyr::filter(Date>=max(Date-days(7))), aes(x=Date, y=newConfPop), color="red", size=.5, linetype=3) +
+  ggtitle("AGES BundesLänder Timeline newConfirmed/per100.000 WeekMeans")
+
+
 
 # Plot parameters
 xTrans="identity"
@@ -20,19 +39,47 @@ fltRegion=""
 # Calculate speed of spread in percent change of newConfirmed per day
 nRegDays=7
 dblDays=c(1:7,10,14,21,28,35,50,100,Inf,-100,-50,-28,-21,-14,-10,-7)
-rolm <- rollify(.f=function(Date,vals) {exp(coef(lm(log(vals)~Date))[2])}, window=nRegDays)
+rolm <- rollify(.f=function(Date,vals) {exp(coef(lm(log(vals)~Date), na.action=na.ignore, singular.ok=TRUE)[2])}, window=nRegDays)
 
-nullDate=as.Date("2020-08-01")
+nullDate=as.Date("2020-09-14") # zero newConfirmed in Salzburg on 2020-09-13 !!! TODO correct !!!
 ds <- df %>% 
   dplyr::filter(Date>=nullDate) %>%
   dplyr::arrange(Region,Date) %>% 
   dplyr::group_by(Region) %>% 
+  dplyr::mutate(newSpread=rolm(Date,newConfirmed)) %>%
   dplyr::mutate(rm7NewSpread=rolm(Date,rm7NewConfirmed)) %>%
   dplyr::mutate(smoothNewSpread=rolm(Date,smoothNewConfirmed)) %>%
   dplyr::ungroup() 
 
-begDate=as.Date("2020-10-01")
-dd <- ds %>% dplyr::filter(Date>begDate)
+
+# -------------------------------------------------------------------------------------------------
+# rm7NewSpread ~ Date | Region
+# -------------------------------------------------------------------------------------------------
+ggplot(data=ds, 
+       aes(x=Date, y=rm7NewSpread, color=Region, shape=Region)) +
+  scale_shape_manual(values=c(1:10)) +
+  scale_x_date(limits=c(as.Date(strptime("2020-10-01",format="%Y-%m-%d")),NA), 
+               date_breaks="1 weeks", date_labels="%d.%m") +
+  scale_y_continuous(limits=c(yLimMin,yLimMax), breaks=exp(log(2)/dblDays), labels=dblDays, position="right",
+                     sec.axis=dup_axis(labels=as.character(round(exp(log(2)/dblDays),2)), name="Tägliche Steigerungsrate")) +
+  geom_point(size=3) + 
+  geom_line() +
+  geom_line(data=ds %>% dplyr::filter(Region=="Österreich"), aes(x=Date, y=rm7NewSpread), color="darkgreen", size=1) +
+  geom_line(data=ds %>% dplyr::filter(Region=="Österreich"), aes(x=Date, y=smoothNewSpread), color="black", size=1, linetype=3) +
+  geom_line(data=ds %>% dplyr::filter(Region=="Wien"), aes(x=Date, y=rm7NewSpread), color="red", size=1) +
+  geom_line(data=ds %>% dplyr::filter(Region=="Wien"), aes(x=Date, y=smoothNewSpread), color="black", size=1, linetype=3) +
+  geom_line(data=ds %>% dplyr::filter(Region=="Österreich") %>% dplyr::filter(Date>=max(Date-days(7))), aes(x=Date, y=newSpread), color="darkgreen", size=.5, linetype=3) +
+  geom_line(data=ds %>% dplyr::filter(Region=="Wien") %>% dplyr::filter(Date>=max(Date-days(7))), aes(x=Date, y=newSpread), color="red", size=.5, linetype=3) +
+  ggtitle("AGES BundesLänder Timeline SpreadFactor WeekMeans [y-scales: left: % newConfirmed/Day, right: Number of days to double newConfirmed]")
+
+
+
+
+# -------------------------------------------------------------------------------------------------
+# rm7NewSpread ~ rm7NewConfPop | Region
+# -------------------------------------------------------------------------------------------------
+begDate <- as.Date("2020-10-01")
+dd <- ds %>% dplyr::filter(Date > begDate)
 
 ggplot(data=dd %>% dplyr::arrange(Region,Date), 
        aes(x=rm7NewConfPop, y=rm7NewSpread, color=Region, alpha=Date)) + 
@@ -46,18 +93,21 @@ ggplot(data=dd %>% dplyr::arrange(Region,Date),
   geom_path(data=dd %>% dplyr::filter(Region=="Wien"), aes(x=rm7NewConfPop, y=rm7NewSpread), color="red", size=1) +
   geom_point(data=dd %>% dplyr::filter(weekdays(Date)==weekdays(max(Date))), 
              aes(x=rm7NewConfPop, y=rm7NewSpread, color=Region, shape=Region), size=5, stroke=1.5) +
-  geom_text(data=dd %>% dplyr::filter(Date==max(Date)-days(3)), 
+  geom_text(data=dd %>% dplyr::filter(Date==max(Date)), 
             aes(x=rm7NewConfPop, y=rm7NewSpread, label=Region), hjust="left", nudge_x=.7, size=5, color="gray30") +
   geom_point(data=dd %>% dplyr::filter(Date==min(Date)+days(6)), 
              aes(x=rm7NewConfPop, y=rm7NewSpread, color=Region, shape=Region), size=2, stroke=1.5, inherit.aes=FALSE) +
   geom_text(data=dd %>% dplyr::filter(Date==min(Date)+days(6)), 
             aes(x=rm7NewConfPop, y=rm7NewSpread, label=Region), hjust="right", nudge_x=-.7, size=4, color="gray30", inherit.aes=FALSE) +
-  ggtitle(paste("AGES COVID-19. Österreich:", fltRegion,"- Entwicklung der Verbreitungsrate und Neuinfektionen von", min(dd$Date),"bis", max(dd$Date))) +
+  ggtitle(paste("AGES COVID-19. Österreich: WochenMittel der Entwicklung der Verbreitungsrate und Neuinfektionen von", min(dd$Date),"bis", max(dd$Date), "(",max(dd$Date)-days(3),")")) +
   xlab("Aktuelle Situation: Neuinfektionen [Anzahl pro 100.000 Einwohner, gemittelt über die jeweils letzte Woche]") +
   ylab("Voraussichtliche Entwicklung: Tage bis zur Verdoppelung der täglichen Neuinfektionen")
 ggsave(file=paste0("COVID-19-PopSpreadRM7-",max(dd$Date),"-120.pdf"), dpi=300, width=4, height=3, scale=4)
 
 
+# -------------------------------------------------------------------------------------------------
+# smoothNewSpread ~ smoothNewConfPop | Region
+# -------------------------------------------------------------------------------------------------
 ggplot(data=dd %>% dplyr::arrange(Region,Date), 
        aes(x=smoothNewConfPop, y=smoothNewSpread, color=Region, alpha=Date)) + 
   scale_x_continuous(limits=c(xLimMin,120), breaks=xBreaks, trans=xTrans) + 
@@ -76,25 +126,23 @@ ggplot(data=dd %>% dplyr::arrange(Region,Date),
              aes(x=smoothNewConfPop, y=smoothNewSpread, color=Region, shape=Region), size=2, stroke=1.5, inherit.aes=FALSE) +
   geom_text(data=dd %>% dplyr::filter(Date==min(Date)+days(6)), 
             aes(x=smoothNewConfPop, y=smoothNewSpread, label=Region), hjust="right", nudge_x=-.7, size=4, color="gray30", inherit.aes=FALSE) +
-  ggtitle(paste("AGES COVID-19. Österreich:", fltRegion,"- Entwicklung der Verbreitungsrate und Neuinfektionen von", min(dd$Date),"bis", max(dd$Date))) +
+  ggtitle(paste("AGES COVID-19. Österreich: Geglättete Entwicklung der Verbreitungsrate und Neuinfektionen von", min(dd$Date),"bis", max(dd$Date))) +
   xlab("Aktuelle Situation: Neuinfektionen [Anzahl pro 100.000 Einwohner, gemittelt über die jeweils letzte Woche]") +
   ylab("Voraussichtliche Entwicklung: Tage bis zur Verdoppelung der täglichen Neuinfektionen")
 ggsave(file=paste0("COVID-19-PopSpreadSmooth-",max(dd$Date),"-120.pdf"), dpi=300, width=4, height=3, scale=4)
 
 
 
+# -------------------------------------------------------------------------------------------------
 # Vienna Tested and Confirmed
+# -------------------------------------------------------------------------------------------------
+
 dsw <- ds %>% dplyr::filter(Region=="Wien")
 dsa <- ds %>% dplyr::filter(Region=="Österreich")
 
-  dplyr::mutate(relConfirmedTested=newConfTest*100, newTested=newTested/10000, newConfirmed_x10=newConfirmed/100) %>%
-  dplyr::select(Date, relConfirmedTested, newTested, newConfirmed_x10) %>% 
-  tidyr::gather(key=Status, val=Count, relConfirmedTested, newTested, newConfirmed_x10)
-  
-  
 ggplot(data=dsw, aes(x=Date, y=newConfirmed)) +
 
-  scale_x_date(limits=c(as.Date(strptime("2020-08-01",format="%Y-%m-%d")),NA), 
+  scale_x_date(limits=c(as.Date(strptime("2020-10-01",format="%Y-%m-%d")),NA), 
                date_breaks="1 weeks", date_labels="%a.%d.%m") +
   scale_y_continuous(limits=c(0,1500), breaks=seq(0,1500,by=100)) + 
 
@@ -112,17 +160,14 @@ ggplot(data=dsw, aes(x=Date, y=newConfirmed)) +
   geom_point(aes(x=Date, y=newTested/10), size=1, color="red") +
   geom_line(aes(x=Date,  y=newTested/10), linetype=3, color="red") +
   geom_line(aes(x=Date, y=rm7NewTested/10), color="red") +
-  geom_line(aes(x=Date, y=smoothNewTested/10), color="red", linetype=2)
+  geom_line(aes(x=Date, y=smoothNewTested/10), color="red", linetype=2) +
 
-
-  #scale_y_continuous(limits=c(.2,20), breaks=seq(1,20,by=1),
-  #sec.axis = sec_axis(~ . *scaled, breaks=seq(0,1500,by=1000))) +
-  
-  
-geom_smooth(method="lm", se=FALSE) +
-  geom_point(data=dfw, aes(x=Date, y=Count, color=Status, shape=Status), size=1.5) + 
-  geom_line(data=dfw, aes(x=Date, y=Count, color=Status, shape=Status), linetype=3, size=.75) + 
   ggtitle("AGES BundesLänder Timeline newConfirmed & newTested WeekMeans: Wien")
+
+
+
+
+
 
 
 
@@ -146,95 +191,107 @@ if (!is.null(fltRegion)) {
 }
 
 
-
-
-
+# -------------------------------------------------------------------------------------------------------------------
 # Vienna plot
-scaled=1000
-dfrmw <- df %>% dplyr::filter(Region=="Wien") %>% 
-  dplyr::mutate(relConfirmedTested=newConfTest*100, newTested=newTested/10000, newConfirmed_x10=newConfirmed/100) %>%
-  dplyr::select(Date, relConfirmedTested, newTested, newConfirmed_x10) %>% 
-  tidyr::gather(key=Status, val=Count, relConfirmedTested, newTested, newConfirmed_x10)
+# -------------------------------------------------------------------------------------------------------------------
+scaled=100
 dfw <- df %>% dplyr::filter(Region=="Wien") %>% 
-  dplyr::mutate(relConfirmedTested=newConfTest*100, newTested=newTested/10000, newConfirmed_x10=newConfirmed/100) %>%
-  dplyr::select(Date, relConfirmedTested, newTested, newConfirmed_x10) %>% 
-  tidyr::gather(key=Status, val=Count, relConfirmedTested, newTested, newConfirmed_x10)
+  dplyr::mutate(relConfirmedTested=newConfTest*100, newTested=newTested/100, newConfirmed=newConfirmed/100) %>%
+  dplyr::select(Date, relConfirmedTested, newTested, newConfirmed) %>% 
+  tidyr::gather(key=Status, val=Count, relConfirmedTested, newTested, newConfirmed)
+dfrmw <- df %>% dplyr::filter(Region=="Wien") %>% 
+  dplyr::mutate(relConfirmedTested=rm7NewConfTest*100, newTested=rm7NewTested/100, newConfirmed=rm7NewConfirmed/100) %>%
+  dplyr::select(Date, relConfirmedTested, newTested, newConfirmed) %>% 
+  tidyr::gather(key=Status, val=Count, relConfirmedTested, newTested, newConfirmed)
 
+# Weekly moving average
 ggplot(data=dfrmw, aes(x=Date, y=Count, color=Status, shape=Status)) +
   scale_x_date(limits=c(as.Date(strptime("2020-07-01",format="%Y-%m-%d")),NA), 
                date_breaks="1 weeks", date_labels="%a.%d.%m") +
-  scale_y_continuous(limits=c(.2,20), breaks=seq(1,20,by=1), trans="log10",
-                     sec.axis = sec_axis(~ . *scaled, breaks=seq(0,20000,by=1000))) +
-  geom_point(size=3) + 
-  geom_line() +
+  scale_y_continuous(limits=c(.1,100), breaks=c(seq(.1,1,by=.1),seq(1,10,by=1),seq(10,100,by=10)), trans="log10",
+                     sec.axis = sec_axis(~ . *scaled, breaks=c(seq(10,100,by=10),seq(100,1000,by=100),seq(1000,10000,by=1000)))) +
+  geom_point(size=3) + geom_line() +
   geom_smooth(method="lm", se=FALSE) +
   geom_point(data=dfw, aes(x=Date, y=Count, color=Status, shape=Status), size=1.5) + 
   geom_line(data=dfw, aes(x=Date, y=Count, color=Status, shape=Status), linetype=3, size=.75) + 
   ggtitle("AGES BundesLänder Timeline newConfirmed & newTested WeekMeans: Wien")
 
+# daily stats
 ggplot(data=dfw, aes(x=Date, y=Count, color=Status, shape=Status)) +
   scale_x_date(limits=c(as.Date(strptime("2020-07-01",format="%Y-%m-%d")),NA), 
                date_breaks="1 weeks", date_labels="%a.%d.%m") +
-  scale_y_continuous(limits=c(.1,20), breaks=seq(1,20,by=1), trans="log10",
-                     sec.axis = sec_axis(~ . *scaled, breaks=seq(1,20000,by=1000))) +
-  geom_point(size=2) + 
-  geom_line() +
+  scale_y_continuous(limits=c(.1,100), breaks=c(seq(.1,1,by=.1),seq(1,10,by=1),seq(10,100,by=10)), trans="log10",
+                     sec.axis = sec_axis(~ . *scaled, breaks=c(seq(10,100,by=10),seq(100,1000,by=100),seq(1000,10000,by=1000)))) +
+  geom_point(size=2) + geom_line() +
   geom_smooth(method="lm", se=FALSE) +
   ggtitle("AGES BundesLänder Timeline newConfirmed & newTested Daily: Wien")
 
 
 
-dfrmat <- dfrm %>% dplyr::filter(Region=="Österreich") %>% 
-  dplyr::mutate(relConfirmedTested=newConfTest*100, newTested=newTested/1000, newConfirmed_x10=newConfirmed/100) %>%
-  dplyr::select(Date, relConfirmedTested, newTested, newConfirmed_x10) %>% 
-  tidyr::gather(key=Status, val=Count, relConfirmedTested, newTested, newConfirmed_x10)
+# -------------------------------------------------------------------------------------------------------------------
+# Austria plots
+# -------------------------------------------------------------------------------------------------------------------
+dfrmat <- df %>% dplyr::filter(Region=="Österreich") %>% 
+  dplyr::mutate(relConfirmedTested=rm7NewConfTest*100, newTested=rm7NewTested/1000, newConfirmed=rm7NewConfirmed/1000) %>%
+  dplyr::select(Date, relConfirmedTested, newTested, newConfirmed) %>% 
+  tidyr::gather(key=Status, val=Count, relConfirmedTested, newTested, newConfirmed)
 dfat <- df %>% dplyr::filter(Region=="Österreich") %>% 
-  dplyr::mutate(relConfirmedTested=newConfTest*100, newTested=newTested/1000, newConfirmed_x10=newConfirmed/100) %>%
-  dplyr::select(Date, relConfirmedTested, newTested, newConfirmed_x10) %>% 
-  tidyr::gather(key=Status, val=Count, relConfirmedTested, newTested, newConfirmed_x10)
+  dplyr::mutate(relConfirmedTested=newConfTest*100, newTested=newTested/1000, newConfirmed=newConfirmed/1000) %>%
+  dplyr::select(Date, relConfirmedTested, newTested, newConfirmed) %>% 
+  tidyr::gather(key=Status, val=Count, relConfirmedTested, newTested, newConfirmed)
 
 ggplot(data=dfrmat, aes(x=Date, y=Count, color=Status, shape=Status)) +
   scale_x_date(limits=c(as.Date(strptime("2020-07-01",format="%Y-%m-%d")),NA), 
                date_breaks="1 weeks", date_labels="%a.%d.%m") +
-  scale_y_continuous(limits=c(.5,100),  breaks=c(1,2,5,7,10,15,20,30,40,50,60,70,80,90,100), trans="log10",
-                     sec.axis = sec_axis(~ . *scaled, breaks=c(1000,2000,5000,10000,20000,30000,40000,50000,60000,70000))) +
+  scale_y_continuous(limits=c(.05,50),  breaks=c(seq(.1,1,by=.1),seq(1,10,by=1),seq(10,100,by=10)), trans="log10",
+                     sec.axis = sec_axis(~ . *scaled, breaks=c(seq(10,100,by=10),seq(100,1000,by=100),seq(1000,10000,by=1000), seq(10000,100000,by=10000)))) +
   geom_point(size=2) + 
   geom_line() +
+  geom_smooth(method="lm", se=FALSE) +
   geom_point(data=dfat, aes(x=Date, y=Count, color=Status, shape=Status), size=1) + 
   geom_line(data=dfat, aes(x=Date, y=Count, color=Status, shape=Status), linetype=3, size=.5) + 
   ggtitle("AGES BundesLänder Timeline newConfirmed & newTested WeekMeans: Österreich")
-#breaks=seq(.5,50,by=1),
-# , breaks=seq(.5,50000,by=1000)
 
-ggplot(data=dfrm, 
-       aes(x=Date, y=newConfPop, color=Region, shape=Region)) +
-  scale_shape_manual(values=c(1:10)) +
-  scale_x_date(limits=c(as.Date(strptime("2020-10-01",format="%Y-%m-%d")),NA), 
-               date_breaks="1 weeks", date_labels="%d.%m") +
-  scale_y_continuous(limits=c(.1,100), breaks=c(seq(.1,1,by=.1),1:10,seq(10,100,by=10)), position="right") + 
-  geom_point(size=3) + 
-  geom_line() +
-  geom_line(data=dfrm %>% dplyr::filter(Region=="Österreich"), aes(x=Date, y=newConfPop), color="darkgreen", size=1) +
-  geom_line(data=dfrm %>% dplyr::filter(Region=="Wien"), aes(x=Date, y=newConfPop), color="red", size=1) +
-  ggtitle("AGES BundesLänder Timeline newConfirmed/per100.000 WeekMeans")
 
-ggplot(data=df, aes(x=Date, y=newConfPop, color=Region, shape=Region)) +
-  scale_shape_manual(values=c(1:10)) +
+ggplot(data=dfat, aes(x=Date, y=Count, color=Status, shape=Status)) +
   scale_x_date(limits=c(as.Date(strptime("2020-07-01",format="%Y-%m-%d")),NA), 
-               date_breaks="1 weeks", date_labels="%d.%m") +
-  geom_point(size=3) + 
+               date_breaks="1 weeks", date_labels="%a.%d.%m") +
+  scale_y_continuous(limits=c(.05,50),  breaks=c(seq(.1,1,by=.1),seq(1,10,by=1),seq(10,100,by=10)), trans="log10",
+                     sec.axis = sec_axis(~ . *scaled, breaks=c(seq(10,100,by=10),seq(100,1000,by=100),seq(1000,10000,by=1000), seq(10000,100000,by=10000)))) +
+  geom_point(size=2) + 
   geom_line() +
+  geom_smooth(method="lm", se=FALSE) +
   ggtitle("AGES BundesLänder Timeline newConfirmed/per100.000 perDay")
 
 
-ggplot(data=dfrm, aes(x=Date, y=newConfTest*100, color=Region, shape=Region)) +
-  scale_shape_manual(values=c(1:10)) +
-  scale_x_date(limits=c(as.Date(strptime("2020-08-01",format="%Y-%m-%d")),NA), 
-               date_breaks="1 weeks", date_labels="%d.%m") +
-  scale_y_continuous(limits=c(0,25), breaks=1:25) + 
-  geom_point(size=3) + 
-  geom_line() +
-  ggtitle("AGES BundesLänder Timeline newConfirmed/newTested [%] WeekMeans")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -291,52 +348,6 @@ ggplot(data=dflm7 %>% dplyr::filter(Date>=as.Date("2020-08-01")), aes(x=newConfP
 # curl -X GET "https://api.netatmo.com/api/getpublicdata?lat_ne=16.0&lon_ne=48.0&lat_sw=16.1&lon_sw=48.1&filter=false" -H "accept: application/json"
 
 # curl -X GET "https://api.netatmo.com/api/getpublicdata?lat_ne=16&lon_ne=48&lat_sw=16.1&lon_sw=48.1&filter=false" -H "accept: application/json" -H "Authorization: Bearer 5fa54f3699f37238057c4272|5b3c7efc208af00fe71ccf173fe4b7a3"
-
-fltRegion=c("Wien","Österreich")
-fltRegion=c("Wien")
-begDate=as.Date("2020-10-01")
-dfx <- df %>% 
-  dplyr::filter(Region %in% fltRegion) %>% 
-  dplyr::filter(newConfirmed>0) %>%
-  dplyr::filter(Date >= begDate) %>%
-  dplyr::select(Date, Region, newConfirmed, newTested, newConfPop, newConfTest)
-  
-dfrmx <- dfrm %>% 
-  dplyr::filter(Region %in% fltRegion) %>% 
-  dplyr::filter(newConfirmed>0) %>%
-  dplyr::filter(Date >= begDate) %>%
-  dplyr::select(Date, Region, newConfirmed, newTested, newConfPop, newConfTest)
-
-
-ggplot(data=dfrmx, aes(x=Date, y=newConfirmed, group=Region, color=Region)) + geom_line(size=1.5) +
-  geom_point(data=dfx, aes(x=Date, y=newConfirmed, group=Region, color=Region)) +
-  geom_line(data=dfx, aes(x=Date, y=newConfirmed, group=Region, color=Region)) +
-  geom_smooth(data=dfx, aes(x=Date, y=newConfirmed, color=Region), method="loess", n=10, se=FALSE, color="black",linetype=3) +
-  facet_wrap(.~Region, nrow=2, scales="free_y")
-
-
-
-dft <- dfx %>% left_join(dfrmx, by=c("Date","Region"), suffix=c("",".rm")) %>%
-  dplyr::mutate(WeekDay=wday(Date, week_start=getOption("lubridate.week.start",1)), difConfirmed=(newConfirmed-newConfirmed.rm)/newConfirmed.rm, WeekNo=week(Date))
-dft %>% group_by(Region,WeekDay) %>% ggplot(aes(x=WeekDay, y=difConfirmed, shape=as.character(WeekNo))) +
-  scale_x_continuous(breaks=1:7)+
-  scale_shape_manual(values=c(21:25,7,9,10,12,13,14)) +
-  geom_point(size=5) +
-  facet_wrap(.~Region, nrow=2)
-
-dw <- dft %>% dplyr::filter(Region=="Wien") %>%   dplyr::mutate(id=1:n()) %>%
-  dplyr::mutate(smoothNewConfirmed1=round(loess(newConfirmed~id, span=19/dim(dft)[1])$fitted)) %>%
-  dplyr::mutate(smoothNewConfirmed2=round(loess(newConfirmed~id, span=17/dim(dft)[1])$fitted))
-
-plot(dw$Date, dw$newConfirmed)
-lines(dw$Date, dw$newConfirmed.rm, col="black")
-lines(dw$Date, dw$smoothNewConfirmed1, col="red")
-lines(dw$Date, dw$smoothNewConfirmed2, col="blue")
-
-dw %>% ggplot(aes(x=Date, y=newConfirmed)) + geom_point() + geom_line()
-
-
-loess(newConfirmed~id, data=dw)$fitted
 
 
 
