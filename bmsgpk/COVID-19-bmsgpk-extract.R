@@ -157,7 +157,7 @@ scrapeCovid <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   s <- str_extract(html, paste0(atConfirmed,".*",closeAll))
   if(bCalcStamp) {
     t <- str_match(s, paste0("Stand","(.*)","Uhr"))[2]
-    Stamp <- as.POSIXct(t, format="%d.%m.%Y, %H:%M", tz="CEST")
+    Stamp <- as.POSIXct(t, format="%d.%m.%Y, %H.%M", tz="CEST")
   }
   df[iConfirmed,"Stamp"] <- Stamp 
   df[iConfirmed,"Status"] <- "Confirmed"
