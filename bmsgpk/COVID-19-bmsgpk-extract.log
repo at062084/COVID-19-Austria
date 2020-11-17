@@ -7427,3 +7427,18 @@
 20201116-161726.513 Writing new data to ./data/COVID-19-austria.csv 
 20201116-161726.565 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
 20201116-161726.567 Done runing data extraction from bmsgpk web pages 
+20201117-155722.686 Running COVID-19-bmsgpk-extract.R 
+20201117-155722.726 Calling scrapeCovid2 with 20201117-1557 
+20201117-155722.774 Download Ampel data from "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20201117-155722.775 Storing Ampel data to ./data/ampel/CoronaAmpel.20201117-1557.js 
+20201117-155731.140 Scraping "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html" 
+20201117-155731.141 Dumping page to ./html/COVID-19-austria.bmsgpk.20201117-1557.html 
+20201117-155734.241 Parsing dump in ./html/COVID-19-austria.bmsgpk.20201117-1557.html 
+20201117-155734.260 Extracting Status table in Bundesländer 
+20201117-155734.405 DISABLED: Calling scrapeHospitalisierung with 20201117-1557 
+20201117-155734.407 DISABLED: Calling scrapeInfo with 20201117-1557 
+20201117-155734.408 Calling scrapeZIP_AGES with 20201117-1557 
+20201117-155734.419 Downloading https://covid19-dashboard.ages.at/data/data.zip to ./data/zip/COVID-19-austria.V1006.20201117-1557.zip 
+20201117-155740.889 Writing new data to ./data/COVID-19-austria.csv 
+20201117-155740.963 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
+20201117-155740.965 Done runing data extraction from bmsgpk web pages 
