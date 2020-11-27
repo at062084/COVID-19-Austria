@@ -1,14 +1,14 @@
-library(lubridate)
-library(stringr)
-library(readr)
-library(dplyr)
-library(tidyr)
-library(tibbletime)
-library(scales)
-library(ggplot2)
-library(forcats)
-library(zoo)
-options(error = function() traceback(2))
+  library(lubridate)
+  library(stringr)
+  library(readr)
+  library(dplyr)
+  library(tidyr)
+  library(tibbletime)
+  library(scales)
+  library(ggplot2)
+  library(forcats)
+  library(zoo)
+  options(error = function() traceback(2))
 
 
 # do some logging
@@ -173,7 +173,7 @@ caAgesRead_cfz <- function(csvFile=paste0("./data/ages/",cfz)) {
 # --------------------------------------------------------------------------------------------------------
 # AGES Bundesländer: TimeLine Bundesländer (Tested, Confirmed, Recovered, Deaths, Hosptital, ICU)
 # --------------------------------------------------------------------------------------------------------
-caAgesRead_tlrm <- function(fileDate_cftl=NULL, fileDate_cfz=NULL, bPlot=FALSE) {
+caAgesRead_tlrm <- function(fileDate_cftl=NULL, fileDate_cfz=NULL, bPlot=FALSE, bEstimate=TRUE, bCompleteCases=FALSE) {
   
   if(is.null(fileDate_cftl)) dc<-caAgesRead_cftl() else dc<-caAgesRead_cftl(csvFile=fileDate_cftl)
   # Read timeline of confirmed, hospitalized, deaths
@@ -195,11 +195,15 @@ caAgesRead_tlrm <- function(fileDate_cftl=NULL, fileDate_cfz=NULL, bPlot=FALSE) 
       ggtitle("AGES BundesLänder Timeline Tested: Wien")
   }
   
+  # need to check if both datasets are available up to the same date
+  jointDate <- min(max(dc$Date), max(dt$Date))
+  
   # Join 'Confirmed' and 'Tested' datasets
   dj <- dc %>% left_join(dt, by=c("Date","RegionID", "Stamp","Region")) 
   
   # Exclude data before 2020-04-02, these have NA's vor newTested and sumTested
   df <- dj %>% 
+    dplyr:: filter(Date <=jointDate) %>%
     dplyr::filter(Date>as.Date("2020-04-01")) %>% 
     dplyr::arrange(Region, Date)
 
@@ -220,30 +224,35 @@ caAgesRead_tlrm <- function(fileDate_cftl=NULL, fileDate_cfz=NULL, bPlot=FALSE) 
   df <- df %>%
     dplyr::arrange(Region, Date) %>%
     dplyr::group_by(Region) %>%
-    dplyr::mutate(rm7NewTested=round(rollmean(newTested, k=rmSize, align="center", fill=NA))) %>%
-    dplyr::mutate(rm7NewConfirmed=round(rollmean(newConfirmed, k=rmSize, align="center", fill=NA))) %>%
-    dplyr::mutate(rm7NewRecovered=round(rollmean(newRecovered, k=rmSize, align="center", fill=NA))) %>%
-    dplyr::mutate(rm7NewDeaths=round(rollmean(newDeaths, k=rmSize, align="center", fill=NA))) %>%
-    dplyr::mutate(rm7NewConfPop=round(rollmean(newConfPop, k=rmSize, align="center", fill=NA))) %>%
+    dplyr::mutate(rm7NewTested=(rollmean(newTested, k=rmSize, align="center", fill=NA))) %>%
+    dplyr::mutate(rm7NewConfirmed=(rollmean(newConfirmed, k=rmSize, align="center", fill=NA))) %>%
+    dplyr::mutate(rm7NewRecovered=(rollmean(newRecovered, k=rmSize, align="center", fill=NA))) %>%
+    dplyr::mutate(rm7NewDeaths=(rollmean(newDeaths, k=rmSize, align="center", fill=NA))) %>%
+    dplyr::mutate(rm7NewConfPop=(rollmean(newConfPop, k=rmSize, align="center", fill=NA))) %>%
     dplyr::mutate(rm7NewConfTest=rollmean(newConfTest, k=rmSize, align="center", fill=NA)) %>%
     #dplyr::mutate_at(vars(starts_with("new")), rollmean, k=rmSize, align="center", fill=NA) %>%
     dplyr::ungroup() 
   # str(df)
 
   # patch rm7NewConfirmed data
+  if(bEstimate) {
   dx <- caAgesRM7Estimate(df)
-  for (i in 1:dim(dx)[1]) {
-    idxf <- which(df$Date==dx$Date[i] & df$Region==dx$Region[i])
-    idxx <- which(dx$Date==dx$Date[i] & dx$Region==dx$Region[i])
-    df[idxf,"rm7NewConfirmed"] <- round(df[idxf,"newConfirmed"]/dx[idxx,"meanProConfirmed"])
-    df[idxf,"rm7NewConfPop"] <- round(df[idxf,"rm7NewConfirmed"]/df[idxf,"Population"]*100000)
-    df[idxf,"newConfirmed"] <- round(df[idxf,"newConfirmed"]/dx[idxx,"meanProConfirmed"])
-    # cat(dx$WeekDay[i],dx$Region[i],as.numeric(dx[idxx,"meanProConfirmed"]),as.numeric(df[idxf,"newConfirmed"]),as.numeric(df[idxf,"rm7NewConfirmed"]),'\n')
+    for (i in 1:dim(dx)[1]) {
+      idxf <- which(df$Date==dx$Date[i] & df$Region==dx$Region[i])
+      idxx <- which(dx$Date==dx$Date[i] & dx$Region==dx$Region[i])
+      df[idxf,"rm7NewConfirmed"] <- round(df[idxf,"newConfirmed"]/dx[idxx,"meanProConfirmed"])
+      df[idxf,"rm7NewConfPop"] <- round(df[idxf,"rm7NewConfirmed"]/df[idxf,"Population"]*100000)
+      df[idxf,"newConfirmed"] <- round(df[idxf,"newConfirmed"]/dx[idxx,"meanProConfirmed"])
+      # cat(dx$WeekDay[i],dx$Region[i],as.numeric(dx[idxx,"meanProConfirmed"]),as.numeric(df[idxf,"newConfirmed"]),as.numeric(df[idxf,"rm7NewConfirmed"]),'\n')
+    }
   }
-
   # add smootheds
   # Span adjusted manually to 19 after visual inspection of several options. maybe a bit too smooth. Smaller number for closer match to rm7
-  span <- 17/dim(df)[1]*10
+  if(bCompleteCases) {
+    df <- df[complete.cases(df),]
+  }
+  
+  span <- 19/dim(df)[1]*10
   df <- df %>%
     dplyr::arrange(Region, Date) %>%
     dplyr::group_by(Region) %>%

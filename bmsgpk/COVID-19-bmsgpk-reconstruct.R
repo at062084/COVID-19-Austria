@@ -53,6 +53,11 @@ reconstructCovid2 <- function(htmlFile) {
     
     # Must watchout for invisible blank characters that are encoded as '&nbsp;' in original html
     Stamp <- as.POSIXct(str_replace_all(str_match(S0, paste0("Stand","(.*)","Uhr"))[,2],"[^0-9:.,]",""),format="%d.%m.%Y,%H:%M")
+    # Be tolerant to time stamp format changes on website
+    idx <- which(is.na(Stamp))
+    if (length(idx)>0) {
+      Stamp[idx] <- as.POSIXct(str_replace_all(str_match(S0, paste0("Stand","(.*)","Uhr"))[idx,2],"[^0-9:.,]",""),format="%d.%m.%Y,%H.%M")
+    }
     
     df <- dx %>%
       dplyr::select(11,2:10) %>% 
@@ -83,7 +88,7 @@ reconstructCovid2 <- function(htmlFile) {
 # -----------------------------------------------------------------------------------------------------
 
 htmlPath<-"./html"
-htmlFiles <- list.files(path=htmlPath, pattern="COVID-19-austria.bmsgpk.20200[23456789](.*).html")
+htmlFiles <- list.files(path=htmlPath, pattern="COVID-19-austria.bmsgpk.2020([0-9-]*).html")
 
 da <- data.frame(stringsAsFactors=FALSE)
 # htmlFile <- paste(htmlPath,list.files(path=htmlPath, pattern="COVID-19-austria.bmsgpk.20200814(.*).html"),sep="/")
