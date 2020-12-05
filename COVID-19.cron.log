@@ -75308,3 +75308,78 @@ Archive:  ./data/zip/COVID-19-austria.V1006.20201205-1933.zip
 20201205-193401.489 Writing new data to ./data/COVID-19-austria.csv 
 20201205-193401.544 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
 20201205-193401.545 Done runing data extraction from bmsgpk web pages 
+[master 7992e26] 2020-12-05 19:33:58 Auto-Extract data from bmsgpk website
+ 17 files changed, 12658 insertions(+), 5187 deletions(-)
+ rewrite bmsgpk/data/ages/CovidFaelle_Altersgruppe.csv (96%)
+ rewrite bmsgpk/data/ages/CovidFaelle_GKZ.csv (97%)
+ create mode 100644 bmsgpk/data/ampel/CoronaAmpel.20201205-1933.js
+ rewrite bmsgpk/data/unzip/CovidFaelle_Altersgruppe.csv (96%)
+ rewrite bmsgpk/data/unzip/CovidFaelle_GKZ.csv (97%)
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V1006.20201205-1933.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria.bmsgpk.20201205-1933.html
+To git@github.com:at062084/COVID-19-Austria.git
+   5e1fc13..7992e26  HEAD -> master
+
+--------------------------------------------------------------------
+2020-12-05 19:34:09 Running ./COVID-19-cron.sh for SECTION=county
+2020-12-05 19:34:09 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-12-05 19:34:09 Running conversion of COVID-19 data to covid-county format
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘tibbletime’
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:readr’:
+
+    col_factor
+
+
+Attaching package: ‘plotly’
+
+The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+The following object is masked from ‘package:graphics’:
+
+    layout
+
+20201205-193410.523 Running COVID-19-covid-county-extract.R 
+20201205-193410.587 Executing covCounty with 2020-12-05 17:34:10 
+20201205-193410.830 Writing ./data/AT_country.bmsgpk.csv 
+20201205-193410.868 Writing ./data/AT_states.bmsgpk.csv 
+20201205-193411.329 Writing ./data/AT_counties.bmsgpk.csv 
+20201205-193411.330 Done executing covCounty 
+20201205-193411.330 Done running COVID-19-covid-county-extract.R 
