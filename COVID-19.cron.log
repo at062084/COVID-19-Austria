@@ -83827,3 +83827,75 @@ Archive:  ./data/zip/COVID-19-austria.V1006.20201228-1438.zip
 20201228-143836.418 Writing new data to ./data/COVID-19-austria.csv 
 20201228-143836.467 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
 20201228-143836.468 Done runing data extraction from bmsgpk web pages 
+[master 44b150e] 2020-12-28 14:38:34 Auto-Extract data from bmsgpk website
+ 17 files changed, 20596 insertions(+), 13053 deletions(-)
+ rewrite bmsgpk/data/ages/CovidFaelle_Altersgruppe.csv (98%)
+ rewrite bmsgpk/data/ages/CovidFaelle_GKZ.csv (98%)
+ rewrite bmsgpk/data/unzip/CovidFaelle_Altersgruppe.csv (98%)
+ rewrite bmsgpk/data/unzip/CovidFaelle_GKZ.csv (98%)
+To git@github.com:at062084/COVID-19-Austria.git
+   839daaf..44b150e  HEAD -> master
+
+--------------------------------------------------------------------
+2020-12-28 14:38:51 Running ./COVID-19-cron.sh for SECTION=county
+2020-12-28 14:38:51 Workdir /home/at062084/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2020-12-28 14:38:51 Running conversion of COVID-19 data to covid-county format
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:base’:
+
+    date
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:lubridate’:
+
+    intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘tibbletime’
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:readr’:
+
+    col_factor
+
+
+Attaching package: ‘plotly’
+
+The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+The following object is masked from ‘package:graphics’:
+
+    layout
+
+20201228-143852.816 Running COVID-19-covid-county-extract.R 
+20201228-143852.872 Executing covCounty with 2020-12-28 12:38:52 
+20201228-143853.026 Writing ./data/AT_country.bmsgpk.csv 
+20201228-143853.072 Writing ./data/AT_states.bmsgpk.csv 
+20201228-143853.496 Writing ./data/AT_counties.bmsgpk.csv 
+20201228-143853.496 Done executing covCounty 
+20201228-143853.496 Done running COVID-19-covid-county-extract.R 
