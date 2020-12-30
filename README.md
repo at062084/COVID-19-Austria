@@ -1,7 +1,8 @@
 # COVID-19-Austria
-- Dataset for Austria based on Sozial Ministerium (bmsgpk) and AGES. R Scripts for download, visualization, analysis and prediction
-- Additional visualization, analysis and prediction for the John Hopkins University dataset 
-- Dataset and extractors for the IBM covid-county  scraper project
+- Dataset for Austria based on AGES and Sozial Ministerium (bmsgpk)
+- R Scripts for download, visualization, analysis and prediction
+- retired: Dataset and extractors for the IBM covid-county  scraper project
+- retired: Additional visualization, analysis and prediction for the John Hopkins University dataset 
 
 ## Units used
 - 'daily cases per 100.000 inhabitants':  Measure for current spread of desease
@@ -10,7 +11,11 @@
 ## Currents News and Enhancements (Xmas 2020)
 - 2020-12-30: Add Download, Visualization and Analysis of AGES data
 
-## Previous News (Spring 2020)
+## Situation in Austria as of 2020-12-28
+- y-Axis: log10 daily positive tested per 100.000. Color scheme ranges along ECDC
+<p><img src="https://github.com/at062084/COVID-19-Austria/blob/master/bmsgpk/COVID-19-Austria-newConfPop_Date_Region.png" alt="COVID-19-Austria-newConfPop_Date_Region.png"  width="1260" height="979"/></p>
+
+## Retired News (Spring 2020)
 - 2020-04-20: Update readme and plots. The measures taken on 15.3. clearly manifest in a pronounced increase of the *10 days 2-3 weeks later
 - 2020-04-13: Update readme and plots
 - 2020-04-12: New repo with dockerized version of scraper. runs on kubernetes. writes dumps to COS. Test mode.
@@ -26,9 +31,6 @@
 - 2020-03-25: Added datasets for 'Confirmed for 100+ regions in Austria' and 'Numbers for Hospitalization' from bmsgpk info site
 - 2020-03-24: Scripts to support autoupdate of data from bmsgpk sites
 
-## Situation in Austria as of 2020-12-28
-- y-Axis: log10 daily positive tested per 100.000. Color scheme ranges along ECDC
-<p><img src="https://github.com/at062084/COVID-19-Austria/blob/master/bmsgpk/COVID-19-Austria-newConfPop_Date_Region.png" alt="COVID-19-Austria-newConfPop_Date_Region.png"  width="1260" height="979"/></p>
 
 ## Situation in Austria as of 2020-04-20
 - y-Axis left: log10 of cases
