@@ -28,7 +28,7 @@
 
 ## Situation in Austria as of 2020-12-28
 - y-Axis: log10 daily positive tested per 100.000. Color scheme ranges along ECDC
-<p><img src="https://github.com/at062084/COVID-19-Austria/blob/master/bmsgpk/COVID-19-Austria-newConfPop_Date_Region.png" alt="COVID-19-Austria-newConfPop_Date_Region.png"  width="1102" height="826"/></p>
+<p><img src="https://github.com/at062084/COVID-19-Austria/blob/master/bmsgpk/COVID-19-Austria-newConfPop_Date_Region.png" alt="COVID-19-Austria-newConfPop_Date_Region.png"  width="1260" height="979"/></p>
 
 ## Situation in Austria as of 2020-04-20
 - y-Axis left: log10 of cases
