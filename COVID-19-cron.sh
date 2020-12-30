@@ -14,6 +14,7 @@ BASE_DIR="/home/at062084/DataEngineering/COVID-19/COVID-19-Austria"
 LOG_FILE=$BASE_DIR/COVID-19.cron.log
 cd $BASE_DIR
 
+
 echo "" >> $LOG_FILE
 echo "--------------------------------------------------------------------" >> $LOG_FILE
 echo "$STAMP Running $0 for SECTION=$SECTION" >> $LOG_FILE

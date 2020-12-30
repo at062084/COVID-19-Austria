@@ -135,14 +135,14 @@ caAgesRead_cfGKZtl <- function() {
 # CovidFaelle_Timeline.csv: TimeLine BundesLänder (Confirmed, Recovered, Deaths)
 # -------------------------------------------------------------------------------------------
 caAgesRead_cftl <- function(csvFile=paste0("./data/ages/",cftl)) {
-  #csvFile <- paste0("./data/ages/",cftl)
   dc <- read.csv(csvFile, stringsAsFactors=FALSE, sep=";") %>% 
     dplyr::mutate(Stamp=as.POSIXct(Time, format="%d.%m.%Y %H:%M:%S"), Date=date(Stamp)) %>%
     dplyr::rename(RegionID=BundeslandID, Region=Bundesland, Population=AnzEinwohner) %>%
     dplyr::rename(newConfirmed=AnzahlFaelle, newRecovered=AnzahlGeheiltTaeglich, newDeaths=AnzahlTotTaeglich) %>%
     dplyr::rename(sumConfirmed=AnzahlFaelleSum, sumRecovered=AnzahlGeheiltSum, sumDeaths=AnzahlTotSum) %>%
+    dplyr::mutate(curConfirmed=sumConfirmed-sumRecovered-sumDeaths) %>%
     dplyr::select(-SiebenTageInzidenzFaelle, -Time, -AnzahlFaelle7Tage) %>% 
-    dplyr::select(11,10,2,1,3,4,8,6,5,9,7)
+    dplyr::select(11,10,2,1,3,4,8,6,5,9,7,12)
   #str(dc)
   #summary(dc)
   return(dc)
@@ -152,8 +152,7 @@ caAgesRead_cftl <- function(csvFile=paste0("./data/ages/",cftl)) {
 # CovidFallzahlen.csv: TimeLine Bezirke (Confirmed, Recovered, Deaths)
 # -------------------------------------------------------------------------------------------
 caAgesRead_cfz <- function(csvFile=paste0("./data/ages/",cfz)) {
-  #csvFile <- paste0("./data/ages/",cfz)
-  dt <- read.csv(csvFile, stringsAsFactors=FALSE, sep=";") %>% 
+   dt <- read.csv(csvFile, stringsAsFactors=FALSE, sep=";") %>% 
     dplyr::mutate(Stamp=as.POSIXct(MeldeDatum, format="%d.%m.%Y %H:%M:%S"), Date=date(as.POSIXct(Meldedat, format="%d.%m.%Y"))) %>%
     dplyr::rename(RegionID=BundeslandID, Region=Bundesland, sumTested=TestGesamt) %>%
     dplyr::rename(curHospital=FZHosp, freeHospital=FZHospFree, curICU=FZICU, freeICU=FZICUFree) %>%
@@ -173,10 +172,14 @@ caAgesRead_cfz <- function(csvFile=paste0("./data/ages/",cfz)) {
 # --------------------------------------------------------------------------------------------------------
 # AGES Bundesländer: TimeLine Bundesländer (Tested, Confirmed, Recovered, Deaths, Hosptital, ICU)
 # --------------------------------------------------------------------------------------------------------
-caAgesRead_tlrm <- function(fileDate_cftl=NULL, fileDate_cfz=NULL, bPlot=FALSE, bEstimate=TRUE, bCompleteCases=FALSE) {
+caAgesRead_tlrm <- function(fileDate_cftl=NULL, fileDate_cfz=NULL, bPlot=FALSE, 
+                            nRm7Days=7, bDt7=TRUE, nDt7Days=7, bLpr=TRUE, nLprDays=19,
+                            bResiduals=TRUE, dResFirst=as.Date("2020-07-01"), dResLast=as.Date("2020-12-07"), bShiftDown=TRUE,
+                            bPredict=TRUE, nPolyDays=14, nPoly=2,
+                            bEstimate=FALSE, bCompleteCases=FALSE) {
   
-  if(is.null(fileDate_cftl)) dc<-caAgesRead_cftl() else dc<-caAgesRead_cftl(csvFile=fileDate_cftl)
   # Read timeline of confirmed, hospitalized, deaths
+  if(is.null(fileDate_cftl)) dc<-caAgesRead_cftl() else dc<-caAgesRead_cftl(csvFile=fileDate_cftl)
   if (bPlot) {
     ggplot(data=dc %>% dplyr::filter(Region=="Wien"), aes(x=Date, y=newConfirmed)) + 
       geom_line() + 
@@ -200,43 +203,170 @@ caAgesRead_tlrm <- function(fileDate_cftl=NULL, fileDate_cfz=NULL, bPlot=FALSE, 
   
   # Join 'Confirmed' and 'Tested' datasets
   dj <- dc %>% left_join(dt, by=c("Date","RegionID", "Stamp","Region")) 
-  
-  # Exclude data before 2020-04-02, these have NA's vor newTested and sumTested
+
+  # Add col for Month and Week
   df <- dj %>% 
+    dplyr::mutate(Month=as.character(month(Date, label=TRUE))) %>%
+    dplyr::mutate(Week=week(Date))
+    
+  # Add col for record grouped record ID
+  df <- df %>% dplyr::arrange(Date, Region) %>%
+    dplyr::group_by(Region) %>%
+    dplyr::mutate(ID=1:n()) %>%
+    dplyr::ungroup() %>%
+    dplyr::select(1,2,19,20,3,4,21,5,6:18)
+    
+  # Exclude data before 2020-04-02, these have NA's vor newTested and sumTested
+  df <- df %>% 
     dplyr:: filter(Date <=jointDate) %>%
     dplyr::filter(Date>as.Date("2020-04-01")) %>% 
     dplyr::arrange(Region, Date)
+  
 
-  # impute wrong newTested
+  # impute wrong newTested. Heuristic :(
   idx <- which(df$newTested==0)
   df$newTested[idx] <- round((df$newTested[idx-1]+df$newTested[idx+1])/2)
   
+  # add derived properties
   df <- df %>%
     dplyr::mutate(newConfPop=newConfirmed/Population*100000) %>%
     dplyr::mutate(newConfTest=newConfirmed/newTested)
   
   # impute wrong newConfTest TODO --> impute complete dataset upfront
-  idx <- which(df$newConfTest >.75)
+  idx <- which(df$newConfTest >.7) # Heuristic :(
   df$newConfTest[idx] <- round((df$newConfTest[idx-1]+df$newConfTest[idx+1])/2)
 
   # apply rolling mean to 'new*' cols.
-  rmSize=7
   df <- df %>%
     dplyr::arrange(Region, Date) %>%
     dplyr::group_by(Region) %>%
-    dplyr::mutate(rm7NewTested=(rollmean(newTested, k=rmSize, align="center", fill=NA))) %>%
-    dplyr::mutate(rm7NewConfirmed=(rollmean(newConfirmed, k=rmSize, align="center", fill=NA))) %>%
-    dplyr::mutate(rm7NewRecovered=(rollmean(newRecovered, k=rmSize, align="center", fill=NA))) %>%
-    dplyr::mutate(rm7NewDeaths=(rollmean(newDeaths, k=rmSize, align="center", fill=NA))) %>%
-    dplyr::mutate(rm7NewConfPop=(rollmean(newConfPop, k=rmSize, align="center", fill=NA))) %>%
-    dplyr::mutate(rm7NewConfTest=rollmean(newConfTest, k=rmSize, align="center", fill=NA)) %>%
-    #dplyr::mutate_at(vars(starts_with("new")), rollmean, k=rmSize, align="center", fill=NA) %>%
+    dplyr::mutate(rm7NewTested=(rollmean(newTested, k=nRm7Days, align="center", fill=NA))) %>%
+    dplyr::mutate(rm7NewConfirmed=(rollmean(newConfirmed, k=nRm7Days, align="center", fill=NA))) %>%
+    dplyr::mutate(rm7NewRecovered=(rollmean(newRecovered, k=nRm7Days, align="center", fill=NA))) %>%
+    dplyr::mutate(rm7NewDeaths=(rollmean(newDeaths, k=nRm7Days, align="center", fill=NA))) %>%
+    dplyr::mutate(rm7NewConfPop=(rollmean(newConfPop, k=nRm7Days, align="center", fill=NA))) %>%
+    dplyr::mutate(rm7NewConfTest=rollmean(newConfTest, k=nRm7Days, align="center", fill=NA)) %>%
+    dplyr::mutate(rm7CurConfirmed=(rollmean(curConfirmed, k=nRm7Days, align="center", fill=NA))) %>%
+    dplyr::mutate(rm7CurHospital=(rollmean(curHospital, k=nRm7Days, align="center", fill=NA))) %>%
+    dplyr::mutate(rm7CurICU=(rollmean(curICU, k=nRm7Days, align="center", fill=NA))) %>%
+    #dplyr::mutate_at(vars(starts_with("new")), rollmean, k=nRm7Days, align="center", fill=NA) %>%
     dplyr::ungroup() 
   # str(df)
-
-  # patch rm7NewConfirmed data
-  if(bEstimate) {
-  dx <- caAgesRM7Estimate(df)
+  
+  # patch rm7* NA's with predicts from lm poly model
+  if(bPredict) {
+    dp <- caAgesRm7EstimatePoly(df, nPolyDays=nPolyDays, nPoly=nPoly) %>%
+      dplyr::arrange(Date, Region)
+    
+    df <- df %>% dplyr::arrange(Date, Region)
+    rm7Cols=c("rm7NewTested", "rm7NewConfirmed","rm7NewRecovered","rm7NewDeaths", "rm7NewConfPop", "rm7NewConfTest", 
+              "rm7CurConfirmed", "rm7CurHospital", "rm7CurICU")
+    df[df$Date %in% unique(dp$Date),rm7Cols] <- dp[,rm7Cols]
+  }
+  
+  # Calculate speed of spread in percent change of new* per day. TODO: better handling of zeros in data 
+  rolm <- rollify(.f=function(Date,vals) {exp(coef(lm(log(vals+0.001)~Date), na.action=na.ignore, singular.ok=TRUE)[2])}, window=nDt7Days)
+  
+  # Add spread 
+  if (bDt7) {
+    # currently only looking at derivative of weekly means
+    df <- df %>% 
+      dplyr::arrange(Region,Date) %>% 
+      dplyr::group_by(Region) %>% 
+      dplyr::mutate(dt7rm7NewTested=rolm(Date,rm7NewTested)) %>%
+      #dplyr::mutate(dt7NewConfirmed=rolm(Date,newConfirmed)) %>%
+      dplyr::mutate(dt7rm7NewConfirmed=rolm(Date,rm7NewConfirmed)) %>%
+      dplyr::mutate(dt7rm7NewConfPop=rolm(Date,rm7NewConfPop)) %>%
+      dplyr::mutate(dt7rm7NewConfTest=rolm(Date,rm7NewConfTest)) %>%    # produces some NA's
+      #dplyr::mutate(dt7CurConfirmed=rolm(Date,curConfirmed)) %>%
+      dplyr::mutate(dt7rm7CurConfirmed=rolm(Date,rm7CurConfirmed)) %>%
+      #dplyr::mutate(dt7CurHospital=rolm(Date,curHospital)) %>%
+      dplyr::mutate(dt7rm7CurHospital=rolm(Date,rm7CurHospital)) %>%
+      dplyr::mutate(dt7rm7CurICU=rolm(Date,rm7CurICU)) %>%
+      #dplyr::mutate(dt7NewDeaths=rolm(Date,newDeaths)) %>%
+      dplyr::mutate(dt7rm7NewRecovered=rolm(Date,rm7NewRecovered)) %>%
+      dplyr::mutate(dt7rm7NewDeaths=rolm(Date,rm7NewDeaths)) %>%
+      dplyr::ungroup() 
+  }
+  
+  # add lpreds
+  if(bLpr) {
+    # Span adjusted manually to 19 after visual inspection of several options. maybe a bit too lpr. Smaller number for closer match to rm7
+    span <- nLprDays/(dim(df)[1]/10) # Heuristic :(
+    df <- df %>%
+      dplyr::arrange(Region, Date) %>%
+      dplyr::group_by(Region) %>%
+      dplyr::mutate(lprNewTested=round(predict(loess(newTested~ID, span=span, na.action=na.exclude)))) %>%
+      dplyr::mutate(lprNewConfirmed=round(predict(loess(newConfirmed~ID, span=span, na.action=na.exclude)))) %>%
+      dplyr::mutate(lprNewRecovered=round(predict(loess(newRecovered~ID, span=span, na.action=na.exclude)))) %>%
+      dplyr::mutate(lprNewDeaths=round(predict(loess(newDeaths~ID, span=span, na.action=na.exclude)))) %>%
+      dplyr::mutate(lprNewConfPop=lprNewConfirmed/Population*100000) %>%
+      dplyr::mutate(lprŃewConfTest=lprNewConfirmed/lprNewTested) %>% 
+      dplyr::mutate(dt7lprNewConfirmed=rolm(Date,lprNewConfirmed)) %>%
+      dplyr::mutate(dt7lprNewDeaths=rolm(Date,lprNewDeaths)) %>%
+      dplyr::ungroup()
+  } 
+  
+  # Calculate robust regression on log transformed 
+  if (bResiduals) {
+    
+    modLogLM <- function(Date, Count, dResFirst=as.Date("2020-07-01"), dResLast=as.Date("2020-11-15"), bPlot=FALSE, bShiftDown=FALSE) {
+      # Complete log(Count)~Date dataframe d, with index into dateRange s considered for regression
+      d <- data.frame(Date=Date, logCount=log(Count+0.001))
+      s <- Date>=dResFirst & Date<=dResLast
+      # m <- MASS::rlm(logCount~Date, data=d[s,], method="MM", maxit=100)
+      # model and prediction of log(Count)
+      m <- lm(logCount~Date, data=d[s,])
+      p <- predict(m, newdata=d)
+      
+      # Shift down regression line just below all data points
+      if(bShiftDown) {
+        i <- min(residuals(m))
+        m$coefficients[1] <- m$coefficients[1]+i-0.01
+      }
+      q <- predict(m, newdata=d)
+      
+      if(bPlot) {
+        gg <- ggplot(data=d, aes(x=Date, y=logCount)) + geom_point(size=.5) + 
+          geom_line(data=data.frame(Date=Date,logPred=p), mapping=aes(x=Date, y=logPred), color="red", size=.25) +
+          geom_line(data=data.frame(Date=Date,parPred=q), mapping=aes(x=Date, y=parPred), color="blue", size=.25)
+        options(digits.secs=9)
+        ggsave(filename=format(now(),"resNew-%H:%M:%OS9.png"), plot=gg, device="png")
+      }
+      
+      # return prediction as Count (not log(Count))
+      r <- exp(q)
+      return(r)
+    }
+    
+    df <- df %>%
+      dplyr::arrange(Region, Date) %>%
+      dplyr::group_by(Region) %>%
+      dplyr::mutate(modrm7NewTested=modLogLM(Date,rm7NewTested, dResFirst, dResLast)) %>%
+      dplyr::mutate(modrm7NewConfirmed=modLogLM(Date,rm7NewConfirmed, dResFirst, dResLast)) %>%
+      dplyr::mutate(modrm7NewConfPop=modLogLM(Date,rm7NewConfPop, dResFirst, dResLast)) %>%
+      dplyr::mutate(modrm7NewConfTest=modLogLM(Date,rm7NewConfTest, dResFirst, dResLast)) %>%    # produces some NA's
+      dplyr::mutate(modrm7CurConfirmed=modLogLM(Date,rm7CurConfirmed, dResFirst, dResLast)) %>%
+      dplyr::mutate(modrm7CurHospital=modLogLM(Date,rm7CurHospital, dResFirst, dResLast)) %>%
+      dplyr::mutate(modrm7CurICU=modLogLM(Date,rm7CurICU, dResFirst, dResLast)) %>%
+      dplyr::mutate(modrm7NewRecovered=modLogLM(Date,rm7NewRecovered, dResFirst, dResLast)) %>%
+      dplyr::mutate(modrm7NewDeaths=modLogLM(Date,rm7NewDeaths, as.Date("2020-09-21"), as.Date("2020-12-07"))) %>%
+      
+      dplyr::mutate(resrm7NewTested=rm7NewTested-modrm7NewTested) %>%
+      dplyr::mutate(resrm7NewConfirmed=rm7NewConfirmed-modrm7NewConfirmed) %>%
+      dplyr::mutate(resrm7NewConfPop=rm7NewConfPop-modrm7NewConfPop) %>%
+      dplyr::mutate(resrm7NewConfTest=rm7NewConfTest-modrm7NewConfTest) %>%    # produces some NA's
+      dplyr::mutate(resrm7CurConfirmed=rm7CurConfirmed-modrm7CurConfirmed) %>%
+      dplyr::mutate(resrm7CurHospital=rm7CurHospital-modrm7CurHospital) %>%
+      dplyr::mutate(resrm7CurICU=rm7CurICU-modrm7CurICU) %>%
+      dplyr::mutate(resrm7NewRecovered=rm7NewRecovered-modrm7NewRecovered) %>%
+      dplyr::mutate(resrm7NewDeaths=rm7NewDeaths-modrm7NewDeaths) %>%
+      dplyr::ungroup()
+  }
+  
+  # patch rm7NewConfirmed data. DISABLED !
+  if(bEstimate == "#") {
+    dx <- caAgesRM7Estimate(df)
     for (i in 1:dim(dx)[1]) {
       idxf <- which(df$Date==dx$Date[i] & df$Region==dx$Region[i])
       idxx <- which(dx$Date==dx$Date[i] & dx$Region==dx$Region[i])
@@ -246,31 +376,56 @@ caAgesRead_tlrm <- function(fileDate_cftl=NULL, fileDate_cfz=NULL, bPlot=FALSE, 
       # cat(dx$WeekDay[i],dx$Region[i],as.numeric(dx[idxx,"meanProConfirmed"]),as.numeric(df[idxf,"newConfirmed"]),as.numeric(df[idxf,"rm7NewConfirmed"]),'\n')
     }
   }
-  # add smootheds
-  # Span adjusted manually to 19 after visual inspection of several options. maybe a bit too smooth. Smaller number for closer match to rm7
+  
+  # remove NA's
   if(bCompleteCases) {
     df <- df[complete.cases(df),]
   }
   
-  span <- 19/dim(df)[1]*10
-  df <- df %>%
-    dplyr::arrange(Region, Date) %>%
-    dplyr::group_by(Region) %>%
-    dplyr::mutate(id=1:n()) %>%
-    dplyr::mutate(smoothNewTested=round(predict(loess(newTested~id, span=span, na.omit=na.exclude)))) %>%
-    dplyr::mutate(smoothNewConfirmed=round(predict(loess(newConfirmed~id, span=span, na.omit=na.exclude)))) %>%
-    dplyr::mutate(smoothNewRecovered=round(predict(loess(newRecovered~id, span=span, na.omit=na.exclude)))) %>%
-    dplyr::mutate(smoothNewDeaths=round(predict(loess(newDeaths~id, span=span, na.omit=na.exclude)))) %>%
-    dplyr::ungroup() %>%
-    dplyr::mutate(smoothNewConfPop=smoothNewConfirmed/Population*100000) %>%
-    dplyr::mutate(smoothŃewConfTest=smoothNewConfirmed/smoothNewTested) %>% 
-    dplyr::select(1:5,12,6:8,18,19,13,9:11,14:17,20:32)
-  
+  # Sort cols
+  df <- df %>% dplyr::select(1:8,sort(colnames(df)[c(9:dim(df)[2])]))
+   
   return(df)
 }
 
 
+# --------------------------------------------------------------------------------------------------------
+# AGES Estimate of rm7 data for last three days with poly fit to rm7 data
+# --------------------------------------------------------------------------------------------------------
+caAgesRm7EstimatePoly <- function(df, nPolyDays=7, nPoly=2) {
 
+  maxDate <- max(df[complete.cases(df),]$Date)
+  minDate <- maxDate - days(nPolyDays)
+  
+  rm7PolyLog <- function(y, nPoly=2) {
+    x=1:length(y)
+    pm <- lm(formula = log(y) ~ poly(x, nPoly, raw=TRUE), na.action="na.omit", weights=x)
+    exp(predict(pm, newdata=data.frame(x)))
+  }
+  rm7PolyLin <- function(y, nPoly=2) {
+    x=1:length(y)
+    pm <- lm(formula = y ~ poly(x, nPoly, raw=TRUE), na.action="na.omit", weights=x)
+    predict(pm, newdata=data.frame(x))
+  }
+  
+  # Calc lm for each Region and each rm7 feature for the days since rollingMean center
+  dp <- df %>%
+    dplyr::select(Date, Region, starts_with("rm7")) %>%
+    dplyr::filter(Date>minDate) %>%
+    dplyr::group_by(Region) %>%
+    # Log poly model for potentially exponentially growing items
+    dplyr::mutate_at(vars(c(starts_with("rm7"),-rm7NewTested,-rm7NewConfTest)), rm7PolyLog, nPoly) %>%
+    # nonLog linear model for newTested
+    dplyr::mutate_at(vars(rm7NewTested), rm7PolyLin, 2) %>%
+    # Calc newConfProp from estimated Confirmed and Tested
+    dplyr::mutate(rm7NewConfTest = rm7NewConfirmed/rm7NewTested) %>%
+    dplyr::ungroup() %>%
+    dplyr::filter(Date>maxDate)
+  
+  return(dp)
+}
+
+ 
 # --------------------------------------------------------------------------------------------------------
 # AGES Estimate of rm7 data for past three days based on estimate of over/under reports depending on day of week
 # --------------------------------------------------------------------------------------------------------
@@ -285,7 +440,7 @@ caAgesRM7Estimate <- function(df, bPlot=FALSE) {
     ggplot(data=df %>% dplyr::filter(Date > begDate), aes(x=Date, y=newConfirmed, group=Region, color=Region)) + geom_line(size=1.5) +
       geom_point(data=dfx, aes(x=Date, y=newConfirmed, group=Region, color=Region)) +
       geom_line(data=dfx, aes(x=Date, y=newConfirmed, group=Region, color=Region)) +
-      geom_smooth(data=dfx, aes(x=Date, y=newConfirmed, color=Region), method="loess", n=10, se=FALSE, color="black",linetype=3) +
+      geom_lpr(data=dfx, aes(x=Date, y=newConfirmed, color=Region), method="loess", n=10, se=FALSE, color="black",linetype=3) +
       facet_wrap(.~Region, nrow=2, scales="free_y")
   }
   

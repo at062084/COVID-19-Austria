@@ -6,6 +6,7 @@ library(dplyr)
 library(xml2)
 library(rvest)
 
+
 options(error = function() traceback(2))
 options(width=256)
 
