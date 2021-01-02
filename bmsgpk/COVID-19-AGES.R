@@ -33,7 +33,7 @@ logBreaks=c(seq(.1,1,by=.1),seq(1,10,by=1),seq(10,100,by=10),seq(100,1000,by=100
 yLimMax <- 125
 
 # construct dataframe for long term prediction
-nModelDays=35
+nModelDays=28
 nPredDays=14
 regions <- df %>% group_by(Region) %>% summarize(Date=first(Date)) %>% dplyr::ungroup() %>% dplyr::select(Region)
 predRegions=rep(regions$Region,each=(nPredDays+nModelDays))
@@ -95,7 +95,7 @@ ggplot(data=dp, aes(x=Date, y=rm7NewConfPop, color=Region, shape=Region)) +
   geom_line(data=dp %>% dplyr::filter(Region=="Wien"), aes(x=Date, y=rm7NewConfPop), color="red", size=1.5) +
   geom_point(data=dp %>% dplyr::filter(Date==maxDate), size=4) + 
   ggtitle(paste0("COVID-19 Österreich, Wien und Bundesländer: Positiv Getestete pro 100.000 Einw. seit ", min(dp$Date)," mit Prognose bis ", max(dplm$Date), ".  Basisdaten: AGES", 
-                 "\n\t\t  Lang+Kurzeit Prognose: 1. Kommende Woche aus letzter Woche. 2. Kommende zwei Wochen aus letzten 5 Wochen.  Stand: ", maxDate))
+                 "\n\t\t  Lang+Kurzeit Prognose: 1. Kommende Woche aus letzter Woche. 2. Kommende zwei Wochen aus letzten vier Wochen.  Stand: ", maxDate))
 ggsave(file=paste0("COVID-19-rm7NewConfPop_Date_Region-",min(dp$Date),"_",maxDate,".pdf"), dpi=300, width=12, height=8, scale=1.10)
 ggsave(file=paste0("../COVID-19-Austria-newConfPop_Date_Region.png"), dpi=100, width=9, height=9, scale=1.4)
 
@@ -117,7 +117,7 @@ ggplot(data=dp, aes(x=Date, y=modrm7NewConfPop))+
   geom_line(color="blue")+
   geom_point(aes(x=Date, y=rm7NewConfPop), color="blue") +
   ggtitle(paste0("COVID-19 Österreich: Positiv Getestete pro 100.000 Einw. seit ", min(dp$Date),".  Wochenmittel. Basisdaten: AGES",
-                 "\n\tInzidenzFahrplan: Rückblick auf Q3+Q4 2020: LockDown lt. Plan bei TagesInzidenz=15"))
+                 "\n\tInzidenzFahrplan: Rückblick auf Q3+Q4 2020: LockDown bei mittlerer TagesInzidenz=15 am 10.Okt."))
 ggsave(file=paste0("COVID-19-rm7NewConfPop_Date_Austria-",min(dp$Date),"_",maxDate,".pdf"), dpi=300, width=12, height=8, scale=1.10)
 ggsave(file=paste0("../COVID-19-Austria-newConfPop_Date_Austria.png"), dpi=100, width=9, height=9, scale=1.4)
 
@@ -149,11 +149,12 @@ ggplot(data=dp,
 #  geom_line(data=dp %>% dplyr::filter(Region=="Österreich") %>% dplyr::filter(Date>=max(Date)-days(7)), aes(x=Date, y=newConfirmed), color="darkgreen", size=.5, linetype=2) +
 #  geom_line(data=dp %>% dplyr::filter(Region=="Wien") %>% dplyr::filter(Date>=max(Date)-days(7)), aes(x=Date, y=newConfirmed), color="red", size=.5, linetype=3) +
   geom_line(data=dp, aes(x=Date, y=1), color="blue", size=1, linetype=5) +
-  ggtitle("AGES BundesLänder. Timeline. Wochenmittel der Ausbreitungsgeschwindigkeit. [y-Achse: links: Zuwachs positive Getestete in %, rechts: Anzahl der Tage bis Verdoppelung]")
+  ggtitle(paste0("AGES BundesLänder. Timeline. Wochenmittel der Ausbreitungsgeschwindigkeit.",
+                 "\n [y-Achse: links: Zuwachs positive Getestete pro Tag in %, rechts: Anzahl der Tage bis Verdoppelung/Halbierung der Fallzahlen]"))
 ggsave(file=paste0("COVID-19-dt7rm7NewConfirmed_Date_Region-",min(dp$Date),"_",maxDate,".pdf"), dpi=300, width=12, height=8, scale=1.00)
 
 
-# -------------------------------------------------------------------------------------------------
+  # -------------------------------------------------------------------------------------------------
 # rm7NewSpread ~ rm7NewConfPop | Region
 # -------------------------------------------------------------------------------------------------
 xLimMin <- 0
