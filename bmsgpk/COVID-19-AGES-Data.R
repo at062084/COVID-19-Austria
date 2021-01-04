@@ -172,10 +172,16 @@ caAgesRead_cfz <- function(csvFile=paste0("./data/ages/",cfz)) {
 # --------------------------------------------------------------------------------------------------------
 # AGES Bundesländer: TimeLine Bundesländer (Tested, Confirmed, Recovered, Deaths, Hosptital, ICU)
 # --------------------------------------------------------------------------------------------------------
+fileDate_cftl=NULL; fileDate_cfz=NULL; bPlot=FALSE
+nRm7Days=7; bDt7=TRUE; nDt7Days=7; bLpr=TRUE; nLprDays=19
+bResiduals=TRUE; dResFirst=as.Date("2020-07-01"); dResLast=as.Date("2020-12-07"); bShiftDown=TRUE
+bPredict=TRUE; nPolyDays=5; nPoly=2
+bEstimate=FALSE; bCompleteCases=FALSE
+
 caAgesRead_tlrm <- function(fileDate_cftl=NULL, fileDate_cfz=NULL, bPlot=FALSE, 
                             nRm7Days=7, bDt7=TRUE, nDt7Days=7, bLpr=TRUE, nLprDays=19,
                             bResiduals=TRUE, dResFirst=as.Date("2020-07-01"), dResLast=as.Date("2020-12-07"), bShiftDown=TRUE,
-                            bPredict=TRUE, nPolyDays=14, nPoly=2,
+                            bPredict=TRUE, nPolyDays=5, nPoly=2,
                             bEstimate=FALSE, bCompleteCases=FALSE) {
   
   # Read timeline of confirmed, hospitalized, deaths
@@ -253,6 +259,7 @@ caAgesRead_tlrm <- function(fileDate_cftl=NULL, fileDate_cfz=NULL, bPlot=FALSE,
     dplyr::ungroup() 
   # str(df)
   
+  
   # patch rm7* NA's with predicts from lm poly model
   if(bPredict) {
     dp <- caAgesRm7EstimatePoly(df, nPolyDays=nPolyDays, nPoly=nPoly) %>%
@@ -263,6 +270,8 @@ caAgesRead_tlrm <- function(fileDate_cftl=NULL, fileDate_cfz=NULL, bPlot=FALSE,
               "rm7CurConfirmed", "rm7CurHospital", "rm7CurICU")
     df[df$Date %in% unique(dp$Date),rm7Cols] <- dp[,rm7Cols]
   }
+
+  # df %>% dplyr::filter(Region=="Wien", Date > max(Date)-days(10)) %>% dplyr::select(Date, Region, newConfPop,rm7NewConfPop)
   
   # Calculate speed of spread in percent change of new* per day. TODO: better handling of zeros in data 
   rolm <- rollify(.f=function(Date,vals) {exp(coef(lm(log(vals+0.001)~Date), na.action=na.ignore, singular.ok=TRUE)[2])}, window=nDt7Days)
@@ -391,36 +400,44 @@ caAgesRead_tlrm <- function(fileDate_cftl=NULL, fileDate_cfz=NULL, bPlot=FALSE,
 
 # --------------------------------------------------------------------------------------------------------
 # AGES Estimate of rm7 data for last three days with poly fit to rm7 data
+# Fit a polynom to the last nPolyDays days
 # --------------------------------------------------------------------------------------------------------
-caAgesRm7EstimatePoly <- function(df, nPolyDays=7, nPoly=2) {
+caAgesRm7EstimatePoly <- function(df, nPolyDays=7, nPoly=2, nRm7Days=7) {
 
-  maxDate <- max(df[complete.cases(df),]$Date)
-  minDate <- maxDate - days(nPolyDays)
+  curDate <- max(df$Date)                      
+  maxDate <- curDate - days(floor(nRm7Days/2)) # Prediction interval: last day
+  minDate <- maxDate - days(nPolyDays)         # Prediction interval: first day
   
-  rm7PolyLog <- function(y, nPoly=2) {
-    x=1:length(y)
+  rm7PolyLog <- function(y, nPoly=2, nPolyDays=7) {
+    nx=1:length(y)
+    x <- 1:nPolyDays
+    y <- y[x]
     pm <- lm(formula = log(y) ~ poly(x, nPoly, raw=TRUE), na.action="na.omit", weights=x)
-    exp(predict(pm, newdata=data.frame(x)))
+    exp(predict(pm, newdata=data.frame(x=nx)))
   }
-  rm7PolyLin <- function(y, nPoly=2) {
-    x=1:length(y)
+  rm7PolyLin <- function(y, nPoly=2, nPolyDays=7) {
+    nx=1:length(y)
+    x <- 1:nPolyDays
+    y <- y[x]
     pm <- lm(formula = y ~ poly(x, nPoly, raw=TRUE), na.action="na.omit", weights=x)
-    predict(pm, newdata=data.frame(x))
+    predict(pm, newdata=data.frame(x=nx))
   }
   
   # Calc lm for each Region and each rm7 feature for the days since rollingMean center
   dp <- df %>%
-    dplyr::select(Date, Region, starts_with("rm7")) %>%
     dplyr::filter(Date>minDate) %>%
+    dplyr::select(Date, Region, starts_with("rm7")) %>%
     dplyr::group_by(Region) %>%
     # Log poly model for potentially exponentially growing items
-    dplyr::mutate_at(vars(c(starts_with("rm7"),-rm7NewTested,-rm7NewConfTest)), rm7PolyLog, nPoly) %>%
+    dplyr::mutate_at(vars(c(starts_with("rm7"),-rm7NewTested,-rm7NewConfTest)), rm7PolyLog, nPoly, nPolyDays) %>%
     # nonLog linear model for newTested
-    dplyr::mutate_at(vars(rm7NewTested), rm7PolyLin, 2) %>%
+    dplyr::mutate_at(vars(rm7NewTested), rm7PolyLin, 2, nPolyDays) %>%
     # Calc newConfProp from estimated Confirmed and Tested
     dplyr::mutate(rm7NewConfTest = rm7NewConfirmed/rm7NewTested) %>%
     dplyr::ungroup() %>%
     dplyr::filter(Date>maxDate)
+  
+  #dp %>% dplyr::filter(Region=="Wien", Date > max(Date)-days(10)) %>% dplyr::select(Date, Region, rm7NewConfPop)
   
   return(dp)
 }

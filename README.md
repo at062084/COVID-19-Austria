@@ -9,9 +9,10 @@
 - 'number of days until times ten cases': Measure for speed of spread of desease
 
 ## Currents News and Enhancements (Xmas 2020)
+- 2020-01-03: Estimate of last three days of weekly means: Daterange for quadratic regression of log counts now 7 days (was 14). This also influences the 1 and 2 week predictions based on past 1 and 4 weeks.
 - 2020-12-30: Add Download, Visualization and Analysis of AGES data
 
-## Situation in Austria as of 2020-12-28
+## Situation in Austria as of 2021-01-03
 - y-Axis: log10 daily positive tested per 100.000. Color scheme ranges along ECDC
 <p><img src="https://github.com/at062084/COVID-19-Austria/blob/master/bmsgpk/COVID-19-Austria-newConfPop_Date_Region.png" alt="COVID-19-Austria-newConfPop_Date_Region.png"  width="1260" height="979"/></p>
 

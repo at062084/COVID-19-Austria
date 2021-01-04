@@ -6,7 +6,7 @@ setwd(wd)
 source("./COVID-19-AGES-Data.R")
   
 # read Ages Data
-df <- caAgesRead_tlrm(bEstimate=FALSE, bCompleteCases=FALSE, bPredict=TRUE, nPolyDays=14, nPoly=2, bShiftDown=FALSE)
+df <- caAgesRead_tlrm(bEstimate=FALSE, bCompleteCases=FALSE, bPredict=TRUE, nPolyDays=7, nPoly=2, bShiftDown=FALSE)
 wd <- "/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/pdf"
 setwd(wd)
 
