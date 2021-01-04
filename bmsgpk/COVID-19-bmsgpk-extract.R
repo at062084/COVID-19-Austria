@@ -74,8 +74,8 @@ scrapeCovid2 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
 
   # Rename Status to previous Labels
   StatusMap <- data.frame(
-    from=c("Bestätigte Fälle","Todesfälle","Genesen","Hospitalisierung","Intensivstation","Testungen"),
-    to=c("Confirmed","Deaths","Recovered","Hospitalisierung","Intensivstation","Tested"), stringsAsFactors=FALSE)
+    from=c("Bestätigte Fälle","Todesfälle","Genesen","Hospitalisierung","Intensivstation","Testungen","Davon PCR","Davon Antigen"),
+    to=c("Confirmed","Deaths","Recovered","Hospitalisierung","Intensivstation","Tested","Tested_PCR","Tested_AG"), stringsAsFactors=FALSE)
   
   for (s in 1:nrow(df)) {
     n = which(df$Status[s]==StatusMap$from)
