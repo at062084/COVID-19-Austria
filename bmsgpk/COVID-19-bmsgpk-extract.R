@@ -63,7 +63,12 @@ scrapeCovid2 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   if (length(idx)>0) {
     Stamp[idx] <- as.POSIXct(str_replace_all(str_match(S0, paste0("Stand","(.*)","Uhr"))[idx,2],"[^0-9:.,]",""),format="%d.%m.%Y,%H.%M")
   }
-
+  # Be tolerant to time stamp format changes on website
+  idx <- which(is.na(Stamp))
+  if (length(idx)>0) {
+    Stamp[idx] <- as.POSIXct(str_replace_all(str_match(S0, paste0("Stand","(.*)","Uhr"))[idx,2],"[^0-9:.,]",""),format="%d.%m.%Y.%H:%M")
+  }
+  
   df <- dx %>%
     dplyr::select(11,2:10) %>% 
     mutate_all(funs(str_replace_all(., "\\.", ""))) %>% 
