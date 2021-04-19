@@ -8485,3 +8485,1595 @@
 20201116-123858.060 Parsing dump in ./html/COVID-19-austria.bmsgpk.20201116-1229.html 
 20201116-123858.070 Extracting Status table in Bundesländer 
 20201116-123858.576 Writing reconstructed datafile ./data/COVID-19-austria.reconstructed.csv 
+20210418-195048.044 Processing files in ../../covid-ibm/download/dumps 
+20210418-195048.087   Working COVID-19-austria.bmsgpk.20210401-1215.html 
+20210418-195048.169 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210401-1215.html 
+20210418-195048.188 Extracting Status table in Bundesländer 
+20210418-195048.271 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210401-1215.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195048.271   Working COVID-19-austria.bmsgpk.20210401-1615.html 
+20210418-195048.272 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210401-1615.html 
+20210418-195048.283 Extracting Status table in Bundesländer 
+20210418-195048.320 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210401-1615.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195048.321   Working COVID-19-austria.bmsgpk.20210402-1215.html 
+20210418-195048.321 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210402-1215.html 
+20210418-195048.331 Extracting Status table in Bundesländer 
+20210418-195048.376 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210402-1215.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195048.377   Working COVID-19-austria.bmsgpk.20210402-1615.html 
+20210418-195048.378 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210402-1615.html 
+20210418-195048.387 Extracting Status table in Bundesländer 
+20210418-195048.425 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210402-1615.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195048.426   Working COVID-19-austria.bmsgpk.20210403-1215.html 
+20210418-195048.427 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210403-1215.html 
+20210418-195048.436 Extracting Status table in Bundesländer 
+20210418-195048.482 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210403-1215.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195048.484   Working COVID-19-austria.bmsgpk.20210403-1615.html 
+20210418-195048.485 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210403-1615.html 
+20210418-195048.496 Extracting Status table in Bundesländer 
+20210418-195048.557 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210403-1615.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195048.558   Working COVID-19-austria.bmsgpk.20210404-1215.html 
+20210418-195048.558 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210404-1215.html 
+20210418-195048.567 Extracting Status table in Bundesländer 
+20210418-195048.624 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210404-1215.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195048.625   Working COVID-19-austria.bmsgpk.20210404-1615.html 
+20210418-195048.625 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210404-1615.html 
+20210418-195048.634 Extracting Status table in Bundesländer 
+20210418-195048.708 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210404-1615.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195048.710   Working COVID-19-austria.bmsgpk.20210405-1215.html 
+20210418-195048.710 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210405-1215.html 
+20210418-195048.720 Extracting Status table in Bundesländer 
+20210418-195048.772 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210405-1215.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195048.773   Working COVID-19-austria.bmsgpk.20210405-1615.html 
+20210418-195048.773 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210405-1615.html 
+20210418-195048.782 Extracting Status table in Bundesländer 
+20210418-195048.812 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210405-1615.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195048.813   Working COVID-19-austria.bmsgpk.20210406-1215.html 
+20210418-195048.813 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210406-1215.html 
+20210418-195048.822 Extracting Status table in Bundesländer 
+20210418-195048.854 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210406-1215.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195048.856   Working COVID-19-austria.bmsgpk.20210406-1615.html 
+20210418-195048.856 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210406-1615.html 
+20210418-195048.866 Extracting Status table in Bundesländer 
+20210418-195048.898 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210406-1615.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195048.899   Working COVID-19-austria.bmsgpk.20210407-1215.html 
+20210418-195048.899 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210407-1215.html 
+20210418-195048.907 Extracting Status table in Bundesländer 
+20210418-195048.936 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210407-1215.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195048.937   Working COVID-19-austria.bmsgpk.20210407-1615.html 
+20210418-195048.937 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210407-1615.html 
+20210418-195048.945 Extracting Status table in Bundesländer 
+20210418-195048.985 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210407-1615.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195048.987   Working COVID-19-austria.bmsgpk.20210408-1215.html 
+20210418-195048.987 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210408-1215.html 
+20210418-195048.998 Extracting Status table in Bundesländer 
+20210418-195049.030 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210408-1215.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195049.031   Working COVID-19-austria.bmsgpk.20210408-1615.html 
+20210418-195049.032 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210408-1615.html 
+20210418-195049.040 Extracting Status table in Bundesländer 
+20210418-195049.069 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210408-1615.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195049.070   Working COVID-19-austria.bmsgpk.20210409-1215.html 
+20210418-195049.070 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210409-1215.html 
+20210418-195049.079 Extracting Status table in Bundesländer 
+20210418-195049.108 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210409-1215.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195049.110   Working COVID-19-austria.bmsgpk.20210409-1615.html 
+20210418-195049.110 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210409-1615.html 
+20210418-195049.128 Extracting Status table in Bundesländer 
+20210418-195049.171 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210409-1615.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195049.172   Working COVID-19-austria.bmsgpk.20210410-1215.html 
+20210418-195049.172 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210410-1215.html 
+20210418-195049.181 Extracting Status table in Bundesländer 
+20210418-195049.211 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210410-1215.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195049.212   Working COVID-19-austria.bmsgpk.20210410-1615.html 
+20210418-195049.212 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210410-1615.html 
+20210418-195049.221 Extracting Status table in Bundesländer 
+20210418-195049.312 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210410-1615.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195049.313   Working COVID-19-austria.bmsgpk.20210411-1215.html 
+20210418-195049.313 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210411-1215.html 
+20210418-195049.323 Extracting Status table in Bundesländer 
+20210418-195049.356 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210411-1215.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195049.356   Working COVID-19-austria.bmsgpk.20210411-1615.html 
+20210418-195049.357 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210411-1615.html 
+20210418-195049.366 Extracting Status table in Bundesländer 
+20210418-195049.403 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210411-1615.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195049.404   Working COVID-19-austria.bmsgpk.20210412-1215.html 
+20210418-195049.404 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210412-1215.html 
+20210418-195049.413 Extracting Status table in Bundesländer 
+20210418-195049.452 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210412-1215.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195049.453   Working COVID-19-austria.bmsgpk.20210412-1615.html 
+20210418-195049.453 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210412-1615.html 
+20210418-195049.462 Extracting Status table in Bundesländer 
+20210418-195049.491 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210412-1615.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195049.492   Working COVID-19-austria.bmsgpk.20210413-1215.html 
+20210418-195049.492 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210413-1215.html 
+20210418-195049.500 Extracting Status table in Bundesländer 
+20210418-195049.540 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210413-1215.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195049.541   Working COVID-19-austria.bmsgpk.20210413-1615.html 
+20210418-195049.542 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210413-1615.html 
+20210418-195049.551 Extracting Status table in Bundesländer 
+20210418-195049.582 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210413-1615.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195049.583   Working COVID-19-austria.bmsgpk.20210414-1215.html 
+20210418-195049.583 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210414-1215.html 
+20210418-195049.592 Extracting Status table in Bundesländer 
+20210418-195049.623 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210414-1215.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195049.624   Working COVID-19-austria.bmsgpk.20210414-1615.html 
+20210418-195049.624 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210414-1615.html 
+20210418-195049.633 Extracting Status table in Bundesländer 
+20210418-195049.670 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210414-1615.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195049.671   Working COVID-19-austria.bmsgpk.20210415-1215.html 
+20210418-195049.672 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210415-1215.html 
+20210418-195049.681 Extracting Status table in Bundesländer 
+20210418-195049.714 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210415-1215.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195049.715   Working COVID-19-austria.bmsgpk.20210415-1615.html 
+20210418-195049.715 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210415-1615.html 
+20210418-195049.724 Extracting Status table in Bundesländer 
+20210418-195049.754 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210415-1615.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195049.755   Working COVID-19-austria.bmsgpk.20210416-1215.html 
+20210418-195049.755 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210416-1215.html 
+20210418-195049.765 Extracting Status table in Bundesländer 
+20210418-195049.802 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210416-1215.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195049.803   Working COVID-19-austria.bmsgpk.20210416-1615.html 
+20210418-195049.803 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210416-1615.html 
+20210418-195049.812 Extracting Status table in Bundesländer 
+20210418-195049.843 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210416-1615.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195049.844   Working COVID-19-austria.bmsgpk.20210417-1215.html 
+20210418-195049.844 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210417-1215.html 
+20210418-195049.853 Extracting Status table in Bundesländer 
+20210418-195049.934 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210417-1215.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195049.935   Working COVID-19-austria.bmsgpk.20210417-1615.html 
+20210418-195049.936 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210417-1615.html 
+20210418-195049.949 Extracting Status table in Bundesländer 
+20210418-195049.992 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210417-1615.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195049.993   Working COVID-19-austria.bmsgpk.20210418-1215.html 
+20210418-195049.993 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210418-1215.html 
+20210418-195050.003 Extracting Status table in Bundesländer 
+20210418-195050.034 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210418-1215.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195050.035   Working COVID-19-austria.bmsgpk.20210418-1615.html 
+20210418-195050.036 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210418-1615.html 
+20210418-195050.048 Extracting Status table in Bundesländer 
+20210418-195050.081 ERROR: ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210418-1615.html Error in x[[jj]][iseq] <- vjj: replacement has length zero
+ 
+20210418-195050.111 Writing reconstructed datafile ./data/COVID-19-austria.reconstructed.202104.csv 
+20210418-195749.013 Processing files in ../../covid-ibm/download/dumps 
+20210418-195749.033   Working COVID-19-austria.bmsgpk.20210401-1215.html 
+20210418-195749.082 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210401-1215.html 
+20210418-195749.094 Extracting Status table in Bundesländer 
+20210418-195749.125   Working COVID-19-austria.bmsgpk.20210401-1615.html 
+20210418-195749.125 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210401-1615.html 
+20210418-195749.134 Extracting Status table in Bundesländer 
+20210418-195749.170   Working COVID-19-austria.bmsgpk.20210402-1215.html 
+20210418-195749.171 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210402-1215.html 
+20210418-195749.179 Extracting Status table in Bundesländer 
+20210418-195749.210   Working COVID-19-austria.bmsgpk.20210402-1615.html 
+20210418-195749.211 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210402-1615.html 
+20210418-195749.222 Extracting Status table in Bundesländer 
+20210418-195749.264   Working COVID-19-austria.bmsgpk.20210403-1215.html 
+20210418-195749.264 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210403-1215.html 
+20210418-195749.273 Extracting Status table in Bundesländer 
+20210418-195749.303   Working COVID-19-austria.bmsgpk.20210403-1615.html 
+20210418-195749.303 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210403-1615.html 
+20210418-195749.312 Extracting Status table in Bundesländer 
+20210418-195749.343   Working COVID-19-austria.bmsgpk.20210404-1215.html 
+20210418-195749.343 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210404-1215.html 
+20210418-195749.352 Extracting Status table in Bundesländer 
+20210418-195749.396   Working COVID-19-austria.bmsgpk.20210404-1615.html 
+20210418-195749.396 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210404-1615.html 
+20210418-195749.404 Extracting Status table in Bundesländer 
+20210418-195749.434   Working COVID-19-austria.bmsgpk.20210405-1215.html 
+20210418-195749.435 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210405-1215.html 
+20210418-195749.443 Extracting Status table in Bundesländer 
+20210418-195749.475   Working COVID-19-austria.bmsgpk.20210405-1615.html 
+20210418-195749.492 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210405-1615.html 
+20210418-195749.530 Extracting Status table in Bundesländer 
+20210418-195749.571   Working COVID-19-austria.bmsgpk.20210406-1215.html 
+20210418-195749.571 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210406-1215.html 
+20210418-195749.581 Extracting Status table in Bundesländer 
+20210418-195749.612   Working COVID-19-austria.bmsgpk.20210406-1615.html 
+20210418-195749.612 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210406-1615.html 
+20210418-195749.621 Extracting Status table in Bundesländer 
+20210418-195749.659   Working COVID-19-austria.bmsgpk.20210407-1215.html 
+20210418-195749.659 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210407-1215.html 
+20210418-195749.671 Extracting Status table in Bundesländer 
+20210418-195749.700   Working COVID-19-austria.bmsgpk.20210407-1615.html 
+20210418-195749.701 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210407-1615.html 
+20210418-195749.709 Extracting Status table in Bundesländer 
+20210418-195749.737   Working COVID-19-austria.bmsgpk.20210408-1215.html 
+20210418-195749.738 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210408-1215.html 
+20210418-195749.745 Extracting Status table in Bundesländer 
+20210418-195749.776   Working COVID-19-austria.bmsgpk.20210408-1615.html 
+20210418-195749.777 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210408-1615.html 
+20210418-195749.789 Extracting Status table in Bundesländer 
+20210418-195749.821   Working COVID-19-austria.bmsgpk.20210409-1215.html 
+20210418-195749.821 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210409-1215.html 
+20210418-195749.830 Extracting Status table in Bundesländer 
+20210418-195749.859   Working COVID-19-austria.bmsgpk.20210409-1615.html 
+20210418-195749.859 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210409-1615.html 
+20210418-195749.868 Extracting Status table in Bundesländer 
+20210418-195749.896   Working COVID-19-austria.bmsgpk.20210410-1215.html 
+20210418-195749.896 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210410-1215.html 
+20210418-195749.905 Extracting Status table in Bundesländer 
+20210418-195749.948   Working COVID-19-austria.bmsgpk.20210410-1615.html 
+20210418-195749.948 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210410-1615.html 
+20210418-195749.958 Extracting Status table in Bundesländer 
+20210418-195749.987   Working COVID-19-austria.bmsgpk.20210411-1215.html 
+20210418-195749.987 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210411-1215.html 
+20210418-195749.996 Extracting Status table in Bundesländer 
+20210418-195750.025   Working COVID-19-austria.bmsgpk.20210411-1615.html 
+20210418-195750.025 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210411-1615.html 
+20210418-195750.034 Extracting Status table in Bundesländer 
+20210418-195750.113   Working COVID-19-austria.bmsgpk.20210412-1215.html 
+20210418-195750.113 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210412-1215.html 
+20210418-195750.123 Extracting Status table in Bundesländer 
+20210418-195750.154   Working COVID-19-austria.bmsgpk.20210412-1615.html 
+20210418-195750.154 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210412-1615.html 
+20210418-195750.163 Extracting Status table in Bundesländer 
+20210418-195750.209   Working COVID-19-austria.bmsgpk.20210413-1215.html 
+20210418-195750.210 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210413-1215.html 
+20210418-195750.224 Extracting Status table in Bundesländer 
+20210418-195750.261   Working COVID-19-austria.bmsgpk.20210413-1615.html 
+20210418-195750.261 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210413-1615.html 
+20210418-195750.269 Extracting Status table in Bundesländer 
+20210418-195750.299   Working COVID-19-austria.bmsgpk.20210414-1215.html 
+20210418-195750.299 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210414-1215.html 
+20210418-195750.307 Extracting Status table in Bundesländer 
+20210418-195750.336   Working COVID-19-austria.bmsgpk.20210414-1615.html 
+20210418-195750.336 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210414-1615.html 
+20210418-195750.350 Extracting Status table in Bundesländer 
+20210418-195750.392   Working COVID-19-austria.bmsgpk.20210415-1215.html 
+20210418-195750.392 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210415-1215.html 
+20210418-195750.400 Extracting Status table in Bundesländer 
+20210418-195750.437   Working COVID-19-austria.bmsgpk.20210415-1615.html 
+20210418-195750.437 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210415-1615.html 
+20210418-195750.446 Extracting Status table in Bundesländer 
+20210418-195750.483   Working COVID-19-austria.bmsgpk.20210416-1215.html 
+20210418-195750.484 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210416-1215.html 
+20210418-195750.498 Extracting Status table in Bundesländer 
+20210418-195750.531   Working COVID-19-austria.bmsgpk.20210416-1615.html 
+20210418-195750.531 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210416-1615.html 
+20210418-195750.540 Extracting Status table in Bundesländer 
+20210418-195750.569   Working COVID-19-austria.bmsgpk.20210417-1215.html 
+20210418-195750.570 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210417-1215.html 
+20210418-195750.578 Extracting Status table in Bundesländer 
+20210418-195750.607   Working COVID-19-austria.bmsgpk.20210417-1615.html 
+20210418-195750.608 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210417-1615.html 
+20210418-195750.617 Extracting Status table in Bundesländer 
+20210418-195750.697   Working COVID-19-austria.bmsgpk.20210418-1215.html 
+20210418-195750.698 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210418-1215.html 
+20210418-195750.707 Extracting Status table in Bundesländer 
+20210418-195750.738   Working COVID-19-austria.bmsgpk.20210418-1615.html 
+20210418-195750.738 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210418-1615.html 
+20210418-195750.747 Extracting Status table in Bundesländer 
+20210418-195750.803 Writing reconstructed datafile ./data/COVID-19-austria.reconstructed.202104.csv 
+20210418-200154.490 Processing files in ../../covid-ibm/download/dumps 
+20210418-200154.504   Working COVID-19-austria.bmsgpk.20210101-1215.html 
+20210418-200154.542 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210101-1215.html 
+20210418-200154.550 Extracting Status table in Bundesländer 
+20210418-200154.586   Working COVID-19-austria.bmsgpk.20210101-1615.html 
+20210418-200154.586 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210101-1615.html 
+20210418-200154.596 Extracting Status table in Bundesländer 
+20210418-200154.630   Working COVID-19-austria.bmsgpk.20210102-1215.html 
+20210418-200154.630 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210102-1215.html 
+20210418-200154.638 Extracting Status table in Bundesländer 
+20210418-200154.665   Working COVID-19-austria.bmsgpk.20210102-1615.html 
+20210418-200154.665 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210102-1615.html 
+20210418-200154.673 Extracting Status table in Bundesländer 
+20210418-200154.700   Working COVID-19-austria.bmsgpk.20210103-1215.html 
+20210418-200154.700 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210103-1215.html 
+20210418-200154.707 Extracting Status table in Bundesländer 
+20210418-200154.744   Working COVID-19-austria.bmsgpk.20210103-1615.html 
+20210418-200154.744 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210103-1615.html 
+20210418-200154.755 Extracting Status table in Bundesländer 
+20210418-200154.818   Working COVID-19-austria.bmsgpk.20210104-1215.html 
+20210418-200154.818 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210104-1215.html 
+20210418-200154.827 Extracting Status table in Bundesländer 
+20210418-200154.858   Working COVID-19-austria.bmsgpk.20210104-1615.html 
+20210418-200154.858 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210104-1615.html 
+20210418-200154.870 Extracting Status table in Bundesländer 
+20210418-200154.906   Working COVID-19-austria.bmsgpk.20210105-1215.html 
+20210418-200154.906 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210105-1215.html 
+20210418-200154.915 Extracting Status table in Bundesländer 
+20210418-200154.945   Working COVID-19-austria.bmsgpk.20210105-1615.html 
+20210418-200154.945 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210105-1615.html 
+20210418-200154.953 Extracting Status table in Bundesländer 
+20210418-200154.982   Working COVID-19-austria.bmsgpk.20210106-1215.html 
+20210418-200154.983 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210106-1215.html 
+20210418-200154.991 Extracting Status table in Bundesländer 
+20210418-200155.035   Working COVID-19-austria.bmsgpk.20210106-1615.html 
+20210418-200155.035 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210106-1615.html 
+20210418-200155.046 Extracting Status table in Bundesländer 
+20210418-200155.077   Working COVID-19-austria.bmsgpk.20210107-1215.html 
+20210418-200155.078 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210107-1215.html 
+20210418-200155.086 Extracting Status table in Bundesländer 
+20210418-200155.115   Working COVID-19-austria.bmsgpk.20210107-1615.html 
+20210418-200155.115 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210107-1615.html 
+20210418-200155.122 Extracting Status table in Bundesländer 
+20210418-200155.161   Working COVID-19-austria.bmsgpk.20210108-1215.html 
+20210418-200155.161 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210108-1215.html 
+20210418-200155.170 Extracting Status table in Bundesländer 
+20210418-200155.207   Working COVID-19-austria.bmsgpk.20210108-1615.html 
+20210418-200155.207 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210108-1615.html 
+20210418-200155.215 Extracting Status table in Bundesländer 
+20210418-200155.242   Working COVID-19-austria.bmsgpk.20210109-1215.html 
+20210418-200155.243 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210109-1215.html 
+20210418-200155.250 Extracting Status table in Bundesländer 
+20210418-200155.282   Working COVID-19-austria.bmsgpk.20210109-1615.html 
+20210418-200155.283 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210109-1615.html 
+20210418-200155.293 Extracting Status table in Bundesländer 
+20210418-200155.359   Working COVID-19-austria.bmsgpk.20210110-1215.html 
+20210418-200155.360 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210110-1215.html 
+20210418-200155.368 Extracting Status table in Bundesländer 
+20210418-200155.413   Working COVID-19-austria.bmsgpk.20210110-1615.html 
+20210418-200155.414 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210110-1615.html 
+20210418-200155.426 Extracting Status table in Bundesländer 
+20210418-200155.460   Working COVID-19-austria.bmsgpk.20210111-1215.html 
+20210418-200155.460 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210111-1215.html 
+20210418-200155.469 Extracting Status table in Bundesländer 
+20210418-200155.497   Working COVID-19-austria.bmsgpk.20210111-1615.html 
+20210418-200155.498 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210111-1615.html 
+20210418-200155.506 Extracting Status table in Bundesländer 
+20210418-200155.535   Working COVID-19-austria.bmsgpk.20210112-1215.html 
+20210418-200155.535 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210112-1215.html 
+20210418-200155.543 Extracting Status table in Bundesländer 
+20210418-200155.580   Working COVID-19-austria.bmsgpk.20210112-1615.html 
+20210418-200155.581 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210112-1615.html 
+20210418-200155.589 Extracting Status table in Bundesländer 
+20210418-200155.618   Working COVID-19-austria.bmsgpk.20210113-1215.html 
+20210418-200155.618 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210113-1215.html 
+20210418-200155.626 Extracting Status table in Bundesländer 
+20210418-200155.657   Working COVID-19-austria.bmsgpk.20210113-1615.html 
+20210418-200155.658 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210113-1615.html 
+20210418-200155.665 Extracting Status table in Bundesländer 
+20210418-200155.696   Working COVID-19-austria.bmsgpk.20210114-1215.html 
+20210418-200155.696 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210114-1215.html 
+20210418-200155.705 Extracting Status table in Bundesländer 
+20210418-200155.738   Working COVID-19-austria.bmsgpk.20210114-1615.html 
+20210418-200155.738 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210114-1615.html 
+20210418-200155.746 Extracting Status table in Bundesländer 
+20210418-200155.774   Working COVID-19-austria.bmsgpk.20210115-1216.html 
+20210418-200155.774 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210115-1216.html 
+20210418-200155.782 Extracting Status table in Bundesländer 
+20210418-200155.809   Working COVID-19-austria.bmsgpk.20210115-1615.html 
+20210418-200155.810 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210115-1615.html 
+20210418-200155.817 Extracting Status table in Bundesländer 
+20210418-200155.891   Working COVID-19-austria.bmsgpk.20210116-1215.html 
+20210418-200155.891 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210116-1215.html 
+20210418-200155.900 Extracting Status table in Bundesländer 
+20210418-200155.929   Working COVID-19-austria.bmsgpk.20210116-1615.html 
+20210418-200155.929 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210116-1615.html 
+20210418-200155.937 Extracting Status table in Bundesländer 
+20210418-200155.969   Working COVID-19-austria.bmsgpk.20210117-1215.html 
+20210418-200155.969 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210117-1215.html 
+20210418-200155.981 Extracting Status table in Bundesländer 
+20210418-200156.014   Working COVID-19-austria.bmsgpk.20210117-1615.html 
+20210418-200156.015 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210117-1615.html 
+20210418-200156.023 Extracting Status table in Bundesländer 
+20210418-200156.051   Working COVID-19-austria.bmsgpk.20210118-1215.html 
+20210418-200156.052 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210118-1215.html 
+20210418-200156.060 Extracting Status table in Bundesländer 
+20210418-200156.097   Working COVID-19-austria.bmsgpk.20210118-1615.html 
+20210418-200156.097 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210118-1615.html 
+20210418-200156.106 Extracting Status table in Bundesländer 
+20210418-200156.141   Working COVID-19-austria.bmsgpk.20210119-1215.html 
+20210418-200156.141 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210119-1215.html 
+20210418-200156.149 Extracting Status table in Bundesländer 
+20210418-200156.179   Working COVID-19-austria.bmsgpk.20210119-1615.html 
+20210418-200156.179 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210119-1615.html 
+20210418-200156.187 Extracting Status table in Bundesländer 
+20210418-200156.217   Working COVID-19-austria.bmsgpk.20210120-1215.html 
+20210418-200156.218 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210120-1215.html 
+20210418-200156.226 Extracting Status table in Bundesländer 
+20210418-200156.258   Working COVID-19-austria.bmsgpk.20210120-1615.html 
+20210418-200156.258 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210120-1615.html 
+20210418-200156.267 Extracting Status table in Bundesländer 
+20210418-200156.316   Working COVID-19-austria.bmsgpk.20210121-1215.html 
+20210418-200156.316 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210121-1215.html 
+20210418-200156.326 Extracting Status table in Bundesländer 
+20210418-200156.355   Working COVID-19-austria.bmsgpk.20210121-1615.html 
+20210418-200156.355 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210121-1615.html 
+20210418-200156.364 Extracting Status table in Bundesländer 
+20210418-200156.405   Working COVID-19-austria.bmsgpk.20210122-1215.html 
+20210418-200156.406 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210122-1215.html 
+20210418-200156.416 Extracting Status table in Bundesländer 
+20210418-200156.577   Working COVID-19-austria.bmsgpk.20210122-1615.html 
+20210418-200156.577 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210122-1615.html 
+20210418-200156.587 Extracting Status table in Bundesländer 
+20210418-200156.620   Working COVID-19-austria.bmsgpk.20210123-1215.html 
+20210418-200156.620 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210123-1215.html 
+20210418-200156.629 Extracting Status table in Bundesländer 
+20210418-200156.662   Working COVID-19-austria.bmsgpk.20210123-1615.html 
+20210418-200156.663 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210123-1615.html 
+20210418-200156.671 Extracting Status table in Bundesländer 
+20210418-200156.710   Working COVID-19-austria.bmsgpk.20210124-1215.html 
+20210418-200156.711 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210124-1215.html 
+20210418-200156.719 Extracting Status table in Bundesländer 
+20210418-200156.748   Working COVID-19-austria.bmsgpk.20210124-1615.html 
+20210418-200156.748 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210124-1615.html 
+20210418-200156.756 Extracting Status table in Bundesländer 
+20210418-200156.784   Working COVID-19-austria.bmsgpk.20210125-1215.html 
+20210418-200156.785 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210125-1215.html 
+20210418-200156.792 Extracting Status table in Bundesländer 
+20210418-200156.827   Working COVID-19-austria.bmsgpk.20210125-1615.html 
+20210418-200156.828 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210125-1615.html 
+20210418-200156.837 Extracting Status table in Bundesländer 
+20210418-200156.867   Working COVID-19-austria.bmsgpk.20210126-1215.html 
+20210418-200156.868 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210126-1215.html 
+20210418-200156.876 Extracting Status table in Bundesländer 
+20210418-200156.904   Working COVID-19-austria.bmsgpk.20210126-1615.html 
+20210418-200156.904 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210126-1615.html 
+20210418-200156.912 Extracting Status table in Bundesländer 
+20210418-200156.940   Working COVID-19-austria.bmsgpk.20210127-1215.html 
+20210418-200156.940 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210127-1215.html 
+20210418-200156.948 Extracting Status table in Bundesländer 
+20210418-200156.990   Working COVID-19-austria.bmsgpk.20210127-1615.html 
+20210418-200156.991 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210127-1615.html 
+20210418-200156.998 Extracting Status table in Bundesländer 
+20210418-200157.026   Working COVID-19-austria.bmsgpk.20210128-1215.html 
+20210418-200157.026 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210128-1215.html 
+20210418-200157.034 Extracting Status table in Bundesländer 
+20210418-200157.061   Working COVID-19-austria.bmsgpk.20210128-1615.html 
+20210418-200157.061 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210128-1615.html 
+20210418-200157.069 Extracting Status table in Bundesländer 
+20210418-200157.107   Working COVID-19-austria.bmsgpk.20210129-1215.html 
+20210418-200157.107 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210129-1215.html 
+20210418-200157.117 Extracting Status table in Bundesländer 
+20210418-200157.145   Working COVID-19-austria.bmsgpk.20210129-1615.html 
+20210418-200157.146 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210129-1615.html 
+20210418-200157.153 Extracting Status table in Bundesländer 
+20210418-200157.181   Working COVID-19-austria.bmsgpk.20210130-1215.html 
+20210418-200157.182 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210130-1215.html 
+20210418-200157.237 Extracting Status table in Bundesländer 
+20210418-200157.278   Working COVID-19-austria.bmsgpk.20210130-1615.html 
+20210418-200157.278 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210130-1615.html 
+20210418-200157.287 Extracting Status table in Bundesländer 
+20210418-200157.321   Working COVID-19-austria.bmsgpk.20210131-1215.html 
+20210418-200157.321 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210131-1215.html 
+20210418-200157.329 Extracting Status table in Bundesländer 
+20210418-200157.360   Working COVID-19-austria.bmsgpk.20210131-1615.html 
+20210418-200157.361 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210131-1615.html 
+20210418-200157.370 Extracting Status table in Bundesländer 
+20210418-200157.418   Working COVID-19-austria.bmsgpk.20210201-1215.html 
+20210418-200157.418 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210201-1215.html 
+20210418-200157.426 Extracting Status table in Bundesländer 
+20210418-200157.453   Working COVID-19-austria.bmsgpk.20210201-1615.html 
+20210418-200157.453 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210201-1615.html 
+20210418-200157.461 Extracting Status table in Bundesländer 
+20210418-200157.490   Working COVID-19-austria.bmsgpk.20210202-1215.html 
+20210418-200157.490 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210202-1215.html 
+20210418-200157.498 Extracting Status table in Bundesländer 
+20210418-200157.542   Working COVID-19-austria.bmsgpk.20210202-1615.html 
+20210418-200157.543 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210202-1615.html 
+20210418-200157.552 Extracting Status table in Bundesländer 
+20210418-200157.582   Working COVID-19-austria.bmsgpk.20210203-1215.html 
+20210418-200157.582 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210203-1215.html 
+20210418-200157.590 Extracting Status table in Bundesländer 
+20210418-200157.616   Working COVID-19-austria.bmsgpk.20210203-1615.html 
+20210418-200157.616 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210203-1615.html 
+20210418-200157.624 Extracting Status table in Bundesländer 
+20210418-200157.657   Working COVID-19-austria.bmsgpk.20210204-1215.html 
+20210418-200157.657 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210204-1215.html 
+20210418-200157.666 Extracting Status table in Bundesländer 
+20210418-200157.703   Working COVID-19-austria.bmsgpk.20210204-1615.html 
+20210418-200157.703 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210204-1615.html 
+20210418-200157.710 Extracting Status table in Bundesländer 
+20210418-200157.740   Working COVID-19-austria.bmsgpk.20210205-1215.html 
+20210418-200157.740 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210205-1215.html 
+20210418-200157.749 Extracting Status table in Bundesländer 
+20210418-200157.778   Working COVID-19-austria.bmsgpk.20210205-1615.html 
+20210418-200157.778 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210205-1615.html 
+20210418-200157.788 Extracting Status table in Bundesländer 
+20210418-200157.828   Working COVID-19-austria.bmsgpk.20210206-1215.html 
+20210418-200157.829 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210206-1215.html 
+20210418-200157.836 Extracting Status table in Bundesländer 
+20210418-200157.872   Working COVID-19-austria.bmsgpk.20210206-1615.html 
+20210418-200157.873 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210206-1615.html 
+20210418-200157.880 Extracting Status table in Bundesländer 
+20210418-200157.962   Working COVID-19-austria.bmsgpk.20210207-1215.html 
+20210418-200157.963 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210207-1215.html 
+20210418-200157.972 Extracting Status table in Bundesländer 
+20210418-200158.007   Working COVID-19-austria.bmsgpk.20210207-1615.html 
+20210418-200158.007 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210207-1615.html 
+20210418-200158.016 Extracting Status table in Bundesländer 
+20210418-200158.047   Working COVID-19-austria.bmsgpk.20210208-1215.html 
+20210418-200158.048 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210208-1215.html 
+20210418-200158.056 Extracting Status table in Bundesländer 
+20210418-200158.093   Working COVID-19-austria.bmsgpk.20210208-1615.html 
+20210418-200158.094 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210208-1615.html 
+20210418-200158.104 Extracting Status table in Bundesländer 
+20210418-200158.135   Working COVID-19-austria.bmsgpk.20210209-1215.html 
+20210418-200158.136 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210209-1215.html 
+20210418-200158.143 Extracting Status table in Bundesländer 
+20210418-200158.171   Working COVID-19-austria.bmsgpk.20210209-1615.html 
+20210418-200158.171 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210209-1615.html 
+20210418-200158.179 Extracting Status table in Bundesländer 
+20210418-200158.208   Working COVID-19-austria.bmsgpk.20210210-1215.html 
+20210418-200158.209 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210210-1215.html 
+20210418-200158.216 Extracting Status table in Bundesländer 
+20210418-200158.258   Working COVID-19-austria.bmsgpk.20210210-1615.html 
+20210418-200158.258 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210210-1615.html 
+20210418-200158.276 Extracting Status table in Bundesländer 
+20210418-200158.322   Working COVID-19-austria.bmsgpk.20210211-1215.html 
+20210418-200158.322 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210211-1215.html 
+20210418-200158.329 Extracting Status table in Bundesländer 
+20210418-200158.373   Working COVID-19-austria.bmsgpk.20210211-1615.html 
+20210418-200158.373 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210211-1615.html 
+20210418-200158.381 Extracting Status table in Bundesländer 
+20210418-200158.432   Working COVID-19-austria.bmsgpk.20210212-1215.html 
+20210418-200158.432 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210212-1215.html 
+20210418-200158.442 Extracting Status table in Bundesländer 
+20210418-200158.469   Working COVID-19-austria.bmsgpk.20210212-1615.html 
+20210418-200158.469 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210212-1615.html 
+20210418-200158.477 Extracting Status table in Bundesländer 
+20210418-200158.505   Working COVID-19-austria.bmsgpk.20210213-1215.html 
+20210418-200158.505 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210213-1215.html 
+20210418-200158.513 Extracting Status table in Bundesländer 
+20210418-200158.541   Working COVID-19-austria.bmsgpk.20210213-1615.html 
+20210418-200158.542 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210213-1615.html 
+20210418-200158.550 Extracting Status table in Bundesländer 
+20210418-200158.593   Working COVID-19-austria.bmsgpk.20210214-1215.html 
+20210418-200158.593 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210214-1215.html 
+20210418-200158.602 Extracting Status table in Bundesländer 
+20210418-200158.674   Working COVID-19-austria.bmsgpk.20210214-1615.html 
+20210418-200158.674 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210214-1615.html 
+20210418-200158.683 Extracting Status table in Bundesländer 
+20210418-200158.738   Working COVID-19-austria.bmsgpk.20210215-1215.html 
+20210418-200158.739 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210215-1215.html 
+20210418-200158.754 Extracting Status table in Bundesländer 
+20210418-200158.802   Working COVID-19-austria.bmsgpk.20210215-1615.html 
+20210418-200158.802 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210215-1615.html 
+20210418-200158.817 Extracting Status table in Bundesländer 
+20210418-200158.865   Working COVID-19-austria.bmsgpk.20210216-1215.html 
+20210418-200158.866 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210216-1215.html 
+20210418-200158.880 Extracting Status table in Bundesländer 
+20210418-200158.924   Working COVID-19-austria.bmsgpk.20210216-1615.html 
+20210418-200158.925 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210216-1615.html 
+20210418-200158.938 Extracting Status table in Bundesländer 
+20210418-200158.981   Working COVID-19-austria.bmsgpk.20210217-1215.html 
+20210418-200158.981 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210217-1215.html 
+20210418-200158.997 Extracting Status table in Bundesländer 
+20210418-200159.043   Working COVID-19-austria.bmsgpk.20210217-1615.html 
+20210418-200159.044 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210217-1615.html 
+20210418-200159.057 Extracting Status table in Bundesländer 
+20210418-200159.103   Working COVID-19-austria.bmsgpk.20210218-1215.html 
+20210418-200159.104 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210218-1215.html 
+20210418-200159.118 Extracting Status table in Bundesländer 
+20210418-200159.161   Working COVID-19-austria.bmsgpk.20210218-1615.html 
+20210418-200159.161 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210218-1615.html 
+20210418-200159.174 Extracting Status table in Bundesländer 
+20210418-200159.217   Working COVID-19-austria.bmsgpk.20210219-1215.html 
+20210418-200159.218 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210219-1215.html 
+20210418-200159.231 Extracting Status table in Bundesländer 
+20210418-200159.274   Working COVID-19-austria.bmsgpk.20210219-1615.html 
+20210418-200159.275 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210219-1615.html 
+20210418-200159.288 Extracting Status table in Bundesländer 
+20210418-200159.335   Working COVID-19-austria.bmsgpk.20210220-1215.html 
+20210418-200159.335 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210220-1215.html 
+20210418-200159.349 Extracting Status table in Bundesländer 
+20210418-200159.394   Working COVID-19-austria.bmsgpk.20210220-1615.html 
+20210418-200159.395 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210220-1615.html 
+20210418-200159.407 Extracting Status table in Bundesländer 
+20210418-200159.458   Working COVID-19-austria.bmsgpk.20210221-1215.html 
+20210418-200159.458 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210221-1215.html 
+20210418-200159.472 Extracting Status table in Bundesländer 
+20210418-200159.521   Working COVID-19-austria.bmsgpk.20210221-1615.html 
+20210418-200159.522 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210221-1615.html 
+20210418-200159.535 Extracting Status table in Bundesländer 
+20210418-200159.581   Working COVID-19-austria.bmsgpk.20210222-1215.html 
+20210418-200159.581 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210222-1215.html 
+20210418-200159.595 Extracting Status table in Bundesländer 
+20210418-200159.720   Working COVID-19-austria.bmsgpk.20210222-1615.html 
+20210418-200159.720 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210222-1615.html 
+20210418-200159.730 Extracting Status table in Bundesländer 
+20210418-200159.768   Working COVID-19-austria.bmsgpk.20210223-1215.html 
+20210418-200159.769 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210223-1215.html 
+20210418-200159.777 Extracting Status table in Bundesländer 
+20210418-200159.810   Working COVID-19-austria.bmsgpk.20210223-1615.html 
+20210418-200159.810 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210223-1615.html 
+20210418-200159.819 Extracting Status table in Bundesländer 
+20210418-200159.859   Working COVID-19-austria.bmsgpk.20210224-1215.html 
+20210418-200159.859 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210224-1215.html 
+20210418-200159.870 Extracting Status table in Bundesländer 
+20210418-200159.900   Working COVID-19-austria.bmsgpk.20210224-1615.html 
+20210418-200159.900 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210224-1615.html 
+20210418-200159.908 Extracting Status table in Bundesländer 
+20210418-200159.935   Working COVID-19-austria.bmsgpk.20210225-1215.html 
+20210418-200159.936 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210225-1215.html 
+20210418-200159.944 Extracting Status table in Bundesländer 
+20210418-200159.971   Working COVID-19-austria.bmsgpk.20210225-1615.html 
+20210418-200159.971 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210225-1615.html 
+20210418-200159.979 Extracting Status table in Bundesländer 
+20210418-200200.007   Working COVID-19-austria.bmsgpk.20210226-1215.html 
+20210418-200200.008 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210226-1215.html 
+20210418-200200.017 Extracting Status table in Bundesländer 
+20210418-200200.051   Working COVID-19-austria.bmsgpk.20210226-1615.html 
+20210418-200200.051 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210226-1615.html 
+20210418-200200.059 Extracting Status table in Bundesländer 
+20210418-200200.087   Working COVID-19-austria.bmsgpk.20210227-1215.html 
+20210418-200200.087 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210227-1215.html 
+20210418-200200.095 Extracting Status table in Bundesländer 
+20210418-200200.123   Working COVID-19-austria.bmsgpk.20210227-1615.html 
+20210418-200200.123 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210227-1615.html 
+20210418-200200.132 Extracting Status table in Bundesländer 
+20210418-200200.174   Working COVID-19-austria.bmsgpk.20210228-1215.html 
+20210418-200200.174 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210228-1215.html 
+20210418-200200.183 Extracting Status table in Bundesländer 
+20210418-200200.213   Working COVID-19-austria.bmsgpk.20210228-1615.html 
+20210418-200200.213 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210228-1615.html 
+20210418-200200.220 Extracting Status table in Bundesländer 
+20210418-200200.248   Working COVID-19-austria.bmsgpk.20210301-1215.html 
+20210418-200200.249 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210301-1215.html 
+20210418-200200.256 Extracting Status table in Bundesländer 
+20210418-200200.284   Working COVID-19-austria.bmsgpk.20210301-1615.html 
+20210418-200200.284 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210301-1615.html 
+20210418-200200.292 Extracting Status table in Bundesländer 
+20210418-200200.325   Working COVID-19-austria.bmsgpk.20210302-1215.html 
+20210418-200200.326 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210302-1215.html 
+20210418-200200.335 Extracting Status table in Bundesländer 
+20210418-200200.415   Working COVID-19-austria.bmsgpk.20210302-1615.html 
+20210418-200200.415 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210302-1615.html 
+20210418-200200.425 Extracting Status table in Bundesländer 
+20210418-200200.454   Working COVID-19-austria.bmsgpk.20210303-1215.html 
+20210418-200200.454 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210303-1215.html 
+20210418-200200.464 Extracting Status table in Bundesländer 
+20210418-200200.510   Working COVID-19-austria.bmsgpk.20210303-1615.html 
+20210418-200200.511 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210303-1615.html 
+20210418-200200.519 Extracting Status table in Bundesländer 
+20210418-200200.549   Working COVID-19-austria.bmsgpk.20210304-1215.html 
+20210418-200200.550 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210304-1215.html 
+20210418-200200.558 Extracting Status table in Bundesländer 
+20210418-200200.586   Working COVID-19-austria.bmsgpk.20210304-1615.html 
+20210418-200200.586 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210304-1615.html 
+20210418-200200.594 Extracting Status table in Bundesländer 
+20210418-200200.628   Working COVID-19-austria.bmsgpk.20210305-1215.html 
+20210418-200200.628 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210305-1215.html 
+20210418-200200.637 Extracting Status table in Bundesländer 
+20210418-200200.665   Working COVID-19-austria.bmsgpk.20210305-1615.html 
+20210418-200200.665 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210305-1615.html 
+20210418-200200.672 Extracting Status table in Bundesländer 
+20210418-200200.701   Working COVID-19-austria.bmsgpk.20210306-1215.html 
+20210418-200200.701 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210306-1215.html 
+20210418-200200.710 Extracting Status table in Bundesländer 
+20210418-200200.736   Working COVID-19-austria.bmsgpk.20210306-1615.html 
+20210418-200200.737 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210306-1615.html 
+20210418-200200.744 Extracting Status table in Bundesländer 
+20210418-200200.779   Working COVID-19-austria.bmsgpk.20210307-1215.html 
+20210418-200200.780 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210307-1215.html 
+20210418-200200.789 Extracting Status table in Bundesländer 
+20210418-200200.819   Working COVID-19-austria.bmsgpk.20210307-1615.html 
+20210418-200200.820 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210307-1615.html 
+20210418-200200.828 Extracting Status table in Bundesländer 
+20210418-200200.856   Working COVID-19-austria.bmsgpk.20210308-1215.html 
+20210418-200200.856 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210308-1215.html 
+20210418-200200.864 Extracting Status table in Bundesländer 
+20210418-200200.893   Working COVID-19-austria.bmsgpk.20210308-1615.html 
+20210418-200200.893 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210308-1615.html 
+20210418-200200.901 Extracting Status table in Bundesländer 
+20210418-200200.939   Working COVID-19-austria.bmsgpk.20210309-1215.html 
+20210418-200200.939 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210309-1215.html 
+20210418-200200.947 Extracting Status table in Bundesländer 
+20210418-200200.975   Working COVID-19-austria.bmsgpk.20210309-1615.html 
+20210418-200200.976 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210309-1615.html 
+20210418-200200.984 Extracting Status table in Bundesländer 
+20210418-200201.068   Working COVID-19-austria.bmsgpk.20210310-1215.html 
+20210418-200201.068 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210310-1215.html 
+20210418-200201.081 Extracting Status table in Bundesländer 
+20210418-200201.123   Working COVID-19-austria.bmsgpk.20210310-1615.html 
+20210418-200201.124 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210310-1615.html 
+20210418-200201.133 Extracting Status table in Bundesländer 
+20210418-200201.163   Working COVID-19-austria.bmsgpk.20210311-1215.html 
+20210418-200201.164 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210311-1215.html 
+20210418-200201.172 Extracting Status table in Bundesländer 
+20210418-200201.202   Working COVID-19-austria.bmsgpk.20210311-1615.html 
+20210418-200201.203 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210311-1615.html 
+20210418-200201.211 Extracting Status table in Bundesländer 
+20210418-200201.239   Working COVID-19-austria.bmsgpk.20210312-1215.html 
+20210418-200201.239 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210312-1215.html 
+20210418-200201.249 Extracting Status table in Bundesländer 
+20210418-200201.289   Working COVID-19-austria.bmsgpk.20210312-1615.html 
+20210418-200201.290 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210312-1615.html 
+20210418-200201.298 Extracting Status table in Bundesländer 
+20210418-200201.328   Working COVID-19-austria.bmsgpk.20210313-1215.html 
+20210418-200201.328 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210313-1215.html 
+20210418-200201.337 Extracting Status table in Bundesländer 
+20210418-200201.373   Working COVID-19-austria.bmsgpk.20210313-1615.html 
+20210418-200201.373 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210313-1615.html 
+20210418-200201.381 Extracting Status table in Bundesländer 
+20210418-200201.409   Working COVID-19-austria.bmsgpk.20210314-1215.html 
+20210418-200201.409 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210314-1215.html 
+20210418-200201.419 Extracting Status table in Bundesländer 
+20210418-200201.456   Working COVID-19-austria.bmsgpk.20210314-1615.html 
+20210418-200201.457 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210314-1615.html 
+20210418-200201.465 Extracting Status table in Bundesländer 
+20210418-200201.494   Working COVID-19-austria.bmsgpk.20210315-1215.html 
+20210418-200201.494 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210315-1215.html 
+20210418-200201.502 Extracting Status table in Bundesländer 
+20210418-200201.530   Working COVID-19-austria.bmsgpk.20210315-1615.html 
+20210418-200201.530 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210315-1615.html 
+20210418-200201.538 Extracting Status table in Bundesländer 
+20210418-200201.567   Working COVID-19-austria.bmsgpk.20210316-1215.html 
+20210418-200201.567 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210316-1215.html 
+20210418-200201.576 Extracting Status table in Bundesländer 
+20210418-200201.613   Working COVID-19-austria.bmsgpk.20210316-1615.html 
+20210418-200201.613 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210316-1615.html 
+20210418-200201.622 Extracting Status table in Bundesländer 
+20210418-200201.651   Working COVID-19-austria.bmsgpk.20210317-1215.html 
+20210418-200201.651 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210317-1215.html 
+20210418-200201.660 Extracting Status table in Bundesländer 
+20210418-200201.689   Working COVID-19-austria.bmsgpk.20210317-1615.html 
+20210418-200201.689 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210317-1615.html 
+20210418-200201.698 Extracting Status table in Bundesländer 
+20210418-200201.788   Working COVID-19-austria.bmsgpk.20210318-1215.html 
+20210418-200201.789 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210318-1215.html 
+20210418-200201.798 Extracting Status table in Bundesländer 
+20210418-200201.831   Working COVID-19-austria.bmsgpk.20210318-1615.html 
+20210418-200201.831 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210318-1615.html 
+20210418-200201.840 Extracting Status table in Bundesländer 
+20210418-200201.876   Working COVID-19-austria.bmsgpk.20210319-1215.html 
+20210418-200201.877 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210319-1215.html 
+20210418-200201.886 Extracting Status table in Bundesländer 
+20210418-200201.921   Working COVID-19-austria.bmsgpk.20210319-1615.html 
+20210418-200201.921 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210319-1615.html 
+20210418-200201.931 Extracting Status table in Bundesländer 
+20210418-200201.963   Working COVID-19-austria.bmsgpk.20210320-1215.html 
+20210418-200201.963 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210320-1215.html 
+20210418-200201.971 Extracting Status table in Bundesländer 
+20210418-200202.001   Working COVID-19-austria.bmsgpk.20210320-1615.html 
+20210418-200202.001 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210320-1615.html 
+20210418-200202.009 Extracting Status table in Bundesländer 
+20210418-200202.039   Working COVID-19-austria.bmsgpk.20210321-1215.html 
+20210418-200202.039 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210321-1215.html 
+20210418-200202.049 Extracting Status table in Bundesländer 
+20210418-200202.079   Working COVID-19-austria.bmsgpk.20210321-1615.html 
+20210418-200202.080 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210321-1615.html 
+20210418-200202.088 Extracting Status table in Bundesländer 
+20210418-200202.128   Working COVID-19-austria.bmsgpk.20210322-1215.html 
+20210418-200202.128 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210322-1215.html 
+20210418-200202.138 Extracting Status table in Bundesländer 
+20210418-200202.167   Working COVID-19-austria.bmsgpk.20210322-1615.html 
+20210418-200202.168 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210322-1615.html 
+20210418-200202.176 Extracting Status table in Bundesländer 
+20210418-200202.205   Working COVID-19-austria.bmsgpk.20210323-1215.html 
+20210418-200202.205 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210323-1215.html 
+20210418-200202.213 Extracting Status table in Bundesländer 
+20210418-200202.256   Working COVID-19-austria.bmsgpk.20210323-1615.html 
+20210418-200202.256 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210323-1615.html 
+20210418-200202.265 Extracting Status table in Bundesländer 
+20210418-200202.301   Working COVID-19-austria.bmsgpk.20210324-1215.html 
+20210418-200202.301 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210324-1215.html 
+20210418-200202.310 Extracting Status table in Bundesländer 
+20210418-200202.338   Working COVID-19-austria.bmsgpk.20210324-1615.html 
+20210418-200202.338 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210324-1615.html 
+20210418-200202.346 Extracting Status table in Bundesländer 
+20210418-200202.372   Working COVID-19-austria.bmsgpk.20210325-1215.html 
+20210418-200202.372 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210325-1215.html 
+20210418-200202.380 Extracting Status table in Bundesländer 
+20210418-200202.462   Working COVID-19-austria.bmsgpk.20210325-1615.html 
+20210418-200202.463 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210325-1615.html 
+20210418-200202.475 Extracting Status table in Bundesländer 
+20210418-200202.530   Working COVID-19-austria.bmsgpk.20210326-1215.html 
+20210418-200202.530 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210326-1215.html 
+20210418-200202.546 Extracting Status table in Bundesländer 
+20210418-200202.595   Working COVID-19-austria.bmsgpk.20210326-1615.html 
+20210418-200202.595 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210326-1615.html 
+20210418-200202.610 Extracting Status table in Bundesländer 
+20210418-200202.656   Working COVID-19-austria.bmsgpk.20210327-1215.html 
+20210418-200202.656 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210327-1215.html 
+20210418-200202.671 Extracting Status table in Bundesländer 
+20210418-200202.723   Working COVID-19-austria.bmsgpk.20210327-1615.html 
+20210418-200202.723 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210327-1615.html 
+20210418-200202.741 Extracting Status table in Bundesländer 
+20210418-200202.788   Working COVID-19-austria.bmsgpk.20210328-1215.html 
+20210418-200202.788 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210328-1215.html 
+20210418-200202.803 Extracting Status table in Bundesländer 
+20210418-200202.844   Working COVID-19-austria.bmsgpk.20210328-1615.html 
+20210418-200202.844 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210328-1615.html 
+20210418-200202.857 Extracting Status table in Bundesländer 
+20210418-200202.902   Working COVID-19-austria.bmsgpk.20210329-1215.html 
+20210418-200202.903 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210329-1215.html 
+20210418-200202.917 Extracting Status table in Bundesländer 
+20210418-200202.961   Working COVID-19-austria.bmsgpk.20210329-1615.html 
+20210418-200202.962 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210329-1615.html 
+20210418-200202.976 Extracting Status table in Bundesländer 
+20210418-200203.062   Working COVID-19-austria.bmsgpk.20210330-1215.html 
+20210418-200203.062 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210330-1215.html 
+20210418-200203.076 Extracting Status table in Bundesländer 
+20210418-200203.120   Working COVID-19-austria.bmsgpk.20210330-1615.html 
+20210418-200203.120 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210330-1615.html 
+20210418-200203.134 Extracting Status table in Bundesländer 
+20210418-200203.192   Working COVID-19-austria.bmsgpk.20210331-1215.html 
+20210418-200203.192 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210331-1215.html 
+20210418-200203.208 Extracting Status table in Bundesländer 
+20210418-200203.254   Working COVID-19-austria.bmsgpk.20210331-1615.html 
+20210418-200203.254 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210331-1615.html 
+20210418-200203.263 Extracting Status table in Bundesländer 
+20210418-200203.291   Working COVID-19-austria.bmsgpk.20210401-1215.html 
+20210418-200203.292 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210401-1215.html 
+20210418-200203.301 Extracting Status table in Bundesländer 
+20210418-200203.337   Working COVID-19-austria.bmsgpk.20210401-1615.html 
+20210418-200203.337 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210401-1615.html 
+20210418-200203.348 Extracting Status table in Bundesländer 
+20210418-200203.378   Working COVID-19-austria.bmsgpk.20210402-1215.html 
+20210418-200203.378 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210402-1215.html 
+20210418-200203.386 Extracting Status table in Bundesländer 
+20210418-200203.474   Working COVID-19-austria.bmsgpk.20210402-1615.html 
+20210418-200203.474 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210402-1615.html 
+20210418-200203.484 Extracting Status table in Bundesländer 
+20210418-200203.525   Working COVID-19-austria.bmsgpk.20210403-1215.html 
+20210418-200203.525 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210403-1215.html 
+20210418-200203.537 Extracting Status table in Bundesländer 
+20210418-200203.577   Working COVID-19-austria.bmsgpk.20210403-1615.html 
+20210418-200203.578 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210403-1615.html 
+20210418-200203.587 Extracting Status table in Bundesländer 
+20210418-200203.625   Working COVID-19-austria.bmsgpk.20210404-1215.html 
+20210418-200203.625 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210404-1215.html 
+20210418-200203.634 Extracting Status table in Bundesländer 
+20210418-200203.665   Working COVID-19-austria.bmsgpk.20210404-1615.html 
+20210418-200203.666 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210404-1615.html 
+20210418-200203.674 Extracting Status table in Bundesländer 
+20210418-200203.705   Working COVID-19-austria.bmsgpk.20210405-1215.html 
+20210418-200203.706 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210405-1215.html 
+20210418-200203.715 Extracting Status table in Bundesländer 
+20210418-200203.745   Working COVID-19-austria.bmsgpk.20210405-1615.html 
+20210418-200203.745 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210405-1615.html 
+20210418-200203.754 Extracting Status table in Bundesländer 
+20210418-200203.786   Working COVID-19-austria.bmsgpk.20210406-1215.html 
+20210418-200203.787 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210406-1215.html 
+20210418-200203.798 Extracting Status table in Bundesländer 
+20210418-200203.837   Working COVID-19-austria.bmsgpk.20210406-1615.html 
+20210418-200203.838 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210406-1615.html 
+20210418-200203.846 Extracting Status table in Bundesländer 
+20210418-200203.875   Working COVID-19-austria.bmsgpk.20210407-1215.html 
+20210418-200203.875 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210407-1215.html 
+20210418-200203.884 Extracting Status table in Bundesländer 
+20210418-200203.916   Working COVID-19-austria.bmsgpk.20210407-1615.html 
+20210418-200203.917 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210407-1615.html 
+20210418-200203.926 Extracting Status table in Bundesländer 
+20210418-200203.955   Working COVID-19-austria.bmsgpk.20210408-1215.html 
+20210418-200203.955 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210408-1215.html 
+20210418-200203.964 Extracting Status table in Bundesländer 
+20210418-200204.001   Working COVID-19-austria.bmsgpk.20210408-1615.html 
+20210418-200204.001 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210408-1615.html 
+20210418-200204.009 Extracting Status table in Bundesländer 
+20210418-200204.046   Working COVID-19-austria.bmsgpk.20210409-1215.html 
+20210418-200204.047 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210409-1215.html 
+20210418-200204.055 Extracting Status table in Bundesländer 
+20210418-200204.082   Working COVID-19-austria.bmsgpk.20210409-1615.html 
+20210418-200204.083 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210409-1615.html 
+20210418-200204.091 Extracting Status table in Bundesländer 
+20210418-200204.175   Working COVID-19-austria.bmsgpk.20210410-1215.html 
+20210418-200204.175 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210410-1215.html 
+20210418-200204.185 Extracting Status table in Bundesländer 
+20210418-200204.218   Working COVID-19-austria.bmsgpk.20210410-1615.html 
+20210418-200204.218 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210410-1615.html 
+20210418-200204.227 Extracting Status table in Bundesländer 
+20210418-200204.257   Working COVID-19-austria.bmsgpk.20210411-1215.html 
+20210418-200204.257 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210411-1215.html 
+20210418-200204.266 Extracting Status table in Bundesländer 
+20210418-200204.304   Working COVID-19-austria.bmsgpk.20210411-1615.html 
+20210418-200204.305 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210411-1615.html 
+20210418-200204.322 Extracting Status table in Bundesländer 
+20210418-200204.355   Working COVID-19-austria.bmsgpk.20210412-1215.html 
+20210418-200204.356 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210412-1215.html 
+20210418-200204.364 Extracting Status table in Bundesländer 
+20210418-200204.392   Working COVID-19-austria.bmsgpk.20210412-1615.html 
+20210418-200204.393 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210412-1615.html 
+20210418-200204.401 Extracting Status table in Bundesländer 
+20210418-200204.428   Working COVID-19-austria.bmsgpk.20210413-1215.html 
+20210418-200204.429 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210413-1215.html 
+20210418-200204.437 Extracting Status table in Bundesländer 
+20210418-200204.464   Working COVID-19-austria.bmsgpk.20210413-1615.html 
+20210418-200204.464 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210413-1615.html 
+20210418-200204.475 Extracting Status table in Bundesländer 
+20210418-200204.511   Working COVID-19-austria.bmsgpk.20210414-1215.html 
+20210418-200204.511 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210414-1215.html 
+20210418-200204.520 Extracting Status table in Bundesländer 
+20210418-200204.550   Working COVID-19-austria.bmsgpk.20210414-1615.html 
+20210418-200204.550 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210414-1615.html 
+20210418-200204.558 Extracting Status table in Bundesländer 
+20210418-200204.587   Working COVID-19-austria.bmsgpk.20210415-1215.html 
+20210418-200204.587 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210415-1215.html 
+20210418-200204.595 Extracting Status table in Bundesländer 
+20210418-200204.624   Working COVID-19-austria.bmsgpk.20210415-1615.html 
+20210418-200204.624 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210415-1615.html 
+20210418-200204.633 Extracting Status table in Bundesländer 
+20210418-200204.668   Working COVID-19-austria.bmsgpk.20210416-1215.html 
+20210418-200204.668 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210416-1215.html 
+20210418-200204.677 Extracting Status table in Bundesländer 
+20210418-200204.709   Working COVID-19-austria.bmsgpk.20210416-1615.html 
+20210418-200204.710 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210416-1615.html 
+20210418-200204.718 Extracting Status table in Bundesländer 
+20210418-200204.745   Working COVID-19-austria.bmsgpk.20210417-1215.html 
+20210418-200204.746 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210417-1215.html 
+20210418-200204.753 Extracting Status table in Bundesländer 
+20210418-200204.782   Working COVID-19-austria.bmsgpk.20210417-1615.html 
+20210418-200204.782 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210417-1615.html 
+20210418-200204.791 Extracting Status table in Bundesländer 
+20210418-200204.879   Working COVID-19-austria.bmsgpk.20210418-1215.html 
+20210418-200204.879 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210418-1215.html 
+20210418-200204.889 Extracting Status table in Bundesländer 
+20210418-200204.932   Working COVID-19-austria.bmsgpk.20210418-1615.html 
+20210418-200204.932 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210418-1615.html 
+20210418-200204.945 Extracting Status table in Bundesländer 
+20210418-200205.059 Writing reconstructed datafile ./data/COVID-19-austria.reconstructed.2021.csv 
+20210418-203637.178 Processing files in ../../covid-ibm/download/dumps 
+20210418-203637.207   Working COVID-19-austria.bmsgpk.20210101-1215.html 
+20210418-203637.274 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210101-1215.html 
+20210418-203637.282 Extracting Status table in Bundesländer 
+20210418-203637.307   Working COVID-19-austria.bmsgpk.20210101-1615.html 
+20210418-203637.307 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210101-1615.html 
+20210418-203637.315 Extracting Status table in Bundesländer 
+20210418-203637.342   Working COVID-19-austria.bmsgpk.20210102-1215.html 
+20210418-203637.343 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210102-1215.html 
+20210418-203637.350 Extracting Status table in Bundesländer 
+20210418-203637.378   Working COVID-19-austria.bmsgpk.20210102-1615.html 
+20210418-203637.378 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210102-1615.html 
+20210418-203637.387 Extracting Status table in Bundesländer 
+20210418-203637.453   Working COVID-19-austria.bmsgpk.20210103-1215.html 
+20210418-203637.457 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210103-1215.html 
+20210418-203637.467 Extracting Status table in Bundesländer 
+20210418-203637.497   Working COVID-19-austria.bmsgpk.20210103-1615.html 
+20210418-203637.498 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210103-1615.html 
+20210418-203637.506 Extracting Status table in Bundesländer 
+20210418-203637.537   Working COVID-19-austria.bmsgpk.20210104-1215.html 
+20210418-203637.537 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210104-1215.html 
+20210418-203637.545 Extracting Status table in Bundesländer 
+20210418-203637.583   Working COVID-19-austria.bmsgpk.20210104-1615.html 
+20210418-203637.584 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210104-1615.html 
+20210418-203637.595 Extracting Status table in Bundesländer 
+20210418-203637.632   Working COVID-19-austria.bmsgpk.20210105-1215.html 
+20210418-203637.632 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210105-1215.html 
+20210418-203637.640 Extracting Status table in Bundesländer 
+20210418-203637.671   Working COVID-19-austria.bmsgpk.20210105-1615.html 
+20210418-203637.671 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210105-1615.html 
+20210418-203637.680 Extracting Status table in Bundesländer 
+20210418-203637.708   Working COVID-19-austria.bmsgpk.20210106-1215.html 
+20210418-203637.708 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210106-1215.html 
+20210418-203637.717 Extracting Status table in Bundesländer 
+20210418-203637.747   Working COVID-19-austria.bmsgpk.20210106-1615.html 
+20210418-203637.748 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210106-1615.html 
+20210418-203637.759 Extracting Status table in Bundesländer 
+20210418-203637.812   Working COVID-19-austria.bmsgpk.20210107-1215.html 
+20210418-203637.812 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210107-1215.html 
+20210418-203637.821 Extracting Status table in Bundesländer 
+20210418-203637.850   Working COVID-19-austria.bmsgpk.20210107-1615.html 
+20210418-203637.851 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210107-1615.html 
+20210418-203637.858 Extracting Status table in Bundesländer 
+20210418-203637.894   Working COVID-19-austria.bmsgpk.20210108-1215.html 
+20210418-203637.894 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210108-1215.html 
+20210418-203637.902 Extracting Status table in Bundesländer 
+20210418-203637.931   Working COVID-19-austria.bmsgpk.20210108-1615.html 
+20210418-203637.931 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210108-1615.html 
+20210418-203637.939 Extracting Status table in Bundesländer 
+20210418-203637.984   Working COVID-19-austria.bmsgpk.20210109-1215.html 
+20210418-203637.984 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210109-1215.html 
+20210418-203637.992 Extracting Status table in Bundesländer 
+20210418-203638.021   Working COVID-19-austria.bmsgpk.20210109-1615.html 
+20210418-203638.022 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210109-1615.html 
+20210418-203638.030 Extracting Status table in Bundesländer 
+20210418-203638.059   Working COVID-19-austria.bmsgpk.20210110-1215.html 
+20210418-203638.059 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210110-1215.html 
+20210418-203638.067 Extracting Status table in Bundesländer 
+20210418-203638.176   Working COVID-19-austria.bmsgpk.20210110-1615.html 
+20210418-203638.176 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210110-1615.html 
+20210418-203638.185 Extracting Status table in Bundesländer 
+20210418-203638.216   Working COVID-19-austria.bmsgpk.20210111-1215.html 
+20210418-203638.217 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210111-1215.html 
+20210418-203638.224 Extracting Status table in Bundesländer 
+20210418-203638.257   Working COVID-19-austria.bmsgpk.20210111-1615.html 
+20210418-203638.258 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210111-1615.html 
+20210418-203638.266 Extracting Status table in Bundesländer 
+20210418-203638.300   Working COVID-19-austria.bmsgpk.20210112-1215.html 
+20210418-203638.301 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210112-1215.html 
+20210418-203638.310 Extracting Status table in Bundesländer 
+20210418-203638.345   Working COVID-19-austria.bmsgpk.20210112-1615.html 
+20210418-203638.345 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210112-1615.html 
+20210418-203638.353 Extracting Status table in Bundesländer 
+20210418-203638.384   Working COVID-19-austria.bmsgpk.20210113-1215.html 
+20210418-203638.384 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210113-1215.html 
+20210418-203638.392 Extracting Status table in Bundesländer 
+20210418-203638.422   Working COVID-19-austria.bmsgpk.20210113-1615.html 
+20210418-203638.422 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210113-1615.html 
+20210418-203638.430 Extracting Status table in Bundesländer 
+20210418-203638.464   Working COVID-19-austria.bmsgpk.20210114-1215.html 
+20210418-203638.464 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210114-1215.html 
+20210418-203638.474 Extracting Status table in Bundesländer 
+20210418-203638.507   Working COVID-19-austria.bmsgpk.20210114-1615.html 
+20210418-203638.507 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210114-1615.html 
+20210418-203638.515 Extracting Status table in Bundesländer 
+20210418-203638.544   Working COVID-19-austria.bmsgpk.20210115-1216.html 
+20210418-203638.545 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210115-1216.html 
+20210418-203638.552 Extracting Status table in Bundesländer 
+20210418-203638.581   Working COVID-19-austria.bmsgpk.20210115-1615.html 
+20210418-203638.581 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210115-1615.html 
+20210418-203638.590 Extracting Status table in Bundesländer 
+20210418-203638.623   Working COVID-19-austria.bmsgpk.20210116-1215.html 
+20210418-203638.624 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210116-1215.html 
+20210418-203638.632 Extracting Status table in Bundesländer 
+20210418-203638.664   Working COVID-19-austria.bmsgpk.20210116-1615.html 
+20210418-203638.664 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210116-1615.html 
+20210418-203638.672 Extracting Status table in Bundesländer 
+20210418-203638.700   Working COVID-19-austria.bmsgpk.20210117-1215.html 
+20210418-203638.701 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210117-1215.html 
+20210418-203638.762 Extracting Status table in Bundesländer 
+20210418-203638.805   Working COVID-19-austria.bmsgpk.20210117-1615.html 
+20210418-203638.806 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210117-1615.html 
+20210418-203638.816 Extracting Status table in Bundesländer 
+20210418-203638.846   Working COVID-19-austria.bmsgpk.20210118-1215.html 
+20210418-203638.847 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210118-1215.html 
+20210418-203638.854 Extracting Status table in Bundesländer 
+20210418-203638.886   Working COVID-19-austria.bmsgpk.20210118-1615.html 
+20210418-203638.886 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210118-1615.html 
+20210418-203638.894 Extracting Status table in Bundesländer 
+20210418-203638.925   Working COVID-19-austria.bmsgpk.20210119-1215.html 
+20210418-203638.925 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210119-1215.html 
+20210418-203638.934 Extracting Status table in Bundesländer 
+20210418-203638.971   Working COVID-19-austria.bmsgpk.20210119-1615.html 
+20210418-203638.972 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210119-1615.html 
+20210418-203638.982 Extracting Status table in Bundesländer 
+20210418-203639.012   Working COVID-19-austria.bmsgpk.20210120-1215.html 
+20210418-203639.012 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210120-1215.html 
+20210418-203639.020 Extracting Status table in Bundesländer 
+20210418-203639.049   Working COVID-19-austria.bmsgpk.20210120-1615.html 
+20210418-203639.050 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210120-1615.html 
+20210418-203639.057 Extracting Status table in Bundesländer 
+20210418-203639.086   Working COVID-19-austria.bmsgpk.20210121-1215.html 
+20210418-203639.086 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210121-1215.html 
+20210418-203639.094 Extracting Status table in Bundesländer 
+20210418-203639.129   Working COVID-19-austria.bmsgpk.20210121-1615.html 
+20210418-203639.129 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210121-1615.html 
+20210418-203639.138 Extracting Status table in Bundesländer 
+20210418-203639.167   Working COVID-19-austria.bmsgpk.20210122-1215.html 
+20210418-203639.168 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210122-1215.html 
+20210418-203639.176 Extracting Status table in Bundesländer 
+20210418-203639.205   Working COVID-19-austria.bmsgpk.20210122-1615.html 
+20210418-203639.206 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210122-1615.html 
+20210418-203639.214 Extracting Status table in Bundesländer 
+20210418-203639.243   Working COVID-19-austria.bmsgpk.20210123-1215.html 
+20210418-203639.244 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210123-1215.html 
+20210418-203639.253 Extracting Status table in Bundesländer 
+20210418-203639.290   Working COVID-19-austria.bmsgpk.20210123-1615.html 
+20210418-203639.290 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210123-1615.html 
+20210418-203639.299 Extracting Status table in Bundesländer 
+20210418-203639.370   Working COVID-19-austria.bmsgpk.20210124-1215.html 
+20210418-203639.370 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210124-1215.html 
+20210418-203639.382 Extracting Status table in Bundesländer 
+20210418-203639.413   Working COVID-19-austria.bmsgpk.20210124-1615.html 
+20210418-203639.414 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210124-1615.html 
+20210418-203639.424 Extracting Status table in Bundesländer 
+20210418-203639.463   Working COVID-19-austria.bmsgpk.20210125-1215.html 
+20210418-203639.464 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210125-1215.html 
+20210418-203639.472 Extracting Status table in Bundesländer 
+20210418-203639.504   Working COVID-19-austria.bmsgpk.20210125-1615.html 
+20210418-203639.504 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210125-1615.html 
+20210418-203639.512 Extracting Status table in Bundesländer 
+20210418-203639.542   Working COVID-19-austria.bmsgpk.20210126-1215.html 
+20210418-203639.542 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210126-1215.html 
+20210418-203639.551 Extracting Status table in Bundesländer 
+20210418-203639.585   Working COVID-19-austria.bmsgpk.20210126-1615.html 
+20210418-203639.585 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210126-1615.html 
+20210418-203639.595 Extracting Status table in Bundesländer 
+20210418-203639.634   Working COVID-19-austria.bmsgpk.20210127-1215.html 
+20210418-203639.634 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210127-1215.html 
+20210418-203639.642 Extracting Status table in Bundesländer 
+20210418-203639.673   Working COVID-19-austria.bmsgpk.20210127-1615.html 
+20210418-203639.673 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210127-1615.html 
+20210418-203639.681 Extracting Status table in Bundesländer 
+20210418-203639.709   Working COVID-19-austria.bmsgpk.20210128-1215.html 
+20210418-203639.709 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210128-1215.html 
+20210418-203639.718 Extracting Status table in Bundesländer 
+20210418-203639.753   Working COVID-19-austria.bmsgpk.20210128-1615.html 
+20210418-203639.754 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210128-1615.html 
+20210418-203639.764 Extracting Status table in Bundesländer 
+20210418-203639.794   Working COVID-19-austria.bmsgpk.20210129-1215.html 
+20210418-203639.794 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210129-1215.html 
+20210418-203639.802 Extracting Status table in Bundesländer 
+20210418-203639.832   Working COVID-19-austria.bmsgpk.20210129-1615.html 
+20210418-203639.832 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210129-1615.html 
+20210418-203639.840 Extracting Status table in Bundesländer 
+20210418-203639.869   Working COVID-19-austria.bmsgpk.20210130-1215.html 
+20210418-203639.869 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210130-1215.html 
+20210418-203639.877 Extracting Status table in Bundesländer 
+20210418-203639.908   Working COVID-19-austria.bmsgpk.20210130-1615.html 
+20210418-203639.909 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210130-1615.html 
+20210418-203639.918 Extracting Status table in Bundesländer 
+20210418-203639.997   Working COVID-19-austria.bmsgpk.20210131-1215.html 
+20210418-203639.997 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210131-1215.html 
+20210418-203640.006 Extracting Status table in Bundesländer 
+20210418-203640.039   Working COVID-19-austria.bmsgpk.20210131-1615.html 
+20210418-203640.039 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210131-1615.html 
+20210418-203640.048 Extracting Status table in Bundesländer 
+20210418-203640.089   Working COVID-19-austria.bmsgpk.20210201-1215.html 
+20210418-203640.090 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210201-1215.html 
+20210418-203640.098 Extracting Status table in Bundesländer 
+20210418-203640.131   Working COVID-19-austria.bmsgpk.20210201-1615.html 
+20210418-203640.131 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210201-1615.html 
+20210418-203640.140 Extracting Status table in Bundesländer 
+20210418-203640.171   Working COVID-19-austria.bmsgpk.20210202-1215.html 
+20210418-203640.171 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210202-1215.html 
+20210418-203640.179 Extracting Status table in Bundesländer 
+20210418-203640.208   Working COVID-19-austria.bmsgpk.20210202-1615.html 
+20210418-203640.208 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210202-1615.html 
+20210418-203640.216 Extracting Status table in Bundesländer 
+20210418-203640.254   Working COVID-19-austria.bmsgpk.20210203-1215.html 
+20210418-203640.255 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210203-1215.html 
+20210418-203640.264 Extracting Status table in Bundesländer 
+20210418-203640.292   Working COVID-19-austria.bmsgpk.20210203-1615.html 
+20210418-203640.293 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210203-1615.html 
+20210418-203640.300 Extracting Status table in Bundesländer 
+20210418-203640.329   Working COVID-19-austria.bmsgpk.20210204-1215.html 
+20210418-203640.329 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210204-1215.html 
+20210418-203640.337 Extracting Status table in Bundesländer 
+20210418-203640.366   Working COVID-19-austria.bmsgpk.20210204-1615.html 
+20210418-203640.366 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210204-1615.html 
+20210418-203640.375 Extracting Status table in Bundesländer 
+20210418-203640.436   Working COVID-19-austria.bmsgpk.20210205-1215.html 
+20210418-203640.436 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210205-1215.html 
+20210418-203640.446 Extracting Status table in Bundesländer 
+20210418-203640.476   Working COVID-19-austria.bmsgpk.20210205-1615.html 
+20210418-203640.477 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210205-1615.html 
+20210418-203640.484 Extracting Status table in Bundesländer 
+20210418-203640.520   Working COVID-19-austria.bmsgpk.20210206-1215.html 
+20210418-203640.521 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210206-1215.html 
+20210418-203640.529 Extracting Status table in Bundesländer 
+20210418-203640.572   Working COVID-19-austria.bmsgpk.20210206-1615.html 
+20210418-203640.572 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210206-1615.html 
+20210418-203640.580 Extracting Status table in Bundesländer 
+20210418-203640.653   Working COVID-19-austria.bmsgpk.20210207-1215.html 
+20210418-203640.654 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210207-1215.html 
+20210418-203640.662 Extracting Status table in Bundesländer 
+20210418-203640.695   Working COVID-19-austria.bmsgpk.20210207-1615.html 
+20210418-203640.695 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210207-1615.html 
+20210418-203640.706 Extracting Status table in Bundesländer 
+20210418-203640.745   Working COVID-19-austria.bmsgpk.20210208-1215.html 
+20210418-203640.745 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210208-1215.html 
+20210418-203640.754 Extracting Status table in Bundesländer 
+20210418-203640.785   Working COVID-19-austria.bmsgpk.20210208-1615.html 
+20210418-203640.786 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210208-1615.html 
+20210418-203640.794 Extracting Status table in Bundesländer 
+20210418-203640.825   Working COVID-19-austria.bmsgpk.20210209-1215.html 
+20210418-203640.825 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210209-1215.html 
+20210418-203640.833 Extracting Status table in Bundesländer 
+20210418-203640.866   Working COVID-19-austria.bmsgpk.20210209-1615.html 
+20210418-203640.867 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210209-1615.html 
+20210418-203640.877 Extracting Status table in Bundesländer 
+20210418-203640.908   Working COVID-19-austria.bmsgpk.20210210-1215.html 
+20210418-203640.908 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210210-1215.html 
+20210418-203640.916 Extracting Status table in Bundesländer 
+20210418-203640.946   Working COVID-19-austria.bmsgpk.20210210-1615.html 
+20210418-203640.947 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210210-1615.html 
+20210418-203640.955 Extracting Status table in Bundesländer 
+20210418-203640.986   Working COVID-19-austria.bmsgpk.20210211-1215.html 
+20210418-203640.986 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210211-1215.html 
+20210418-203640.994 Extracting Status table in Bundesländer 
+20210418-203641.045   Working COVID-19-austria.bmsgpk.20210211-1615.html 
+20210418-203641.045 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210211-1615.html 
+20210418-203641.057 Extracting Status table in Bundesländer 
+20210418-203641.103   Working COVID-19-austria.bmsgpk.20210212-1215.html 
+20210418-203641.104 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210212-1215.html 
+20210418-203641.112 Extracting Status table in Bundesländer 
+20210418-203641.146   Working COVID-19-austria.bmsgpk.20210212-1615.html 
+20210418-203641.146 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210212-1615.html 
+20210418-203641.155 Extracting Status table in Bundesländer 
+20210418-203641.187   Working COVID-19-austria.bmsgpk.20210213-1215.html 
+20210418-203641.187 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210213-1215.html 
+20210418-203641.195 Extracting Status table in Bundesländer 
+20210418-203641.296   Working COVID-19-austria.bmsgpk.20210213-1615.html 
+20210418-203641.296 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210213-1615.html 
+20210418-203641.305 Extracting Status table in Bundesländer 
+20210418-203641.340   Working COVID-19-austria.bmsgpk.20210214-1215.html 
+20210418-203641.340 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210214-1215.html 
+20210418-203641.349 Extracting Status table in Bundesländer 
+20210418-203641.382   Working COVID-19-austria.bmsgpk.20210214-1615.html 
+20210418-203641.383 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210214-1615.html 
+20210418-203641.393 Extracting Status table in Bundesländer 
+20210418-203641.439   Working COVID-19-austria.bmsgpk.20210215-1215.html 
+20210418-203641.439 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210215-1215.html 
+20210418-203641.448 Extracting Status table in Bundesländer 
+20210418-203641.479   Working COVID-19-austria.bmsgpk.20210215-1615.html 
+20210418-203641.479 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210215-1615.html 
+20210418-203641.488 Extracting Status table in Bundesländer 
+20210418-203641.517   Working COVID-19-austria.bmsgpk.20210216-1215.html 
+20210418-203641.517 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210216-1215.html 
+20210418-203641.527 Extracting Status table in Bundesländer 
+20210418-203641.559   Working COVID-19-austria.bmsgpk.20210216-1615.html 
+20210418-203641.559 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210216-1615.html 
+20210418-203641.570 Extracting Status table in Bundesländer 
+20210418-203641.603   Working COVID-19-austria.bmsgpk.20210217-1215.html 
+20210418-203641.604 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210217-1215.html 
+20210418-203641.612 Extracting Status table in Bundesländer 
+20210418-203641.640   Working COVID-19-austria.bmsgpk.20210217-1615.html 
+20210418-203641.640 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210217-1615.html 
+20210418-203641.648 Extracting Status table in Bundesländer 
+20210418-203641.676   Working COVID-19-austria.bmsgpk.20210218-1215.html 
+20210418-203641.676 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210218-1215.html 
+20210418-203641.684 Extracting Status table in Bundesländer 
+20210418-203641.712   Working COVID-19-austria.bmsgpk.20210218-1615.html 
+20210418-203641.712 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210218-1615.html 
+20210418-203641.725 Extracting Status table in Bundesländer 
+20210418-203641.782   Working COVID-19-austria.bmsgpk.20210219-1215.html 
+20210418-203641.782 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210219-1215.html 
+20210418-203641.798 Extracting Status table in Bundesländer 
+20210418-203641.835   Working COVID-19-austria.bmsgpk.20210219-1615.html 
+20210418-203641.835 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210219-1615.html 
+20210418-203641.843 Extracting Status table in Bundesländer 
+20210418-203641.872   Working COVID-19-austria.bmsgpk.20210220-1215.html 
+20210418-203641.873 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210220-1215.html 
+20210418-203641.880 Extracting Status table in Bundesländer 
+20210418-203641.978   Working COVID-19-austria.bmsgpk.20210220-1615.html 
+20210418-203641.979 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210220-1615.html 
+20210418-203641.992 Extracting Status table in Bundesländer 
+20210418-203642.030   Working COVID-19-austria.bmsgpk.20210221-1215.html 
+20210418-203642.031 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210221-1215.html 
+20210418-203642.039 Extracting Status table in Bundesländer 
+20210418-203642.070   Working COVID-19-austria.bmsgpk.20210221-1615.html 
+20210418-203642.070 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210221-1615.html 
+20210418-203642.079 Extracting Status table in Bundesländer 
+20210418-203642.110   Working COVID-19-austria.bmsgpk.20210222-1215.html 
+20210418-203642.110 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210222-1215.html 
+20210418-203642.117 Extracting Status table in Bundesländer 
+20210418-203642.165   Working COVID-19-austria.bmsgpk.20210222-1615.html 
+20210418-203642.166 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210222-1615.html 
+20210418-203642.174 Extracting Status table in Bundesländer 
+20210418-203642.207   Working COVID-19-austria.bmsgpk.20210223-1215.html 
+20210418-203642.207 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210223-1215.html 
+20210418-203642.215 Extracting Status table in Bundesländer 
+20210418-203642.247   Working COVID-19-austria.bmsgpk.20210223-1615.html 
+20210418-203642.248 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210223-1615.html 
+20210418-203642.256 Extracting Status table in Bundesländer 
+20210418-203642.300   Working COVID-19-austria.bmsgpk.20210224-1215.html 
+20210418-203642.300 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210224-1215.html 
+20210418-203642.308 Extracting Status table in Bundesländer 
+20210418-203642.340   Working COVID-19-austria.bmsgpk.20210224-1615.html 
+20210418-203642.341 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210224-1615.html 
+20210418-203642.349 Extracting Status table in Bundesländer 
+20210418-203642.381   Working COVID-19-austria.bmsgpk.20210225-1215.html 
+20210418-203642.381 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210225-1215.html 
+20210418-203642.388 Extracting Status table in Bundesländer 
+20210418-203642.416   Working COVID-19-austria.bmsgpk.20210225-1615.html 
+20210418-203642.417 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210225-1615.html 
+20210418-203642.424 Extracting Status table in Bundesländer 
+20210418-203642.454   Working COVID-19-austria.bmsgpk.20210226-1215.html 
+20210418-203642.454 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210226-1215.html 
+20210418-203642.462 Extracting Status table in Bundesländer 
+20210418-203642.491   Working COVID-19-austria.bmsgpk.20210226-1615.html 
+20210418-203642.491 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210226-1615.html 
+20210418-203642.498 Extracting Status table in Bundesländer 
+20210418-203642.607   Working COVID-19-austria.bmsgpk.20210227-1215.html 
+20210418-203642.607 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210227-1215.html 
+20210418-203642.622 Extracting Status table in Bundesländer 
+20210418-203642.671   Working COVID-19-austria.bmsgpk.20210227-1615.html 
+20210418-203642.671 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210227-1615.html 
+20210418-203642.685 Extracting Status table in Bundesländer 
+20210418-203642.732   Working COVID-19-austria.bmsgpk.20210228-1215.html 
+20210418-203642.733 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210228-1215.html 
+20210418-203642.746 Extracting Status table in Bundesländer 
+20210418-203642.803   Working COVID-19-austria.bmsgpk.20210228-1615.html 
+20210418-203642.804 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210228-1615.html 
+20210418-203642.817 Extracting Status table in Bundesländer 
+20210418-203642.862   Working COVID-19-austria.bmsgpk.20210301-1215.html 
+20210418-203642.863 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210301-1215.html 
+20210418-203642.876 Extracting Status table in Bundesländer 
+20210418-203642.918   Working COVID-19-austria.bmsgpk.20210301-1615.html 
+20210418-203642.919 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210301-1615.html 
+20210418-203642.931 Extracting Status table in Bundesländer 
+20210418-203642.974   Working COVID-19-austria.bmsgpk.20210302-1215.html 
+20210418-203642.974 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210302-1215.html 
+20210418-203642.987 Extracting Status table in Bundesländer 
+20210418-203643.029   Working COVID-19-austria.bmsgpk.20210302-1615.html 
+20210418-203643.030 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210302-1615.html 
+20210418-203643.039 Extracting Status table in Bundesländer 
+20210418-203643.073   Working COVID-19-austria.bmsgpk.20210303-1215.html 
+20210418-203643.073 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210303-1215.html 
+20210418-203643.081 Extracting Status table in Bundesländer 
+20210418-203643.109   Working COVID-19-austria.bmsgpk.20210303-1615.html 
+20210418-203643.110 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210303-1615.html 
+20210418-203643.118 Extracting Status table in Bundesländer 
+20210418-203643.154   Working COVID-19-austria.bmsgpk.20210304-1215.html 
+20210418-203643.154 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210304-1215.html 
+20210418-203643.162 Extracting Status table in Bundesländer 
+20210418-203643.189   Working COVID-19-austria.bmsgpk.20210304-1615.html 
+20210418-203643.190 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210304-1615.html 
+20210418-203643.197 Extracting Status table in Bundesländer 
+20210418-203643.234   Working COVID-19-austria.bmsgpk.20210305-1215.html 
+20210418-203643.235 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210305-1215.html 
+20210418-203643.242 Extracting Status table in Bundesländer 
+20210418-203643.270   Working COVID-19-austria.bmsgpk.20210305-1615.html 
+20210418-203643.271 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210305-1615.html 
+20210418-203643.278 Extracting Status table in Bundesländer 
+20210418-203643.352   Working COVID-19-austria.bmsgpk.20210306-1215.html 
+20210418-203643.352 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210306-1215.html 
+20210418-203643.361 Extracting Status table in Bundesländer 
+20210418-203643.402   Working COVID-19-austria.bmsgpk.20210306-1615.html 
+20210418-203643.402 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210306-1615.html 
+20210418-203643.411 Extracting Status table in Bundesländer 
+20210418-203643.443   Working COVID-19-austria.bmsgpk.20210307-1215.html 
+20210418-203643.444 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210307-1215.html 
+20210418-203643.452 Extracting Status table in Bundesländer 
+20210418-203643.483   Working COVID-19-austria.bmsgpk.20210307-1615.html 
+20210418-203643.484 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210307-1615.html 
+20210418-203643.492 Extracting Status table in Bundesländer 
+20210418-203643.524   Working COVID-19-austria.bmsgpk.20210308-1215.html 
+20210418-203643.524 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210308-1215.html 
+20210418-203643.534 Extracting Status table in Bundesländer 
+20210418-203643.571   Working COVID-19-austria.bmsgpk.20210308-1615.html 
+20210418-203643.571 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210308-1615.html 
+20210418-203643.580 Extracting Status table in Bundesländer 
+20210418-203643.609   Working COVID-19-austria.bmsgpk.20210309-1215.html 
+20210418-203643.610 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210309-1215.html 
+20210418-203643.618 Extracting Status table in Bundesländer 
+20210418-203643.647   Working COVID-19-austria.bmsgpk.20210309-1615.html 
+20210418-203643.647 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210309-1615.html 
+20210418-203643.655 Extracting Status table in Bundesländer 
+20210418-203643.686   Working COVID-19-austria.bmsgpk.20210310-1215.html 
+20210418-203643.686 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210310-1215.html 
+20210418-203643.696 Extracting Status table in Bundesländer 
+20210418-203643.732   Working COVID-19-austria.bmsgpk.20210310-1615.html 
+20210418-203643.732 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210310-1615.html 
+20210418-203643.740 Extracting Status table in Bundesländer 
+20210418-203643.770   Working COVID-19-austria.bmsgpk.20210311-1215.html 
+20210418-203643.770 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210311-1215.html 
+20210418-203643.779 Extracting Status table in Bundesländer 
+20210418-203643.808   Working COVID-19-austria.bmsgpk.20210311-1615.html 
+20210418-203643.808 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210311-1615.html 
+20210418-203643.817 Extracting Status table in Bundesländer 
+20210418-203643.846   Working COVID-19-austria.bmsgpk.20210312-1215.html 
+20210418-203643.847 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210312-1215.html 
+20210418-203643.855 Extracting Status table in Bundesländer 
+20210418-203643.890   Working COVID-19-austria.bmsgpk.20210312-1615.html 
+20210418-203643.890 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210312-1615.html 
+20210418-203643.944 Extracting Status table in Bundesländer 
+20210418-203643.979   Working COVID-19-austria.bmsgpk.20210313-1215.html 
+20210418-203643.979 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210313-1215.html 
+20210418-203643.989 Extracting Status table in Bundesländer 
+20210418-203644.037   Working COVID-19-austria.bmsgpk.20210313-1615.html 
+20210418-203644.037 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210313-1615.html 
+20210418-203644.048 Extracting Status table in Bundesländer 
+20210418-203644.081   Working COVID-19-austria.bmsgpk.20210314-1215.html 
+20210418-203644.081 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210314-1215.html 
+20210418-203644.090 Extracting Status table in Bundesländer 
+20210418-203644.121   Working COVID-19-austria.bmsgpk.20210314-1615.html 
+20210418-203644.121 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210314-1615.html 
+20210418-203644.130 Extracting Status table in Bundesländer 
+20210418-203644.161   Working COVID-19-austria.bmsgpk.20210315-1215.html 
+20210418-203644.161 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210315-1215.html 
+20210418-203644.170 Extracting Status table in Bundesländer 
+20210418-203644.210   Working COVID-19-austria.bmsgpk.20210315-1615.html 
+20210418-203644.210 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210315-1615.html 
+20210418-203644.219 Extracting Status table in Bundesländer 
+20210418-203644.248   Working COVID-19-austria.bmsgpk.20210316-1215.html 
+20210418-203644.248 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210316-1215.html 
+20210418-203644.256 Extracting Status table in Bundesländer 
+20210418-203644.286   Working COVID-19-austria.bmsgpk.20210316-1615.html 
+20210418-203644.286 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210316-1615.html 
+20210418-203644.294 Extracting Status table in Bundesländer 
+20210418-203644.323   Working COVID-19-austria.bmsgpk.20210317-1215.html 
+20210418-203644.324 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210317-1215.html 
+20210418-203644.332 Extracting Status table in Bundesländer 
+20210418-203644.372   Working COVID-19-austria.bmsgpk.20210317-1615.html 
+20210418-203644.372 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210317-1615.html 
+20210418-203644.380 Extracting Status table in Bundesländer 
+20210418-203644.407   Working COVID-19-austria.bmsgpk.20210318-1215.html 
+20210418-203644.407 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210318-1215.html 
+20210418-203644.415 Extracting Status table in Bundesländer 
+20210418-203644.451   Working COVID-19-austria.bmsgpk.20210318-1615.html 
+20210418-203644.452 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210318-1615.html 
+20210418-203644.460 Extracting Status table in Bundesländer 
+20210418-203644.488   Working COVID-19-austria.bmsgpk.20210319-1215.html 
+20210418-203644.488 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210319-1215.html 
+20210418-203644.500 Extracting Status table in Bundesländer 
+20210418-203644.583   Working COVID-19-austria.bmsgpk.20210319-1615.html 
+20210418-203644.584 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210319-1615.html 
+20210418-203644.593 Extracting Status table in Bundesländer 
+20210418-203644.625   Working COVID-19-austria.bmsgpk.20210320-1215.html 
+20210418-203644.625 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210320-1215.html 
+20210418-203644.634 Extracting Status table in Bundesländer 
+20210418-203644.669   Working COVID-19-austria.bmsgpk.20210320-1615.html 
+20210418-203644.669 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210320-1615.html 
+20210418-203644.681 Extracting Status table in Bundesländer 
+20210418-203644.717   Working COVID-19-austria.bmsgpk.20210321-1215.html 
+20210418-203644.718 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210321-1215.html 
+20210418-203644.726 Extracting Status table in Bundesländer 
+20210418-203644.758   Working COVID-19-austria.bmsgpk.20210321-1615.html 
+20210418-203644.758 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210321-1615.html 
+20210418-203644.767 Extracting Status table in Bundesländer 
+20210418-203644.798   Working COVID-19-austria.bmsgpk.20210322-1215.html 
+20210418-203644.799 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210322-1215.html 
+20210418-203644.807 Extracting Status table in Bundesländer 
+20210418-203644.836   Working COVID-19-austria.bmsgpk.20210322-1615.html 
+20210418-203644.837 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210322-1615.html 
+20210418-203644.849 Extracting Status table in Bundesländer 
+20210418-203644.883   Working COVID-19-austria.bmsgpk.20210323-1215.html 
+20210418-203644.884 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210323-1215.html 
+20210418-203644.892 Extracting Status table in Bundesländer 
+20210418-203644.929   Working COVID-19-austria.bmsgpk.20210323-1615.html 
+20210418-203644.929 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210323-1615.html 
+20210418-203644.938 Extracting Status table in Bundesländer 
+20210418-203644.967   Working COVID-19-austria.bmsgpk.20210324-1215.html 
+20210418-203644.967 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210324-1215.html 
+20210418-203644.975 Extracting Status table in Bundesländer 
+20210418-203645.003   Working COVID-19-austria.bmsgpk.20210324-1615.html 
+20210418-203645.004 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210324-1615.html 
+20210418-203645.012 Extracting Status table in Bundesländer 
+20210418-203645.051   Working COVID-19-austria.bmsgpk.20210325-1215.html 
+20210418-203645.051 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210325-1215.html 
+20210418-203645.060 Extracting Status table in Bundesländer 
+20210418-203645.089   Working COVID-19-austria.bmsgpk.20210325-1615.html 
+20210418-203645.089 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210325-1615.html 
+20210418-203645.097 Extracting Status table in Bundesländer 
+20210418-203645.126   Working COVID-19-austria.bmsgpk.20210326-1215.html 
+20210418-203645.127 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210326-1215.html 
+20210418-203645.135 Extracting Status table in Bundesländer 
+20210418-203645.224   Working COVID-19-austria.bmsgpk.20210326-1615.html 
+20210418-203645.224 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210326-1615.html 
+20210418-203645.234 Extracting Status table in Bundesländer 
+20210418-203645.268   Working COVID-19-austria.bmsgpk.20210327-1215.html 
+20210418-203645.268 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210327-1215.html 
+20210418-203645.277 Extracting Status table in Bundesländer 
+20210418-203645.310   Working COVID-19-austria.bmsgpk.20210327-1615.html 
+20210418-203645.310 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210327-1615.html 
+20210418-203645.319 Extracting Status table in Bundesländer 
+20210418-203645.349   Working COVID-19-austria.bmsgpk.20210328-1215.html 
+20210418-203645.349 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210328-1215.html 
+20210418-203645.358 Extracting Status table in Bundesländer 
+20210418-203645.408   Working COVID-19-austria.bmsgpk.20210328-1615.html 
+20210418-203645.408 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210328-1615.html 
+20210418-203645.423 Extracting Status table in Bundesländer 
+20210418-203645.463   Working COVID-19-austria.bmsgpk.20210329-1215.html 
+20210418-203645.464 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210329-1215.html 
+20210418-203645.472 Extracting Status table in Bundesländer 
+20210418-203645.500   Working COVID-19-austria.bmsgpk.20210329-1615.html 
+20210418-203645.501 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210329-1615.html 
+20210418-203645.509 Extracting Status table in Bundesländer 
+20210418-203645.539   Working COVID-19-austria.bmsgpk.20210330-1215.html 
+20210418-203645.539 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210330-1215.html 
+20210418-203645.547 Extracting Status table in Bundesländer 
+20210418-203645.576   Working COVID-19-austria.bmsgpk.20210330-1615.html 
+20210418-203645.576 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210330-1615.html 
+20210418-203645.586 Extracting Status table in Bundesländer 
+20210418-203645.624   Working COVID-19-austria.bmsgpk.20210331-1215.html 
+20210418-203645.624 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210331-1215.html 
+20210418-203645.634 Extracting Status table in Bundesländer 
+20210418-203645.663   Working COVID-19-austria.bmsgpk.20210331-1615.html 
+20210418-203645.663 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210331-1615.html 
+20210418-203645.672 Extracting Status table in Bundesländer 
+20210418-203645.701   Working COVID-19-austria.bmsgpk.20210401-1215.html 
+20210418-203645.701 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210401-1215.html 
+20210418-203645.709 Extracting Status table in Bundesländer 
+20210418-203645.738   Working COVID-19-austria.bmsgpk.20210401-1615.html 
+20210418-203645.739 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210401-1615.html 
+20210418-203645.747 Extracting Status table in Bundesländer 
+20210418-203645.836   Working COVID-19-austria.bmsgpk.20210402-1215.html 
+20210418-203645.836 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210402-1215.html 
+20210418-203645.848 Extracting Status table in Bundesländer 
+20210418-203645.889   Working COVID-19-austria.bmsgpk.20210402-1615.html 
+20210418-203645.889 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210402-1615.html 
+20210418-203645.898 Extracting Status table in Bundesländer 
+20210418-203645.930   Working COVID-19-austria.bmsgpk.20210403-1215.html 
+20210418-203645.930 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210403-1215.html 
+20210418-203645.939 Extracting Status table in Bundesländer 
+20210418-203645.971   Working COVID-19-austria.bmsgpk.20210403-1615.html 
+20210418-203645.971 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210403-1615.html 
+20210418-203645.980 Extracting Status table in Bundesländer 
+20210418-203646.010   Working COVID-19-austria.bmsgpk.20210404-1215.html 
+20210418-203646.010 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210404-1215.html 
+20210418-203646.019 Extracting Status table in Bundesländer 
+20210418-203646.058   Working COVID-19-austria.bmsgpk.20210404-1615.html 
+20210418-203646.059 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210404-1615.html 
+20210418-203646.068 Extracting Status table in Bundesländer 
+20210418-203646.098   Working COVID-19-austria.bmsgpk.20210405-1215.html 
+20210418-203646.099 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210405-1215.html 
+20210418-203646.106 Extracting Status table in Bundesländer 
+20210418-203646.135   Working COVID-19-austria.bmsgpk.20210405-1615.html 
+20210418-203646.135 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210405-1615.html 
+20210418-203646.142 Extracting Status table in Bundesländer 
+20210418-203646.171   Working COVID-19-austria.bmsgpk.20210406-1215.html 
+20210418-203646.171 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210406-1215.html 
+20210418-203646.179 Extracting Status table in Bundesländer 
+20210418-203646.208   Working COVID-19-austria.bmsgpk.20210406-1615.html 
+20210418-203646.208 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210406-1615.html 
+20210418-203646.218 Extracting Status table in Bundesländer 
+20210418-203646.254   Working COVID-19-austria.bmsgpk.20210407-1215.html 
+20210418-203646.255 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210407-1215.html 
+20210418-203646.264 Extracting Status table in Bundesländer 
+20210418-203646.296   Working COVID-19-austria.bmsgpk.20210407-1615.html 
+20210418-203646.296 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210407-1615.html 
+20210418-203646.304 Extracting Status table in Bundesländer 
+20210418-203646.334   Working COVID-19-austria.bmsgpk.20210408-1215.html 
+20210418-203646.335 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210408-1215.html 
+20210418-203646.343 Extracting Status table in Bundesländer 
+20210418-203646.371   Working COVID-19-austria.bmsgpk.20210408-1615.html 
+20210418-203646.372 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210408-1615.html 
+20210418-203646.382 Extracting Status table in Bundesländer 
+20210418-203646.474   Working COVID-19-austria.bmsgpk.20210409-1215.html 
+20210418-203646.474 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210409-1215.html 
+20210418-203646.483 Extracting Status table in Bundesländer 
+20210418-203646.512   Working COVID-19-austria.bmsgpk.20210409-1615.html 
+20210418-203646.513 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210409-1615.html 
+20210418-203646.521 Extracting Status table in Bundesländer 
+20210418-203646.556   Working COVID-19-austria.bmsgpk.20210410-1215.html 
+20210418-203646.557 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210410-1215.html 
+20210418-203646.570 Extracting Status table in Bundesländer 
+20210418-203646.609   Working COVID-19-austria.bmsgpk.20210410-1615.html 
+20210418-203646.610 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210410-1615.html 
+20210418-203646.619 Extracting Status table in Bundesländer 
+20210418-203646.655   Working COVID-19-austria.bmsgpk.20210411-1215.html 
+20210418-203646.656 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210411-1215.html 
+20210418-203646.664 Extracting Status table in Bundesländer 
+20210418-203646.693   Working COVID-19-austria.bmsgpk.20210411-1615.html 
+20210418-203646.693 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210411-1615.html 
+20210418-203646.709 Extracting Status table in Bundesländer 
+20210418-203646.736   Working COVID-19-austria.bmsgpk.20210412-1215.html 
+20210418-203646.737 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210412-1215.html 
+20210418-203646.745 Extracting Status table in Bundesländer 
+20210418-203646.787   Working COVID-19-austria.bmsgpk.20210412-1615.html 
+20210418-203646.787 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210412-1615.html 
+20210418-203646.795 Extracting Status table in Bundesländer 
+20210418-203646.824   Working COVID-19-austria.bmsgpk.20210413-1215.html 
+20210418-203646.824 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210413-1215.html 
+20210418-203646.833 Extracting Status table in Bundesländer 
+20210418-203646.862   Working COVID-19-austria.bmsgpk.20210413-1615.html 
+20210418-203646.863 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210413-1615.html 
+20210418-203646.871 Extracting Status table in Bundesländer 
+20210418-203646.900   Working COVID-19-austria.bmsgpk.20210414-1215.html 
+20210418-203646.900 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210414-1215.html 
+20210418-203646.909 Extracting Status table in Bundesländer 
+20210418-203646.942   Working COVID-19-austria.bmsgpk.20210414-1615.html 
+20210418-203646.942 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210414-1615.html 
+20210418-203646.951 Extracting Status table in Bundesländer 
+20210418-203646.986   Working COVID-19-austria.bmsgpk.20210415-1215.html 
+20210418-203646.986 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210415-1215.html 
+20210418-203646.995 Extracting Status table in Bundesländer 
+20210418-203647.068   Working COVID-19-austria.bmsgpk.20210415-1615.html 
+20210418-203647.068 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210415-1615.html 
+20210418-203647.077 Extracting Status table in Bundesländer 
+20210418-203647.110   Working COVID-19-austria.bmsgpk.20210416-1215.html 
+20210418-203647.111 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210416-1215.html 
+20210418-203647.122 Extracting Status table in Bundesländer 
+20210418-203647.159   Working COVID-19-austria.bmsgpk.20210416-1615.html 
+20210418-203647.159 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210416-1615.html 
+20210418-203647.169 Extracting Status table in Bundesländer 
+20210418-203647.201   Working COVID-19-austria.bmsgpk.20210417-1215.html 
+20210418-203647.201 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210417-1215.html 
+20210418-203647.210 Extracting Status table in Bundesländer 
+20210418-203647.242   Working COVID-19-austria.bmsgpk.20210417-1615.html 
+20210418-203647.242 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210417-1615.html 
+20210418-203647.251 Extracting Status table in Bundesländer 
+20210418-203647.282   Working COVID-19-austria.bmsgpk.20210418-1215.html 
+20210418-203647.282 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210418-1215.html 
+20210418-203647.291 Extracting Status table in Bundesländer 
+20210418-203647.333   Working COVID-19-austria.bmsgpk.20210418-1615.html 
+20210418-203647.333 Parsing dump in ../../covid-ibm/download/dumps/COVID-19-austria.bmsgpk.20210418-1615.html 
+20210418-203647.344 Extracting Status table in Bundesländer 
+20210418-203647.450 Writing reconstructed datafile ./data/COVID-19-austria.reconstructed.2021.csv 
