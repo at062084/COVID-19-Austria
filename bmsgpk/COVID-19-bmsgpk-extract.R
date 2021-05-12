@@ -20,6 +20,120 @@ logMsg <- function(msg) {
   cat(paste(format(Sys.time(), "%Y%m%d-%H%M%OS3"), msg, "\n"), sep="")
 }
 
+
+scrapeCovid3 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
+
+  dmpFile=paste0("./html/COVID-19-austria-bmsgpk.",ts,".dmp")
+  url <- "https://info.gesundheitsministerium.gv.at/?re=tabelle"
+   
+  logMsg(paste("Scraping using headless chrome for", url))
+  chrome="/opt/google/chrome/chrome"
+  flags="--headless --disable-gpu --dump-dom"
+  logMsg(paste("Dumping page to", dmpFile))
+  system2(chrome,paste(url, flags, ">", dmpFile))
+  
+  # use xml2 methods to extract information from dump
+  logMsg(paste("Analysing dump file", dmpFile))
+  html <- xml2::read_html(dmpFile)
+  
+  # ID of table to extract
+  item <- 2
+  
+  # Extract timestamp
+  h2s <- html %>% html_nodes("h2")
+  h2 <- h2s[[item]] %>% html_text() %>% format()
+  # "Zahlen aus Österreich Bundesländermeldungen; Stand 12.05.21 09:30 Uhr"
+  Stamp                  <- as.POSIXct(str_replace_all(str_match(h2, paste0("Stand ","(.*)","Uhr"))[,2],"[^0-9:. ]",""),format="%d.%m.%Y %H:%M")
+  if(is.na(Stamp)) Stamp <- as.POSIXct(str_replace_all(str_match(h2, paste0("Stand","(.*)","Uhr"))[ ,2],"[^0-9:.,]",""),format="%d.%m.%Y,%H.%M")
+  if(is.na(Stamp)) Stamp <- as.POSIXct(str_replace_all(str_match(h2, paste0("Stand","(.*)","Uhr"))[ ,2],"[^0-9:.,]",""),format="%d.%m.%Y.%H:%M")
+
+  # Extract table
+  tbls <- html %>% html_table(header=TRUE, dec=".")
+  tbl <- tbls[[2]][,1:11]
+  colnames(tbl) <- c("Status", colnames(tbl)[2:11] %>% str_replace_all(., "\\.", "")) 
+  Status <- tbl[,1] %>%
+    str_replace_all(.," ⁽¹⁾","") %>%
+    str_replace_all(.,"⁽²⁾","") %>%
+    str_replace_all(.,"⁽³⁾","") %>%
+    str_replace_all(.,"⁽⁴⁾","")
+  
+  df <- tbl %>%
+    dplyr::select(2:11) %>% 
+    dplyr::mutate_all(funs(str_replace_all(., "\\.", ""))) %>% 
+    dplyr::mutate_all(funs(as.integer(.))) %>%
+    dplyr::mutate(Status=!!Status) %>%
+    dplyr::mutate(Stamp=Stamp)  %>%
+    dplyr::select(Stamp,Status,10,1:9) 
+  colnames(df) <- c("Stamp","Status",BL$ID)
+  
+  # Rename Status to previous Labels
+  StatusMap <- data.frame(
+    from=c("Bestätigte Fälle","Todesfälle","Genesen","Hospitalisierung","Intensivstation","Testungen","Davon PCR-Testungen","Davon Antigen-Testungen"),
+    to=c("Confirmed","Deaths","Recovered","Hospitalisierung","Intensivstation","Tested","Tested_PCR","Tested_AG"), stringsAsFactors=FALSE)
+  
+  for (s in 1:nrow(df)) {
+    n = which(df$Status[s]==StatusMap$from)
+    df$Status[s] <- StatusMap$to[n]
+  }
+  
+  return(df)
+}
+
+
+scrapeBmsgpk <- function (ts=format(now(),"%Y%m%d-%H%M")) {
+  
+  # https://info.gesundheitsministerium.gv.at/data/timeline-eimpfpass.csv?v=2021-05-12-01-19 
+  # (Datum;BundeslandID;Bevölkerung;Name;EingetrageneImpfungen;EingetrageneImpfungenPro100;Teilgeimpfte;TeilgeimpftePro100;Vollimmunisierte;VollimmunisiertePro100;
+  # Gruppe_<25_M_1;Gruppe_<25_W_1;Gruppe_<25_D_1;Gruppe_25-34_M_1;Gruppe_25-34_W_1;Gruppe_25-34_D_1;Gruppe_35-44_M_1;Gruppe_35-44_W_1;Gruppe_35-44_D_1;Gruppe_45-54_M_1;Gruppe_45-54_W_1;Gruppe_45-54_D_1;Gruppe_55-64_M_1;Gruppe_55-64_W_1;Gruppe_55-64_D_1;Gruppe_65-74_M_1;Gruppe_65-74_W_1;Gruppe_65-74_D_1;Gruppe_75-84_M_1;Gruppe_75-84_W_1;Gruppe_75-84_D_1;Gruppe_>84_M_1;Gruppe_>84_W_1;Gruppe_>84_D_1;Gruppe_<25_M_2;Gruppe_<25_W_2;Gruppe_<25_D_2;Gruppe_25-34_M_2;Gruppe_25-34_W_2;Gruppe_25-34_D_2;Gruppe_35-44_M_2;Gruppe_35-44_W_2;Gruppe_35-44_D_2;Gruppe_45-54_M_2;Gruppe_45-54_W_2;Gruppe_45-54_D_2;Gruppe_55-64_M_2;Gruppe_55-64_W_2;Gruppe_55-64_D_2;Gruppe_65-74_M_2;Gruppe_65-74_W_2;Gruppe_65-74_D_2;Gruppe_75-84_M_2;Gruppe_75-84_W_2;Gruppe_75-84_D_2;Gruppe_>84_M_2;Gruppe_>84_W_2;Gruppe_>84_D_2;Gruppe_NichtZuordenbar;
+  # EingetrageneImpfungenBioNTechPfizer_1;EingetrageneImpfungenModerna_1;EingetrageneImpfungenAstraZeneca_1;EingetrageneImpfungenBioNTechPfizer_2;EingetrageneImpfungenModerna_2;EingetrageneImpfungenAstraZeneca_2;EingetrageneImpfungenJanssen)
+  
+  # https://info.gesundheitsministerium.gv.at/data/timeline-bbg.csv
+  # (Datum;BundeslandID;Bevölkerung;Name;Auslieferungen;AuslieferungenPro100;Bestellungen;BestellungenPro100)
+  
+  # https://info.gesundheitsministerium.gv.at/data/timeline-faelle-ems.csv?v=0.7073526087667191 
+  # (Datum;BundeslandID;Name;BestaetigteFaelleEMS)
+  
+  # https://info.gesundheitsministerium.gv.at/data/timeline-faelle-bundeslaender.csv?v=0.818485116465528
+  # (Datum;BundeslandID;Name;BestaetigteFaelleBundeslaender;Todesfaelle;Genesen;Hospitalisierung;Intensivstation;Testungen;TestungenPCR;TestungenAntigen)
+  
+  # https://info.gesundheitsministerium.gv.at/data/timeline-testungen-apotheken-betriebe.csv?v=0.3728616675006212
+  # (Datum;BundeslandID;Name;GemeldeteTestsApotheken;GemeldeteTestsBetriebe)
+  
+  # https://info.gesundheitsministerium.gv.at/data/timeline-testungen-schulen.csv?v=0.7568994404841763
+  # (Datum;BundeslandID;Name;GemeldeteTestsSchulen)
+  
+  # https://info.gesundheitsministerium.gv.at/data/faelle-international.csv?v=0.5173385309581437
+  
+  # List of files to download
+  csvFiles <- c("timeline-eimpfpass", "timeline-bbg", "timeline-faelle-ems", "timeline-faelle-bundeslaender", "timeline-testungen-apotheken-betriebe", "timeline-testungen-schulen")  
+  
+  # Populate new field 'Source' to identify csvFile
+  csvSources <- c("tei","teb","tfe","tfb","ttab","tts")
+  
+  # Iterate csvFiles
+  for (k in 1:length(csvFiles)) {
+    csvFile <- csvFiles[k]
+    csvSource <- csvSources[k]
+    url <- paste0("https://info.gesundheitsministerium.gv.at/data/", csvFile,".csv")
+    logMsg(paste("Fetching", url))
+    # gather to long format
+    rc <- read.csv(url, header=TRUE, sep=";", stringsAsFactors=FALSE) %>% 
+      dplyr::mutate(Datum=as.Date(Datum)) %>% 
+      dplyr::select(-starts_with("Bev")) %>%
+      tidyr::gather(key="Key", value="Value", -Datum, -BundeslandID, -Name) %>%
+      dplyr::mutate(Source=!!csvSource)
+    # logMsg(paste("  nrows:", dim(rc)[1], "firstDate", min(rc$Datum)))
+    
+    # stack csv files
+    if (csvFile==csvFiles[1]) {
+      df <- rc
+    } else {
+      df <- rbind(df,rc)
+    }
+  }
+  return(df)
+}
+
 scrapeCovid2 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
 
   # wget -O CoronaAmpel-20200904.js https://corona-ampel.gv.at/sites/corona-ampel.gv.at/files/assets/Warnstufen_Corona_Ampel_aktuell.json
@@ -486,8 +600,12 @@ ts=format(now(),"%Y%m%d-%H%M")
 logMsg(paste("Running COVID-19-bmsgpk-extract.R"))
 
 # OK scrapeCovid
-logMsg(paste("Calling scrapeCovid2 with", ts))
-dc <- scrapeCovid2(ts=ts)
+logMsg(paste("DISABLED: Calling scrapeCovid2 with", ts))
+#dc <- scrapeCovid2(ts=ts)
+
+# OK scrapeCovid
+logMsg(paste("Calling scrapeCovid3 with", ts))
+dc <- scrapeCovid3(ts=ts)
 
 # scrapeHospitalisierung
 logMsg(paste("DISABLED: Calling scrapeHospitalisierung with", ts))
@@ -501,9 +619,15 @@ logMsg(paste("DISABLED: Calling scrapeInfo with", ts))
 logMsg(paste("Calling scrapeZIP_AGES with", ts))
 z <- scrapeZIP_AGES(ts=ts)
 
+# New scrapeBmsgpk
+logMsg(paste("Calling scrapeBmsgpk with", ts))
+db <- scrapeBmsgpk(ts=ts)
+
+
+
 # Persist data
 csvFile <- paste0("./data/COVID-19-austria.csv")
-logMsg(paste("Writing new data to", csvFile))
+logMsg(paste("Writing ems data to", csvFile))
 df <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp, tz="CEST"))
 df <- rbind(df,dc)
 write.csv(df, file=csvFile, row.names=FALSE, quote=FALSE)
@@ -519,6 +643,12 @@ logMsg(paste("DISABLED: Writing new data to", csvFile))
 #df <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp, tz="CEST"))
 #df <- rbind(df,di)
 #write.csv(df, file=csvFile, row.names=FALSE, quote=FALSE)
+
+# Persist data
+csvFile <- paste0("./data/COVID-19-austria-bmsgpk.csv")
+logMsg(paste("Writing bmsgpk data to", csvFile))
+write.csv(db, file=csvFile, row.names=FALSE, quote=FALSE)
+
 
 logMsg("Done runing data extraction from bmsgpk web pages")
 

@@ -11,9 +11,9 @@ options(width=256)
 
 setwd("/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk")
 
-csvFile <- paste0("./data/COVID-19-austria.csv")
-df <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp, tz="CEST"))
-BL <- data.frame(ID=colnames(df[3:12]),
+#csvFile <- paste0("./data/COVID-19-austria.csv")
+#df <- read.csv(file=csvFile)
+BL <- data.frame(ID=c("AT","B","K","Noe","Ooe","Szbg","Stmk","T","V","W"),
                  Name=c("Oesterreich","Burgenland","Kaernten","Niederoesterreich","Oberoesterreich","Salzburg","Steiermark","Tirol","Vorarlberg","Wien"),
                  NameUTF8=c("Österreich","Burgenland","Kärnten","Niederösterreich","Oberösterreich","Salzburg","Steiermark","Tirol","Vorarlberg","Wien"),
                  NameUTF82=c("Österreich gesamt","Burgenland","Kärnten","Niederösterreich","Oberösterreich","Salzburg","Steiermark","Tirol","Vorarlberg","Wien"),
@@ -58,19 +58,29 @@ reconstructCovid2 <- function(htmlFile) {
     if (length(idx)>0) {
       Stamp[idx] <- as.POSIXct(str_replace_all(str_match(S0, paste0("Stand","(.*)","Uhr"))[idx,2],"[^0-9:.,]",""),format="%d.%m.%Y,%H.%M")
     }
+    # Be tolerant to time stamp format changes on website
+    idx <- which(is.na(Stamp))
+    if (length(idx)>0) {
+      Stamp[idx] <- as.POSIXct(str_replace_all(str_match(S0, paste0("Stand","(.*)","Uhr"))[idx,2],"[^0-9:.,]",""),format="%d.%m.%Y.%H:%M")
+    }
+
+    #dx[,2:10] %>% print()
+    #dx[,2:11] %>% mutate_all(funs(str_replace_all(., "[\\.\\*,]", ""))) %>% mutate_all(funs(str_replace_all(., fixed("kA"), "NA"))) %>% print()
+    #dx[,2:11] %>%  mutate_all(funs(str_replace_all(., "[\\.\\*, ◊kA]", ""))) %>% print()
     
     df <- dx %>%
       dplyr::select(11,2:10) %>% 
-      mutate_all(funs(str_replace_all(., "\\.", ""))) %>% 
+      mutate_all(funs(str_replace_all(., "[\\.\\*, ◊kA]", ""))) %>% 
+      #mutate_all(funs(str_extract(., "(\\d+)"))) %>% 
       mutate_all(funs(as.integer(.))) %>%
-      dplyr::mutate(Stamp=Stamp,Status=Status)  %>%
+      dplyr::mutate(Stamp=Stamp, Status=Status)  %>%
       dplyr::select(Stamp,Status,1:10) 
     colnames(df) <- c("Stamp","Status",BL$ID)
     
     # Rename Status to previous Labels
     StatusMap <- data.frame(
-      from=c("Bestätigte Fälle","Todesfälle","Genesen","Hospitalisierung","Intensivstation","Testungen"),
-      to=c("Confirmed","Deaths","Recovered","Hospitalisierung","Intensivstation","Tested"), stringsAsFactors=FALSE)
+      from=c("Bestätigte Fälle","Todesfälle","Genesen","Hospitalisierung","Intensivstation","Testungen","Davon PCR","Davon Antigen"),
+      to=c("Confirmed","Deaths","Recovered","Hospitalisierung","Intensivstation","Tested","Tested_PCR","Tested_AG"), stringsAsFactors=FALSE)
     
     for (s in 1:nrow(df)) {
       n = which(df$Status[s]==StatusMap$from)
@@ -87,13 +97,16 @@ reconstructCovid2 <- function(htmlFile) {
 # main
 # -----------------------------------------------------------------------------------------------------
 
-htmlPath<-"./html"
-htmlFiles <- list.files(path=htmlPath, pattern="COVID-19-austria.bmsgpk.2020([0-9-]*).html")
+# Downloaded html files from COS into /home/at062084/DataEngineering/COVID-19/covid-ibm/download/dumps
+htmlPath<-"../../covid-ibm/download/dumps"
+htmlFiles <- list.files(path=htmlPath, pattern="COVID-19-austria.bmsgpk.2021([0-9-]*).html")
 
 da <- data.frame(stringsAsFactors=FALSE)
 # htmlFile <- paste(htmlPath,list.files(path=htmlPath, pattern="COVID-19-austria.bmsgpk.20200814(.*).html"),sep="/")
-# htmlFile <-list.files(path=htmlPath, pattern="COVID-19-austria.bmsgpk.20200814(.*).html")
+# htmlFile <-list.files(path=htmlPath, pattern="COVID-19-austria.bmsgpk.20210814(.*).html")
+logMsg(paste("Processing files in", htmlPath))
 for (htmlFile in htmlFiles) {
+  logMsg(paste("  Working", htmlFile))
   df <- reconstructCovid2(paste(htmlPath,htmlFile,sep="/"))
   if(dim(da)[1]==0) {
     da <- df
@@ -103,15 +116,15 @@ for (htmlFile in htmlFiles) {
     }
   }
 }
-dw <- da %>% 
-  dplyr::arrange(Stamp,Status) %>%
-  dplyr::mutate(Date=date(Stamp)) %>%
-  dplyr::group_by(Date,Status) %>%
-  dplyr::filter(row_number()==n()) %>%   # select first entry for each status in current day
-  dplyr::ungroup()
-  
-  
-csvFile <- paste0("./data/COVID-19-austria.reconstructed.csv")
+
+# remove double entries
+da <- da %>% unique()
+
+csvFile <- paste0("./data/COVID-19-austria.reconstructed.2021.csv")
 logMsg(paste("Writing reconstructed datafile", csvFile))
-write.csv(dw, file=csvFile, quote=FALSE, row.names=FALSE)
+write.csv(da, file=csvFile, quote=FALSE, row.names=FALSE)
+
+rdaFile <- paste0("./data/COVID-19-CWM-BMSGPK-Dashboard.reconstructed.2021.rda")
+logMsg(paste("Writing reconstructed datafile", rdaFile))
+saveRDS(da, file=rdaFile)
 
