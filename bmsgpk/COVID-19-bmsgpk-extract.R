@@ -75,7 +75,7 @@ scrapeCovid3 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
     n = which(df$Status[s]==StatusMap$from)
     df$Status[s] <- StatusMap$to[n]
   }
-  
+  df %>% tail(n=10) %>% print()
   return(df)
 }
 
