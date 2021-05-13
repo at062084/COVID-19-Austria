@@ -43,7 +43,8 @@ scrapeCovid3 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   h2s <- html %>% html_nodes("h2")
   h2 <- h2s[[item]] %>% html_text() %>% format()
   # "Zahlen aus Österreich Bundesländermeldungen; Stand 12.05.21 09:30 Uhr"
-  Stamp                  <- as.POSIXct(str_replace_all(str_match(h2, paste0("Stand ","(.*)","Uhr"))[,2],"[^0-9:. ]",""),format="%d.%m.%Y %H:%M")
+  Stamp                  <- as.POSIXct(str_replace_all(str_match(h2, paste0("Stand ","(.*)","Uhr"))[,2],"[^0-9:. ]",""),format="%d.%m.%y %H:%M")
+  if(is.na(Stamp)) Stamp <- as.POSIXct(str_replace_all(str_match(h2, paste0("Stand ","(.*)","Uhr"))[,2],"[^0-9:. ]",""),format="%d.%m.%Y %H:%M")
   if(is.na(Stamp)) Stamp <- as.POSIXct(str_replace_all(str_match(h2, paste0("Stand","(.*)","Uhr"))[ ,2],"[^0-9:.,]",""),format="%d.%m.%Y,%H.%M")
   if(is.na(Stamp)) Stamp <- as.POSIXct(str_replace_all(str_match(h2, paste0("Stand","(.*)","Uhr"))[ ,2],"[^0-9:.,]",""),format="%d.%m.%Y.%H:%M")
 
