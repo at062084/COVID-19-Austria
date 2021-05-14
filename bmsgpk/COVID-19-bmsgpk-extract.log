@@ -12328,3 +12328,24 @@
 20210514-013722.893 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
 20210514-013722.893 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
 20210514-013723.537 Done runing data extraction from bmsgpk web pages 
+20210514-130043.579 Running COVID-19-bmsgpk-extract.R 
+20210514-130043.615 DISABLED: Calling scrapeCovid2 with 20210514-1300 
+20210514-130043.616 Calling scrapeCovid3 with 20210514-1300 
+20210514-130043.690 Scraping using headless chrome for https://info.gesundheitsministerium.gv.at/?re=tabelle 
+20210514-130043.690 Dumping page to ./html/COVID-19-austria-bmsgpk.20210514-1300.dmp 
+20210514-130045.242 Analysing dump file ./html/COVID-19-austria-bmsgpk.20210514-1300.dmp 
+20210514-130045.385 DISABLED: Calling scrapeHospitalisierung with 20210514-1300 
+20210514-130045.385 DISABLED: Calling scrapeInfo with 20210514-1300 
+20210514-130045.385 Calling scrapeZIP_AGES with 20210514-1300 
+20210514-130045.396 Downloading https://covid19-dashboard.ages.at/data/data.zip to ./data/zip/COVID-19-austria.V1006.20210514-1300.zip 
+20210514-130046.196 Calling scrapeBmsgpk with 20210514-1300 
+20210514-130046.241 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-eimpfpass.csv 
+20210514-130047.102 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-bbg.csv 
+20210514-130047.474 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-faelle-ems.csv 
+20210514-130047.799 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-faelle-bundeslaender.csv 
+20210514-130048.092 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-testungen-apotheken-betriebe.csv 
+20210514-130048.314 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-testungen-schulen.csv 
+20210514-130048.527 Writing ems data to ./data/COVID-19-austria.csv 
+20210514-130048.607 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
+20210514-130048.607 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
+20210514-130049.333 Done runing data extraction from bmsgpk web pages 
