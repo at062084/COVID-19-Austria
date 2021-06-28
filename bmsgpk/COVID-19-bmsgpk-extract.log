@@ -13769,3 +13769,24 @@
 20210627-224442.871 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
 20210627-224442.871 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
 20210627-224443.562 Done runing data extraction from bmsgpk web pages 
+20210628-232748.398 Running COVID-19-bmsgpk-extract.R 
+20210628-232748.424 DISABLED: Calling scrapeCovid2 with 20210628-2327 
+20210628-232748.424 Calling scrapeCovid3 with 20210628-2327 
+20210628-232748.470 Scraping using headless chrome for https://info.gesundheitsministerium.gv.at/?re=tabelle 
+20210628-232748.470 Dumping page to ./html/COVID-19-austria-bmsgpk.20210628-2327.dmp 
+20210628-232751.862 Analysing dump file ./html/COVID-19-austria-bmsgpk.20210628-2327.dmp 
+20210628-232752.001 DISABLED: Calling scrapeHospitalisierung with 20210628-2327 
+20210628-232752.001 DISABLED: Calling scrapeInfo with 20210628-2327 
+20210628-232752.001 Calling scrapeZIP_AGES with 20210628-2327 
+20210628-232752.010 Downloading https://covid19-dashboard.ages.at/data/data.zip to ./data/zip/COVID-19-austria.V1006.20210628-2327.zip 
+20210628-232756.413 Calling scrapeBmsgpk with 20210628-2327 
+20210628-232756.439 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-eimpfpass.csv 
+20210628-232758.083 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-bbg.csv 
+20210628-232758.955 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-faelle-ems.csv 
+20210628-232759.361 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-faelle-bundeslaender.csv 
+20210628-232800.876 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-testungen-apotheken-betriebe.csv 
+20210628-232801.264 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-testungen-schulen.csv 
+20210628-232801.581 Writing ems data to ./data/COVID-19-austria.csv 
+20210628-232801.648 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
+20210628-232801.649 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
+20210628-232802.406 Done runing data extraction from bmsgpk web pages 
