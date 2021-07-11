@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>Impfdashboard – Corona-Schutzimpfung in Österreich</title>
+    <meta id="schema_name" itemprop="name" content="Corona-Schutzimpfung in Österreich - Dashboard">
+    <meta name="description" content="Dashboard mit Zahlen und Fakten zu der Corona-Schutzimpfung">
+    <meta id="schema_description" itemprop="description" content="Dashboard mit Zahlen und Fakten zu der Corona-Schutzimpfung">
+    <meta name="keywords" content="Impfung, Dashboard, Impfdosen, Daten, Fakten, COVID-19, Corona">
+    <link rel="canonical" href="/">
+    <meta id="schema_image" itemprop="image" content="https://info.gesundheitsministerium.gv.at/assets/images/social.jpg">
+    <meta name="author" content="Bundesministerium für Soziales, Gesundheit, Pflege und Konsumentenschutz">
+    <meta property="og:title" content="Impfdashboard | Corona-Schutzimpfung in Österreich">
+    <meta property="og:description" content="Dashboard mit Zahlen und Fakten zu der Corona-Schutzimpfung">
+    <meta property="og:image" content="https://info.gesundheitsministerium.gv.at/assets/images/social.jpg">
+    <meta property="og:site_name" content="">
+    <meta property="og:url" content="/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="de_AT">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Dashboard">
+    <meta name="twitter:description" content="Dashboard mit Zahlen und Fakten zu der Corona-Schutzimpfung">
+    <meta name="twitter:image" content="https://info.gesundheitsministerium.gv.at/assets/images/social.jpg">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:creator" content="bmsgpk">
+    <meta name="robots" content="">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#e22c11">
+    <meta name="apple-mobile-web-app-title" content="Impfdashboard">
+    <meta name="application-name" content="Impfdashboard">
+    <meta name="msapplication-TileColor" content="#e22c11">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="/build/bundle.css">
+    <script type="text/javascript" async="" src="//an.ehealth.gv.at/matomo.js"></script><script defer="" src="/build/bundle.js"></script>
+  </head>
+
+  <body class="font-brand"> <h2 class="text-brand text-xl font-bold mb-4">Zahlen aus Österreich <span class="font-medium" id="emsStand">EMS; Stand 11.07.21 08:00 Uhr</span></h2> <table class="table-faelle"><thead class="thead-faelle"><tr><td></td> <td>Bgld.</td> <td>Ktn.</td> <td>NÖ</td> <td>OÖ</td> <td>Sbg.</td> <td>Stmk.</td> <td>T</td> <td>Vbg.</td> <td>W</td> <td>Österreich</td></tr></thead> <tbody id="tableEMSBody"><tr><td>Bestätigte Fälle</td><td>18.116</td><td>40.154</td><td>108.804</td><td>117.086</td><td>50.215</td><td>80.066</td><td>63.364</td><td>30.216</td><td>139.291</td><td>647.312</td></tr></tbody></table> <div class="text-sm mt-4 max-w-4xl"><p>Quelle: Epidemiologisches Meldesystem (EMS); siehe <a target="_blank" href="https://www.sozialministerium.at/Themen/Gesundheit/Uebertragbare-Krankheiten/Infektionskrankheiten-A-Z/Neuartiges-Coronavirus.html" class="underline">Falldefinition COVID-19</a></p></div> <h2 class="text-brand text-xl font-bold mt-8 mb-4">Zahlen aus Österreich <span class="font-medium" id="landStand">Bundesländermeldungen; Stand 11.07.21 09:30 Uhr</span></h2> <table class="table-faelle"><thead class="thead-faelle"><tr><td></td> <td>Bgld.</td> <td>Ktn.</td> <td>NÖ</td> <td>OÖ</td> <td>Sbg.</td> <td>Stmk.</td> <td>T</td> <td>Vbg.</td> <td>W</td> <td>Österreich</td></tr></thead> <tbody id="tableBundeslaenderBody"><tr><td>Bestätigte Fälle</td><td>18.442</td><td>40.154</td><td>110.995</td><td>117.086</td><td>49.181</td><td>79.603</td><td>63.928</td><td>30.811</td><td>141.412</td><td>651.612</td></tr><tr><td>Todesfälle ⁽¹⁾</td><td>343</td><td>821</td><td>1.822</td><td>1.757</td><td>586</td><td>2.091</td><td>635</td><td>308</td><td>2.360</td><td>10.723</td></tr><tr><td>Genesen</td><td>18.069</td><td>39.296</td><td>108.321</td><td>115.298</td><td>48.554</td><td>77.415</td><td>63.203</td><td>30.466</td><td>138.267</td><td>638.889</td></tr><tr><td>Hospitalisierung</td><td>4</td><td>12</td><td>15</td><td>7</td><td>3</td><td>2</td><td>5</td><td>2</td><td>52</td><td>102</td></tr><tr><td>Intensivstation</td><td>1</td><td>2</td><td>9</td><td>4</td><td>0</td><td>1</td><td>2</td><td>2</td><td>18</td><td>39</td></tr><tr><td>Testungen⁽²⁾</td><td>2.294.319</td><td>2.027.837</td><td>11.859.932</td><td>9.139.090</td><td>3.565.844</td><td>7.976.126</td><td>5.213.119</td><td>3.605.956</td><td>13.421.638</td><td>59.103.861</td></tr><tr><td>Davon PCR-Testungen⁽³⁾</td><td>237.643</td><td>320.842</td><td>2.020.314</td><td>757.423</td><td>416.430</td><td>777.627</td><td>998.284</td><td>266.596</td><td>7.567.969</td><td>13.363.128</td></tr><tr><td>Davon Antigen-Testungen⁽⁴⁾</td><td>2.056.676</td><td>1.706.995</td><td>9.839.618</td><td>8.381.667</td><td>3.149.414</td><td>7.198.499</td><td>4.214.835</td><td>3.339.360</td><td>5.853.669</td><td>45.740.733</td></tr></tbody></table> <div class="text-sm mt-4 max-w-4xl"><p class="mb-2">Quelle: Dateneinmeldung der Bundesländer an BMSGPK und BMI</p><p>(1) In diese Statistik können Personen, die direkt an den Folgen der Viruserkrankung selbst oder „mit dem Virus“ (an einer potentiell anderen Todesursache) verstorben sind, fallen. </p><p>(2) Die Zahl „Testung“ ist die Gesamtzahl aller durchgeführten PCR- und Antigentestungen. Die Daten dafür werden teilweise von den durchführenden Laboren gemeldet. </p><p>(3) Die Zahl der behördlich angebotenen durchgeführten PCR-Testungen. Die Daten dafür werden großteils von den durchführenden Laboren gemeldet. </p><p>(4) Die Zahl der behördlich angebotenen durchgeführten Antigen-Testungen sowie Antigen-Testungen aus dem niedergelassenen Bereich. </p></div> <h2 class="text-brand text-xl font-bold mt-8 mb-4">Apotheken- und Betriebstestungen <span class="font-medium" id="apothekenBetriebeDate">Stand 11.07.21</span></h2> <table class="table-faelle"><thead class="thead-faelle"><tr><td></td> <td>Bgld.</td> <td>Ktn.</td> <td>NÖ</td> <td>OÖ</td> <td>Sbg.</td> <td>Stmk.</td> <td>T</td> <td>Vbg.</td> <td>W</td> <td>Österreich</td></tr></thead> <tbody id="tableTestungenApothekenBetriebeBody"><tr><td>Apothekentestungen</td><td>583.131</td><td>501.610</td><td>1.152.133</td><td>851.728</td><td>570.421</td><td>1.494.128</td><td>752.953</td><td>724.172</td><td>3.399.539</td><td>10.029.815</td></tr><tr><td>Betriebstestungen</td><td>371.660</td><td>231.623</td><td>1.213.077</td><td>720.961</td><td>258.822</td><td>993.504</td><td>184.675</td><td>150.043</td><td>942.295</td><td>5.066.660</td></tr></tbody></table> <div class="text-sm mt-4 max-w-4xl"><p>Zahl aller durchgeführten Antigen-Testungen in Apotheken und Betrieben, welche an die Testplattform des Bundes angebunden sind.</p><p>Quelle: BMSGPK</p></div> <h2 class="text-brand text-xl font-bold mt-8 mb-4">Schultestungen <span class="font-medium" id="schulenDate"></span></h2> <table class="table-faelle"><thead class="thead-faelle"><tr><td></td> <td>Bgld.</td> <td>Ktn.</td> <td>NÖ</td> <td>OÖ</td> <td>Sbg.</td> <td>Stmk.</td> <td>T</td> <td>Vbg.</td> <td>W</td> <td>Österreich</td></tr></thead> <tbody id="tableTestungenSchulenBody"></tbody></table> <div class="text-sm mt-4 max-w-4xl"><p>Gesamtzahl aller durchgeführten Antigen-Selbsttests an Schulen (SchülerInnen, Lehr- und Verwaltungspersonal). Die Daten beinhalten Primar- und Sekundarstufe I und II; nicht enthalten sind Bundeslehranstalten, Berufsschulen, Internate, Zentrallehranstalten und Höhere Land- und Forstwirtschaftliche Schulen.</p><p>Die Zahlen werden wöchentlich aktualisiert.</p><p>Quelle: BMBWF</p></div> <img src="https://an.ehealth.gv.at/matomo.php?idsite=7&amp;rec=1" alt="" style="border: 0px;"></body></html>
