@@ -15618,3 +15618,42 @@
 20210822-111406.479 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
 20210822-111406.479 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
 20210822-111407.783 Done runing data extraction from bmsgpk web pages 
+20210823-100205.219 Running COVID-19-bmsgpk-extract.R 
+20210823-100205.225 DISABLED: Calling scrapeCovid2 with 20210823-1002 
+20210823-100205.225 Calling scrapeCovid3 with 20210823-1002 
+20210823-100205.299 Scraping using headless chrome for https://info.gesundheitsministerium.gv.at/?re=tabelle 
+20210823-100205.299 Dumping page to ./html/COVID-19-austria-bmsgpk.20210823-1002.dmp  Atempt 1 
+20210823-100206.761 Analysing dump file ./html/COVID-19-austria-bmsgpk.20210823-1002.dmp  Atempt 1 
+20210823-100206.815 Dumping page to ./html/COVID-19-austria-bmsgpk.20210823-1002.dmp  Atempt 2 
+20210823-100208.190 Analysing dump file ./html/COVID-19-austria-bmsgpk.20210823-1002.dmp  Atempt 2 
+20210823-100208.198 Dumping page to ./html/COVID-19-austria-bmsgpk.20210823-1002.dmp  Atempt 3 
+20210823-100209.547 Analysing dump file ./html/COVID-19-austria-bmsgpk.20210823-1002.dmp  Atempt 3 
+20210823-100209.551 Dumping page to ./html/COVID-19-austria-bmsgpk.20210823-1002.dmp  Atempt 4 
+20210823-100210.888 Analysing dump file ./html/COVID-19-austria-bmsgpk.20210823-1002.dmp  Atempt 4 
+20210823-100210.895 Dumping page to ./html/COVID-19-austria-bmsgpk.20210823-1002.dmp  Atempt 5 
+20210823-100212.290 Analysing dump file ./html/COVID-19-austria-bmsgpk.20210823-1002.dmp  Atempt 5 
+20210823-100212.295 Dumping page to ./html/COVID-19-austria-bmsgpk.20210823-1002.dmp  Atempt 6 
+20210823-100213.727 Analysing dump file ./html/COVID-19-austria-bmsgpk.20210823-1002.dmp  Atempt 6 
+20210823-100213.731 Dumping page to ./html/COVID-19-austria-bmsgpk.20210823-1002.dmp  Atempt 7 
+20210823-100215.076 Analysing dump file ./html/COVID-19-austria-bmsgpk.20210823-1002.dmp  Atempt 7 
+20210823-100215.080 Dumping page to ./html/COVID-19-austria-bmsgpk.20210823-1002.dmp  Atempt 8 
+20210823-100216.435 Analysing dump file ./html/COVID-19-austria-bmsgpk.20210823-1002.dmp  Atempt 8 
+20210823-100216.440 Dumping page to ./html/COVID-19-austria-bmsgpk.20210823-1002.dmp  Atempt 9 
+20210823-100217.723 Analysing dump file ./html/COVID-19-austria-bmsgpk.20210823-1002.dmp  Atempt 9 
+20210823-100217.729 Dumping page to ./html/COVID-19-austria-bmsgpk.20210823-1002.dmp  Atempt 10 
+20210823-100219.054 Analysing dump file ./html/COVID-19-austria-bmsgpk.20210823-1002.dmp  Atempt 10 
+20210823-100219.060 DISABLED: Calling scrapeHospitalisierung with 20210823-1002 
+20210823-100219.060 DISABLED: Calling scrapeInfo with 20210823-1002 
+20210823-100219.061 Calling scrapeZIP_AGES with 20210823-1002 
+20210823-100219.076 Downloading https://covid19-dashboard.ages.at/data/data.zip to ./data/zip/COVID-19-austria.V1006.20210823-1002.zip 
+20210823-100220.818 Calling scrapeBmsgpk with 20210823-1002 
+20210823-100220.851 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-eimpfpass.csv 
+20210823-100222.109 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-bbg.csv 
+20210823-100229.992 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-faelle-ems.csv 
+20210823-100230.333 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-faelle-bundeslaender.csv 
+20210823-100230.721 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-testungen-apotheken-betriebe.csv 
+20210823-100231.147 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-testungen-schulen.csv 
+20210823-100231.423 Writing ems data to ./data/COVID-19-austria.csv 
+20210823-100231.626 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
+20210823-100231.626 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
+20210823-100233.291 Done runing data extraction from bmsgpk web pages 
