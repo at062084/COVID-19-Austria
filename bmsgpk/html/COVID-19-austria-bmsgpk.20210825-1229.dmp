@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>Impfdashboard – Corona-Schutzimpfung in Österreich</title>
+    <meta id="schema_name" itemprop="name" content="Corona-Schutzimpfung in Österreich - Dashboard">
+    <meta name="description" content="Dashboard mit Zahlen und Fakten zu der Corona-Schutzimpfung">
+    <meta id="schema_description" itemprop="description" content="Dashboard mit Zahlen und Fakten zu der Corona-Schutzimpfung">
+    <meta name="keywords" content="Impfung, Dashboard, Impfdosen, Daten, Fakten, COVID-19, Corona">
+    <link rel="canonical" href="/">
+    <meta id="schema_image" itemprop="image" content="https://info.gesundheitsministerium.gv.at/assets/images/social.jpg">
+    <meta name="author" content="Bundesministerium für Soziales, Gesundheit, Pflege und Konsumentenschutz">
+    <meta property="og:title" content="Impfdashboard | Corona-Schutzimpfung in Österreich">
+    <meta property="og:description" content="Dashboard mit Zahlen und Fakten zu der Corona-Schutzimpfung">
+    <meta property="og:image" content="https://info.gesundheitsministerium.gv.at/assets/images/social.jpg">
+    <meta property="og:site_name" content="">
+    <meta property="og:url" content="/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="de_AT">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Dashboard">
+    <meta name="twitter:description" content="Dashboard mit Zahlen und Fakten zu der Corona-Schutzimpfung">
+    <meta name="twitter:image" content="https://info.gesundheitsministerium.gv.at/assets/images/social.jpg">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:creator" content="bmsgpk">
+    <meta name="robots" content="">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#e22c11">
+    <meta name="apple-mobile-web-app-title" content="Impfdashboard">
+    <meta name="application-name" content="Impfdashboard">
+    <meta name="msapplication-TileColor" content="#e22c11">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="/build/bundle.css">
+    <script type="text/javascript" async="" src="//an.ehealth.gv.at/matomo.js"></script><script defer="" src="/build/bundle.js"></script>
+  </head>
+
+  <body class="font-brand"> <div class="wrapper svelte-h9o7np"><div class="loader svelte-e87lg6"></div> <span class="svelte-h9o7np">Daten werden geladen...</span></div> <img src="https://an.ehealth.gv.at/matomo.php?idsite=7&amp;rec=1" alt="" style="border: 0px;"></body></html>
