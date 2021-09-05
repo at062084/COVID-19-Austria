@@ -16050,3 +16050,24 @@
 20210905-121518.395 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
 20210905-121518.396 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
 20210905-121520.358 Done runing data extraction from bmsgpk web pages 
+20210905-121534.292 Running COVID-19-bmsgpk-extract.R 
+20210905-121534.297 DISABLED: Calling scrapeCovid2 with 20210905-1215 
+20210905-121534.297 Calling scrapeCovid3 with 20210905-1215 
+20210905-121534.373 Scraping using headless chrome for https://info.gesundheitsministerium.gv.at/?re=tabelle 
+20210905-121534.373 Dumping page to ./html/COVID-19-austria-bmsgpk.20210905-1215.dmp  Atempt 1 
+20210905-121536.025 Analysing dump file ./html/COVID-19-austria-bmsgpk.20210905-1215.dmp  Atempt 1 
+20210905-121536.168 DISABLED: Calling scrapeHospitalisierung with 20210905-1215 
+20210905-121536.168 DISABLED: Calling scrapeInfo with 20210905-1215 
+20210905-121536.168 Calling scrapeZIP_AGES with 20210905-1215 
+20210905-121536.179 Downloading https://covid19-dashboard.ages.at/data/data.zip to ./data/zip/COVID-19-austria.V1006.20210905-1215.zip 
+20210905-121537.775 Calling scrapeBmsgpk with 20210905-1215 
+20210905-121537.795 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-eimpfpass.csv 
+20210905-121539.027 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-bbg.csv 
+20210905-121539.404 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-faelle-ems.csv 
+20210905-121539.749 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-faelle-bundeslaender.csv 
+20210905-121540.092 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-testungen-apotheken-betriebe.csv 
+20210905-121540.442 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-testungen-schulen.csv 
+20210905-121540.669 Writing ems data to ./data/COVID-19-austria.csv 
+20210905-121540.759 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
+20210905-121540.759 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
+20210905-121542.164 Done runing data extraction from bmsgpk web pages 
