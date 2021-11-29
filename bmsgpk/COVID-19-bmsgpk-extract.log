@@ -18156,3 +18156,25 @@
 20211127-233943.061 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
 20211127-233943.061 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
 20211127-233944.847 Done runing data extraction from bmsgpk web pages 
+20211129-011433.389 Running COVID-19-bmsgpk-extract.R 
+20211129-011433.395 DISABLED: Calling scrapeCovid2 with 20211129-0114 
+20211129-011433.395 Calling scrapeCovid3 with 20211129-0114 
+20211129-011433.474 Scraping using headless chrome for https://info.gesundheitsministerium.gv.at/?re=tabelle 
+20211129-011433.475 Dumping page to ./html/COVID-19-austria-bmsgpk.20211129-0114.dmp  Atempt 1 
+20211129-011433.475 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20211129-0114.dmp 
+20211129-011435.803 Analysing dump file ./html/COVID-19-austria-bmsgpk.20211129-0114.dmp  Atempt 1 
+20211129-011435.997 DISABLED: Calling scrapeHospitalisierung with 20211129-0114 
+20211129-011435.997 DISABLED: Calling scrapeInfo with 20211129-0114 
+20211129-011435.997 Calling scrapeZIP_AGES with 20211129-0114 
+20211129-011436.008 Downloading https://covid19-dashboard.ages.at/data/data.zip to ./data/zip/COVID-19-austria.V1006.20211129-0114.zip 
+20211129-011437.947 Calling scrapeBmsgpk with 20211129-0114 
+20211129-011437.969 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-eimpfpass.csv 
+20211129-011439.520 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-bbg.csv 
+20211129-011439.971 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-faelle-ems.csv 
+20211129-011440.450 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-faelle-bundeslaender.csv 
+20211129-011440.881 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-testungen-apotheken-betriebe.csv 
+20211129-011441.312 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-testungen-schulen.csv 
+20211129-011441.592 Writing ems data to ./data/COVID-19-austria.csv 
+20211129-011441.788 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
+20211129-011441.789 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
+20211129-011443.822 Done runing data extraction from bmsgpk web pages 
