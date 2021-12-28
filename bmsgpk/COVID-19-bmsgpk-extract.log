@@ -18946,3 +18946,24 @@
 20211228-002847.322 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
 20211228-002847.322 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
 20211228-002847.324 Done runing data extraction from bmsgpk web pages 
+20211228-173607.190 Running COVID-19-bmsgpk-extract.R 
+20211228-173607.197 DISABLED: Calling scrapeCovid2 with 20211228-1736 
+20211228-173607.197 Calling scrapeCovid3 with 20211228-1736 
+20211228-173607.271 Scraping using headless chrome for https://info.gesundheitsministerium.gv.at/?re=tabelle 
+20211228-173607.272 Dumping page to ./html/COVID-19-austria-bmsgpk.20211228-1736.dmp  Atempt 1 
+20211228-173607.272 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20211228-1736.dmp 
+20211228-173609.500 Analysing dump file ./html/COVID-19-austria-bmsgpk.20211228-1736.dmp  Atempt 1 
+20211228-173609.656 DISABLED: Calling scrapeHospitalisierung with 20211228-1736 
+20211228-173609.656 DISABLED: Calling scrapeInfo with 20211228-1736 
+20211228-173609.656 Calling scrapeZIP_AGES with 20211228-1736 
+20211228-173609.666 Downloading https://covid19-dashboard.ages.at/data/data.zip to ./data/zip/COVID-19-austria.V1006.20211228-1736.zip 
+20211228-173611.718 Calling scrapeBmsgpk with 20211228-1736 
+20211228-173611.739 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-eimpfpass.csv 
+20211228-173613.336 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-bbg.csv 
+20211228-173613.870 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-faelle-ems.csv 
+20211228-173614.401 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-faelle-bundeslaender.csv 
+20211228-173614.859 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-testungen-apotheken-betriebe.csv 
+20211228-173615.254 Writing ems data to ./data/COVID-19-austria.csv 
+20211228-173615.437 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
+20211228-173615.437 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
+20211228-173615.439 Done runing data extraction from bmsgpk web pages 
