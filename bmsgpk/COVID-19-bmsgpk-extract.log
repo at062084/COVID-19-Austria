@@ -20060,3 +20060,47 @@
 20220204-103229.990 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
 20220204-103229.990 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
 20220204-103231.774 Done runing data extraction from bmsgpk web pages 
+20220205-190346.490 Running COVID-19-bmsgpk-extract.R 
+20220205-190346.496 DISABLED: Calling scrapeCovid2 with 20220205-1903 
+20220205-190346.497 Calling scrapeCovid3 with 20220205-1903 
+20220205-190346.579 Scraping using headless chrome for https://info.gesundheitsministerium.gv.at/?re=tabelle 
+20220205-190346.579 Dumping page to ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp  Atempt 1 
+20220205-190346.579 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp 
+20220205-190353.756 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp  Atempt 1 
+20220205-190353.850 Dumping page to ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp  Atempt 2 
+20220205-190353.850 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp 
+20220205-190354.262 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp  Atempt 2 
+20220205-190354.268 Dumping page to ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp  Atempt 3 
+20220205-190354.268 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp 
+20220205-190354.563 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp  Atempt 3 
+20220205-190354.570 Dumping page to ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp  Atempt 4 
+20220205-190354.570 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp 
+20220205-190354.877 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp  Atempt 4 
+20220205-190354.883 Dumping page to ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp  Atempt 5 
+20220205-190354.883 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp 
+20220205-190355.184 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp  Atempt 5 
+20220205-190355.189 Dumping page to ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp  Atempt 6 
+20220205-190355.189 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp 
+20220205-190355.470 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp  Atempt 6 
+20220205-190355.475 Dumping page to ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp  Atempt 7 
+20220205-190355.475 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp 
+20220205-190355.738 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp  Atempt 7 
+20220205-190355.742 Dumping page to ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp  Atempt 8 
+20220205-190355.742 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp 
+20220205-190356.030 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp  Atempt 8 
+20220205-190356.034 Dumping page to ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp  Atempt 9 
+20220205-190356.035 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp 
+20220205-190356.337 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp  Atempt 9 
+20220205-190356.342 Dumping page to ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp  Atempt 10 
+20220205-190356.342 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp 
+20220205-190356.619 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220205-1903.dmp  Atempt 10 
+20220205-190356.624 DISABLED: Calling scrapeHospitalisierung with 20220205-1903 
+20220205-190356.625 DISABLED: Calling scrapeInfo with 20220205-1903 
+20220205-190356.625 Calling scrapeZIP_AGES with 20220205-1903 
+20220205-190356.656 Downloading https://covid19-dashboard.ages.at/data/data.zip to ./data/zip/COVID-19-austria.V1006.20220205-1903.zip 
+20220205-190356.829 Calling scrapeBmsgpk with 20220205-1903 
+20220205-190356.850 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-eimpfpass.csv 
+20220205-190356.967 Writing ems data to ./data/COVID-19-austria.csv 
+20220205-190357.090 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
+20220205-190357.090 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
+20220205-190357.091 Done runing data extraction from bmsgpk web pages 
