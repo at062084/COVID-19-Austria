@@ -120,3 +120,145 @@ Calls: write.csv ... eval.parent -> eval -> eval -> <Anonymous> -> is.data.frame
 2: eval.parent(Call)
 1: write.csv(db, file = csvFile, row.names = FALSE, quote = FALSE)
 20220305-194203.494 Done runing data extraction from bmsgpk web pages 
+[master 72e7ebc0] 2022-03-05 19:41:53 Auto-Extract data from bmsgpk website
+ Committer: Thomas Strehl <at001335@li-9d2126cc-2aca-11b2-a85c-ffe082d4db2e.ibm.com>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 4 files changed, 182 insertions(+)
+ create mode 100644 COVID-19.cron.log
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V1006.20220305-1941.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria-bmsgpk.20220305-1941.dmp
+To github.com:at062084/COVID-19-Austria.git
+   fdf5e4ac..72e7ebc0  master -> master
+
+--------------------------------------------------------------------
+2022-03-05 19:46:16 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2022-03-05 19:46:16 Workdir /home/at001335/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2022-03-05 19:46:16 Running auto-extraction of COVID-19 data from bmsgpk website
+
+Attaching package: ‘lubridate’
+
+The following objects are masked from ‘package:base’:
+
+    date, intersect, setdiff, union
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘rvest’
+
+The following object is masked from ‘package:readr’:
+
+    guess_encoding
+
+20220305-194617.801 Running COVID-19-bmsgpk-extract.R 
+20220305-194617.805 DISABLED: Calling scrapeCovid2 with 20220305-1946 
+20220305-194617.805 Calling scrapeCovid3 with 20220305-1946 
+20220305-194617.849 Scraping using headless chrome for https://info.gesundheitsministerium.gv.at/?re=tabelle 
+20220305-194617.849 Dumping page to ./html/COVID-19-austria-bmsgpk.20220305-1946.dmp  Atempt 1 
+20220305-194617.849 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220305-1946.dmp 
+[0305/194617.912499:ERROR:gpu_init.cc(454)] Passthrough is not supported, GL is disabled, ANGLE is 
+[0305/194617.922727:WARNING:bluez_dbus_manager.cc(248)] Floss manager not present, cannot set Floss enable/disable.
+20220305-194620.626 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220305-1946.dmp  Atempt 1 
+Error in df$Status[s] <- StatusMap$to[n] : replacement has length zero
+Calls: scrapeCovid3
+In addition: Warning messages:
+1: In stri_replace_all_regex(string, pattern, fix_replacement(replacement),  :
+  argument is not an atomic vector; coercing
+2: `funs()` was deprecated in dplyr 0.8.0.
+Please use a list of either functions or lambdas: 
+
+  # Simple named list: 
+  list(mean = mean, median = median)
+
+  # Auto named with `tibble::lst()`: 
+  tibble::lst(mean, median)
+
+  # Using lambdas
+  list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated. 
+2: (function () 
+   traceback(2))()
+1: scrapeCovid3(ts = ts)
+20220305-194620.737 DISABLED: Calling scrapeHospitalisierung with 20220305-1946 
+20220305-194620.737 DISABLED: Calling scrapeInfo with 20220305-1946 
+20220305-194620.737 Calling scrapeZIP_AGES with 20220305-1946 
+20220305-194620.745 Downloading https://covid19-dashboard.ages.at/data/data.zip to ./data/zip/COVID-19-austria.V1006.20220305-1946.zip 
+--2022-03-05 19:46:20--  https://covid19-dashboard.ages.at/data/data.zip
+Resolving covid19-dashboard.ages.at (covid19-dashboard.ages.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to covid19-dashboard.ages.at (covid19-dashboard.ages.at)|194.48.237.240|:443... connected.
+GnuTLS: The Diffie-Hellman prime sent by the server is not acceptable (not long enough).
+Unable to establish SSL connection.
+Archive:  ./data/zip/COVID-19-austria.V1006.20220305-1946.zip
+  End-of-central-directory signature not found.  Either this file is not
+  a zipfile, or it constitutes one disk of a multi-part archive.  In the
+  latter case the central directory and zipfile comment will be found on
+  the last disk(s) of this archive.
+unzip:  cannot find zipfile directory in one of ./data/zip/COVID-19-austria.V1006.20220305-1946.zip or
+        ./data/zip/COVID-19-austria.V1006.20220305-1946.zip.zip, and cannot find ./data/zip/COVID-19-austria.V1006.20220305-1946.zip.ZIP, period.
+20220305-194620.965 Calling scrapeBmsgpk with 20220305-1946 
+20220305-194620.996 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-eimpfpass.csv 
+Error in file(file, "rt") : 
+  cannot open the connection to 'https://info.gesundheitsministerium.gv.at/data/timeline-eimpfpass.csv'
+Calls: scrapeBmsgpk ... <Anonymous> -> <Anonymous> -> read.csv -> read.table -> file
+In addition: Warning message:
+In file(file, "rt") :
+  URL 'https://info.gesundheitsministerium.gv.at/data/timeline-eimpfpass.csv': status was 'SSL connect error'
+10: (function () 
+    traceback(2))()
+9: file(file, "rt")
+8: read.table(file = file, header = header, sep = sep, quote = quote, 
+       dec = dec, fill = fill, comment.char = comment.char, ...)
+7: read.csv(url, header = TRUE, sep = ";", stringsAsFactors = FALSE)
+6: dplyr::mutate(., Datum = as.Date(Datum, format = "%d.%m.%Y"))
+5: dplyr::select(., -starts_with("Bev"))
+4: tidyr::gather(., key = "Key", value = "Value", -Datum, -BundeslandID, 
+       -Name)
+3: dplyr::mutate(., Source = !!csvSource)
+2: read.csv(url, header = TRUE, sep = ";", stringsAsFactors = FALSE) %>% 
+       dplyr::mutate(Datum = as.Date(Datum, format = "%d.%m.%Y")) %>% 
+       dplyr::select(-starts_with("Bev")) %>% tidyr::gather(key = "Key", 
+       value = "Value", -Datum, -BundeslandID, -Name) %>% dplyr::mutate(Source = !!csvSource)
+1: scrapeBmsgpk(ts = ts)
+20220305-194621.274 Writing ems data to ./data/COVID-19-austria.csv 
+Error in rbind(deparse.level, ...) : object 'dc' not found
+Calls: rbind -> rbind
+3: (function () 
+   traceback(2))()
+2: rbind(deparse.level, ...)
+1: rbind(df, dc)
+20220305-194621.358 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
+20220305-194621.358 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
+Error in is.data.frame(x) : object 'db' not found
+Calls: write.csv ... eval.parent -> eval -> eval -> <Anonymous> -> is.data.frame
+7: (function () 
+   traceback(2))()
+6: is.data.frame(x)
+5: utils::write.table(db, file = csvFile, row.names = FALSE, quote = FALSE, 
+       col.names = TRUE, sep = ",", dec = ".", qmethod = "double")
+4: eval(expr, p)
+3: eval(expr, p)
+2: eval.parent(Call)
+1: write.csv(db, file = csvFile, row.names = FALSE, quote = FALSE)
+20220305-194621.358 Done runing data extraction from bmsgpk web pages 
