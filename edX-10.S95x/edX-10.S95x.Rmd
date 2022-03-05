@@ -1,0 +1,644 @@
+---
+title: "edX-10.S95x"
+author: "Thomas.Strehl@at.ibm.com"
+date: "1/3/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Chapter 1
+
+## 1. Airborne droplets
+### Well's formula for airborne water droplets
+$$
+\begin{aligned}
+&\text{Settling time:} &&\tau_{s}=\frac{9L \mu_{a}}{2 \rho g R^2_{0}} \\
+&\text{Evaporation time:} &&\tau_{e}=\frac{R^2_{0}}{D (1-RH)}
+\end{aligned}
+$$
+
+Remarks:
+
+- Droplets may be growing in high humidity conditions. Settling time still OK, but evaporation time needs rework
+- Droplets also contain organic molecules (saliva=Speichel, mucus=Schleim), hydroscopic water, salts (NaCl)
+
+## 2. Wells curve derivation (ASIDE)
+
+## 3. Equilibrium size of respiratory aerosols
+
+$$
+\begin{aligned}
+V_s &= \Phi^0_s * V_0 \\
+V_s &~~~\text{droplet equilibrium size at} ~ RH=0 \\
+\Phi^0_s &~~~\text{initial fraction of solutes and bound water in droplet} \\
+V_0 &~~~\text{droplet initial size} \\
+\\
+V_{eq} &=V_0 \frac{\Phi^0_s}{1-RH} \\
+V_{eq} &~~~\text{droplet size in equilibrium} \\
+RH &~~~\text{relative humidity} \\
+R_0 &~~~\text{initial droplet radius}
+\end{aligned}
+$$
+
+Remarks:
+
+- Solutes: Proteins, carbonhydrates, solats, virions, ...
+- Fraction of solutes: saliva: 0.5%, mucus 5-10%
+- Charged, hydroscopic. Bound water: layer of water around these molecules
+- in low humidity droplets shrink to size of their non-water constituents ('dried nucleus')
+- in high humidity droplets undergo 'hydroscopic growth'
+- the cut-over point is definded by the fraction of solutes in the droplet and the surrounding relative humidity
+- droplets that have the same fraction of solutes as the surrounding relative humidity remain same size
+
+### Details
+
+Relative humidity of air: Defined as concentration ration of current vapour in air devided by equilibrium concentration of water in air,
+that is, total saturation of water in air before water 'drops out'. For the droplet, this can be roughly approximated by the percentage
+of the solutes in the droplet. So if no solutes in the droplet, the RH is 1.
+$$
+\begin{aligned}
+RH &= \frac{C^{air}_{vapour}}{C^{eq}_{vapour}} = \Phi^{eq}_{liq} = 1- \phi^{eq}_s = 1- \frac{\Phi^0_s * V_0}{V_{eq}} \\
+\frac{V_{eq}}{V_0} &= \frac{\Phi^0_s}{1-RH} = (\frac{R_{eq}}{R_0})^3 \\
+\end{aligned}
+$$
+
+## 4. Bacteria
+
+- Steptococus: ~2 mu, chains -> 50-500 mu. Settling a few seconds. Transmission fomite, direct air born
+- Tuberculosis: ~2 mu * 0.2 mu -> 5-10 mu. Settling time several minutes. Transmission aerosol.
+
+## 5. Viruses
+
+## 6. Escape time of virions
+$$
+\begin{aligned}
+&\text{Escape time from center:} &&\tau_0=\frac{R^2}{6D} \\
+&\text{Escape time from distance r:} &&\tau_{d}=\frac{R^2-r^2}{6D} \\
+&\text{Mean escape time:} &&\bar\tau_{d}=\frac{R^2}{15D}
+\end{aligned}
+$$
+
+
+## 7. Release of viral load from a drop (ASIDE)
+
+"Random walk"
+
+$$
+\begin{aligned}
+D &: \text{Diffusivity} \\
+- \Delta^2\tau &=\frac{1}{D} \\
+-\frac{1}{r^2}\frac{d}{dr}(r^2\frac{d\tau}{dr}) &= \frac{1}{D},~~~ \text{BC:} ~~t(R)=0, ~~\frac{d\tau}{dr}(0)=0 \\
+\\
+(r^2\tau^1)^1 &= -\frac{r^2}{D} \\ 
+r^2 \tau^1 &= - \frac{r^3}{3D} + Const \\
+\tau^1 &= - \frac{r}{3D} \\
+\\
+\tau(r) &= \frac{R^2-r^2}{6D} \\
+\tau(0) &= \frac{R^2}{6D}
+\\
+\bar\tau &= \frac{4\pi \int^R_0 \tau(r)r^2dr}{\frac{4\pi}{3} R^3} = \frac{R^2}{6D}(1-3/5) \\
+\bar\tau &= \frac{R^2}{15D}
+\end{aligned}
+$$
+
+
+## 8. Drop size–dependent infectivity (ASIDE)
+
+Probability of Infection once virus reeleased from droplet
+
+$$
+\begin{aligned}
+C_i &= p_i ~  p_{e}(R,\tau_\nu)  ~~\text{Infectivity: prob(infection|virion transfer)} \\
+p_i &: prob(\text{virion escape from drop}) ~ \text{constant} \\
+p_e(R,\tau_\nu) &: prob(\text{escape from drop in deactivation time} ~~\tau_\nu)
+\end{aligned}
+$$
+
+Probability for virus to escape droplet during its lifetime:
+
+$$
+\begin{aligned}
+\tau_v &~~~\text{virus deactivation time} \\
+\tau_d &~~~\text{virus escape time} \\
+R_d &~~~\text{droplet radius}
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+p_{e}&=1-e^{-R_{d}/R} \\
+R_{d}&=3\sqrt{2D\tau_{v}} \\
+p_{e}&=1-e^\frac{-3\sqrt{2D\tau_{v}}}{R}=1-e^{-\sqrt{\tau_{v}/\tau_{d}}} = 1-e^{-\frac{R_d}{R}} \\
+R_d &= 3\sqrt{2D\tau_nu} \\
+\end{aligned}
+$$
+
+This should motivate the argument that virions in aerosols do have a much higher chance to escape than virions in large droplets in reasonable time. (To me this seems to ignore the droplet size dependency of concentration of virions, so not really conclusive)
+
+## 9. Aerosolized pathogen deactivation
+### Bacteria
+Relative viability  after 1 hour: RH>80% fully viable, below viabilty decreasing (ln(N/No=0)). Size of droplets decreases, osmotic preasure in droplet incereases, harms bacteria
+
+
+### Viruses
+
+- Harper (1961): deactivation rate increases linearly with humidity (influenca)
+- Lin-Marr (2020): increase with maximum area before 100% RH, then fast fall-off
+- Minimum of relative viabilty at 60%-80% RH
+
+$$
+\begin{aligned}
+\lambda_\nu &~~~\text{viral deactivation rate} \\
+ln(N/N_0) &~~~\text{relative viability} \\
+\end{aligned}
+$$
+
+### Lin-Mar hypothesis
+The viral deactivation rate is proportional to the 'cumulative dose' of solutes before stable droplet nuclei form. If droplets shrink fast in dry conditions, the amound of time the solutes hamper vialbilty is limited. Conversely, if the humidity is very high, the droplets may increase in size, such that the solutes concentration drops, minimizing their impact. So a 60-80% humidity will lead to the highest dose of solutes and thus most damage to the virus.
+
+## 10. Viral deactivation in aerosols (ASIDE)
+
+Lengthy deduction of formula for Lin-Mar hypothesis. Relative viability of virion as function of RH:
+
+$$
+\begin{aligned}
+\log\frac{N_\nu}{N^0_\nu} &= -2\alpha_d \phi^0_s \lambda^0_\nu * \frac{R^2_0}{\bar D} * \frac{(\frac{1-RH}{\phi^0_s})^{\frac{1}{3}}-1)}{1-RH}  \\
+\\
+N^0_\nu &: \text{Initial number viable of viruses} \\
+N_\nu &: \text{Number of viable viruses. time dependent} \\
+\lambda^0_\nu &: \text{deactivation rate per solute virion collision} \\
+\alpha_d &: \text{volume fraction of disinfecting solutes } \\
+\phi^0_s &: \text{initial fraction of solutes in droplet} \\
+\phi_s &: \text{solutes fraction present in droplet. time dependent}
+\end{aligned}
+$$
+
+
+## 11. Modes of transmission
+### Fomites/Contact
+
+- Mainly with bacteria, not dominant for COVID-19
+
+### Large/Ballisitc Drops
+
+- caghing, sneezing: Important for symptomatic persons, but many are non-symthomatic and still spread virus
+
+### Aerosol Droplets
+Normal breathing, speaking. Fill the room. Well mixed space. Two modes of transmission
+
+- Without masks: puffs can be breathed in. 'Short range transmission'
+- Long rang transmission: anyone in the room can inhale. Masks can eliminate short range transmission. Small droplets can pass through masks. Masks and shields are very different. Both protect from puffs, but shields do not filter. Thats by masks only.
+
+## 12. Indoor airborne spreading of COVID-19
+Evidence
+
+-  Religious event: hundrests of woreshippers, 2 Buses. First infected person in one bus. 23 out of 68 were infected. No infection on other bus.
+- Restaurant: Person across room infected (airborne transmission)
+- Cruise Ship: Quarantined. Out of 3011 some 350 were infected starting from few know cases. Transmission presumably through ventitlation system
+- Church in Korea: Airborne transmission
+- Choir event: 2 hours practice. 1 person infected 53 out of 63 others. No direct contact. Air bourne.
+- Super spreading events: all indoors, some public transport.
+
+Physical Evidence
+
+- Established for tuberculosis, measles, SARS-CoV.
+- SARS-COV2 assumed to be spread by aerosols
+
+
+# Chapter 2
+
+## Overview: Transmission in well mixed room
+
+## 1. Respiration and Ventillation
+Infective person. Some airflow in room that mixes air. People moving around. Termal flows -> leads to well mixed situation.
+
+$$
+\begin{aligned}
+P &= Q_b * n_d * V_d * c_v * p_m ~~~\text{production rate in virions/time per infector} \\
+C(t) &= \text{virions / air volume per infector} \\
+Q &= \text{air flow rate} \\
+Q_b &= \text{breathing flow rate ~ 0.5-3}~ m^3/h \\
+n_d &= \text{drops / air volume} \\
+V_d &= \text{droplet volume}~ 4/3 \pi R^3 ~ \text{(one size of droplets)} \\
+c_v &= \text{virions/liq volume (viral load). Peak infectiousness:}  ~~ 10^9 ~ \text{virions/ml}  \\
+p_m &= \text{mask penetration probability for a droplet (1-pm = filter efficiency)}
+\end{aligned}
+$$
+
+Mass Balance: outdoor air exchange rate. entire volume replaced.
+
+Viruses produced in the droplets at rate P. These are swapped out of the room at the rate Q. The room has volume V. Applying the law of conservation of mass in the room. Total number of virions and how that changes in time: V*dC/dt. C is concentration of virions in room (virions/air volume). VC is total number of virions in room. The number of virions produced per infector is P. Virions are removed by the airflow Q containing C virions, a total of QC virions.
+
+
+$$
+\begin{aligned}
+V &= A*H ~~~ \text{room size} \\
+C(t) &= \text{virions / air volume per infector} \\
+\\
+V \frac{dC(t)}{dt} &= P -QC(t) \\
+\frac{dC(t)}{dt} &= \frac{P}{V} - \frac{Q}{V} C(t) = \frac{P}{V} -\lambda_a C(t) \\
+\\
+\lambda_a &= \frac{Q}{V}, ~~~~ Q = \lambda_a*V\\
+\lambda_a &= \text{outdoor air exchange rate} \\
+\lambda_a &= 0.3/h ~\text{natural exchange in typical buildings} \\
+\lambda_a &= 3-8/h ~\text{mechanical ventilation} \\
+&= 18/h ~\text{hospital} \\
+&= 30/h ~\text{labs with toxins} \\
+ACH &= \text{air changes per hour}
+\end{aligned}
+$$
+Balance of production and removal of viruses
+
+The change of the number of viruses in the room: difference between the number P of viruses produced per volume V and the number fo viruses removed by the airflow lambda, which is Q/V (total airflow Q per volume V). The number of viruses produced is a constant. We are left with dC/dt=-lambdaC.
+
+In chemical engineering: CSTR: Continuos stirred-tank Reaktor
+
+$$ 
+\begin{aligned}
+P &= \lambda_a V C(t) ~~~\text{balance of virus production and removal}\\
+C(t) &= \frac{P}{Q} = \frac{P}{\lambda_a V} ~~~ \text{steady state (dC/dt=0)} \\
+C(t) &= \frac{P}{Q}(1-e^{-\lambda_a t}) ~~~ C(0)=0  ~~~  \text{exponential release function}
+\end{aligned}
+$$
+
+Viscosity: 
+
+Reynold's number: This is basically telling us how important inertia of the fluid is compared to viscous stresses that slow the fluid down. 
+
+$$
+\begin{aligned}
+\tau_{res} &= {\lambda_a}^{-1} ~~~ \text{mean residence time} \\
+v_a &= \frac{Q}{A} = \frac{QH}{V} ~~~  \text{mean air speed due to ventilation} \\
+Re_a &=   \frac{v_a H}{\nu_a} = \frac{intertia}{viscuous}   ~~~ \text{Re: Reynolds number} \\
+v_a &= \mu_a/\rho  ~~~ \text{kinematic viscosity: viscosity of air / density of air} \\
+&= 1.5 * 10^{-5}~m^2/s \\
+Re_a &= 50 - 5000 ~~~ \text{for 0.3 - 30 ACH}
+\end{aligned}
+$$
+
+
+## 2. Airborne transmission rate
+
+### Transmition from infected to susceptible 
+
+Virion infectivity: ~2% SARS, >10% COVID-19
+
+$$
+\begin{aligned}
+\beta &= \text{transmission rate: infections/time} \\
+Q_b &=  \text{volume of air breathed in/out} \\
+C(t) &= \text{concentration of virions in air} \\
+c_i &= \text{infectivity of a virion } \\
+p_m &= \text{mask factor} \\
+\beta(t) &= Q_b C(t) c_i p_m  = \text{infection quanta / time} 
+\end{aligned}
+$$
+
+### Steady state transmission rate
+
+- Qb and pm go into the formula twice, because virions are created and inhaled by individuals both wearing masks.
+- Qb is the information about the amount of air in/exhaled by the individuals
+- pm is information about the kind of masks people are wearing
+- lambda_a holds information about air exchange rate
+- V information about size of room
+- Cq holds all the information about the specific decise
+- beta(t) is the infection quanta per time that are transmitted from the infected to the susceptible individual
+- C(t) is the concentration of virions in the background
+- Cq is the infection quanta that are beeing released, the product of cv (number of virions) and ci (probaility of infection), the infection quanta per liquied volume  in the drop. Lumps together the specific disease related parameters.
+
+$$
+\begin{aligned}
+\beta(t) &= Q_b C(t)  c_i p_m &&\text{transmission rate: infection quanta / time} \\
+Q_b &:&&\text{amount of air created / inhaled by individual} \\
+\bar\beta &= Q_b c_i p_m \frac{P}{Q} = \frac{Q_b c_i p_m P}{\lambda_a V} &&\text{mean transmission rate} \\
+P &= Q_b n_d V_d c_v p_m &&\text{virion production rate}\\
+\\
+\bar\beta &= \frac{{Q_b}^2 {p_m}^2 C_q}{\lambda_a V} &&\text{} \\
+\\
+C_q &= n_d V_d c_v c_i \\ 
+& &&\text{infection quanta / volume air exhaled} \\ 
+& &&\text{lumped/combined disease parameter} \\
+c_q &= c_v*c_i &&\text{infection quanta / liquid in a drop}
+\end{aligned}
+$$
+
+
+## 3. Air filtration versus masks
+
+Filteration: outdoor airflow of volume Q still active. Filters inside or outside room. 
+
+- Z: outdoor air fraction. will typically be kept low. don't import too cold/hot/wrong humidity air, better recirle quality air.
+- Counterproductive for prevention of disease spread
+
+Filter absorption: 99.97 HEPA, 20-90 MERV
+
+$$
+\begin{aligned}
+\lambda_a &= \frac{Q}{V} &&\text{outdoor air exchange rate} \\
+p_f & &&\text{filtration efficience for aerosols} ~  (R \le 5\mu m) \\
+\\
+V \frac{dC(t)}{dt} &= P -Q C(t) -p_f Q_f C(t) &&\text{modified mass balance equation} \\
+\\
+Q &\rightarrow Q + p_f Q_f &&\text{total fresh (clean) air volume}\\
+\lambda_a &\rightarrow   \lambda_a + p_f \lambda_f, ~~~ \lambda_f=\frac{Q_c}{V} &&\text{recirculation filtration air change rate} \\
+Z &= \frac{\lambda_a}{\lambda_a+\lambda_f} = \frac{Q}{Q+Q_f} &&\text{outdoor air fraction. typical: 20} \\
+\\
+\bar\beta &= \frac{{Q_b}^2 C_f {p_m}^2}{(\lambda_a + p_f  \lambda_f)*V} &&\text{steady state transmission rate}
+\end{aligned}
+$$
+
+### Effect of Air Filtration
+
+Homes, Classrooms. How effective ?
+
+- Assume 100% effective filter: -> pf=1 --> filtered air never better than outdoor air itself
+- Z cannot be too small, otherwise not enough oxigene delivered into the room (standardized minimum)
+- a max of around a factor of 10 can be gained by filtration, because the air inside the room consists of a minimum amount of air that is not filtered. This can only be resolved by a closed loop that filters all air, but then oxigen is missing.
+
+
+$$
+\begin{aligned}
+\frac{\bar\beta(p_f=p_f)}{\bar\beta(p_f=0)} &= \frac{\lambda_a}{\lambda_a+p_f \lambda_f} > \frac{\lambda_a}{\lambda_a+\lambda_f}=Z \ge 10^{-1} && (p_f=1, ~~\text{minimum fresh air}) 
+\end{aligned}
+$$
+
+### Effect of masks
+
+masks are much better because they capture the source and also block the target. So basically every drop has to go through the mask at one end and has to go through it again at the other end. While the filter is missing most of the drops. They are floating around the room. They don't go through the filter. Unless it chokes the outside air, and it can't do that.
+
+- Everybody wearing a mask. Infective and susceptible people wearing masks
+- Good mask are difficult to breath with. But filtration effect comes in squared
+- N95 mask: 95% -> 10-3. Surgical mask: 99% -> 10-4, cloth masks 10%-90%, say 50% -> 10-2 to 10-1
+
+
+$$
+\begin{aligned}
+\frac{\bar\beta(p_f=p_f)}{\bar\beta(p_m=1)} &= {p_m}^2  &&\text{pm=1}
+\end{aligned}
+$$
+
+## 4. Sedimentation and Deactivation
+
+- Small droplets may stay in air long time
+- Large droplets drop more quickly
+
+### Stokes settling velocity
+$$
+\begin{aligned}
+V_s &= \frac{2 \rho  g  R^2}{9 \mu_a} && \text{Stoke's settling velocity} \\
+V * \frac{dC(t)}{dt} &= P -C(t)(Q+p_f Q_f+v_s A+\lambda_v V) && \text{mass balance (CSTR) with sedimentation and deactivation} \\
+\lambda_v &~ &&\text{virion deactivation rate} \\
+\tau_v &= {\lambda_v}^{-1} &&\text{deactivation time. reported 1h and >16h for COVID-19} \\
+\frac{dC(t)}{dt} &= \frac{P}{V} - \lambda_c C(t) && \text{rewrite mass balance with new components combined in } \lambda_c \\
+\\
+\text{Concentration relaxation rate:} \\
+\lambda_c &= \lambda_a +p_f \lambda_f+\lambda_v+\frac{v_s}{H} &&\text{outdoor airflow, filtration, deactivation, sedimentation. unit: inverse time} \\
+H &= \frac{V}{A} &&\text{effective ceiling height} \\
+C(t) &= C_s (1-e^{-\lambda_c t})= \frac{P}{\lambda_c V}(1-e^{-\lambda_c t}) && \text{exponential release function}
+\end{aligned}
+$$
+
+### Virus deactivation time
+
+Factors:
+- UV light, Chemical disinfection
+
+
+### Summary
+If lambda c is high, if all these removal rates are high, then that makes cs low. So the background concentration of the room is much smaller if these lambda rates are all high. also, relaxation is high, that is, get to final values.
+
+- Increase of lambda_c makes settling curve rise faster to a smaller maximum
+- Decrease of lambda_c makes settling slow and rise to higher values
+- Saturation depends strongly on droplet size !
+
+How bis is settling Vs/H compared to other components, in particular lambda a ?
+
+- if vs > lambda a * H, then the settling to ground is faster than the removal by ventillation
+- if lambda a around 3/h (a moderate ventilation rate) in room of height 3m results in 0.03 mm/sec = 30 mu/sec
+- in terms of radius this translates into 3um times sqrt(0.03) = 0.5 mu.
+- At standard ventillation rate, the particles that fall to the ground faster than the room ventilation are those larger than 1 mu in diameter.
+- --> So this is telling us that most  of the micron particles are truly aerosols and that they're really not going to make it to the ground before they even get swept away by the ventilation.
+- And even the particles that are a bit bigger than this, maybe that are several microns, are still spending a significant amount of time swirling around the entire room, and they're not really reaching surfaces that quickly.
+
+- Higher room: H big -> lambda c smaller -> settling slow, rise to higher concentration of virions in room
+
+$$
+\begin{aligned}
+v_s &= (1mm/s)  {(\frac{R}{3 \mu m})}^2 &&\text{droplet of size 3 mu has setling velicity of 1mm/sec}
+\end{aligned}
+$$
+
+## 5. Drop-size distributions
+
+- Droplet size a strong function type of breathing of the infected as well as the susceptible person
+- Breathing -> speaking -> load speaking -> singing: huge increase. peak around 0.3 to 1 mu diameter
+- infectivity: mucus predominant in small droplets, water in big droplets
+- mask filtration: 1-pf(r). fit of mask very important. increases with size. max from around 5 mu
+- air filters: HEPA: also aerosols, MERS: predominantly big droplets
+
+
+### Mass balance, radius resolved
+
+Concentration profile
+
+- when the radius is smaller than rc, then sedimentation term is small, then what remains effectiv is ventilation
+- when radius is larger then rc, then sedimentation is fast an ddroplets do not swirl around
+- build up faster in aerosol range, slower in large drop, because large drops are taken out by sedimentation
+- this leads to a slow build up of aerosols. these reach steady state (tens of minutes to hours)
+- other competing size arguments (infectivty) may feature larger drops, but these sediment fast (seconds to minutes)
+- indoor transmission dominated by aerosols, typically somewhat smaller than rc (which is in the range 0.5-5.0 mu)
+- big droplets only effectiv in close range for short time
+
+\newpage 
+
+### General formula for time dependent transmission rate in a room
+
+This is the genral formula for the time dependent transmission rate with selectable infected person droplet production distribution
+
+$$
+\begin{aligned}
+C(r,t) &= \text{radius resolved virions / air volume} \\
+\frac{\partial C}{\partial t} &= \frac{P(r)}{V} - \lambda_c(r) C && \text{mass balance}\\
+\lambda_c(r) &=\lambda_a(1+(\frac{r}{r_c})^2) + \lambda_v + p_f \lambda_f(r) &&\text{Concentration relaxation rate. r/rc: sedimentation} \\
+\lambda_s(r) &= \frac{V_s(r)}{H} &&\text{sedimentation}\\
+\frac{\lambda_s(r)}{\lambda_a} &= \frac{v_s(r)}{v_a}= (\frac{r}{r_c})^2 &&\text{proportion of sedimentation vs air flow} \\
+r_c &=\sqrt{\frac{9 \lambda_a  H   \mu_a}{2   \rho  g}} &&\text{range: 1-3 mu, or 0.5-5 mu} \\
+\beta(t) &= Q_b \int p_m(r) C(r,t) c_i(r)~dr &&\text{transmission rate} \\
+p_m(r) &: \text{} \\
+\\
+& \text{Time and size dependent transmission rate:} \\
+\beta(t) &= \frac{{Q_b}^2}{V} \int^{size} \frac{p_m(r)^2 c_v c_i(r) n_d(r) V_d(r)}{\lambda_c(r)} (1-e^{\lambda_c(r)t})~dr  \\
+c_v &: \text{concentration of virions per liquid volume} \\
+c_i(r) &:\text{infectivity of droplets of radius r} \\
+n_d(r) &:\text{} \\
+V_d &:\text{droplet size} \\
+\lambda_c &: \text{combined rates of effects} \\
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+v_s &= (1mm/s)  {(\frac{R}{3 \mu m})}^2 &&\text{droplet of size 3 mu has setling velicity of 1mm/sec}
+\end{aligned}
+$$
+
+
+
+# Chapter 3: Epidemiological models
+
+## 1. Disease spreading in a Population
+
+Kermack, Mc Kenderick (1927)
+$$
+\begin{aligned}
+\frac{dS}{dt} &= -\beta S I && \text{Susceptible} \\
+\frac{dI}{dt} &= \beta S I + \gamma I = (\beta S - \gamma) I && \text{Infected.  (} \beta S-\gamma \text{) becomes zero at some S !} \\
+\frac{dR}{dt} &= -\gamma I && \text{Recovered} \\
+\\
+\beta &: \text{transmission rate (per pair)} \\
+\gamma &: \text{removal rate} \\
+\\
+\frac{dI}{dt} &= (\frac{\beta S}{\gamma} - 1) \gamma I \sim  (\frac{\beta S_0}{\gamma} - 1) \gamma I && \text{early times: }~~ S \sim S_0  
+\\
+I &= I_0 e^{(R_0-1)\gamma t} \\
+R_0 &= \frac{\beta S_0}{\gamma} \\
+\\
+\frac{S_{herdimune}}{S_0} &= \frac{\gamma}{\beta S_0} = \frac{1}{R_0}
+\end{aligned}
+$$
+
+
+## 2. Indoor Disease Spreading (slow incubation gamma*tau <<1)
+
+- Kermack, Mc Kenderick (1927) "Well-Mixed population"
+- Wells (1955) - Riley (1978) "Well-Mixed room (air)"
+
+Consider: I(0) enters a room with N persons for time t (gamma*tau << 1)
+
+Consider: an exposed group has received the disease but is not yet infectious (contagious)
+
+### SEI Model
+
+$$
+\begin{aligned}
+\frac{dS}{dt} &= -\beta(t) S I \\
+\frac{dE}{dt} &= \beta(t) S I + \alpha E \\
+\frac{dI}{dt} &= -\alpha E  \\
+\alpha &:  \text{incubation time}
+\end{aligned}
+$$
+
+### Well Riley Model (E neglected, alpha*t << 1) (SE model ?)
+
+$$
+\begin{aligned}
+\frac{\partial C}{\partial t} &= \frac{P(r)}{V} - \lambda_C (r) C \\
+\beta(t) &= Q_b \int^1_0 C(r,t) C_i p_m dr  \\
+\\
+\end{aligned}
+$$
+
+### Slow incubation (alpha * t << 1)  --> I ~ I_0 = constant
+
+$$
+\begin{aligned}
+d\hat t &= \beta(t) dt  && \hat t = \int^t_0 \beta dt
+\\
+\frac{dS}{d\hat t} &= -I_0 S && S(0)=N-I_0 \\
+S(t) &= (N-I_0) * exp({-I_0 \int^t_0 \beta dt}) && N-I_0 = S_0 \\
+\text{Wells Equation:} \\
+& \text{Infection "quanta" transmitted in time t} \\
+E(t) &= (N-I_0)(1-e^{-q(t)}) && q(t) = I_0 \int^t_0 \beta dt \\
+1-e^{-1} &= 0.63, ~~ q(t)=1 && \text{'quantum' (Wells definition)}
+\end{aligned}
+$$
+
+### Early times: q << 1
+
+$$
+\begin{aligned}
+E(t) &= S_0 q(t) \sim (N-I_0)I_0 \int^t_0 \beta dt \\
+\frac{E(\tau)}{I_0} &= R_{in} = (N-1)\int^\tau_0 \beta dt && I_0=1 \\
+\end{aligned}
+$$
+
+
+
+
+
+
+
+
+## 3. Incubation - Enhanced Spreading: fast incubation (alpha*tau >> 1)
+
+Motivation: Once a group of people stay in contact longer than the incubation time,
+infection quanta are generated by an increasing number of persons, thus accellerating the transmission process.
+Example: 'Diamond Princess' cruise ship: Quarantined with around 20 known cases for 12 days, with 354 at end of quarantine, with most new cases at end of quarantine.
+
+Incubation time; from a few a several days, with a proposed mean of 5.5 days.
+
+### subtitle 1
+
+$$
+\begin{aligned}
+\frac{dS}{dt} &= -\beta(t) S I \\
+\frac{dE}{dt} &= \beta(t) S I - \alpha E \\
+\frac{dI}{dt} &= \alpha E  \\
+\frac{1}{\alpha} &: && \text{mean incubation time ~ 5.5 days} \\
+q(t) &= I_0 \int^t_0 \beta(t) dt && \text{quanta emitted by} I_0 \\
+\frac{dS}{dt} &= -\beta(t)SI \\
+\text{SI model} &: E \sim 0, ~~S=N-I \\
+\frac{dI}{dt} &= \beta(t)I(N-I) \\
+\end{aligned}
+$$
+
+### subtitle 2
+
+$$
+\begin{aligned}
+\frac{dI}{I(N-I)} &= \int^t_0 \beta(t) dt = \int^I_{I_0} \frac{1}{N} \bigg[\frac{1}{I} + \frac{1}{N-I}\bigg]dI \\
+ln(I) -ln(N-I) =& N\int^t_0 \beta(t) dt + ln(I_0) - ln(N-I_0) \\
+\frac{I}{N-I} &=  \frac{I_0}{N-I_0}exp({\frac{N}{I_0}q(t))}
+\end{aligned}
+$$
+
+### early times ??
+
+$$
+\begin{aligned}
+& \alpha t << 1,   I=I_0 \\
+I(t) &=  (N-I_0)I_0 \int^I_{I_0} \beta dt = S_0 q(t)\\
+\end{aligned}
+$$
+
+### Universial small transmission limit:
+
+$$
+\begin{aligned}
+\frac{E+I}{I_0} \sim R_{in} = S_0 q(t) &= (N-1)\int^t_0 \beta dt\\
+& S_0=N-1, ~~~ I_0=1
+\end{aligned}
+$$
+
+### "infection quantum" defined by beta not by
+
+$$
+\begin{aligned}
+I_s &= \frac{E+I}{S_0}
+\end{aligned}
+$$
+
+
+
+
+
+
+
+
+
+
+
+
