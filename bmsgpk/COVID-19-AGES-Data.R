@@ -19,14 +19,14 @@ logMsg <- function(msg) {
 }
 
 # COVID-19 Ages files
-#cfGKZ <- "CovidFaelle_GKZ.csv"
-cfGKZtl <- "CovidFaelle_Timeline_GKZ.csv"
-cftl <- "CovidFaelle_Timeline.csv"
-cfz <- "CovidFallzahlen.csv"
-# epi <- "Epikurve.csv"
+cfGKZtl <- "CovidFaelle_Timeline_GKZ.csv"  # https://covid19-dashboard.ages.at/data/CovidFaelle_Timeline_GKZ.csv    # caAgesRead_cfGKZtl()
+cftl <- "CovidFaelle_Timeline.csv"         # https://covid19-dashboard.ages.at/data/CovidFaelle_Timeline.csv        # caAgesRead_cftl()
+cfz <- "CovidFallzahlen.csv"               # https://covid19-dashboard.ages.at/data/CovidFallzahlen.csv                                                                      # caAgesRead_cfz
+tftl <- "TodesfaelleTimeline.csv"                                                                                   # caAgesRead_tftl()
+#cfGKZ <- "CovidFaelle_GKZ.csv"            # https://covid19-dashboard.ages.at/data/CovidFaelle_GKZ.csv             
 gtl <- "GenesenTimeline.csv"
-tftl <- "TodesfaelleTimeline.csv"
 #cfag <- "CovidFaelle_Altersgruppe.csv"
+# epi <- "Epikurve.csv"
 
 
 # Several reported 'Tested' records seem to be wrong. 
@@ -102,39 +102,54 @@ caAgesRead_tftl <- function() {
 # CovidFaelle_Timeline_GKZ.csv: TimeLine Bezirke (Confirmed, Recovered, Deaths)
 # -------------------------------------------------------------------------------------------
 caAgesRead_cfGKZtl <- function() {
+  # https://covid19-dashboard.ages.at/data/CovidFaelle_Timeline_GKZ.csv
   csvFile <- paste0("./data/ages/",cfGKZtl)
   df <- read.csv(csvFile, stringsAsFactors=FALSE, sep=";") %>% 
     dplyr::mutate(Stamp=as.POSIXct(Time, format="%d.%m.%Y %H:%M:%S"), Date=date(Stamp)) %>%
     dplyr::rename(RegionID=GKZ, Region=Bezirk, Population=AnzEinwohner) %>%
-    dplyr::rename(newConfirmed=AnzahlFaelle, sumConfirmed=AnzahlFaelleSum, rm7Confirmed=AnzahlFaelle7Tage) %>%
+    dplyr::rename(newConfirmed=AnzahlFaelle, sumConfirmed=AnzahlFaelleSum, rmaConfirmed=AnzahlFaelle7Tage) %>%
     dplyr::rename(newDeaths=AnzahlTotTaeglich, sumDeaths=AnzahlTotSum) %>%
     dplyr::rename(newRecovered=AnzahlGeheiltTaeglich, sumRecovered=AnzahlGeheiltSum) %>%
-    dplyr::select(-SiebenTageInzidenzFaelle, -Time) %>% dplyr::select(11,12,1:10)
-  #dplyr::mutate(SiebenTageInzidenzFaelle=as.integer(SiebenTageInzidenzFaelle))
-  str(df)
-  summary(df)
-  unique(df$Region)
+    dplyr::mutate(newConfPop = newConfirmed/Population*100000) %>%
+    dplyr::select(-SiebenTageInzidenzFaelle, -Time) %>% dplyr::select(11,12,2,1,3,4,6,13,9,7,5,10,8) 
   
+  #dplyr::mutate(SiebenTageInzidenzFaelle=as.integer(SiebenTageInzidenzFaelle))
+  #str(df)
+  #summary(df)
+  #unique(df$Region)
+      
   # apply rolling mean to 'new*' cols
-  dfrm <- df %>%
+  df <- df %>%
     dplyr::arrange(Date, Region) %>%
     dplyr::group_by(Region) %>%
     dplyr::mutate_at(vars(starts_with("new")), rollmean, k=7, fill=NA, align="right") %>%
     dplyr::ungroup()
-  str(dfrm)
   
-  ggplot(data=dfrm, aes(x=Date, y=newConfirmed/Population*1000000, color=Region)) + 
-    geom_line() + 
-    scale_x_date(limits=c(as.Date(strptime("2020-08-01",format="%Y-%m-%d")),NA), 
-                 date_breaks="1 weeks", date_labels="%a.%d.%m") +
-    scale_y_continuous(limits=c(0,500)) + 
-    ggtitle("AGES Bezirke Timeline: Wien")
+  write.csv(df, file="./data/COVID-19-AGES-GKZ.csv", row.names=FALSE)
+  #str(df)
+  
+  #Capitals=c("Wien","Eisenstadt","Sankt Pölten(Land)","Linz(Stadt)","Klagenfurth Stadt","Graz(Stadt)","Salzburg(Stadt)","Innsbruck-Stadt","Feldkirch")
+  #Big10Cities=c("Wien","Graz(Stadt)","Linz(Stadt)","Baden","Vöcklabruck","Bregenz","Innsbruck-Stadt","Mödling","Amstetten","Kufstein")
+  #dc <- df %>%
+  #  dplyr::mutate(regionBigCity=Region %in% Big10Cities, regionCapital=Region %in% Capitals) %>%
+  #  dplyr::group_by(regionBigCity, Date) %>%
+  #  dplyr::summarize(cityConfPop = sum(newConfirmed)/sum(Population)*100000) %>%
+  #  dplyr::ungroup()
+  
+  
+  #ggplot(data=dfrm, aes(x=Date, y=newConfirmed/Population*1000000, color=Region)) + 
+  #  geom_line() + 
+  #  scale_x_date(limits=c(as.Date(strptime("2020-08-01",format="%Y-%m-%d")),NA), 
+  #               date_breaks="1 weeks", date_labels="%a.%d.%m") +
+  #  scale_y_continuous(limits=c(0,500)) + 
+  #  ggtitle("AGES Bezirke Timeline: Wien")
 }
 
 # -------------------------------------------------------------------------------------------
 # CovidFaelle_Timeline.csv: TimeLine BundesLänder (Confirmed, Recovered, Deaths)
 # -------------------------------------------------------------------------------------------
 caAgesRead_cftl <- function(csvFile=paste0("./data/ages/",cftl)) {
+  # https://covid19-dashboard.ages.at/data/CovidFaelle_Timeline.csv
   dc <- read.csv(csvFile, stringsAsFactors=FALSE, sep=";") %>% 
     dplyr::mutate(Stamp=as.POSIXct(Time, format="%d.%m.%Y %H:%M:%S"), Date=date(Stamp)) %>%
     dplyr::rename(RegionID=BundeslandID, Region=Bundesland, Population=AnzEinwohner) %>%
@@ -152,19 +167,31 @@ caAgesRead_cftl <- function(csvFile=paste0("./data/ages/",cftl)) {
 # CovidFallzahlen.csv: TimeLine Bezirke (Confirmed, Recovered, Deaths)
 # -------------------------------------------------------------------------------------------
 caAgesRead_cfz <- function(csvFile=paste0("./data/ages/",cfz)) {
-   dt <- read.csv(csvFile, stringsAsFactors=FALSE, sep=";") %>% 
+  # https://covid19-dashboard.ages.at/data/CovidFallzahlen.csv
+  
+  cfzImpute <- function(newTested) {
+    newTested[newTested<0]=0
+    newTested[newTested==0]=mean(newTested, na.rm=TRUE)
+    newTested[is.na(newTested)]=mean(newTested, na.rm=TRUE)
+    newTested=round(newTested)
+    return(newTested)
+  }    
+  
+  dt <- read.csv(csvFile, stringsAsFactors=FALSE, sep=";") %>% 
     dplyr::mutate(Stamp=as.POSIXct(MeldeDatum, format="%d.%m.%Y %H:%M:%S"), Date=date(as.POSIXct(Meldedat, format="%d.%m.%Y"))) %>%
     dplyr::rename(RegionID=BundeslandID, Region=Bundesland, sumTested=TestGesamt) %>%
     dplyr::rename(curHospital=FZHosp, freeHospital=FZHospFree, curICU=FZICU, freeICU=FZICUFree) %>%
     dplyr::arrange(Date) %>% 
     dplyr::group_by(Region) %>% 
     dplyr::mutate(newTested=sumTested-lag(sumTested)) %>% 
+    dplyr::mutate(newTested=cfzImpute(newTested)) %>%
     dplyr::ungroup() %>%
     dplyr::select(-Meldedat, -MeldeDatum) %>% 
     dplyr::select(8,9,6,7,10,1,2,3,4,5)
   #str(dt)
   #summary(dt)
   dt$Region[dt$Region=="Alle"] <- "Österreich"
+  
   return(dt)
 }
 
@@ -175,13 +202,13 @@ caAgesRead_cfz <- function(csvFile=paste0("./data/ages/",cfz)) {
 fileDate_cftl=NULL; fileDate_cfz=NULL; bPlot=FALSE
 nRm7Days=7; bDt7=TRUE; nDt7Days=7; bLpr=TRUE; nLprDays=19
 bResiduals=TRUE; dResFirst=as.Date("2020-07-01"); dResLast=as.Date("2020-12-07"); bShiftDown=TRUE
-bPredict=TRUE; nPolyDays=5; nPoly=2
+bPredict=TRUE; nPolyDays=7; nPoly=2
 bEstimate=FALSE; bCompleteCases=FALSE
 
 caAgesRead_tlrm <- function(fileDate_cftl=NULL, fileDate_cfz=NULL, bPlot=FALSE, 
                             nRm7Days=7, bDt7=TRUE, nDt7Days=7, bLpr=TRUE, nLprDays=19,
                             bResiduals=TRUE, dResFirst=as.Date("2020-07-01"), dResLast=as.Date("2020-12-07"), bShiftDown=TRUE,
-                            bPredict=TRUE, nPolyDays=5, nPoly=2,
+                            bPredict=TRUE, nPolyDays=7, nPoly=2,
                             bEstimate=FALSE, bCompleteCases=FALSE) {
   
   # Read timeline of confirmed, hospitalized, deaths
@@ -226,12 +253,23 @@ caAgesRead_tlrm <- function(fileDate_cftl=NULL, fileDate_cfz=NULL, bPlot=FALSE,
   df <- df %>% 
     dplyr:: filter(Date <=jointDate) %>%
     dplyr::filter(Date>as.Date("2020-04-01")) %>% 
-    dplyr::arrange(Region, Date)
-  
+    ### DIRTY: upcoming bad AGES data imputation depends on data to be sorted !!!
+    dplyr::arrange(Region, Date)   
 
   # impute wrong newTested. Heuristic :(
-  idx <- which(df$newTested==0)
+  idx <- which(df$newTested==0 | is.na(df$newTested))
   df$newTested[idx] <- round((df$newTested[idx-1]+df$newTested[idx+1])/2)
+  
+  # impute wrong newTested. Heuristic :(
+  idx <- which(is.na(df$curHospital))
+  df$curHospital[idx] <- round((df$curHospital[idx-1]+df$curHospital[idx+1])/2)
+  idx <- which(is.na(df$curICU))
+  df$curICU[idx] <- round((df$curICU[idx-1]+df$curICU[idx+1])/2)
+  idx <- which(is.na(df$freeHospital))
+  df$freeHospital[idx] <- round((df$freeHospital[idx-1]+df$freeHospital[idx+1])/2)
+  idx <- which(is.na(df$freeICU))
+  df$freeICU[idx] <- round((df$freeICU[idx-1]+df$freeICU[idx+1])/2)
+  
   
   # add derived properties
   df <- df %>%
@@ -393,7 +431,8 @@ caAgesRead_tlrm <- function(fileDate_cftl=NULL, fileDate_cfz=NULL, bPlot=FALSE,
   
   # Sort cols
   df <- df %>% dplyr::select(1:8,sort(colnames(df)[c(9:dim(df)[2])]))
-   
+  
+  write.csv(df, file="./data/COVID-19-AGES-Curated.csv", quote=FALSE, sep=" ", dec=".", na="NA", row.names=FALSE)
   return(df)
 }
 
@@ -446,18 +485,19 @@ caAgesRm7EstimatePoly <- function(df, nPolyDays=7, nPoly=2, nRm7Days=7) {
 # --------------------------------------------------------------------------------------------------------
 # AGES Estimate of rm7 data for past three days based on estimate of over/under reports depending on day of week
 # --------------------------------------------------------------------------------------------------------
-caAgesRM7Estimate <- function(df, bPlot=FALSE) {
+caAgesRM7Estimate <- function(df, bPlot=FALSE, nWeeks=5) {
   # estimate the weekly rolling mean for today and the past two days by 
   # compensating the over/under estimation as the mean in the past three weeks
-  begDate <- max(df$Date) - weeks(3) - days(3)
+  begDate <- max(df$Date) - weeks(nWeeks) - days(3)
   endDate <- max(df$Date) - days(3)
   
+  dfx <- df %>% dplyr::filter(Date > begDate)
   # plot 
   if (bPlot) {
-    ggplot(data=df %>% dplyr::filter(Date > begDate), aes(x=Date, y=newConfirmed, group=Region, color=Region)) + geom_line(size=1.5) +
+    ggplot(data=df, aes(x=Date, y=newConfirmed, group=Region, color=Region)) + geom_line(size=1.5) +
       geom_point(data=dfx, aes(x=Date, y=newConfirmed, group=Region, color=Region)) +
       geom_line(data=dfx, aes(x=Date, y=newConfirmed, group=Region, color=Region)) +
-      geom_lpr(data=dfx, aes(x=Date, y=newConfirmed, color=Region), method="loess", n=10, se=FALSE, color="black",linetype=3) +
+      geom_smooth(data=df, aes(x=Date, y=newConfirmed, color=Region), method="loess", n=10, se=FALSE, color="black",linetype=3) +
       facet_wrap(.~Region, nrow=2, scales="free_y")
   }
   
@@ -473,6 +513,7 @@ caAgesRM7Estimate <- function(df, bPlot=FALSE) {
       scale_x_continuous(breaks=1:7)+
       scale_shape_manual(values=c(21:25,7,9,10,12,13,14)) +
       geom_point(size=5) +
+      geom_line(aes(y=1)) +
       facet_wrap(.~Region, nrow=2)
   }
   
@@ -493,6 +534,13 @@ caAgesRM7Estimate <- function(df, bPlot=FALSE) {
   return(dfp)    
 }
 
+reg <- "Oberösterreich"
+ggplot(data=df%>%dplyr::filter(Date>max(Date)-days(38),Region==reg), aes(x=Date, y=rm7NewConfirmed, color=Region)) + 
+  geom_point()+geom_line(size=1.5)+
+  geom_point(aes(y=newConfirmed))+
+  geom_line(aes(y=newConfirmed), linetype=2, size=0.5) +
+  geom_point(data=dc%>%dplyr::filter(Date>max(Date)-days(38),Region==reg), aes(y=newConfirmed))+
+  geom_line(data=dc%>%dplyr::filter(Date>max(Date)-days(38),Region==reg), aes(y=newConfirmed), linetype=2, size=0.5, color="blue")
 
 # --------------------------------------------------------------------------------------------------------
 # AGES Bundesländer: Ein/Nach Meldungen zu Tested, Confirmed auf Basis Datum Laborbefund

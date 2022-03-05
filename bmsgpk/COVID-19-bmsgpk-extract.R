@@ -6,7 +6,6 @@ library(dplyr)
 library(xml2)
 library(rvest)
 
-
 options(error = function() traceback(2))
 options(width=256)
 
@@ -25,22 +24,31 @@ scrapeCovid3 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
 
   dmpFile=paste0("./html/COVID-19-austria-bmsgpk.",ts,".dmp")
   url <- "https://info.gesundheitsministerium.gv.at/?re=tabelle"
-   
+  
+  # Weird page. takes some time to load. Browser would need to wait, but often does not 
+  errString <- "Daten werden geladen"
+  
   logMsg(paste("Scraping using headless chrome for", url))
   chrome="/opt/google/chrome/chrome"
-  flags="--headless --disable-gpu --dump-dom"
-  logMsg(paste("Dumping page to", dmpFile))
-  system2(chrome,paste(url, flags, ">", dmpFile))
-  
-  # use xml2 methods to extract information from dump
-  logMsg(paste("Analysing dump file", dmpFile))
-  html <- xml2::read_html(dmpFile)
-  
+  flags="--headless --disable-gpu --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000"
+  for (i in 1:10) {
+    logMsg(paste("Dumping page to", dmpFile, " Atempt",i))
+    logMsg(paste("Running:  chrome", url, flags, ">", dmpFile))
+    system2(chrome,paste(url, flags, ">", dmpFile))
+    
+    # use xml2 methods to extract information from dump
+    logMsg(paste("Analysing dump file", dmpFile, " Atempt",i))
+    html <- xml2::read_html(dmpFile)
+    
+    # Extract timestamp
+    h2s <- html %>% html_nodes("h2")
+    
+    # check if actual data have been downloaded
+    if (length(h2s)!=0)
+      break
+  }    
   # ID of table to extract
   item <- 2
-  
-  # Extract timestamp
-  h2s <- html %>% html_nodes("h2")
   h2 <- h2s[[item]] %>% html_text() %>% format()
   # "Zahlen aus Österreich Bundesländermeldungen; Stand 12.05.21 09:30 Uhr"
   Stamp                  <- as.POSIXct(str_replace_all(str_match(h2, paste0("Stand ","(.*)","Uhr"))[,2],"[^0-9:. ]",""),format="%d.%m.%y %H:%M")
@@ -119,7 +127,7 @@ scrapeBmsgpk <- function (ts=format(now(),"%Y%m%d-%H%M")) {
     logMsg(paste("Fetching", url))
     # gather to long format
     rc <- read.csv(url, header=TRUE, sep=";", stringsAsFactors=FALSE) %>% 
-      dplyr::mutate(Datum=as.Date(Datum)) %>% 
+      dplyr::mutate(Datum=as.Date(Datum, format="%d.%m.%Y")) %>% 
       dplyr::select(-starts_with("Bev")) %>%
       tidyr::gather(key="Key", value="Value", -Datum, -BundeslandID, -Name) %>%
       dplyr::mutate(Source=!!csvSource)
@@ -552,6 +560,7 @@ scrapeZIP <- function(ts=format(now(),"%Y-%m-%d_%H%M")) {
   
   return(0)
 }
+
 scrapeZIP_AGES <- function(ts=format(now(),"%Y-%m-%d_%H%M")) {
   
   zipFile=paste0("./data/zip/COVID-19-austria.V1006.",ts,".zip")

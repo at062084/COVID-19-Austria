@@ -6,7 +6,8 @@ setwd(wd)
 source("./COVID-19-AGES-Data.R")
   
 # read Ages Data
-df <- caAgesRead_tlrm(bEstimate=FALSE, bCompleteCases=FALSE, bPredict=TRUE, nPolyDays=7, nPoly=2, bShiftDown=FALSE)
+df <- caAgesRead_tlrm(bEstimate=FALSE, bCompleteCases=FALSE, bPredict=TRUE, nPolyDays=14, nPoly=2, bShiftDown=FALSE, nDt7Days=7)
+dg <- caAgesRead_cfGKZtl()
 wd <- "/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/pdf"
 setwd(wd)
 
@@ -66,12 +67,12 @@ dplmST <- df %>%
   dplyr::mutate(predNewConfPop=exp(predict(lm(log(rm7NewConfPop)~Date, na.action=na.exclude), newdata=data.frame(Date=predDate)))) %>%
   dplyr::ungroup()
 
-dp <- df %>% dplyr::filter(Date>=augDate)
+dp <- df %>% dplyr::filter(Date>=julDate)
 
 ggplot(data=dp, aes(x=Date, y=rm7NewConfPop, color=Region, shape=Region)) +
   theme(panel.grid.major = element_line(color = "darkgray", linetype=3), panel.grid.minor=element_line(color = "gray90", linetype=1)) +
   scale_shape_manual(values=c(1:10)) +
-  scale_x_date(date_breaks="1 weeks", date_labels="%d.%m", limits=c(augDate, maxDate+days(nPredDays+2)), expand=expand_scale(mult=0.01)) +
+  scale_x_date(date_breaks="1 weeks", date_labels="%d.%m", limits=c(novDate, maxDate+days(nPredDays+2)), expand=expand_scale(mult=0.01)) +
   scale_y_continuous(limits=c(1,yLimMax), breaks=popBreaksAll, position="right", expand=expand_scale(mult=0.01), trans="log10", name="Positive/100.000 Einwohnern. \nAmpelfarben entlang ECDC (European Centre for Disease Prevention and Control) ") + 
   geom_line(data=dp, aes(x=Date, y=1.4-0.025), size=2.0, color="green") +
   geom_line(data=dp, aes(x=Date, y=1.4+0.025), size=2.0, color="yellow") +
@@ -99,7 +100,7 @@ ggplot(data=dp, aes(x=Date, y=rm7NewConfPop, color=Region, shape=Region)) +
 ggsave(file=paste0("COVID-19-rm7NewConfPop_Date_Region-",min(dp$Date),"_",maxDate,".pdf"), dpi=300, width=12, height=8, scale=1.10)
 ggsave(file=paste0("../COVID-19-Austria-newConfPop_Date_Region.png"), dpi=100, width=9, height=9, scale=1.4)
 
-#geom_point(data=dplm %>% dplyr::filter(Date>maxDate), aes(x=Date, y=predNewConfPop), size=.25) +
+  #geom_point(data=dplm %>% dplyr::filter(Date>maxDate), aes(x=Date, y=predNewConfPop), size=.25) +
 #geom_line(data=dplm %>% dplyr::filter(Region=="Österreich"), aes(x=Date, y=predNewConfPop), color="darkgreen", size=.5, linetype=2) +
 #geom_line(data=dplm %>% dplyr::filter(Region=="Wien"), aes(x=Date, y=predNewConfPop), color="red", size=.5, linetype=2) +
 
@@ -414,9 +415,43 @@ ggplot(data=dp, aes(x=Date, y=Count, color=Status, shape=Status)) +
 ggsave(file=paste0("COVID-19-CountsSpread_Date_Vienna-",min(dp$Date),"_",maxDate,"-Facet.pdf"), dpi=300, width=12, height=8, scale=1.00)
 
 
+# -------------------------------------------------------------------------------------------------
+# Dateil data: Wien
+# -------------------------------------------------------------------------------------------------
+dp <- df %>% 
+  dplyr::filter(Region=="Niederösterreich") %>%
+  dplyr::filter(Date>sepDate)
 
+trans="log10"
+trans="identity"
 
+ggplot(data=dp, aes(x=Date, y=newConfPop)) +
+  
+  scale_x_date(date_breaks="1 weeks", date_labels="%a.%d.%m") +
+  scale_y_continuous(limits=c(1,100), breaks=c(seq(1,10,by=1),seq(10,200,by=10)), trans=trans) + 
+  
+  # Confirmed
+  geom_point(size=1, color="grey20") +  
+  geom_line(color="grey20", linetype=1, size=.25) +
+  geom_point(aes(x=Date, y=rm7NewConfPop), size=2, color="grey20") +
+  geom_line(aes(x=Date, y=rm7NewConfPop), size=1.1, color="grey20") +
+  #geom_line(aes(x=Date, y=smoothNewConfirmed), color="grey20", linetype=2) +
+  
+  # Confirmed/Tested
+  geom_point(aes(x=Date, y=newConfTest*100), size=1, color="blue") +
+  geom_line(aes(x=Date,  y=newConfTest*100), linetype=3, color="blue") +
+  geom_point(aes(x=Date, y=rm7NewConfTest*100), size=1, color="blue") +
+  geom_line(aes(x=Date, y=rm7NewConfTest*100), color="blue") +
+  #geom_line(aes(x=Date, y=smoothŃewConfTest*10000), color="blue", linetype=2) +
+  
+  geom_point(aes(x=Date, y=newTested/1000), size=1, color="red") +
+  geom_line(aes(x=Date,  y=newTested/1000), linetype=3, color="red") +
+  geom_point(aes(x=Date, y=rm7NewTested/1000), size=1, color="red") +
+  geom_line(aes(x=Date, y=rm7NewTested/1000), color="red") +
+  #geom_line(aes(x=Date, y=smoothNewTested/10), color="red", linetype=2) +
+  ggtitle("AGES BundesLänder Timeline newConfirmed & newTested WeekMeans: Wien")
 
-
+ggplot(data=df %>% filter(Date<as.Date("2020-12-01"), rm7NewConfPop>7), aes(x=(rm7NewConfPop), y=(rm7NewConfTest)))+geom_point() +
+  geom_smooth(method="lm")
 
 

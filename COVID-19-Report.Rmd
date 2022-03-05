@@ -144,7 +144,7 @@ ggplot(data=drm%>%dplyr::filter(County!="AT"), aes(x=Date, y=newTested, color=Co
     scale_shape_manual(values=c(1:10)) +
     #scale_x_continuous(limits=c(17,NA)) +
     scale_x_date(limits=c(as.Date(strptime("2020-05-01",format="%Y-%m-%d")),NA)) +
-    scale_y_continuous(limits=c(0,5000)) +
+    scale_y_continuous(limits=c(0,10000)) +
     ggtitle("newTested ~ Date | County. Avg=7days")
   
 
@@ -162,7 +162,7 @@ ggplot(data=drm%>%dplyr::filter(County!="AT"), aes(x=Date, y=newConfirmed, color
     scale_shape_manual(values=c(1:10)) +
     #scale_x_continuous(limits=c(17,NA)) +
     scale_x_date(limits=c(as.Date(strptime("2020-05-01",format="%Y-%m-%d")),NA)) +
-    scale_y_continuous(limits=c(0,350)) +
+    scale_y_continuous(limits=c(.2,2000), trans="log10") +
     ggtitle("newConfirmed ~ Date | County. Avg=7days")
 
 #ggplot(data=drm%>%dplyr::filter(County!="AT"), aes(x=KW, y=newConfirmed, color=County)) + 
@@ -179,7 +179,7 @@ ggplot(data=drm, aes(x=Date, y=newConfirmed/newTested, color=County)) +
   scale_shape_manual(values=c(1:10)) +
   #scale_x_continuous(limits=c(17,NA)) +
   scale_x_date(limits=c(as.Date(strptime("2020-05-01",format="%Y-%m-%d")),NA)) +
-  scale_y_continuous(limits=c(0,.06), breaks=seq(0,.06,by=.01))+
+  scale_y_continuous(limits=c(.001,.25), breaks=seq(0,.25,by=.01), trans="log10") +
   ggtitle("newConfirmed/newTested ~ Date | County. Avg=7days")
 
 ggplot(data=drm %>% dplyr::filter(County %in% c("AT","B", "Ooe","W")), 
