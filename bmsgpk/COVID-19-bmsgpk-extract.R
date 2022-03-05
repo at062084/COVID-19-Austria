@@ -30,7 +30,7 @@ scrapeCovid3 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   
   logMsg(paste("Scraping using headless chrome for", url))
   chrome="/opt/google/chrome/chrome"
-  flags="--headless --disable-gpu --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000"
+  flags="--headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000"
   for (i in 1:10) {
     logMsg(paste("Dumping page to", dmpFile, " Atempt",i))
     logMsg(paste("Running:  chrome", url, flags, ">", dmpFile))
@@ -60,7 +60,7 @@ scrapeCovid3 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   tbls <- html %>% html_table(header=TRUE, dec=".")
   tbl <- tbls[[2]][,1:11]
   colnames(tbl) <- c("Status", colnames(tbl)[2:11] %>% str_replace_all(., "\\.", "")) 
-  Status <- tbl[,1] %>%
+  Status <- tbl[,1]$Status %>%
     str_replace_all(.," ⁽¹⁾","") %>%
     str_replace_all(.,"⁽²⁾","") %>%
     str_replace_all(.,"⁽³⁾","") %>%
@@ -123,11 +123,15 @@ scrapeBmsgpk <- function (ts=format(now(),"%Y%m%d-%H%M")) {
   for (k in 1:length(csvFiles)) {
     csvFile <- csvFiles[k]
     csvSource <- csvSources[k]
+    csvTarget <- paste0("./data/bmsgpk/",csvFile,".csv")
     url <- paste0("https://info.gesundheitsministerium.gv.at/data/", csvFile,".csv")
-    logMsg(paste("Fetching", url))
+    logMsg(paste("Fetching", csvFile))
+    cmd <- paste(url, " --secure-protocol=TLSv1 -O", csvTarget)
+    system2("wget", cmd)
+    
     # gather to long format
-    rc <- read.csv(url, header=TRUE, sep=";", stringsAsFactors=FALSE) %>% 
-      dplyr::mutate(Datum=as.Date(Datum, format="%d.%m.%Y")) %>% 
+    rc <- read.csv(csvTarget, header=TRUE, sep=";", stringsAsFactors=FALSE) %>% 
+      dplyr::mutate(Datum=as.Date(Datum)) %>% 
       dplyr::select(-starts_with("Bev")) %>%
       tidyr::gather(key="Key", value="Value", -Datum, -BundeslandID, -Name) %>%
       dplyr::mutate(Source=!!csvSource)
@@ -151,7 +155,7 @@ scrapeCovid2 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   url="\"https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html\""
   logMsg(paste("Download Ampel data from", url))
   logMsg(paste("Storing Ampel data to", ampelFile))
-  cmd <- paste(url, "-O", ampelFile)
+  cmd <- paste(url, " --secure-protocol=TLSv1 -O", ampelFile)
   system2("wget", cmd)
   
   # get html page from bmsgpk
@@ -159,7 +163,7 @@ scrapeCovid2 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   url="\"https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html\""
   logMsg(paste("Scraping", url))
   logMsg(paste("Dumping page to", bmsgpkFile))
-  cmd <- paste(url, "-O", bmsgpkFile)
+  cmd <- paste(url, " --secure-protocol=TLSv1 -O", bmsgpkFile)
   system2("wget", cmd)
   
   #xpathTable <- "/html/body/div[3]/div/div/div/div[2]/main/div[2]/table"
@@ -227,7 +231,7 @@ scrapeCovid <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   url="\"https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html\""
   logMsg(paste("Scraping", url))
   logMsg(paste("Dumping page to", bmsgpkFile))
-  cmd <- paste(url, "-O", bmsgpkFile)
+  cmd <- paste(url, " --secure-protocol=TLSv1 -O", bmsgpkFile)
   system2("wget", cmd)
   
   logMsg(paste("Parsing dump in", bmsgpkFile))
@@ -503,7 +507,7 @@ scrapeHospitalisierung <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   logMsg(paste("Scraping", url))
   
   logMsg(paste("Dumping page to", dmpFile))
-  cmd <- paste0("\"",url,"\"", " -O ", dmpFile)
+  cmd <- paste0("\"",url,"\"", " --secure-protocol=TLSv1  -O ", dmpFile)
   system2("wget", cmd)
 
   logMsg(paste("Reading dump from", dmpFile))
@@ -552,7 +556,7 @@ scrapeZIP <- function(ts=format(now(),"%Y-%m-%d_%H%M")) {
   url="https://info.gesundheitsministerium.at/data/data.zip"
   
   logMsg(paste("Downloading", url, "to", zipFile))
-  cmd <- paste0("\"",url,"\"", " -O ", zipFile)
+  cmd <- paste0("\"",url,"\"", " --secure-protocol=TLSv1  -O ", zipFile)
   system2("wget", cmd)
   
   #cmd <- paste(zipFile, "-d", zipDir)
@@ -569,7 +573,7 @@ scrapeZIP_AGES <- function(ts=format(now(),"%Y-%m-%d_%H%M")) {
   url="https://covid19-dashboard.ages.at/data/data.zip"
   
   logMsg(paste("Downloading", url, "to", zipFile))
-  cmd <- paste0("\"",url,"\"", " -O ", zipFile)
+  cmd <- paste0("\"",url,"\"", " --secure-protocol=TLSv1 -O ", zipFile)
   system2("wget", cmd)
   
   cmd <- paste("-fo", zipFile, "-d", unzipDir)
