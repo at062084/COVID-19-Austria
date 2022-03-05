@@ -546,7 +546,7 @@ ggplot(data=df%>%dplyr::filter(Date>max(Date)-days(38),Region==reg), aes(x=Date,
 # AGES Bundesländer: Ein/Nach Meldungen zu Tested, Confirmed auf Basis Datum Laborbefund
 # --------------------------------------------------------------------------------------------------------
 caAgesTestConfFlow <- function(flowDir="./extract") {
-  base_dir <- "/home/at062084/DataEngineering/COVID-19/covid-ibm/covid-19-at-scraper"
+  base_dir <- "/home/at001335/DataEngineering/COVID-19/covid-ibm/covid-19-at-scraper"
   cftlFiles <- list.files(path=paste0(base_dir,"/",flowDir), pattern=paste0("^CovidFaelle_Timeline.*csv$"))
   cfzFiles  <- list.files(path=paste0(base_dir,"/",flowDir), pattern=paste0("^CovidFallzahlen.*csv$"))
   

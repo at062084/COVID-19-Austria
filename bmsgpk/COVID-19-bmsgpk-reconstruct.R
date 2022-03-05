@@ -9,7 +9,7 @@ library(rvest)
 options(error = function() traceback(2))
 options(width=256)
 
-setwd("/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk")
+setwd("/home/at001335/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk")
 
 #csvFile <- paste0("./data/COVID-19-austria.csv")
 #df <- read.csv(file=csvFile)
@@ -97,7 +97,7 @@ reconstructCovid2 <- function(htmlFile) {
 # main
 # -----------------------------------------------------------------------------------------------------
 
-# Downloaded html files from COS into /home/at062084/DataEngineering/COVID-19/covid-ibm/download/dumps
+# Downloaded html files from COS into /home/at001335/DataEngineering/COVID-19/covid-ibm/download/dumps
 htmlPath<-"../../covid-ibm/download/dumps"
 htmlFiles <- list.files(path=htmlPath, pattern="COVID-19-austria.bmsgpk.2021([0-9-]*).html")
 

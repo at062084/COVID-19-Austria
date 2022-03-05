@@ -18,7 +18,7 @@ logMsg <- function(msg) {
   cat(paste(format(Sys.time(), "%Y%m%d-%H%M%OS3"), msg, "\n"), sep="")
 }
 
-setwd("/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk")
+setwd("/home/at001335/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk")
 source("../COVID-19-common.R")
 
 #----------------------------------------------------------------------------------------------------

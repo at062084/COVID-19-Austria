@@ -1,14 +1,18 @@
 # =================================================================================================
 # main
 # =================================================================================================
-wd <- "/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk"
+wd <- "/home/at001335/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk"
 setwd(wd)
 source("./COVID-19-AGES-Data.R")
   
 # read Ages Data
 df <- caAgesRead_tlrm(bEstimate=FALSE, bCompleteCases=FALSE, bPredict=TRUE, nPolyDays=14, nPoly=2, bShiftDown=FALSE, nDt7Days=7)
 dg <- caAgesRead_cfGKZtl()
+<<<<<<< HEAD
 wd <- "/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/pdf"
+=======
+wd <- "/home/at001335/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/pdf"
+>>>>>>> 5ea5dbba... Update for at001335
 setwd(wd)
 
 aprDate <- as.Date("2020-04-01")

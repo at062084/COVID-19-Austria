@@ -6,7 +6,7 @@ library(tibbletime)
 library(scales)
 options(error = function() traceback(2))
 
-setwd("/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk")
+setwd("/home/at001335/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk")
 source("../COVID-19-common.R")
 
 
@@ -27,14 +27,14 @@ covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d")
   # -------------------------------------------------------------------------------------------------------------
   
   # read data for Confirmed
-  csvFile <- "/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/data/COVID-19-austria.csv"
+  csvFile <- "/home/at001335/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/data/COVID-19-austria.csv"
   da <- read.csv(csvFile, stringsAsFactors=FALSE) %>% 
     dplyr::mutate(Stamp=as.POSIXct(Stamp)) %>%
     dplyr::filter(date(Stamp)==as.POSIXct(dataDate))
   
   
   # read data for Hospitalized. Data now already in above file
-  csvFile <- "/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/data/COVID-19-austria.hospital.csv"
+  csvFile <- "/home/at001335/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/data/COVID-19-austria.hospital.csv"
   dh <- read.csv(csvFile, stringsAsFactors=FALSE) %>% 
     dplyr::mutate(Stamp=as.POSIXct(Stamp)) %>%
     dplyr::filter(date(Stamp)==as.POSIXct(dataDate)) %>%
@@ -105,7 +105,7 @@ covCounty <- function(scrapeStamp=now(), dataDate=format(scrapeStamp,"%Y-%m-%d")
   # Write Data file for counties (regions, Bezirke)
   # -------------------------------------------------------------------------------------------------------------
   # read data for Bezirke
-  csvFile <- "/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/data/COVID-19-austria.regions.csv"
+  csvFile <- "/home/at001335/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk/data/COVID-19-austria.regions.csv"
   dr <- read.csv(csvFile, stringsAsFactors=FALSE) %>% 
     dplyr::mutate(Stamp=as.POSIXct(Stamp)) %>%
     dplyr::filter(date(Stamp)==as.POSIXct(dataDate))

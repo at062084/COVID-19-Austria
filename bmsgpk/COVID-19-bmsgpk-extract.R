@@ -9,7 +9,7 @@ library(rvest)
 options(error = function() traceback(2))
 options(width=256)
 
-setwd("/home/at062084/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk")
+setwd("/home/at001335/DataEngineering/COVID-19/COVID-19-Austria/bmsgpk")
 
 
 # do some logging
