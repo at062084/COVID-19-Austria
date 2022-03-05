@@ -262,3 +262,142 @@ Calls: write.csv ... eval.parent -> eval -> eval -> <Anonymous> -> is.data.frame
 2: eval.parent(Call)
 1: write.csv(db, file = csvFile, row.names = FALSE, quote = FALSE)
 20220305-194621.358 Done runing data extraction from bmsgpk web pages 
+[master 0498a59a] 2022-03-05 19:46:16 Auto-Extract data from bmsgpk website
+ Committer: Thomas Strehl <at001335@li-9d2126cc-2aca-11b2-a85c-ffe082d4db2e.ibm.com>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 4 files changed, 202 insertions(+)
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V1006.20220305-1946.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria-bmsgpk.20220305-1946.dmp
+To github.com:at062084/COVID-19-Austria.git
+   72e7ebc0..0498a59a  master -> master
+
+--------------------------------------------------------------------
+2022-03-05 20:11:32 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2022-03-05 20:11:32 Workdir /home/at001335/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2022-03-05 20:11:32 Running auto-extraction of COVID-19 data from bmsgpk website
+
+Attaching package: ‘lubridate’
+
+The following objects are masked from ‘package:base’:
+
+    date, intersect, setdiff, union
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘rvest’
+
+The following object is masked from ‘package:readr’:
+
+    guess_encoding
+
+20220305-201133.713 Running COVID-19-bmsgpk-extract.R 
+20220305-201133.717 DISABLED: Calling scrapeCovid2 with 20220305-2011 
+20220305-201133.717 Calling scrapeCovid3 with 20220305-2011 
+20220305-201133.771 Scraping using headless chrome for https://info.gesundheitsministerium.gv.at/?re=tabelle 
+20220305-201133.771 Dumping page to ./html/COVID-19-austria-bmsgpk.20220305-2011.dmp  Atempt 1 
+20220305-201133.772 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220305-2011.dmp 
+[0305/201133.844633:ERROR:gpu_init.cc(454)] Passthrough is not supported, GL is disabled, ANGLE is 
+[0305/201133.855369:WARNING:bluez_dbus_manager.cc(248)] Floss manager not present, cannot set Floss enable/disable.
+20220305-201136.855 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220305-2011.dmp  Atempt 1 
+# A tibble: 8 × 12
+  Stamp               Status                  AT       B       K      Noe      Ooe     Szbg     Stmk       T       V        W
+  <dttm>              <chr>                <int>   <int>   <int>    <int>    <int>    <int>    <int>   <int>   <int>    <int>
+1 2022-03-05 09:30:00 Confirmed          2839297   69880  173993   495931   526750   214507   353775  273154  138917   592390
+2 2022-03-05 09:30:00 Deaths               14986     482    1184     2828     2522      851     2662     877     493     3087
+3 2022-03-05 09:30:00 Recovered          2534897   60862  157707   434121   485165   194794   313007  250145  123874   515222
+4 2022-03-05 09:30:00 Hospitalisierung      2547      83     190      476      391       95      373     243      75      621
+5 2022-03-05 09:30:00 Intensivstation        202       8      18       27       29        5       30      18       8       59
+6 2022-03-05 09:30:00 Tested           162347984 4654466 6285287 31639551 22856087 10116557 19477458 8921682 6697538 51699358
+7 2022-03-05 09:30:00 Tested_PCR        74136194 1262876 1320569  9850672  5418431  2665150  4804235 3236583 1277627 44300051
+8 2022-03-05 09:30:00 Tested_AG         88211790 3391590 4964718 21788879 17437656  7451407 14673223 5685099 5419911  7399307
+Warning message:
+`funs()` was deprecated in dplyr 0.8.0.
+Please use a list of either functions or lambdas: 
+
+  # Simple named list: 
+  list(mean = mean, median = median)
+
+  # Auto named with `tibble::lst()`: 
+  tibble::lst(mean, median)
+
+  # Using lambdas
+  list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated. 
+20220305-201137.018 DISABLED: Calling scrapeHospitalisierung with 20220305-2011 
+20220305-201137.018 DISABLED: Calling scrapeInfo with 20220305-2011 
+20220305-201137.018 Calling scrapeZIP_AGES with 20220305-2011 
+20220305-201137.026 Downloading https://covid19-dashboard.ages.at/data/data.zip to ./data/zip/COVID-19-austria.V1006.20220305-2011.zip 
+--2022-03-05 20:11:37--  https://covid19-dashboard.ages.at/data/data.zip
+Resolving covid19-dashboard.ages.at (covid19-dashboard.ages.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to covid19-dashboard.ages.at (covid19-dashboard.ages.at)|194.48.237.240|:443... connected.
+GnuTLS: The Diffie-Hellman prime sent by the server is not acceptable (not long enough).
+Unable to establish SSL connection.
+Archive:  ./data/zip/COVID-19-austria.V1006.20220305-2011.zip
+  End-of-central-directory signature not found.  Either this file is not
+  a zipfile, or it constitutes one disk of a multi-part archive.  In the
+  latter case the central directory and zipfile comment will be found on
+  the last disk(s) of this archive.
+unzip:  cannot find zipfile directory in one of ./data/zip/COVID-19-austria.V1006.20220305-2011.zip or
+        ./data/zip/COVID-19-austria.V1006.20220305-2011.zip.zip, and cannot find ./data/zip/COVID-19-austria.V1006.20220305-2011.zip.ZIP, period.
+20220305-201137.372 Calling scrapeBmsgpk with 20220305-2011 
+20220305-201137.391 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-eimpfpass.csv 
+Error in file(file, "rt") : 
+  cannot open the connection to 'https://info.gesundheitsministerium.gv.at/data/timeline-eimpfpass.csv'
+Calls: scrapeBmsgpk ... <Anonymous> -> <Anonymous> -> read.csv -> read.table -> file
+In addition: Warning message:
+In file(file, "rt") :
+  URL 'https://info.gesundheitsministerium.gv.at/data/timeline-eimpfpass.csv': status was 'SSL connect error'
+10: (function () 
+    traceback(2))()
+9: file(file, "rt")
+8: read.table(file = file, header = header, sep = sep, quote = quote, 
+       dec = dec, fill = fill, comment.char = comment.char, ...)
+7: read.csv(url, header = TRUE, sep = ";", stringsAsFactors = FALSE)
+6: dplyr::mutate(., Datum = as.Date(Datum, format = "%d.%m.%Y"))
+5: dplyr::select(., -starts_with("Bev"))
+4: tidyr::gather(., key = "Key", value = "Value", -Datum, -BundeslandID, 
+       -Name)
+3: dplyr::mutate(., Source = !!csvSource)
+2: read.csv(url, header = TRUE, sep = ";", stringsAsFactors = FALSE) %>% 
+       dplyr::mutate(Datum = as.Date(Datum, format = "%d.%m.%Y")) %>% 
+       dplyr::select(-starts_with("Bev")) %>% tidyr::gather(key = "Key", 
+       value = "Value", -Datum, -BundeslandID, -Name) %>% dplyr::mutate(Source = !!csvSource)
+1: scrapeBmsgpk(ts = ts)
+20220305-201137.823 Writing ems data to ./data/COVID-19-austria.csv 
+20220305-201137.916 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
+20220305-201137.916 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
+Error in is.data.frame(x) : object 'db' not found
+Calls: write.csv ... eval.parent -> eval -> eval -> <Anonymous> -> is.data.frame
+7: (function () 
+   traceback(2))()
+6: is.data.frame(x)
+5: utils::write.table(db, file = csvFile, row.names = FALSE, quote = FALSE, 
+       col.names = TRUE, sep = ",", dec = ".", qmethod = "double")
+4: eval(expr, p)
+3: eval(expr, p)
+2: eval.parent(Call)
+1: write.csv(db, file = csvFile, row.names = FALSE, quote = FALSE)
+20220305-201137.917 Done runing data extraction from bmsgpk web pages 
