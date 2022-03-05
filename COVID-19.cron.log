@@ -401,3 +401,185 @@ Calls: write.csv ... eval.parent -> eval -> eval -> <Anonymous> -> is.data.frame
 2: eval.parent(Call)
 1: write.csv(db, file = csvFile, row.names = FALSE, quote = FALSE)
 20220305-201137.917 Done runing data extraction from bmsgpk web pages 
+[master 905b154f] 2022-03-05 20:11:32 Auto-Extract data from bmsgpk website
+ Committer: Thomas Strehl <at001335@li-9d2126cc-2aca-11b2-a85c-ffe082d4db2e.ibm.com>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 5 files changed, 207 insertions(+)
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V1006.20220305-2011.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria-bmsgpk.20220305-2011.dmp
+To github.com:at062084/COVID-19-Austria.git
+   0498a59a..905b154f  master -> master
+
+--------------------------------------------------------------------
+2022-03-05 20:22:13 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2022-03-05 20:22:13 Workdir /home/at001335/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2022-03-05 20:22:13 Running auto-extraction of COVID-19 data from bmsgpk website
+
+Attaching package: ‘lubridate’
+
+The following objects are masked from ‘package:base’:
+
+    date, intersect, setdiff, union
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘rvest’
+
+The following object is masked from ‘package:readr’:
+
+    guess_encoding
+
+20220305-202214.631 Running COVID-19-bmsgpk-extract.R 
+20220305-202214.635 DISABLED: Calling scrapeCovid2 with 20220305-2022 
+20220305-202214.635 Calling scrapeCovid3 with 20220305-2022 
+20220305-202214.687 Scraping using headless chrome for https://info.gesundheitsministerium.gv.at/?re=tabelle 
+20220305-202214.687 Dumping page to ./html/COVID-19-austria-bmsgpk.20220305-2022.dmp  Atempt 1 
+20220305-202214.687 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220305-2022.dmp 
+[0305/202214.754633:ERROR:gpu_init.cc(454)] Passthrough is not supported, GL is disabled, ANGLE is 
+[0305/202214.765241:WARNING:bluez_dbus_manager.cc(248)] Floss manager not present, cannot set Floss enable/disable.
+[0305/202220.304646:ERROR:headless_shell.cc(517)] Failed to serialize document: Uncaught
+20220305-202220.314 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220305-2022.dmp  Atempt 1 
+Error in UseMethod("xml_find_all") : 
+  no applicable method for 'xml_find_all' applied to an object of class "xml_document"
+Calls: scrapeCovid3 ... html_elements -> html_elements.default -> <Anonymous>
+7: (function () 
+   traceback(2))()
+6: xml2::xml_find_all(x, make_selector(css, xpath))
+5: html_elements.default(...)
+4: html_elements(...)
+3: html_nodes(., "h2")
+2: html %>% html_nodes("h2")
+1: scrapeCovid3(ts = ts)
+20220305-202220.331 DISABLED: Calling scrapeHospitalisierung with 20220305-2022 
+20220305-202220.331 DISABLED: Calling scrapeInfo with 20220305-2022 
+20220305-202220.331 Calling scrapeZIP_AGES with 20220305-2022 
+20220305-202220.346 Downloading https://covid19-dashboard.ages.at/data/data.zip to ./data/zip/COVID-19-austria.V1006.20220305-2022.zip 
+--2022-03-05 20:22:20--  https://covid19-dashboard.ages.at/data/data.zip
+Resolving covid19-dashboard.ages.at (covid19-dashboard.ages.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to covid19-dashboard.ages.at (covid19-dashboard.ages.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 2598628 (2.5M) [application/zip]
+Saving to: ‘./data/zip/COVID-19-austria.V1006.20220305-2022.zip’
+
+     0K .......... .......... .......... .......... ..........  1%  571K 4s
+    50K .......... .......... .......... .......... ..........  3% 1.91M 3s
+   100K .......... .......... .......... .......... ..........  5%  385K 4s
+   150K .......... .......... .......... .......... ..........  7%  938K 3s
+   200K .......... .......... .......... .......... ..........  9%  725K 3s
+   250K .......... .......... .......... .......... .......... 11% 1.06M 3s
+   300K .......... .......... .......... .......... .......... 13%  483K 3s
+   350K .......... .......... .......... .......... .......... 15%  565K 3s
+   400K .......... .......... .......... .......... .......... 17%  509K 3s
+   450K .......... .......... .......... .......... .......... 19%  463K 3s
+   500K .......... .......... .......... .......... .......... 21% 1.08M 3s
+   550K .......... .......... .......... .......... .......... 23%  849K 3s
+   600K .......... .......... .......... .......... .......... 25%  526K 3s
+   650K .......... .......... .......... .......... .......... 27%  984K 3s
+   700K .......... .......... .......... .......... .......... 29% 2.02M 3s
+   750K .......... .......... .......... .......... .......... 31%  672K 3s
+   800K .......... .......... .......... .......... .......... 33%  815K 2s
+   850K .......... .......... .......... .......... .......... 35% 1.08M 2s
+   900K .......... .......... .......... .......... .......... 37%  845K 2s
+   950K .......... .......... .......... .......... .......... 39% 1.11M 2s
+  1000K .......... .......... .......... .......... .......... 41%  839K 2s
+  1050K .......... .......... .......... .......... .......... 43%  492K 2s
+  1100K .......... .......... .......... .......... .......... 45% 1.15M 2s
+  1150K .......... .......... .......... .......... .......... 47%  913K 2s
+  1200K .......... .......... .......... .......... .......... 49% 1.03M 2s
+  1250K .......... .......... .......... .......... .......... 51%  941K 2s
+  1300K .......... .......... .......... .......... .......... 53%  817K 2s
+  1350K .......... .......... .......... .......... .......... 55%  855K 2s
+  1400K .......... .......... .......... .......... .......... 57%  588K 1s
+  1450K .......... .......... .......... .......... .......... 59% 1.00M 1s
+  1500K .......... .......... .......... .......... .......... 61%  808K 1s
+  1550K .......... .......... .......... .......... .......... 63% 1.08M 1s
+  1600K .......... .......... .......... .......... .......... 65%  971K 1s
+  1650K .......... .......... .......... .......... .......... 66% 1.01M 1s
+  1700K .......... .......... .......... .......... .......... 68%  850K 1s
+  1750K .......... .......... .......... .......... .......... 70% 10.1M 1s
+  1800K .......... .......... .......... .......... .......... 72%  600K 1s
+  1850K .......... .......... .......... .......... .......... 74%  886K 1s
+  1900K .......... .......... .......... .......... .......... 76%  808K 1s
+  1950K .......... .......... .......... .......... .......... 78%  503K 1s
+  2000K .......... .......... .......... .......... .......... 80%  735K 1s
+  2050K .......... .......... .......... .......... .......... 82% 1007K 1s
+  2100K .......... .......... .......... .......... .......... 84%  618K 0s
+  2150K .......... .......... .......... .......... .......... 86%  829K 0s
+  2200K .......... .......... .......... .......... .......... 88%  544K 0s
+  2250K .......... .......... .......... .......... .......... 90%  988K 0s
+  2300K .......... .......... .......... .......... .......... 92%  984K 0s
+  2350K .......... .......... .......... .......... .......... 94%  791K 0s
+  2400K .......... .......... .......... .......... .......... 96% 1017K 0s
+  2450K .......... .......... .......... .......... .......... 98%  908K 0s
+  2500K .......... .......... .......... .......              100%  814K=3.2s
+
+2022-03-05 20:22:24 (789 KB/s) - ‘./data/zip/COVID-19-austria.V1006.20220305-2022.zip’ saved [2598628/2598628]
+
+Archive:  ./data/zip/COVID-19-austria.V1006.20220305-2022.zip
+20220305-202224.095 Calling scrapeBmsgpk with 20220305-2022 
+20220305-202224.114 Fetching https://info.gesundheitsministerium.gv.at/data/timeline-eimpfpass.csv 
+Error in file(file, "rt") : 
+  cannot open the connection to 'https://info.gesundheitsministerium.gv.at/data/timeline-eimpfpass.csv'
+Calls: scrapeBmsgpk ... <Anonymous> -> <Anonymous> -> read.csv -> read.table -> file
+In addition: Warning message:
+In file(file, "rt") :
+  URL 'https://info.gesundheitsministerium.gv.at/data/timeline-eimpfpass.csv': status was 'SSL connect error'
+10: (function () 
+    traceback(2))()
+9: file(file, "rt")
+8: read.table(file = file, header = header, sep = sep, quote = quote, 
+       dec = dec, fill = fill, comment.char = comment.char, ...)
+7: read.csv(url, header = TRUE, sep = ";", stringsAsFactors = FALSE)
+6: dplyr::mutate(., Datum = as.Date(Datum, format = "%d.%m.%Y"))
+5: dplyr::select(., -starts_with("Bev"))
+4: tidyr::gather(., key = "Key", value = "Value", -Datum, -BundeslandID, 
+       -Name)
+3: dplyr::mutate(., Source = !!csvSource)
+2: read.csv(url, header = TRUE, sep = ";", stringsAsFactors = FALSE) %>% 
+       dplyr::mutate(Datum = as.Date(Datum, format = "%d.%m.%Y")) %>% 
+       dplyr::select(-starts_with("Bev")) %>% tidyr::gather(key = "Key", 
+       value = "Value", -Datum, -BundeslandID, -Name) %>% dplyr::mutate(Source = !!csvSource)
+1: scrapeBmsgpk(ts = ts)
+20220305-202224.571 Writing ems data to ./data/COVID-19-austria.csv 
+Error in rbind(deparse.level, ...) : object 'dc' not found
+Calls: rbind -> rbind
+3: (function () 
+   traceback(2))()
+2: rbind(deparse.level, ...)
+1: rbind(df, dc)
+20220305-202224.657 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
+20220305-202224.657 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
+Error in is.data.frame(x) : object 'db' not found
+Calls: write.csv ... eval.parent -> eval -> eval -> <Anonymous> -> is.data.frame
+7: (function () 
+   traceback(2))()
+6: is.data.frame(x)
+5: utils::write.table(db, file = csvFile, row.names = FALSE, quote = FALSE, 
+       col.names = TRUE, sep = ",", dec = ".", qmethod = "double")
+4: eval(expr, p)
+3: eval(expr, p)
+2: eval.parent(Call)
+1: write.csv(db, file = csvFile, row.names = FALSE, quote = FALSE)
+20220305-202224.658 Done runing data extraction from bmsgpk web pages 
