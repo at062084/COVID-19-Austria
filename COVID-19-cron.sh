@@ -10,7 +10,7 @@ SECTION=$1
 
 STAMP=`date "+%Y-%m-%d %H:%M:%S"`
 DT=`date "+%Y%m%d-%H%M"`
-BASE_DIR="/home/at062084/DataEngineering/COVID-19/COVID-19-Austria"
+BASE_DIR="/home/at001335/DataEngineering/COVID-19/COVID-19-Austria"
 LOG_FILE=$BASE_DIR/COVID-19.cron.log
 cd $BASE_DIR
 
@@ -27,7 +27,7 @@ then
 	cd  $BASE_DIR/bmsgpk
 
 	echo "$STAMP Running auto-extraction of COVID-19 data from bmsgpk website" | tee -a $LOG_FILE
-	/usr/bin/Rscript ./COVID-19-bmsgpk-extract.R 2>&1 |tee -a  $LOG_FILE
+	/usr/local/bin/Rscript ./COVID-19-bmsgpk-extract.R 2>&1 |tee -a  $LOG_FILE
 
 	# Update git
 	git add ../*.log
@@ -44,7 +44,7 @@ then
 	cd  $BASE_DIR/bmsgpk
 
 	echo "$STAMP Running conversion of COVID-19 data to covid-county format"  | tee -a $LOG_FILE
-	/usr/bin/Rscript ./COVID-19-covid-county-extract.R 2>&1 | tee -a  $LOG_FILE
+	/usr/local/bin/Rscript ./COVID-19-covid-county-extract.R 2>&1 | tee -a  $LOG_FILE
 	for i in ./data/AT_*.bmsgpk.csv; do echo ""; echo $i; head -11 $i; done
 
 	# Update git
