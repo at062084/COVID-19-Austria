@@ -21006,3 +21006,47 @@
 20220310-160427.298 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
 20220310-160427.299 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
 20220310-160430.979 Done runing data extraction from bmsgpk web pages 
+20220313-092910.100 Running COVID-19-bmsgpk-extract.R 
+20220313-092910.104 DISABLED: Calling scrapeCovid2 with 20220313-0929 
+20220313-092910.104 Calling scrapeCovid3 with 20220313-0929 
+20220313-092910.151 Scraping using headless chrome for https://info.gesundheitsministerium.gv.at/?re=tabelle 
+20220313-092910.151 Dumping page to ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 1 
+20220313-092910.151 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp 
+20220313-092910.295 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 1 
+20220313-092910.341 Dumping page to ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 2 
+20220313-092910.341 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp 
+20220313-092910.492 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 2 
+20220313-092910.496 Dumping page to ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 3 
+20220313-092910.496 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp 
+20220313-092910.658 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 3 
+20220313-092910.662 Dumping page to ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 4 
+20220313-092910.662 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp 
+20220313-092910.801 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 4 
+20220313-092910.804 Dumping page to ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 5 
+20220313-092910.804 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp 
+20220313-092910.947 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 5 
+20220313-092910.951 Dumping page to ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 6 
+20220313-092910.951 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp 
+20220313-092911.093 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 6 
+20220313-092911.097 Dumping page to ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 7 
+20220313-092911.097 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp 
+20220313-092911.239 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 7 
+20220313-092911.242 Dumping page to ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 8 
+20220313-092911.242 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp 
+20220313-092911.381 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 8 
+20220313-092911.386 Dumping page to ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 9 
+20220313-092911.386 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp 
+20220313-092911.530 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 9 
+20220313-092911.534 Dumping page to ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 10 
+20220313-092911.534 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp 
+20220313-092911.669 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 10 
+20220313-092911.673 DISABLED: Calling scrapeHospitalisierung with 20220313-0929 
+20220313-092911.673 DISABLED: Calling scrapeInfo with 20220313-0929 
+20220313-092911.674 Calling scrapeZIP_AGES with 20220313-0929 
+20220313-092911.685 Downloading https://covid19-dashboard.ages.at/data/data.zip to ./data/zip/COVID-19-austria.V1006.20220313-0929.zip 
+20220313-092911.793 Calling scrapeBmsgpk with 20220313-0929 
+20220313-092911.812 Fetching timeline-eimpfpass 
+20220313-092911.876 Writing ems data to ./data/COVID-19-austria.csv 
+20220313-092911.972 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
+20220313-092911.973 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
+20220313-092911.973 Done runing data extraction from bmsgpk web pages 

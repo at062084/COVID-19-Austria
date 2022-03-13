@@ -3093,3 +3093,164 @@ Saving to: ‘./data/bmsgpk/timeline-testungen-schulen.csv’
 20220310-160427.298 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
 20220310-160427.299 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
 20220310-160430.979 Done runing data extraction from bmsgpk web pages 
+[master 722ffae0] 2022-03-10 16:04:07 Auto-Extract data from bmsgpk website
+ 21 files changed, 52326 insertions(+), 50516 deletions(-)
+ rewrite bmsgpk/data/ages/CovidFaelle_GKZ.csv (98%)
+ rewrite bmsgpk/data/unzip/CovidFaelle_GKZ.csv (98%)
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V1006.20220310-1604.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria-bmsgpk.20220310-1604.dmp
+To github.com:at062084/COVID-19-Austria.git
+   ae738a77..722ffae0  master -> master
+
+--------------------------------------------------------------------
+2022-03-13 09:29:09 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2022-03-13 09:29:09 Workdir /home/at001335/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2022-03-13 09:29:09 Running auto-extraction of COVID-19 data from bmsgpk website
+
+Attaching package: ‘lubridate’
+
+The following objects are masked from ‘package:base’:
+
+    date, intersect, setdiff, union
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘rvest’
+
+The following object is masked from ‘package:readr’:
+
+    guess_encoding
+
+20220313-092910.100 Running COVID-19-bmsgpk-extract.R 
+20220313-092910.104 DISABLED: Calling scrapeCovid2 with 20220313-0929 
+20220313-092910.105 Calling scrapeCovid3 with 20220313-0929 
+20220313-092910.151 Scraping using headless chrome for https://info.gesundheitsministerium.gv.at/?re=tabelle 
+20220313-092910.151 Dumping page to ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 1 
+20220313-092910.151 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp 
+[0313/092910.224908:ERROR:gpu_init.cc(454)] Passthrough is not supported, GL is disabled, ANGLE is 
+[0313/092910.235792:WARNING:bluez_dbus_manager.cc(248)] Floss manager not present, cannot set Floss enable/disable.
+20220313-092910.295 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 1 
+20220313-092910.341 Dumping page to ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 2 
+20220313-092910.341 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp 
+[0313/092910.410896:ERROR:gpu_init.cc(454)] Passthrough is not supported, GL is disabled, ANGLE is 
+[0313/092910.420299:WARNING:bluez_dbus_manager.cc(248)] Floss manager not present, cannot set Floss enable/disable.
+20220313-092910.493 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 2 
+20220313-092910.496 Dumping page to ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 3 
+20220313-092910.496 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp 
+[0313/092910.580997:ERROR:gpu_init.cc(454)] Passthrough is not supported, GL is disabled, ANGLE is 
+[0313/092910.590421:WARNING:bluez_dbus_manager.cc(248)] Floss manager not present, cannot set Floss enable/disable.
+20220313-092910.658 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 3 
+20220313-092910.662 Dumping page to ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 4 
+20220313-092910.662 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp 
+[0313/092910.730966:ERROR:gpu_init.cc(454)] Passthrough is not supported, GL is disabled, ANGLE is 
+[0313/092910.740551:WARNING:bluez_dbus_manager.cc(248)] Floss manager not present, cannot set Floss enable/disable.
+20220313-092910.801 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 4 
+20220313-092910.804 Dumping page to ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 5 
+20220313-092910.804 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp 
+[0313/092910.875751:ERROR:gpu_init.cc(454)] Passthrough is not supported, GL is disabled, ANGLE is 
+[0313/092910.885594:WARNING:bluez_dbus_manager.cc(248)] Floss manager not present, cannot set Floss enable/disable.
+20220313-092910.947 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 5 
+20220313-092910.951 Dumping page to ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 6 
+20220313-092910.951 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp 
+[0313/092911.021930:ERROR:gpu_init.cc(454)] Passthrough is not supported, GL is disabled, ANGLE is 
+[0313/092911.030980:WARNING:bluez_dbus_manager.cc(248)] Floss manager not present, cannot set Floss enable/disable.
+20220313-092911.094 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 6 
+20220313-092911.097 Dumping page to ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 7 
+20220313-092911.097 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp 
+[0313/092911.170397:ERROR:gpu_init.cc(454)] Passthrough is not supported, GL is disabled, ANGLE is 
+[0313/092911.180221:WARNING:bluez_dbus_manager.cc(248)] Floss manager not present, cannot set Floss enable/disable.
+20220313-092911.239 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 7 
+20220313-092911.242 Dumping page to ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 8 
+20220313-092911.242 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp 
+[0313/092911.307773:ERROR:gpu_init.cc(454)] Passthrough is not supported, GL is disabled, ANGLE is 
+[0313/092911.316328:WARNING:bluez_dbus_manager.cc(248)] Floss manager not present, cannot set Floss enable/disable.
+20220313-092911.382 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 8 
+20220313-092911.386 Dumping page to ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 9 
+20220313-092911.386 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp 
+[0313/092911.461247:ERROR:gpu_init.cc(454)] Passthrough is not supported, GL is disabled, ANGLE is 
+[0313/092911.470916:WARNING:bluez_dbus_manager.cc(248)] Floss manager not present, cannot set Floss enable/disable.
+20220313-092911.530 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 9 
+20220313-092911.534 Dumping page to ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 10 
+20220313-092911.534 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp 
+[0313/092911.601658:ERROR:gpu_init.cc(454)] Passthrough is not supported, GL is disabled, ANGLE is 
+[0313/092911.610330:WARNING:bluez_dbus_manager.cc(248)] Floss manager not present, cannot set Floss enable/disable.
+20220313-092911.669 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220313-0929.dmp  Atempt 10 
+Error in h2s[[item]] : subscript out of bounds
+Calls: scrapeCovid3 -> %>% -> format -> html_text -> xml_text
+6: (function () 
+   traceback(2))()
+5: xml_text(x, trim = trim)
+4: html_text(.)
+3: format(.)
+2: h2s[[item]] %>% html_text() %>% format()
+1: scrapeCovid3(ts = ts)
+20220313-092911.673 DISABLED: Calling scrapeHospitalisierung with 20220313-0929 
+20220313-092911.674 DISABLED: Calling scrapeInfo with 20220313-0929 
+20220313-092911.674 Calling scrapeZIP_AGES with 20220313-0929 
+20220313-092911.685 Downloading https://covid19-dashboard.ages.at/data/data.zip to ./data/zip/COVID-19-austria.V1006.20220313-0929.zip 
+--2022-03-13 09:29:11--  https://covid19-dashboard.ages.at/data/data.zip
+Resolving covid19-dashboard.ages.at (covid19-dashboard.ages.at)... failed: Name or service not known.
+wget: unable to resolve host address ‘covid19-dashboard.ages.at’
+Archive:  ./data/zip/COVID-19-austria.V1006.20220313-0929.zip
+  End-of-central-directory signature not found.  Either this file is not
+  a zipfile, or it constitutes one disk of a multi-part archive.  In the
+  latter case the central directory and zipfile comment will be found on
+  the last disk(s) of this archive.
+unzip:  cannot find zipfile directory in one of ./data/zip/COVID-19-austria.V1006.20220313-0929.zip or
+        ./data/zip/COVID-19-austria.V1006.20220313-0929.zip.zip, and cannot find ./data/zip/COVID-19-austria.V1006.20220313-0929.zip.ZIP, period.
+20220313-092911.793 Calling scrapeBmsgpk with 20220313-0929 
+20220313-092911.812 Fetching timeline-eimpfpass 
+--2022-03-13 09:29:11--  https://info.gesundheitsministerium.gv.at/data/timeline-eimpfpass.csv
+Resolving info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)... failed: Name or service not known.
+wget: unable to resolve host address ‘info.gesundheitsministerium.gv.at’
+Error in read.table(file = file, header = header, sep = sep, quote = quote,  : 
+  no lines available in input
+Calls: scrapeBmsgpk ... <Anonymous> -> <Anonymous> -> read.csv -> read.table
+10: (function () 
+    traceback(2))()
+9: stop("no lines available in input")
+8: read.table(file = file, header = header, sep = sep, quote = quote, 
+       dec = dec, fill = fill, comment.char = comment.char, ...)
+7: read.csv(csvTarget, header = TRUE, sep = ";", stringsAsFactors = FALSE)
+6: dplyr::mutate(., Datum = as.Date(Datum))
+5: dplyr::select(., -starts_with("Bev"))
+4: tidyr::gather(., key = "Key", value = "Value", -Datum, -BundeslandID, 
+       -Name)
+3: dplyr::mutate(., Source = !!csvSource)
+2: read.csv(csvTarget, header = TRUE, sep = ";", stringsAsFactors = FALSE) %>% 
+       dplyr::mutate(Datum = as.Date(Datum)) %>% dplyr::select(-starts_with("Bev")) %>% 
+       tidyr::gather(key = "Key", value = "Value", -Datum, -BundeslandID, 
+           -Name) %>% dplyr::mutate(Source = !!csvSource)
+1: scrapeBmsgpk(ts = ts)
+20220313-092911.877 Writing ems data to ./data/COVID-19-austria.csv 
+Error in rbind(deparse.level, ...) : object 'dc' not found
+Calls: rbind -> rbind
+3: (function () 
+   traceback(2))()
+2: rbind(deparse.level, ...)
+1: rbind(df, dc)
+20220313-092911.973 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
+20220313-092911.973 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
+Error in is.data.frame(x) : object 'db' not found
+Calls: write.csv ... eval.parent -> eval -> eval -> <Anonymous> -> is.data.frame
+7: (function () 
+   traceback(2))()
+6: is.data.frame(x)
+5: utils::write.table(db, file = csvFile, row.names = FALSE, quote = FALSE, 
+       col.names = TRUE, sep = ",", dec = ".", qmethod = "double")
+4: eval(expr, p)
+3: eval(expr, p)
+2: eval.parent(Call)
+1: write.csv(db, file = csvFile, row.names = FALSE, quote = FALSE)
+20220313-092911.973 Done runing data extraction from bmsgpk web pages 
