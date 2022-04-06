@@ -11289,3 +11289,269 @@ Saving to: ‘./data/bmsgpk/timeline-testungen-schulen.csv’
 20220405-161250.010 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
 20220405-161250.010 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
 20220405-161251.668 Done runing data extraction from bmsgpk web pages 
+[master fbef6cad] 2022-04-05 16:12:40 Auto-Extract data from bmsgpk website
+ 21 files changed, 67777 insertions(+), 65960 deletions(-)
+ rewrite bmsgpk/data/ages/CovidFaelle_GKZ.csv (98%)
+ rewrite bmsgpk/data/unzip/CovidFaelle_GKZ.csv (98%)
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V1006.20220405-1612.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria-bmsgpk.20220405-1612.dmp
+To github.com:at062084/COVID-19-Austria.git
+   ccf84d3c..fbef6cad  master -> master
+
+--------------------------------------------------------------------
+2022-04-06 12:52:29 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2022-04-06 12:52:29 Workdir /home/at001335/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2022-04-06 12:52:29 Running auto-extraction of COVID-19 data from bmsgpk website
+
+Attaching package: ‘lubridate’
+
+The following objects are masked from ‘package:base’:
+
+    date, intersect, setdiff, union
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘rvest’
+
+The following object is masked from ‘package:readr’:
+
+    guess_encoding
+
+20220406-125230.917 Running COVID-19-bmsgpk-extract.R 
+20220406-125230.921 DISABLED: Calling scrapeCovid2 with 20220406-1252 
+20220406-125230.921 Calling scrapeCovid3 with 20220406-1252 
+20220406-125230.968 Scraping using headless chrome for https://info.gesundheitsministerium.gv.at/?re=tabelle 
+20220406-125230.968 Dumping page to ./html/COVID-19-austria-bmsgpk.20220406-1252.dmp  Atempt 1 
+20220406-125230.968 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220406-1252.dmp 
+[0406/125231.044035:ERROR:gpu_init.cc(446)] Passthrough is not supported, GL is disabled, ANGLE is 
+[0406/125231.067797:WARNING:bluez_dbus_manager.cc(248)] Floss manager not present, cannot set Floss enable/disable.
+20220406-125233.391 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220406-1252.dmp  Atempt 1 
+# A tibble: 8 × 12
+  Stamp               Status                  AT       B       K      Noe      Ooe     Szbg     Stmk       T       V        W
+  <dttm>              <chr>                <int>   <int>   <int>    <int>    <int>    <int>    <int>   <int>   <int>    <int>
+1 2022-04-06 09:30:00 Confirmed          3933682  105327  231748   733671   720275   279235   515589  340894  191951   814992
+2 2022-04-06 09:30:00 Deaths               16097     529    1248     3109     2727      907     2823     922     527     3305
+3 2022-04-06 09:30:00 Recovered          3674107   97222  220062   667266   687149   267584   490636  331499  182811   729878
+4 2022-04-06 09:30:00 Hospitalisierung      2873     145     171      617      323       92      518     162      88      757
+5 2022-04-06 09:30:00 Intensivstation        226      13      18       35       15        8       39      11       6       81
+6 2022-04-06 09:30:00 Tested           177765409 5027959 6478957 35956447 23783645 10467008 20431748 9385146 6963187 59271312
+7 2022-04-06 09:30:00 Tested_PCR        86374715 1525367 1445494 12137058  6025705  2941161  5409722 3640312 1476207 51773689
+8 2022-04-06 09:30:00 Tested_AG         91390694 3502592 5033463 23819389 17757940  7525847 15022026 5744834 5486980  7497623
+Warning message:
+`funs()` was deprecated in dplyr 0.8.0.
+Please use a list of either functions or lambdas: 
+
+  # Simple named list: 
+  list(mean = mean, median = median)
+
+  # Auto named with `tibble::lst()`: 
+  tibble::lst(mean, median)
+
+  # Using lambdas
+  list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated. 
+20220406-125233.567 DISABLED: Calling scrapeHospitalisierung with 20220406-1252 
+20220406-125233.567 DISABLED: Calling scrapeInfo with 20220406-1252 
+20220406-125233.567 Calling scrapeZIP_AGES with 20220406-1252 
+20220406-125233.575 Downloading https://covid19-dashboard.ages.at/data/data.zip to ./data/zip/COVID-19-austria.V1006.20220406-1252.zip 
+--2022-04-06 12:52:33--  https://covid19-dashboard.ages.at/data/data.zip
+Resolving covid19-dashboard.ages.at (covid19-dashboard.ages.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to covid19-dashboard.ages.at (covid19-dashboard.ages.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 2735595 (2.6M) [application/zip]
+Saving to: ‘./data/zip/COVID-19-austria.V1006.20220406-1252.zip’
+
+     0K .......... .......... .......... .......... ..........  1%  876K 3s
+    50K .......... .......... .......... .......... ..........  3% 1.65M 2s
+   100K .......... .......... .......... .......... ..........  5% 1.51M 2s
+   150K .......... .......... .......... .......... ..........  7% 1.42M 2s
+   200K .......... .......... .......... .......... ..........  9% 1.43M 2s
+   250K .......... .......... .......... .......... .......... 11% 1.38M 2s
+   300K .......... .......... .......... .......... .......... 13% 1.37M 2s
+   350K .......... .......... .......... .......... .......... 14% 1.46M 2s
+   400K .......... .......... .......... .......... .......... 16% 1.43M 2s
+   450K .......... .......... .......... .......... .......... 18% 1.38M 2s
+   500K .......... .......... .......... .......... .......... 20% 1.45M 2s
+   550K .......... .......... .......... .......... .......... 22% 1.77M 1s
+   600K .......... .......... .......... .......... .......... 24% 1.41M 1s
+   650K .......... .......... .......... .......... .......... 26% 1.41M 1s
+   700K .......... .......... .......... .......... .......... 28% 1.40M 1s
+   750K .......... .......... .......... .......... .......... 29% 1.33M 1s
+   800K .......... .......... .......... .......... .......... 31% 1.46M 1s
+   850K .......... .......... .......... .......... .......... 33% 1.40M 1s
+   900K .......... .......... .......... .......... .......... 35% 1.40M 1s
+   950K .......... .......... .......... .......... .......... 37% 1.39M 1s
+  1000K .......... .......... .......... .......... .......... 39% 1.84M 1s
+  1050K .......... .......... .......... .......... .......... 41% 1.30M 1s
+  1100K .......... .......... .......... .......... .......... 43% 1.43M 1s
+  1150K .......... .......... .......... .......... .......... 44% 1.34M 1s
+  1200K .......... .......... .......... .......... .......... 46% 1.88M 1s
+  1250K .......... .......... .......... .......... .......... 48% 1.36M 1s
+  1300K .......... .......... .......... .......... .......... 50% 1.46M 1s
+  1350K .......... .......... .......... .......... .......... 52% 1.42M 1s
+  1400K .......... .......... .......... .......... .......... 54% 1.40M 1s
+  1450K .......... .......... .......... .......... .......... 56% 1.43M 1s
+  1500K .......... .......... .......... .......... .......... 58% 1.44M 1s
+  1550K .......... .......... .......... .......... .......... 59% 1.35M 1s
+  1600K .......... .......... .......... .......... .......... 61% 1.38M 1s
+  1650K .......... .......... .......... .......... .......... 63% 1.78M 1s
+  1700K .......... .......... .......... .......... .......... 65% 1.45M 1s
+  1750K .......... .......... .......... .......... .......... 67% 1.41M 1s
+  1800K .......... .......... .......... .......... .......... 69% 1.32M 1s
+  1850K .......... .......... .......... .......... .......... 71% 1.37M 1s
+  1900K .......... .......... .......... .......... .......... 72% 1.87M 0s
+  1950K .......... .......... .......... .......... .......... 74% 1.39M 0s
+  2000K .......... .......... .......... .......... .......... 76% 1.41M 0s
+  2050K .......... .......... .......... .......... .......... 78% 1.40M 0s
+  2100K .......... .......... .......... .......... .......... 80% 1.34M 0s
+  2150K .......... .......... .......... .......... .......... 82% 1.37M 0s
+  2200K .......... .......... .......... .......... .......... 84% 1.80M 0s
+  2250K .......... .......... .......... .......... .......... 86% 1.35M 0s
+  2300K .......... .......... .......... .......... .......... 87% 1.32M 0s
+  2350K .......... .......... .......... .......... .......... 89% 1.39M 0s
+  2400K .......... .......... .......... .......... .......... 91% 1.93M 0s
+  2450K .......... .......... .......... .......... .......... 93% 1.40M 0s
+  2500K .......... .......... .......... .......... .......... 95% 1.28M 0s
+  2550K .......... .......... .......... .......... .......... 97% 1.44M 0s
+  2600K .......... .......... .......... .......... .......... 99% 1.46M 0s
+  2650K .......... .......... .                               100% 2.01M=1.8s
+
+2022-04-06 12:52:35 (1.43 MB/s) - ‘./data/zip/COVID-19-austria.V1006.20220406-1252.zip’ saved [2735595/2735595]
+
+Archive:  ./data/zip/COVID-19-austria.V1006.20220406-1252.zip
+20220406-125235.706 Calling scrapeBmsgpk with 20220406-1252 
+20220406-125235.736 Fetching timeline-eimpfpass 
+--2022-04-06 12:52:35--  https://info.gesundheitsministerium.gv.at/data/timeline-eimpfpass.csv
+Resolving info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1421936 (1.4M) [text/csv]
+Saving to: ‘./data/bmsgpk/timeline-eimpfpass.csv’
+
+     0K .......... .......... .......... .......... ..........  3% 1.42M 1s
+    50K .......... .......... .......... .......... ..........  7% 1.44M 1s
+   100K .......... .......... .......... .......... .......... 10% 1.35M 1s
+   150K .......... .......... .......... .......... .......... 14% 1.27M 1s
+   200K .......... .......... .......... .......... .......... 18% 1.64M 1s
+   250K .......... .......... .......... .......... .......... 21% 1.39M 1s
+   300K .......... .......... .......... .......... .......... 25% 1.34M 1s
+   350K .......... .......... .......... .......... .......... 28% 1.45M 1s
+   400K .......... .......... .......... .......... .......... 32% 1.72M 1s
+   450K .......... .......... .......... .......... .......... 36% 1.16M 1s
+   500K .......... .......... .......... .......... .......... 39% 1.35M 1s
+   550K .......... .......... .......... .......... .......... 43% 1.30M 1s
+   600K .......... .......... .......... .......... .......... 46% 1.36M 1s
+   650K .......... .......... .......... .......... .......... 50% 1.86M 0s
+   700K .......... .......... .......... .......... .......... 54% 1.39M 0s
+   750K .......... .......... .......... .......... .......... 57% 1.39M 0s
+   800K .......... .......... .......... .......... .......... 61% 1.24M 0s
+   850K .......... .......... .......... .......... .......... 64% 1.43M 0s
+   900K .......... .......... .......... .......... .......... 68% 1.50M 0s
+   950K .......... .......... .......... .......... .......... 72% 1.38M 0s
+  1000K .......... .......... .......... .......... .......... 75% 1.16M 0s
+  1050K .......... .......... .......... .......... .......... 79% 1.36M 0s
+  1100K .......... .......... .......... .......... .......... 82% 1.71M 0s
+  1150K .......... .......... .......... .......... .......... 86% 1.39M 0s
+  1200K .......... .......... .......... .......... .......... 90% 1.43M 0s
+  1250K .......... .......... .......... .......... .......... 93% 1.37M 0s
+  1300K .......... .......... .......... .......... .......... 97% 1.37M 0s
+  1350K .......... .......... .......... ........             100% 2.00M=1.0s
+
+2022-04-06 12:52:36 (1.41 MB/s) - ‘./data/bmsgpk/timeline-eimpfpass.csv’ saved [1421936/1421936]
+
+20220406-125237.103 Fetching timeline-bbg 
+--2022-04-06 12:52:37--  https://info.gesundheitsministerium.gv.at/data/timeline-bbg.csv
+Resolving info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 366683 (358K) [text/csv]
+Saving to: ‘./data/bmsgpk/timeline-bbg.csv’
+
+     0K .......... .......... .......... .......... .......... 13% 1.38M 0s
+    50K .......... .......... .......... .......... .......... 27% 1.43M 0s
+   100K .......... .......... .......... .......... .......... 41% 1.42M 0s
+   150K .......... .......... .......... .......... .......... 55% 1.43M 0s
+   200K .......... .......... .......... .......... .......... 69% 1.21M 0s
+   250K .......... .......... .......... .......... .......... 83% 1.56M 0s
+   300K .......... .......... .......... .......... .......... 97% 1.44M 0s
+   350K ........                                              100%  248M=0.2s
+
+2022-04-06 12:52:37 (1.44 MB/s) - ‘./data/bmsgpk/timeline-bbg.csv’ saved [366683/366683]
+
+20220406-125237.675 Fetching timeline-faelle-ems 
+--2022-04-06 12:52:37--  https://info.gesundheitsministerium.gv.at/data/timeline-faelle-ems.csv
+Resolving info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 182312 (178K) [text/csv]
+Saving to: ‘./data/bmsgpk/timeline-faelle-ems.csv’
+
+     0K .......... .......... .......... .......... .......... 28% 1.12M 0s
+    50K .......... .......... .......... .......... .......... 56% 1.46M 0s
+   100K .......... .......... .......... .......... .......... 84% 1.33M 0s
+   150K .......... .......... ........                        100% 1.79M=0.1s
+
+2022-04-06 12:52:38 (1.35 MB/s) - ‘./data/bmsgpk/timeline-faelle-ems.csv’ saved [182312/182312]
+
+20220406-125238.123 Fetching timeline-faelle-bundeslaender 
+--2022-04-06 12:52:38--  https://info.gesundheitsministerium.gv.at/data/timeline-faelle-bundeslaender.csv
+Resolving info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 354895 (347K) [text/csv]
+Saving to: ‘./data/bmsgpk/timeline-faelle-bundeslaender.csv’
+
+     0K .......... .......... .......... .......... .......... 14% 1.42M 0s
+    50K .......... .......... .......... .......... .......... 28% 1.43M 0s
+   100K .......... .......... .......... .......... .......... 43% 1.36M 0s
+   150K .......... .......... .......... .......... .......... 57% 1.29M 0s
+   200K .......... .......... .......... .......... .......... 72% 1.35M 0s
+   250K .......... .......... .......... .......... .......... 86% 1.62M 0s
+   300K .......... .......... .......... .......... ......    100% 1.77M=0.2s
+
+2022-04-06 12:52:38 (1.45 MB/s) - ‘./data/bmsgpk/timeline-faelle-bundeslaender.csv’ saved [354895/354895]
+
+20220406-125238.758 Fetching timeline-testungen-apotheken-betriebe 
+--2022-04-06 12:52:38--  https://info.gesundheitsministerium.gv.at/data/timeline-testungen-apotheken-betriebe.csv
+Resolving info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 208431 (204K) [text/csv]
+Saving to: ‘./data/bmsgpk/timeline-testungen-apotheken-betriebe.csv’
+
+     0K .......... .......... .......... .......... .......... 24% 1.36M 0s
+    50K .......... .......... .......... .......... .......... 49% 1.40M 0s
+   100K .......... .......... .......... .......... .......... 73% 1.43M 0s
+   150K .......... .......... .......... .......... .......... 98% 1.47M 0s
+   200K ...                                                   100% 63.9K=0.2s
+
+2022-04-06 12:52:39 (1.03 MB/s) - ‘./data/bmsgpk/timeline-testungen-apotheken-betriebe.csv’ saved [208431/208431]
+
+20220406-125239.324 Fetching timeline-testungen-schulen 
+--2022-04-06 12:52:39--  https://info.gesundheitsministerium.gv.at/data/timeline-testungen-schulen.csv
+Resolving info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 17870 (17K) [text/csv]
+Saving to: ‘./data/bmsgpk/timeline-testungen-schulen.csv’
+
+     0K .......... .......                                    100% 1.51M=0.01s
+
+2022-04-06 12:52:39 (1.51 MB/s) - ‘./data/bmsgpk/timeline-testungen-schulen.csv’ saved [17870/17870]
+
+20220406-125239.634 Writing ems data to ./data/COVID-19-austria.csv 
+20220406-125239.727 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
+20220406-125239.727 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
+20220406-125241.425 Done runing data extraction from bmsgpk web pages 
