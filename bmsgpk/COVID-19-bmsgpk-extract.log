@@ -23917,3 +23917,24 @@
 20220913-085850.558 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
 20220913-085850.558 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
 20220913-085852.291 Done runing data extraction from bmsgpk web pages 
+20220913-145206.780 Running COVID-19-bmsgpk-extract.R 
+20220913-145206.784 DISABLED: Calling scrapeCovid2 with 20220913-1452 
+20220913-145206.784 Calling scrapeCovid3 with 20220913-1452 
+20220913-145206.835 Scraping using headless chrome for https://info.gesundheitsministerium.gv.at/?re=tabelle 
+20220913-145206.835 Dumping page to ./html/COVID-19-austria-bmsgpk.20220913-1452.dmp  Atempt 1 
+20220913-145206.835 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220913-1452.dmp 
+20220913-145212.419 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220913-1452.dmp  Atempt 1 
+20220913-145212.605 DISABLED: Calling scrapeHospitalisierung with 20220913-1452 
+20220913-145212.605 DISABLED: Calling scrapeInfo with 20220913-1452 
+20220913-145212.605 Calling scrapeZIP_AGES with 20220913-1452 
+20220913-145212.619 Downloading https://covid19-dashboard.ages.at/data/data.zip to ./data/zip/COVID-19-austria.V1006.20220913-1452.zip 
+20220913-145216.207 Calling scrapeBmsgpk with 20220913-1452 
+20220913-145216.237 Fetching timeline-eimpfpass 
+20220913-145218.429 Fetching timeline-bbg 
+20220913-145220.088 Fetching timeline-faelle-ems 
+20220913-145220.822 Fetching timeline-faelle-bundeslaender 
+20220913-145221.886 Fetching timeline-testungen-apotheken-betriebe 
+20220913-145222.766 Writing ems data to ./data/COVID-19-austria.csv 
+20220913-145222.860 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
+20220913-145222.860 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
+20220913-145222.861 Done runing data extraction from bmsgpk web pages 
