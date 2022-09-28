@@ -39139,3 +39139,511 @@ Calls: rbind -> rbind
 20220926-141108.360 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
 20220926-141108.360 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
 20220926-141110.027 Done runing data extraction from bmsgpk web pages 
+[master b7ef47ea] 2022-09-26 14:10:50 Auto-Extract data from bmsgpk website
+ 19 files changed, 161414 insertions(+), 179897 deletions(-)
+ rewrite bmsgpk/data/ages/CovidFaelle_GKZ.csv (98%)
+ rewrite bmsgpk/data/bmsgpk/timeline-faelle-bundeslaender.csv (94%)
+ rewrite bmsgpk/data/bmsgpk/timeline-testungen-apotheken-betriebe.csv (94%)
+ rewrite bmsgpk/data/unzip/CovidFaelle_GKZ.csv (98%)
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V1006.20220926-1410.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria-bmsgpk.20220926-1410.dmp
+To github.com:at062084/COVID-19-Austria.git
+   227d5090..b7ef47ea  master -> master
+
+--------------------------------------------------------------------
+2022-09-28 11:47:46 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2022-09-28 11:47:46 Workdir /home/at001335/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2022-09-28 11:47:46 Running auto-extraction of COVID-19 data from bmsgpk website
+
+Attaching package: ‘lubridate’
+
+The following objects are masked from ‘package:base’:
+
+    date, intersect, setdiff, union
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘rvest’
+
+The following object is masked from ‘package:readr’:
+
+    guess_encoding
+
+20220928-114747.616 Running COVID-19-bmsgpk-extract.R 
+20220928-114747.620 DISABLED: Calling scrapeCovid2 with 20220928-1147 
+20220928-114747.620 Calling scrapeCovid3 with 20220928-1147 
+20220928-114747.704 Scraping using headless chrome for https://info.gesundheitsministerium.gv.at/?re=tabelle 
+20220928-114747.704 Dumping page to ./html/COVID-19-austria-bmsgpk.20220928-1147.dmp  Atempt 1 
+20220928-114747.704 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220928-1147.dmp 
+[0928/114747.834552:ERROR:gpu_init.cc(486)] Passthrough is not supported, GL is disabled, ANGLE is 
+[0928/114747.862923:WARNING:bluez_dbus_manager.cc(247)] Floss manager not present, cannot set Floss enable/disable.
+20220928-114845.640 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220928-1147.dmp  Atempt 1 
+20220928-114845.682 Dumping page to ./html/COVID-19-austria-bmsgpk.20220928-1147.dmp  Atempt 2 
+20220928-114845.682 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220928-1147.dmp 
+[0928/114845.788057:ERROR:gpu_init.cc(486)] Passthrough is not supported, GL is disabled, ANGLE is 
+[0928/114845.815181:WARNING:bluez_dbus_manager.cc(247)] Floss manager not present, cannot set Floss enable/disable.
+20220928-115105.978 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220928-1147.dmp  Atempt 2 
+20220928-115105.983 Dumping page to ./html/COVID-19-austria-bmsgpk.20220928-1147.dmp  Atempt 3 
+20220928-115105.983 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220928-1147.dmp 
+[0928/115106.076312:ERROR:gpu_init.cc(486)] Passthrough is not supported, GL is disabled, ANGLE is 
+[0928/115106.106653:WARNING:bluez_dbus_manager.cc(247)] Floss manager not present, cannot set Floss enable/disable.
+20220928-115155.327 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220928-1147.dmp  Atempt 3 
+Error in tbls[[2]] : subscript out of bounds
+Calls: scrapeCovid3
+2: (function () 
+   traceback(2))()
+1: scrapeCovid3(ts = ts)
+20220928-115155.499 DISABLED: Calling scrapeHospitalisierung with 20220928-1147 
+20220928-115155.499 DISABLED: Calling scrapeInfo with 20220928-1147 
+20220928-115155.499 Calling scrapeZIP_AGES with 20220928-1147 
+20220928-115155.507 Downloading https://covid19-dashboard.ages.at/data/data.zip to ./data/zip/COVID-19-austria.V1006.20220928-1147.zip 
+--2022-09-28 11:51:55--  https://covid19-dashboard.ages.at/data/data.zip
+Resolving covid19-dashboard.ages.at (covid19-dashboard.ages.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to covid19-dashboard.ages.at (covid19-dashboard.ages.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 3547877 (3.4M) [application/zip]
+Saving to: ‘./data/zip/COVID-19-austria.V1006.20220928-1147.zip’
+
+     0K .......... .......... .......... .......... ..........  1%  431K 8s
+    50K .......... .......... .......... .......... ..........  2%  599K 7s
+   100K .......... .......... .......... .......... ..........  4%  127K 13s
+   150K .......... .......... .......... .......... ..........  5% 8.50M 10s
+   200K .......... .......... .......... .......... ..........  7%  466K 9s
+   250K .......... .......... .......... .......... ..........  8%  489K 9s
+   300K .......... .......... .......... .......... .......... 10%  889K 8s
+   350K .......... .......... .......... .......... .......... 11%  760K 7s
+   400K .......... .......... .......... .......... .......... 12%  824K 7s
+   450K .......... .......... .......... .......... .......... 14% 1004K 6s
+   500K .......... .......... .......... .......... .......... 15%  735K 6s
+   550K .......... .......... .......... .......... .......... 17%  158K 7s
+   600K .......... .......... .......... .......... .......... 18%  325K 7s
+   650K .......... .......... .......... .......... .......... 20%  702K 7s
+   700K .......... .......... .......... .......... .......... 21%  953K 6s
+   750K .......... .......... .......... .......... .......... 23% 1.15M 6s
+   800K .......... .......... .......... .......... .......... 24%  126K 7s
+   850K .......... .......... .......... .......... .......... 25% 30.8K 11s
+   900K .......... .......... .......... .......... .......... 27%  774K 10s
+   950K .......... .......... .......... .......... .......... 28%  882K 10s
+  1000K .......... .......... .......... .......... .......... 30%  151K 10s
+  1050K .......... .......... .......... .......... .......... 31%  870K 9s
+  1100K .......... .......... .......... .......... .......... 33%  963K 9s
+  1150K .......... .......... .......... .......... .......... 34% 1.61M 8s
+  1200K .......... .......... .......... .......... .......... 36%  759K 8s
+  1250K .......... .......... .......... .......... .......... 37% 1.03M 7s
+  1300K .......... .......... .......... .......... .......... 38% 1.04M 7s
+  1350K .......... .......... .......... .......... .......... 40%  608K 7s
+  1400K .......... .......... .......... .......... .......... 41% 1.04M 6s
+  1450K .......... .......... .......... .......... .......... 43% 1021K 6s
+  1500K .......... .......... .......... .......... .......... 44%  796K 6s
+  1550K .......... .......... .......... .......... .......... 46%  738K 6s
+  1600K .......... .......... .......... .......... .......... 47% 83.9K 6s
+  1650K .......... .......... .......... .......... .......... 49%  760K 6s
+  1700K .......... .......... .......... .......... .......... 50%  903K 5s
+  1750K .......... .......... .......... .......... .......... 51%  613K 5s
+  1800K .......... .......... .......... .......... .......... 53%  645K 5s
+  1850K .......... .......... .......... .......... .......... 54% 1.08M 5s
+  1900K .......... .......... .......... .......... .......... 56%  499K 5s
+  1950K .......... .......... .......... .......... .......... 57%  798K 4s
+  2000K .......... .......... .......... .......... .......... 59%  687K 4s
+  2050K .......... .......... .......... .......... .......... 60%  414K 4s
+  2100K .......... .......... .......... .......... .......... 62%  498K 4s
+  2150K .......... .......... .......... .......... .......... 63%  364K 4s
+  2200K .......... .......... .......... .......... .......... 64%  330K 4s
+  2250K .......... .......... .......... .......... .......... 66% 75.0K 4s
+  2300K .......... .......... .......... .......... .......... 67% 2.34M 3s
+  2350K .......... .......... .......... .......... .......... 69%  655K 3s
+  2400K .......... .......... .......... .......... .......... 70%  665K 3s
+  2450K .......... .......... .......... .......... .......... 72% 1.17M 3s
+  2500K .......... .......... .......... .......... .......... 73%  254K 3s
+  2550K .......... .......... .......... .......... .......... 75% 6.55M 3s
+  2600K .......... .......... .......... .......... .......... 76%  603K 2s
+  2650K .......... .......... .......... .......... .......... 77%  633K 2s
+  2700K .......... .......... .......... .......... .......... 79%  284K 2s
+  2750K .......... .......... .......... .......... .......... 80% 1.77M 2s
+  2800K .......... .......... .......... .......... .......... 82%  806K 2s
+  2850K .......... .......... .......... .......... .......... 83%  765K 2s
+  2900K .......... .......... .......... .......... .......... 85%  939K 1s
+  2950K .......... .......... .......... .......... .......... 86%  888K 1s
+  3000K .......... .......... .......... .......... .......... 88% 1.08M 1s
+  3050K .......... .......... .......... .......... .......... 89%  696K 1s
+  3100K .......... .......... .......... .......... .......... 90%  752K 1s
+  3150K .......... .......... .......... .......... .......... 92%  737K 1s
+  3200K .......... .......... .......... .......... .......... 93% 1.03M 1s
+  3250K .......... .......... .......... .......... .......... 95% 1.59M 0s
+  3300K .......... .......... .......... .......... .......... 96%  917K 0s
+  3350K .......... .......... .......... .......... .......... 98%  711K 0s
+  3400K .......... .......... .......... .......... .......... 99% 1.83M 0s
+  3450K .......... ....                                       100% 62.0K=8.9s
+
+2022-09-28 11:53:12 (389 KB/s) - ‘./data/zip/COVID-19-austria.V1006.20220928-1147.zip’ saved [3547877/3547877]
+
+Archive:  ./data/zip/COVID-19-austria.V1006.20220928-1147.zip
+  inflating: ./data/unzip/CovidFaelle_Altersgruppe.csv  
+  inflating: ./data/unzip/CovidFaelle_GKZ.csv  
+  inflating: ./data/unzip/CovidFaelle_Timeline.csv  
+  inflating: ./data/unzip/CovidFaelle_Timeline_GKZ.csv  
+  inflating: ./data/unzip/CovidFallzahlen.csv  
+  inflating: ./data/unzip/Version.csv  
+20220928-115312.440 Calling scrapeBmsgpk with 20220928-1147 
+20220928-115312.471 Fetching timeline-eimpfpass 
+--2022-09-28 11:53:12--  https://info.gesundheitsministerium.gv.at/data/timeline-eimpfpass.csv
+Resolving info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1421936 (1.4M) [text/csv]
+Saving to: ‘./data/bmsgpk/timeline-eimpfpass.csv’
+
+     0K .......... .......... .......... .......... ..........  3%  501K 3s
+    50K .......... .......... .......... .......... ..........  7%  683K 2s
+   100K .......... .......... .......... .......... .......... 10%  763K 2s
+   150K .......... .......... .......... .......... .......... 14%  770K 2s
+   200K .......... .......... .......... .......... .......... 18% 1.73M 2s
+   250K .......... .......... .......... .......... .......... 21%  558K 2s
+   300K .......... .......... .......... .......... .......... 25%  980K 1s
+   350K .......... .......... .......... .......... .......... 28% 1.24M 1s
+   400K .......... .......... .......... .......... .......... 32%  775K 1s
+   450K .......... .......... .......... .......... .......... 36%  802K 1s
+   500K .......... .......... .......... .......... .......... 39%  799K 1s
+   550K .......... .......... .......... .......... .......... 43%  519K 1s
+   600K .......... .......... .......... .......... .......... 46% 89.8K 2s
+   650K .......... .......... .......... .......... .......... 50%  564K 1s
+   700K .......... .......... .......... .......... .......... 54%  958K 1s
+   750K .......... .......... .......... .......... .......... 57% 1.14M 1s
+   800K .......... .......... .......... .......... .......... 61%  731K 1s
+   850K .......... .......... .......... .......... .......... 64%  864K 1s
+   900K .......... .......... .......... .......... .......... 68%  792K 1s
+   950K .......... .......... .......... .......... .......... 72% 1.04M 1s
+  1000K .......... .......... .......... .......... .......... 75% 1.64M 1s
+  1050K .......... .......... .......... .......... .......... 79%  691K 0s
+  1100K .......... .......... .......... .......... .......... 82%  665K 0s
+  1150K .......... .......... .......... .......... .......... 86%  752K 0s
+  1200K .......... .......... .......... .......... .......... 90%  881K 0s
+  1250K .......... .......... .......... .......... .......... 93%  823K 0s
+  1300K .......... .......... .......... .......... .......... 97%  980K 0s
+  1350K .......... .......... .......... ........             100% 1.22M=2.2s
+
+2022-09-28 11:53:15 (626 KB/s) - ‘./data/bmsgpk/timeline-eimpfpass.csv’ saved [1421936/1421936]
+
+20220928-115315.755 Fetching timeline-bbg 
+--2022-09-28 11:53:15--  https://info.gesundheitsministerium.gv.at/data/timeline-bbg.csv
+Resolving info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 643753 (629K) [text/csv]
+Saving to: ‘./data/bmsgpk/timeline-bbg.csv’
+
+     0K .......... .......... .......... .......... ..........  7%  512K 1s
+    50K .......... .......... .......... .......... .......... 15%  624K 1s
+   100K .......... .......... .......... .......... .......... 23%  931K 1s
+   150K .......... .......... .......... .......... .......... 31%  757K 1s
+   200K .......... .......... .......... .......... .......... 39%  610K 1s
+   250K .......... .......... .......... .......... .......... 47%  882K 0s
+   300K .......... .......... .......... .......... .......... 55%  743K 0s
+   350K .......... .......... .......... .......... .......... 63%  446K 0s
+   400K .......... .......... .......... .......... .......... 71%  611K 0s
+   450K .......... .......... .......... .......... .......... 79%  993K 0s
+   500K .......... .......... .......... .......... .......... 87% 1.01M 0s
+   550K .......... .......... .......... .......... .......... 95%  697K 0s
+   600K .......... .......... ........                        100% 8.14M=0.9s
+
+2022-09-28 11:53:17 (721 KB/s) - ‘./data/bmsgpk/timeline-bbg.csv’ saved [643753/643753]
+
+20220928-115317.400 Fetching timeline-faelle-ems 
+--2022-09-28 11:53:17--  https://info.gesundheitsministerium.gv.at/data/timeline-faelle-ems.csv
+Resolving info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 255516 (250K) [text/csv]
+Saving to: ‘./data/bmsgpk/timeline-faelle-ems.csv’
+
+     0K .......... .......... .......... .......... .......... 20%  500K 0s
+    50K .......... .......... .......... .......... .......... 40%  801K 0s
+   100K .......... .......... .......... .......... .......... 60%  638K 0s
+   150K .......... .......... .......... .......... .......... 80% 1.27M 0s
+   200K .......... .......... .......... .......... ......... 100%  844K=0.3s
+
+2022-09-28 11:53:18 (738 KB/s) - ‘./data/bmsgpk/timeline-faelle-ems.csv’ saved [255516/255516]
+
+20220928-115318.639 Fetching timeline-faelle-bundeslaender 
+--2022-09-28 11:53:18--  https://info.gesundheitsministerium.gv.at/data/timeline-faelle-bundeslaender.csv
+Resolving info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 367302 (359K) [text/csv]
+Saving to: ‘./data/bmsgpk/timeline-faelle-bundeslaender.csv’
+
+     0K .......... .......... .......... .......... .......... 13% 75.2K 4s
+    50K .......... .......... .......... .......... .......... 27%  243K 2s
+   100K .......... .......... .......... .......... .......... 41%  785K 1s
+   150K .......... .......... .......... .......... .......... 55% 1.85M 1s
+   200K .......... .......... .......... .......... .......... 69%  716K 0s
+   250K .......... .......... .......... .......... .......... 83%  813K 0s
+   300K .......... .......... .......... .......... .......... 97%  174K 0s
+   350K ........                                              100% 72.7M=1.4s
+
+2022-09-28 11:53:20 (260 KB/s) - ‘./data/bmsgpk/timeline-faelle-bundeslaender.csv’ saved [367302/367302]
+
+20220928-115320.898 Fetching timeline-testungen-apotheken-betriebe 
+--2022-09-28 11:53:20--  https://info.gesundheitsministerium.gv.at/data/timeline-testungen-apotheken-betriebe.csv
+Resolving info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 312554 (305K) [text/csv]
+Saving to: ‘./data/bmsgpk/timeline-testungen-apotheken-betriebe.csv’
+
+     0K .......... .......... .......... .......... .......... 16%  444K 1s
+    50K .......... .......... .......... .......... .......... 32%  544K 0s
+   100K .......... .......... .......... .......... .......... 49%  467K 0s
+   150K .......... .......... .......... .......... .......... 65%  412K 0s
+   200K .......... .......... .......... .......... .......... 81%  835K 0s
+   250K .......... .......... .......... .......... .......... 98%  651K 0s
+   300K .....                                                 100% 28.2M=0.6s
+
+2022-09-28 11:53:22 (536 KB/s) - ‘./data/bmsgpk/timeline-testungen-apotheken-betriebe.csv’ saved [312554/312554]
+
+Error in `mutate_cols()`:
+! Problem with `mutate()` column `Datum`.
+ℹ `Datum = as.Date(Datum)`.
+✖ character string is not in a standard unambiguous format
+Caused by error in `charToDate()`:
+! character string is not in a standard unambiguous format
+Backtrace:
+     ▆
+  1. ├─global scrapeBmsgpk(ts = ts)
+  2. │ └─... %>% dplyr::mutate(Source = !!csvSource)
+  3. ├─dplyr::mutate(., Source = !!csvSource)
+  4. ├─tidyr::gather(...)
+  5. ├─dplyr::select(., -starts_with("Bev"))
+  6. ├─dplyr::mutate(., Datum = as.Date(Datum))
+  7. ├─dplyr:::mutate.data.frame(., Datum = as.Date(Datum))
+  8. │ └─dplyr:::mutate_cols(.data, ..., caller_env = caller_env())
+  9. │   ├─base::withCallingHandlers(...)
+ 10. │   └─mask$eval_all_mutate(quo)
+ 11. ├─base::as.Date(Datum)
+ 12. ├─base::as.Date.character(Datum)
+ 13. │ └─base charToDate(x)
+ 14. │   └─base::stop("character string is not in a standard unambiguous format")
+ 15. └─base::.handleSimpleError(...)
+ 16.   └─dplyr h(simpleError(msg, call))
+ 17.     └─rlang::abort(...)
+21: (function () 
+    traceback(2))()
+20: stop(fallback)
+19: signal_abort(cnd, .file)
+18: abort(bullets, class = c("dplyr:::mutate_error", "dplyr_error"), 
+        error_name = error_name, error_expression = error_expression, 
+        parent = e, bullets = bullets)
+17: h(simpleError(msg, call))
+16: .handleSimpleError(function (e) 
+    {
+        local_call_step(dots = dots, .index = i, .fn = "mutate", 
+            .dot_data = inherits(e, "rlang_error_data_pronoun_not_found"))
+        call_step_envir <- peek_call_step()
+        error_name <- call_step_envir$error_name
+        error_expression <- call_step_envir$error_expression
+        show_group_details <- TRUE
+        if (inherits(e, "dplyr:::mutate_incompatible_size")) {
+            size <- vec_size(rows[[mask$get_current_group()]])
+            x_size <- e$x_size
+            bullets <- c(i = cnd_bullet_column_info(), i = glue("`{error_name}` must be size {or_1(size)}, not {x_size}."), 
+                i = cnd_bullet_rowwise_unlist())
+        }
+        else if (inherits(e, "dplyr:::mutate_mixed_null")) {
+            show_group_details <- FALSE
+            bullets <- c(i = cnd_bullet_column_info(), x = glue("`{error_name}` must return compatible vectors across groups."), 
+                i = "Cannot combine NULL and non NULL results.", 
+                i = cnd_bullet_rowwise_unlist())
+        }
+        else if (inherits(e, "dplyr:::mutate_not_vector")) {
+            bullets <- c(i = cnd_bullet_column_info(), x = glue("`{error_name}` must be a vector, not {friendly_type_of(e$result)}."), 
+                i = cnd_bullet_rowwise_unlist())
+        }
+        else if (inherits(e, "dplyr:::error_mutate_incompatible_combine")) {
+            show_group_details <- FALSE
+            bullets <- c(i = cnd_bullet_column_info(), x = glue("`{error_name}` must return compatible vectors across groups"), 
+                i = cnd_bullet_combine_details(e$parent$x, e$parent$x_arg), 
+                i = cnd_bullet_combine_details(e$parent$y, e$parent$y_arg))
+        }
+        else {
+            bullets <- c(i = cnd_bullet_column_info(), x = conditionMessage(e))
+        }
+        bullets <- c(cnd_bullet_header(), bullets, i = if (show_group_details) cnd_bullet_cur_group_label())
+        abort(bullets, class = c("dplyr:::mutate_error", "dplyr_error"), 
+            error_name = error_name, error_expression = error_expression, 
+            parent = e, bullets = bullets)
+    }, "character string is not in a standard unambiguous format", 
+        base::quote(charToDate(x)))
+15: stop("character string is not in a standard unambiguous format")
+14: charToDate(x)
+13: as.Date.character(Datum)
+12: as.Date(Datum)
+11: .Call(dplyr_mask_eval_all_mutate, quo, private)
+10: mask$eval_all_mutate(quo)
+9: withCallingHandlers({
+       for (i in seq_along(dots)) {
+           mask$across_cache_reset()
+           context_poke("column", old_current_column)
+           quosures <- expand_across(dots[[i]])
+           quosures_results <- vector(mode = "list", length = length(quosures))
+           for (k in seq_along(quosures)) {
+               quo <- quosures[[k]]
+               quo_data <- attr(quo, "dplyr:::data")
+               if (!is.null(quo_data$column)) {
+                   context_poke("column", quo_data$column)
+               }
+               chunks <- NULL
+               result <- NULL
+               if (quo_is_symbol(quo)) {
+                   name <- as_string(quo_get_expr(quo))
+                   if (name %in% names(new_columns)) {
+                     result <- new_columns[[name]]
+                     chunks <- mask$resolve(name)
+                   }
+                   else if (name %in% names(.data)) {
+                     result <- .data[[name]]
+                     chunks <- mask$resolve(name)
+                   }
+                   if (inherits(.data, "rowwise_df") && vec_is_list(result)) {
+                     sizes <- list_sizes(result)
+                     wrong <- which(sizes != 1)
+                     if (length(wrong)) {
+                       group <- wrong[1L]
+                       mask$set_current_group(group)
+                       abort(x_size = sizes[group], class = "dplyr:::mutate_incompatible_size")
+                     }
+                   }
+               }
+               if (is.null(chunks)) {
+                   chunks <- mask$eval_all_mutate(quo)
+               }
+               if (is.null(chunks)) {
+                   next
+               }
+               if (is.null(result)) {
+                   if (length(rows) == 1) {
+                     result <- chunks[[1]]
+                   }
+                   else {
+                     result <- withCallingHandlers(vec_unchop(chunks <- vec_cast_common(!!!chunks), 
+                       rows), vctrs_error_incompatible_type = function(cnd) {
+                       abort(class = "dplyr:::error_mutate_incompatible_combine", 
+                         parent = cnd)
+                     })
+                   }
+               }
+               quosures_results[[k]] <- list(result = result, chunks = chunks)
+           }
+           for (k in seq_along(quosures)) {
+               quo <- quosures[[k]]
+               quo_data <- attr(quo, "dplyr:::data")
+               quo_result <- quosures_results[[k]]
+               if (is.null(quo_result)) {
+                   if (quo_data$is_named) {
+                     name <- quo_data$name_given
+                     new_columns[[name]] <- zap()
+                     mask$remove(name)
+                   }
+                   next
+               }
+               result <- quo_result$result
+               chunks <- quo_result$chunks
+               if (!quo_data$is_named && is.data.frame(result)) {
+                   new_columns[names(result)] <- result
+                   mask$add_many(result, chunks)
+               }
+               else {
+                   name <- quo_data$name_auto
+                   new_columns[[name]] <- result
+                   mask$add_one(name, chunks)
+               }
+           }
+       }
+   }, error = function(e) {
+       local_call_step(dots = dots, .index = i, .fn = "mutate", 
+           .dot_data = inherits(e, "rlang_error_data_pronoun_not_found"))
+       call_step_envir <- peek_call_step()
+       error_name <- call_step_envir$error_name
+       error_expression <- call_step_envir$error_expression
+       show_group_details <- TRUE
+       if (inherits(e, "dplyr:::mutate_incompatible_size")) {
+           size <- vec_size(rows[[mask$get_current_group()]])
+           x_size <- e$x_size
+           bullets <- c(i = cnd_bullet_column_info(), i = glue("`{error_name}` must be size {or_1(size)}, not {x_size}."), 
+               i = cnd_bullet_rowwise_unlist())
+       }
+       else if (inherits(e, "dplyr:::mutate_mixed_null")) {
+           show_group_details <- FALSE
+           bullets <- c(i = cnd_bullet_column_info(), x = glue("`{error_name}` must return compatible vectors across groups."), 
+               i = "Cannot combine NULL and non NULL results.", 
+               i = cnd_bullet_rowwise_unlist())
+       }
+       else if (inherits(e, "dplyr:::mutate_not_vector")) {
+           bullets <- c(i = cnd_bullet_column_info(), x = glue("`{error_name}` must be a vector, not {friendly_type_of(e$result)}."), 
+               i = cnd_bullet_rowwise_unlist())
+       }
+       else if (inherits(e, "dplyr:::error_mutate_incompatible_combine")) {
+           show_group_details <- FALSE
+           bullets <- c(i = cnd_bullet_column_info(), x = glue("`{error_name}` must return compatible vectors across groups"), 
+               i = cnd_bullet_combine_details(e$parent$x, e$parent$x_arg), 
+               i = cnd_bullet_combine_details(e$parent$y, e$parent$y_arg))
+       }
+       else {
+           bullets <- c(i = cnd_bullet_column_info(), x = conditionMessage(e))
+       }
+       bullets <- c(cnd_bullet_header(), bullets, i = if (show_group_details) cnd_bullet_cur_group_label())
+       abort(bullets, class = c("dplyr:::mutate_error", "dplyr_error"), 
+           error_name = error_name, error_expression = error_expression, 
+           parent = e, bullets = bullets)
+   }, warning = function(w) {
+       if (check_muffled_warning(w)) {
+           maybe_restart("muffleWarning")
+       }
+       local_call_step(dots = dots, .index = i, .fn = "mutate")
+       warn(c(cnd_bullet_header(), i = cnd_bullet_column_info(), 
+           i = conditionMessage(w), i = cnd_bullet_cur_group_label(what = "warning")))
+       maybe_restart("muffleWarning")
+   })
+8: mutate_cols(.data, ..., caller_env = caller_env())
+7: mutate.data.frame(., Datum = as.Date(Datum))
+6: dplyr::mutate(., Datum = as.Date(Datum))
+5: dplyr::select(., -starts_with("Bev"))
+4: tidyr::gather(., key = "Key", value = "Value", -Datum, -BundeslandID, 
+       -Name)
+3: dplyr::mutate(., Source = !!csvSource)
+2: read.csv(csvTarget, header = TRUE, sep = ";", stringsAsFactors = FALSE) %>% 
+       dplyr::mutate(Datum = as.Date(Datum)) %>% dplyr::select(-starts_with("Bev")) %>% 
+       tidyr::gather(key = "Key", value = "Value", -Datum, -BundeslandID, 
+           -Name) %>% dplyr::mutate(Source = !!csvSource)
+1: scrapeBmsgpk(ts = ts)
+20220928-115322.425 Writing ems data to ./data/COVID-19-austria.csv 
+Error in rbind(deparse.level, ...) : object 'dc' not found
+Calls: rbind -> rbind
+3: (function () 
+   traceback(2))()
+2: rbind(deparse.level, ...)
+1: rbind(df, dc)
+20220928-115322.533 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
+20220928-115322.533 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
+Error in is.data.frame(x) : object 'db' not found
+Calls: write.csv ... eval.parent -> eval -> eval -> <Anonymous> -> is.data.frame
+7: (function () 
+   traceback(2))()
+6: is.data.frame(x)
+5: utils::write.table(db, file = csvFile, row.names = FALSE, quote = FALSE, 
+       col.names = TRUE, sep = ",", dec = ".", qmethod = "double")
+4: eval(expr, p)
+3: eval(expr, p)
+2: eval.parent(Call)
+1: write.csv(db, file = csvFile, row.names = FALSE, quote = FALSE)
+20220928-115322.533 Done runing data extraction from bmsgpk web pages 

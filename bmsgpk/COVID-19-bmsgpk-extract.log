@@ -23960,3 +23960,30 @@
 20220926-141108.360 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
 20220926-141108.360 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
 20220926-141110.026 Done runing data extraction from bmsgpk web pages 
+20220928-114747.615 Running COVID-19-bmsgpk-extract.R 
+20220928-114747.620 DISABLED: Calling scrapeCovid2 with 20220928-1147 
+20220928-114747.620 Calling scrapeCovid3 with 20220928-1147 
+20220928-114747.704 Scraping using headless chrome for https://info.gesundheitsministerium.gv.at/?re=tabelle 
+20220928-114747.704 Dumping page to ./html/COVID-19-austria-bmsgpk.20220928-1147.dmp  Atempt 1 
+20220928-114747.704 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220928-1147.dmp 
+20220928-114845.640 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220928-1147.dmp  Atempt 1 
+20220928-114845.681 Dumping page to ./html/COVID-19-austria-bmsgpk.20220928-1147.dmp  Atempt 2 
+20220928-114845.682 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220928-1147.dmp 
+20220928-115105.978 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220928-1147.dmp  Atempt 2 
+20220928-115105.983 Dumping page to ./html/COVID-19-austria-bmsgpk.20220928-1147.dmp  Atempt 3 
+20220928-115105.983 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20220928-1147.dmp 
+20220928-115155.326 Analysing dump file ./html/COVID-19-austria-bmsgpk.20220928-1147.dmp  Atempt 3 
+20220928-115155.499 DISABLED: Calling scrapeHospitalisierung with 20220928-1147 
+20220928-115155.499 DISABLED: Calling scrapeInfo with 20220928-1147 
+20220928-115155.499 Calling scrapeZIP_AGES with 20220928-1147 
+20220928-115155.507 Downloading https://covid19-dashboard.ages.at/data/data.zip to ./data/zip/COVID-19-austria.V1006.20220928-1147.zip 
+20220928-115312.440 Calling scrapeBmsgpk with 20220928-1147 
+20220928-115312.471 Fetching timeline-eimpfpass 
+20220928-115315.755 Fetching timeline-bbg 
+20220928-115317.400 Fetching timeline-faelle-ems 
+20220928-115318.639 Fetching timeline-faelle-bundeslaender 
+20220928-115320.898 Fetching timeline-testungen-apotheken-betriebe 
+20220928-115322.425 Writing ems data to ./data/COVID-19-austria.csv 
+20220928-115322.532 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
+20220928-115322.533 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
+20220928-115322.533 Done runing data extraction from bmsgpk web pages 
