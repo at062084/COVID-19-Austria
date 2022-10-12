@@ -41619,3 +41619,124 @@ Calls: write.csv ... eval.parent -> eval -> eval -> <Anonymous> -> is.data.frame
 2: eval.parent(Call)
 1: write.csv(db, file = csvFile, row.names = FALSE, quote = FALSE)
 20221012-171837.878 Done runing data extraction from bmsgpk web pages 
+[master 2e42181e] 2022-10-12 17:18:27 Auto-Extract data from bmsgpk website
+ 15 files changed, 57717 insertions(+), 56582 deletions(-)
+ rewrite bmsgpk/data/ages/CovidFaelle_GKZ.csv (98%)
+ rewrite bmsgpk/data/unzip/CovidFaelle_GKZ.csv (98%)
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V1006.20221012-1718.zip
+To github.com:at062084/COVID-19-Austria.git
+   8215bceb..2e42181e  master -> master
+
+--------------------------------------------------------------------
+2022-10-12 17:31:35 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2022-10-12 17:31:35 Workdir /home/at001335/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2022-10-12 17:31:35 Running auto-extraction of COVID-19 data from bmsgpk website
+
+Attaching package: ‘lubridate’
+
+The following objects are masked from ‘package:base’:
+
+    date, intersect, setdiff, union
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘rvest’
+
+The following object is masked from ‘package:readr’:
+
+    guess_encoding
+
+Error: unexpected 'if' in:
+"    # stack csv files
+    if"
+1: (function () 
+   traceback(2))()
+Error: object 'rc' not found
+1: (function () 
+   traceback(2))()
+Error: unexpected '}' in "    }"
+1: (function () 
+   traceback(2))()
+Error in rbind(df, rc) : object 'rc' not found
+2: (function () 
+   traceback(2))()
+1: rbind(df, rc)
+Error: unexpected '}' in "    }"
+1: (function () 
+   traceback(2))()
+Error: unexpected '}' in "  }"
+1: (function () 
+   traceback(2))()
+Error: no function to return from, jumping to top level
+1: (function () 
+   traceback(2))()
+Error: unexpected '}' in "}"
+1: (function () 
+   traceback(2))()
+20221012-173136.460 Running COVID-19-bmsgpk-extract.R 
+20221012-173136.464 DISABLED: Calling scrapeCovid2 with 20221012-1731 
+20221012-173136.464 DISABLED: Calling scrapeCovid3 with 20221012-1731 
+20221012-173136.464 DISABLED: Calling scrapeHospitalisierung with 20221012-1731 
+20221012-173136.464 DISABLED: Calling scrapeInfo with 20221012-1731 
+20221012-173136.464 Calling scrapeZIP_AGES with 20221012-1731 
+20221012-173136.473 Downloading https://covid19-dashboard.ages.at/data/data.zip to ./data/zip/COVID-19-austria.V1006.20221012-1731.zip 
+--2022-10-12 17:31:36--  https://covid19-dashboard.ages.at/data/data.zip
+Resolving covid19-dashboard.ages.at (covid19-dashboard.ages.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to covid19-dashboard.ages.at (covid19-dashboard.ages.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 3619345 (3.5M) [application/zip]
+Saving to: ‘./data/zip/COVID-19-austria.V1006.20221012-1731.zip’
+
+     0K .......... .......... .......... .......... ..........  1%  448K 8s
+    50K .......... .......... .......... .......... ..........  2% 1.14M 5s
+   100K .......... .......... .......... .......... ..........  4% 1.64M 4s
+   150K .......... .......... .......... .......... ..........  5% 1.56M 4s
+   200K .......... .......... .......... .......... ..........  7%  925K 4s
+   250K .......... .......... .......... .......... ..........  8% 1.22M 3s
+   300K .......... .......... .......... .......... ..........  9% 1022K 3s
+   350K .......... .......... .......... .......... .......... 11% 2.03M 3s
+   400K .......... .......... .......... .......... .......... 12% 1.47M 3s
+   450K .......... .......... .......... .......... .......... 14% 1.63M 3s
+   500K .......... .......... .......... .......... .......... 15% 2.16M 3s
+   550K .......... .......... .......... .......... .......... 16% 1.08M 3s
+   600K .......... .......... .......... .......... .......... 18%  800K 3s
+   650K .......... .......... .......... .......... .......... 19% 1.16M 3s
+   700K .......... .......... .......... .......... .......... 21%  289M 2s
+   750K .......... .......... .......... .......... .......... 22% 1016K 2s
+   800K .......... .......... .......... .......... .......... 24%  965K 2s
+   850K .......... .......... .......... .......... .......... 25% 1.03M 2s
+   900K .......... .......... .......... .......... .......... 26% 3.68M 2s
+   950K .......... .......... .......... .......... .......... 28% 1.17M 2s
+  1000K .......... .......... .......... .......... .......... 29%  833K 2s
+  1050K .......... .......... .......... .......... .......... 31% 1.41M 2s
+  1100K .......... .......... .......... .......... .......... 32% 2.92M 2s
+  1150K .......... .......... .......... .......... .......... 33% 1.20M 2s
+  1200K .......... .......... .......... .......... .......... 35%  961K 2s
+  1250K .......... .......... .......... .......... .......... 36%  904K 2s
+  1300K .......... .......... .......... .......... .......... 38% 3.09M 2s
+  1350K .......... .......... .......... .......... .......... 39% 1.32M 2s
+  1400K .......... .......... .......... .......... .......... 41% 1.08M 2s
+  1450K .......... .......... .......... .......... .......... 42%  940K 2s
+  1500K .......... .......... .......... .......... .......... 43% 1.73M 2s
+  1550K .......... .......... .......... .......... .......... 45% 1.81M 2s
+  1600K .......... .......... .......... .......... .......... 46% 1.07M 2s
+  1650K .......... .......... .......... .......... .......... 48%  979K 1s
+  1700K .......... .......... .......... .......... .......... 49% 2.16M 1s
+  1750K .......... .......... .......... .......... .......... 50% 1.56M 1s
+  1800K .......... .......... .......... .......... .......... 52%  980K 1s
+  1850K .......... .......... .......... .......... .......... 53% 1.00M 1s
+  1900K .......... .......... .......... .......... .......... 55% 1021K 1s
+  1950K .......... .......... .......... .......... .......... 56% 4.87M 1s
+  2000K .......... .......... .......... .......... .......... 57% 1.50M 1s
+  2050K .......... .......... .......... .......... .
