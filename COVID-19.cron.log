@@ -40641,3 +40641,501 @@ Calls: write.csv ... eval.parent -> eval -> eval -> <Anonymous> -> is.data.frame
 2: eval.parent(Call)
 1: write.csv(db, file = csvFile, row.names = FALSE, quote = FALSE)
 20221010-114835.651 Done runing data extraction from bmsgpk web pages 
+[master aab49a41] 2022-10-10 11:48:16 Auto-Extract data from bmsgpk website
+ 17 files changed, 189673 insertions(+), 183320 deletions(-)
+ rewrite bmsgpk/data/ages/CovidFaelle_GKZ.csv (98%)
+ rewrite bmsgpk/data/unzip/CovidFaelle_GKZ.csv (98%)
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V1006.20221010-1148.zip
+ create mode 100644 bmsgpk/html/COVID-19-austria-bmsgpk.20221010-1148.dmp
+client_loop: send disconnect: Broken pipe
+send-pack: unexpected disconnect while reading sideband packet
+fatal: the remote end hung up unexpectedly
+
+--------------------------------------------------------------------
+2022-10-12 12:46:15 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2022-10-12 12:46:15 Workdir /home/at001335/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2022-10-12 12:46:15 Running auto-extraction of COVID-19 data from bmsgpk website
+
+Attaching package: ‘lubridate’
+
+The following objects are masked from ‘package:base’:
+
+    date, intersect, setdiff, union
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘rvest’
+
+The following object is masked from ‘package:readr’:
+
+    guess_encoding
+
+20221012-124617.086 Running COVID-19-bmsgpk-extract.R 
+20221012-124617.090 DISABLED: Calling scrapeCovid2 with 20221012-1246 
+20221012-124617.090 Calling scrapeCovid3 with 20221012-1246 
+20221012-124617.144 Scraping using headless chrome for https://info.gesundheitsministerium.gv.at/?re=tabelle 
+20221012-124617.145 Dumping page to ./html/COVID-19-austria-bmsgpk.20221012-1246.dmp  Atempt 1 
+20221012-124617.145 Running:  chrome https://info.gesundheitsministerium.gv.at/?re=tabelle --headless --disable-gpu --disable-software-rasterizer --dump-dom --delay=10000 -run-all-compositor-stages-before-draw --virtual-time-budget=10000 > ./html/COVID-19-austria-bmsgpk.20221012-1246.dmp 
+[1012/124617.228930:ERROR:gpu_init.cc(486)] Passthrough is not supported, GL is disabled, ANGLE is 
+[1012/124617.254652:WARNING:bluez_dbus_manager.cc(247)] Floss manager not present, cannot set Floss enable/disable.
+20221012-124625.963 Analysing dump file ./html/COVID-19-austria-bmsgpk.20221012-1246.dmp  Atempt 1 
+Error in tbls[[2]] : subscript out of bounds
+Calls: scrapeCovid3
+2: (function () 
+   traceback(2))()
+1: scrapeCovid3(ts = ts)
+20221012-124626.154 DISABLED: Calling scrapeHospitalisierung with 20221012-1246 
+20221012-124626.154 DISABLED: Calling scrapeInfo with 20221012-1246 
+20221012-124626.154 Calling scrapeZIP_AGES with 20221012-1246 
+20221012-124626.162 Downloading https://covid19-dashboard.ages.at/data/data.zip to ./data/zip/COVID-19-austria.V1006.20221012-1246.zip 
+--2022-10-12 12:46:26--  https://covid19-dashboard.ages.at/data/data.zip
+Resolving covid19-dashboard.ages.at (covid19-dashboard.ages.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to covid19-dashboard.ages.at (covid19-dashboard.ages.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 3614300 (3.4M) [application/zip]
+Saving to: ‘./data/zip/COVID-19-austria.V1006.20221012-1246.zip’
+
+     0K .......... .......... .......... .......... ..........  1%  905K 4s
+    50K .......... .......... .......... .......... ..........  2%  979K 4s
+   100K .......... .......... .......... .......... ..........  4%  822K 4s
+   150K .......... .......... .......... .......... ..........  5%  928K 4s
+   200K .......... .......... .......... .......... ..........  7%  884K 4s
+   250K .......... .......... .......... .......... ..........  8%  898K 4s
+   300K .......... .......... .......... .......... ..........  9% 1.20M 3s
+   350K .......... .......... .......... .......... .......... 11%  907K 3s
+   400K .......... .......... .......... .......... .......... 12%  907K 3s
+   450K .......... .......... .......... .......... .......... 14%  930K 3s
+   500K .......... .......... .......... .......... .......... 15%  910K 3s
+   550K .......... .......... .......... .......... .......... 16%  868K 3s
+   600K .......... .......... .......... .......... .......... 18% 1.18M 3s
+   650K .......... .......... .......... .......... .......... 19%  886K 3s
+   700K .......... .......... .......... .......... .......... 21%  885K 3s
+   750K .......... .......... .......... .......... .......... 22%  905K 3s
+   800K .......... .......... .......... .......... .......... 24%  985K 3s
+   850K .......... .......... .......... .......... .......... 25%  890K 3s
+   900K .......... .......... .......... .......... .......... 26% 1.19M 3s
+   950K .......... .......... .......... .......... .......... 28%  926K 3s
+  1000K .......... .......... .......... .......... .......... 29%  887K 3s
+  1050K .......... .......... .......... .......... .......... 31%  936K 3s
+  1100K .......... .......... .......... .......... .......... 32%  887K 3s
+  1150K .......... .......... .......... .......... .......... 33%  902K 2s
+  1200K .......... .......... .......... .......... .......... 35%  910K 2s
+  1250K .......... .......... .......... .......... .......... 36%  960K 2s
+  1300K .......... .......... .......... .......... .......... 38%  927K 2s
+  1350K .......... .......... .......... .......... .......... 39% 1.11M 2s
+  1400K .......... .......... .......... .......... .......... 41%  907K 2s
+  1450K .......... .......... .......... .......... .......... 42%  910K 2s
+  1500K .......... .......... .......... .......... .......... 43%  926K 2s
+  1550K .......... .......... .......... .......... .......... 45%  887K 2s
+  1600K .......... .......... .......... .......... .......... 46% 1.12M 2s
+  1650K .......... .......... .......... .......... .......... 48%  861K 2s
+  1700K .......... .......... .......... .......... .......... 49%  882K 2s
+  1750K .......... .......... .......... .......... .......... 50%  911K 2s
+  1800K .......... .......... .......... .......... .......... 52% 1.15M 2s
+  1850K .......... .......... .......... .......... .......... 53%  933K 2s
+  1900K .......... .......... .......... .......... .......... 55%  909K 2s
+  1950K .......... .......... .......... .......... .......... 56%  911K 2s
+  2000K .......... .......... .......... .......... .......... 58%  927K 2s
+  2050K .......... .......... .......... .......... .......... 59%  906K 2s
+  2100K .......... .......... .......... .......... .......... 60%  907K 1s
+  2150K .......... .......... .......... .......... .......... 62% 1.12M 1s
+  2200K .......... .......... .......... .......... .......... 63%  927K 1s
+  2250K .......... .......... .......... .......... .......... 65%  910K 1s
+  2300K .......... .......... .......... .......... .......... 66%  886K 1s
+  2350K .......... .......... .......... .......... .......... 67%  933K 1s
+  2400K .......... .......... .......... .......... .......... 69% 1.08M 1s
+  2450K .......... .......... .......... .......... .......... 70%  909K 1s
+  2500K .......... .......... .......... .......... .......... 72%  908K 1s
+  2550K .......... .......... .......... .......... .......... 73%  927K 1s
+  2600K .......... .......... .......... .......... .......... 75%  928K 1s
+  2650K .......... .......... .......... .......... .......... 76%  913K 1s
+  2700K .......... .......... .......... .......... .......... 77%  934K 1s
+  2750K .......... .......... .......... .......... .......... 79%  908K 1s
+  2800K .......... .......... .......... .......... .......... 80% 1.19M 1s
+  2850K .......... .......... .......... .......... .......... 82%  931K 1s
+  2900K .......... .......... .......... .......... .......... 83%  883K 1s
+  2950K .......... .......... .......... .......... .......... 84%  901K 1s
+  3000K .......... .......... .......... .......... .......... 86%  929K 1s
+  3050K .......... .......... .......... .......... .......... 87%  892K 0s
+  3100K .......... .......... .......... .......... .......... 89%  906K 0s
+  3150K .......... .......... .......... .......... .......... 90% 1.19M 0s
+  3200K .......... .......... .......... .......... .......... 92%  881K 0s
+  3250K .......... .......... .......... .......... .......... 93%  959K 0s
+  3300K .......... .......... .......... .......... .......... 94%  886K 0s
+  3350K .......... .......... .......... .......... .......... 96%  883K 0s
+  3400K .......... .......... .......... .......... .......... 97%  905K 0s
+  3450K .......... .......... .......... .......... .......... 99% 1.22M 0s
+  3500K .......... .......... .........                       100%  973K=3.7s
+
+2022-10-12 12:46:30 (943 KB/s) - ‘./data/zip/COVID-19-austria.V1006.20221012-1246.zip’ saved [3614300/3614300]
+
+Archive:  ./data/zip/COVID-19-austria.V1006.20221012-1246.zip
+  inflating: ./data/unzip/CovidFaelle_Altersgruppe.csv  
+  inflating: ./data/unzip/CovidFaelle_GKZ.csv  
+  inflating: ./data/unzip/CovidFaelle_Timeline.csv  
+  inflating: ./data/unzip/CovidFaelle_Timeline_GKZ.csv  
+  inflating: ./data/unzip/CovidFallzahlen.csv  
+  inflating: ./data/unzip/Version.csv  
+20221012-124630.316 Calling scrapeBmsgpk with 20221012-1246 
+20221012-124630.336 Fetching timeline-eimpfpass 
+--2022-10-12 12:46:30--  https://info.gesundheitsministerium.gv.at/data/timeline-eimpfpass.csv
+Resolving info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1421936 (1.4M) [text/csv]
+Saving to: ‘./data/bmsgpk/timeline-eimpfpass.csv’
+
+     0K .......... .......... .......... .......... ..........  3%  899K 1s
+    50K .......... .......... .......... .......... ..........  7%  982K 1s
+   100K .......... .......... .......... .......... .......... 10%  867K 1s
+   150K .......... .......... .......... .......... .......... 14%  958K 1s
+   200K .......... .......... .......... .......... .......... 18%  879K 1s
+   250K .......... .......... .......... .......... .......... 21%  931K 1s
+   300K .......... .......... .......... .......... .......... 25%  935K 1s
+   350K .......... .......... .......... .......... .......... 28%  902K 1s
+   400K .......... .......... .......... .......... .......... 32%  884K 1s
+   450K .......... .......... .......... .......... .......... 36% 1.15M 1s
+   500K .......... .......... .......... .......... .......... 39%  853K 1s
+   550K .......... .......... .......... .......... .......... 43%  927K 1s
+   600K .......... .......... .......... .......... .......... 46%  932K 1s
+   650K .......... .......... .......... .......... .......... 50%  888K 1s
+   700K .......... .......... .......... .......... .......... 54% 1.19M 1s
+   750K .......... .......... .......... .......... .......... 57%  954K 1s
+   800K .......... .......... .......... .......... .......... 61%  754K 1s
+   850K .......... .......... .......... .......... .......... 64% 1.11M 1s
+   900K .......... .......... .......... .......... .......... 68%  953K 0s
+   950K .......... .......... .......... .......... .......... 72%  959K 0s
+  1000K .......... .......... .......... .......... .......... 75%  909K 0s
+  1050K .......... .......... .......... .......... .......... 79%  882K 0s
+  1100K .......... .......... .......... .......... .......... 82%  890K 0s
+  1150K .......... .......... .......... .......... .......... 86%  903K 0s
+  1200K .......... .......... .......... .......... .......... 90% 1.19M 0s
+  1250K .......... .......... .......... .......... .......... 93%  935K 0s
+  1300K .......... .......... .......... .......... .......... 97%  931K 0s
+  1350K .......... .......... .......... ........             100% 1.01M=1.5s
+
+2022-10-12 12:46:32 (942 KB/s) - ‘./data/bmsgpk/timeline-eimpfpass.csv’ saved [1421936/1421936]
+
+20221012-124632.343 Fetching timeline-bbg 
+--2022-10-12 12:46:32--  https://info.gesundheitsministerium.gv.at/data/timeline-bbg.csv
+Resolving info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 658323 (643K) [text/csv]
+Saving to: ‘./data/bmsgpk/timeline-bbg.csv’
+
+     0K .......... .......... .......... .......... ..........  7%  908K 1s
+    50K .......... .......... .......... .......... .......... 15%  954K 1s
+   100K .......... .......... .......... .......... .......... 23%  930K 1s
+   150K .......... .......... .......... .......... .......... 31%  887K 0s
+   200K .......... .......... .......... .......... .......... 38%  948K 0s
+   250K .......... .......... .......... .......... .......... 46%  926K 0s
+   300K .......... .......... .......... .......... .......... 54%  930K 0s
+   350K .......... .......... .......... .......... .......... 62%  931K 0s
+   400K .......... .......... .......... .......... .......... 69%  886K 0s
+   450K .......... .......... .......... .......... .......... 77%  930K 0s
+   500K .......... .......... .......... .......... .......... 85%  932K 0s
+   550K .......... .......... .......... .......... .......... 93% 1.12M 0s
+   600K .......... .......... .......... .......... ..        100%  973K=0.7s
+
+2022-10-12 12:46:33 (941 KB/s) - ‘./data/bmsgpk/timeline-bbg.csv’ saved [658323/658323]
+
+20221012-124633.467 Fetching timeline-faelle-ems 
+--2022-10-12 12:46:33--  https://info.gesundheitsministerium.gv.at/data/timeline-faelle-ems.csv
+Resolving info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 255516 (250K) [text/csv]
+Saving to: ‘./data/bmsgpk/timeline-faelle-ems.csv’
+
+     0K .......... .......... .......... .......... .......... 20%  922K 0s
+    50K .......... .......... .......... .......... .......... 40%  864K 0s
+   100K .......... .......... .......... .......... .......... 60%  849K 0s
+   150K .......... .......... .......... .......... .......... 80% 1.14M 0s
+   200K .......... .......... .......... .......... ......... 100%  960K=0.3s
+
+2022-10-12 12:46:33 (941 KB/s) - ‘./data/bmsgpk/timeline-faelle-ems.csv’ saved [255516/255516]
+
+20221012-124634.079 Fetching timeline-faelle-bundeslaender 
+--2022-10-12 12:46:34--  https://info.gesundheitsministerium.gv.at/data/timeline-faelle-bundeslaender.csv
+Resolving info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 367302 (359K) [text/csv]
+Saving to: ‘./data/bmsgpk/timeline-faelle-bundeslaender.csv’
+
+     0K .......... .......... .......... .......... .......... 13%  935K 0s
+    50K .......... .......... .......... .......... .......... 27%  880K 0s
+   100K .......... .......... .......... .......... .......... 41%  821K 0s
+   150K .......... .......... .......... .......... .......... 55% 1.02M 0s
+   200K .......... .......... .......... .......... .......... 69%  910K 0s
+   250K .......... .......... .......... .......... .......... 83%  922K 0s
+   300K .......... .......... .......... .......... .......... 97%  950K 0s
+   350K ........                                              100% 73.1M=0.4s
+
+2022-10-12 12:46:34 (941 KB/s) - ‘./data/bmsgpk/timeline-faelle-bundeslaender.csv’ saved [367302/367302]
+
+20221012-124634.870 Fetching timeline-testungen-apotheken-betriebe 
+--2022-10-12 12:46:34--  https://info.gesundheitsministerium.gv.at/data/timeline-testungen-apotheken-betriebe.csv
+Resolving info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)... 194.48.237.240, 2a00:1610:0:50::1bb:4a
+Connecting to info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 320492 (313K) [text/csv]
+Saving to: ‘./data/bmsgpk/timeline-testungen-apotheken-betriebe.csv’
+
+     0K .......... .......... .......... .......... .......... 15%  885K 0s
+    50K .......... .......... .......... .......... .......... 31%  927K 0s
+   100K .......... .......... .......... .......... .......... 47%  979K 0s
+   150K .......... .......... .......... .......... .......... 63%  885K 0s
+   200K .......... .......... .......... .......... .......... 79%  866K 0s
+   250K .......... .......... .......... .......... .......... 95%  923K 0s
+   300K .......... ..                                         100% 6.12M=0.3s
+
+2022-10-12 12:46:35 (943 KB/s) - ‘./data/bmsgpk/timeline-testungen-apotheken-betriebe.csv’ saved [320492/320492]
+
+Error in `mutate_cols()`:
+! Problem with `mutate()` column `Datum`.
+ℹ `Datum = as.Date(Datum)`.
+✖ character string is not in a standard unambiguous format
+Caused by error in `charToDate()`:
+! character string is not in a standard unambiguous format
+Backtrace:
+     ▆
+  1. ├─global scrapeBmsgpk(ts = ts)
+  2. │ └─... %>% dplyr::mutate(Source = !!csvSource)
+  3. ├─dplyr::mutate(., Source = !!csvSource)
+  4. ├─tidyr::gather(...)
+  5. ├─dplyr::select(., -starts_with("Bev"))
+  6. ├─dplyr::mutate(., Datum = as.Date(Datum))
+  7. ├─dplyr:::mutate.data.frame(., Datum = as.Date(Datum))
+  8. │ └─dplyr:::mutate_cols(.data, ..., caller_env = caller_env())
+  9. │   ├─base::withCallingHandlers(...)
+ 10. │   └─mask$eval_all_mutate(quo)
+ 11. ├─base::as.Date(Datum)
+ 12. ├─base::as.Date.character(Datum)
+ 13. │ └─base charToDate(x)
+ 14. │   └─base::stop("character string is not in a standard unambiguous format")
+ 15. └─base::.handleSimpleError(...)
+ 16.   └─dplyr h(simpleError(msg, call))
+ 17.     └─rlang::abort(...)
+21: (function () 
+    traceback(2))()
+20: stop(fallback)
+19: signal_abort(cnd, .file)
+18: abort(bullets, class = c("dplyr:::mutate_error", "dplyr_error"), 
+        error_name = error_name, error_expression = error_expression, 
+        parent = e, bullets = bullets)
+17: h(simpleError(msg, call))
+16: .handleSimpleError(function (e) 
+    {
+        local_call_step(dots = dots, .index = i, .fn = "mutate", 
+            .dot_data = inherits(e, "rlang_error_data_pronoun_not_found"))
+        call_step_envir <- peek_call_step()
+        error_name <- call_step_envir$error_name
+        error_expression <- call_step_envir$error_expression
+        show_group_details <- TRUE
+        if (inherits(e, "dplyr:::mutate_incompatible_size")) {
+            size <- vec_size(rows[[mask$get_current_group()]])
+            x_size <- e$x_size
+            bullets <- c(i = cnd_bullet_column_info(), i = glue("`{error_name}` must be size {or_1(size)}, not {x_size}."), 
+                i = cnd_bullet_rowwise_unlist())
+        }
+        else if (inherits(e, "dplyr:::mutate_mixed_null")) {
+            show_group_details <- FALSE
+            bullets <- c(i = cnd_bullet_column_info(), x = glue("`{error_name}` must return compatible vectors across groups."), 
+                i = "Cannot combine NULL and non NULL results.", 
+                i = cnd_bullet_rowwise_unlist())
+        }
+        else if (inherits(e, "dplyr:::mutate_not_vector")) {
+            bullets <- c(i = cnd_bullet_column_info(), x = glue("`{error_name}` must be a vector, not {friendly_type_of(e$result)}."), 
+                i = cnd_bullet_rowwise_unlist())
+        }
+        else if (inherits(e, "dplyr:::error_mutate_incompatible_combine")) {
+            show_group_details <- FALSE
+            bullets <- c(i = cnd_bullet_column_info(), x = glue("`{error_name}` must return compatible vectors across groups"), 
+                i = cnd_bullet_combine_details(e$parent$x, e$parent$x_arg), 
+                i = cnd_bullet_combine_details(e$parent$y, e$parent$y_arg))
+        }
+        else {
+            bullets <- c(i = cnd_bullet_column_info(), x = conditionMessage(e))
+        }
+        bullets <- c(cnd_bullet_header(), bullets, i = if (show_group_details) cnd_bullet_cur_group_label())
+        abort(bullets, class = c("dplyr:::mutate_error", "dplyr_error"), 
+            error_name = error_name, error_expression = error_expression, 
+            parent = e, bullets = bullets)
+    }, "character string is not in a standard unambiguous format", 
+        base::quote(charToDate(x)))
+15: stop("character string is not in a standard unambiguous format")
+14: charToDate(x)
+13: as.Date.character(Datum)
+12: as.Date(Datum)
+11: .Call(dplyr_mask_eval_all_mutate, quo, private)
+10: mask$eval_all_mutate(quo)
+9: withCallingHandlers({
+       for (i in seq_along(dots)) {
+           mask$across_cache_reset()
+           context_poke("column", old_current_column)
+           quosures <- expand_across(dots[[i]])
+           quosures_results <- vector(mode = "list", length = length(quosures))
+           for (k in seq_along(quosures)) {
+               quo <- quosures[[k]]
+               quo_data <- attr(quo, "dplyr:::data")
+               if (!is.null(quo_data$column)) {
+                   context_poke("column", quo_data$column)
+               }
+               chunks <- NULL
+               result <- NULL
+               if (quo_is_symbol(quo)) {
+                   name <- as_string(quo_get_expr(quo))
+                   if (name %in% names(new_columns)) {
+                     result <- new_columns[[name]]
+                     chunks <- mask$resolve(name)
+                   }
+                   else if (name %in% names(.data)) {
+                     result <- .data[[name]]
+                     chunks <- mask$resolve(name)
+                   }
+                   if (inherits(.data, "rowwise_df") && vec_is_list(result)) {
+                     sizes <- list_sizes(result)
+                     wrong <- which(sizes != 1)
+                     if (length(wrong)) {
+                       group <- wrong[1L]
+                       mask$set_current_group(group)
+                       abort(x_size = sizes[group], class = "dplyr:::mutate_incompatible_size")
+                     }
+                   }
+               }
+               if (is.null(chunks)) {
+                   chunks <- mask$eval_all_mutate(quo)
+               }
+               if (is.null(chunks)) {
+                   next
+               }
+               if (is.null(result)) {
+                   if (length(rows) == 1) {
+                     result <- chunks[[1]]
+                   }
+                   else {
+                     result <- withCallingHandlers(vec_unchop(chunks <- vec_cast_common(!!!chunks), 
+                       rows), vctrs_error_incompatible_type = function(cnd) {
+                       abort(class = "dplyr:::error_mutate_incompatible_combine", 
+                         parent = cnd)
+                     })
+                   }
+               }
+               quosures_results[[k]] <- list(result = result, chunks = chunks)
+           }
+           for (k in seq_along(quosures)) {
+               quo <- quosures[[k]]
+               quo_data <- attr(quo, "dplyr:::data")
+               quo_result <- quosures_results[[k]]
+               if (is.null(quo_result)) {
+                   if (quo_data$is_named) {
+                     name <- quo_data$name_given
+                     new_columns[[name]] <- zap()
+                     mask$remove(name)
+                   }
+                   next
+               }
+               result <- quo_result$result
+               chunks <- quo_result$chunks
+               if (!quo_data$is_named && is.data.frame(result)) {
+                   new_columns[names(result)] <- result
+                   mask$add_many(result, chunks)
+               }
+               else {
+                   name <- quo_data$name_auto
+                   new_columns[[name]] <- result
+                   mask$add_one(name, chunks)
+               }
+           }
+       }
+   }, error = function(e) {
+       local_call_step(dots = dots, .index = i, .fn = "mutate", 
+           .dot_data = inherits(e, "rlang_error_data_pronoun_not_found"))
+       call_step_envir <- peek_call_step()
+       error_name <- call_step_envir$error_name
+       error_expression <- call_step_envir$error_expression
+       show_group_details <- TRUE
+       if (inherits(e, "dplyr:::mutate_incompatible_size")) {
+           size <- vec_size(rows[[mask$get_current_group()]])
+           x_size <- e$x_size
+           bullets <- c(i = cnd_bullet_column_info(), i = glue("`{error_name}` must be size {or_1(size)}, not {x_size}."), 
+               i = cnd_bullet_rowwise_unlist())
+       }
+       else if (inherits(e, "dplyr:::mutate_mixed_null")) {
+           show_group_details <- FALSE
+           bullets <- c(i = cnd_bullet_column_info(), x = glue("`{error_name}` must return compatible vectors across groups."), 
+               i = "Cannot combine NULL and non NULL results.", 
+               i = cnd_bullet_rowwise_unlist())
+       }
+       else if (inherits(e, "dplyr:::mutate_not_vector")) {
+           bullets <- c(i = cnd_bullet_column_info(), x = glue("`{error_name}` must be a vector, not {friendly_type_of(e$result)}."), 
+               i = cnd_bullet_rowwise_unlist())
+       }
+       else if (inherits(e, "dplyr:::error_mutate_incompatible_combine")) {
+           show_group_details <- FALSE
+           bullets <- c(i = cnd_bullet_column_info(), x = glue("`{error_name}` must return compatible vectors across groups"), 
+               i = cnd_bullet_combine_details(e$parent$x, e$parent$x_arg), 
+               i = cnd_bullet_combine_details(e$parent$y, e$parent$y_arg))
+       }
+       else {
+           bullets <- c(i = cnd_bullet_column_info(), x = conditionMessage(e))
+       }
+       bullets <- c(cnd_bullet_header(), bullets, i = if (show_group_details) cnd_bullet_cur_group_label())
+       abort(bullets, class = c("dplyr:::mutate_error", "dplyr_error"), 
+           error_name = error_name, error_expression = error_expression, 
+           parent = e, bullets = bullets)
+   }, warning = function(w) {
+       if (check_muffled_warning(w)) {
+           maybe_restart("muffleWarning")
+       }
+       local_call_step(dots = dots, .index = i, .fn = "mutate")
+       warn(c(cnd_bullet_header(), i = cnd_bullet_column_info(), 
+           i = conditionMessage(w), i = cnd_bullet_cur_group_label(what = "warning")))
+       maybe_restart("muffleWarning")
+   })
+8: mutate_cols(.data, ..., caller_env = caller_env())
+7: mutate.data.frame(., Datum = as.Date(Datum))
+6: dplyr::mutate(., Datum = as.Date(Datum))
+5: dplyr::select(., -starts_with("Bev"))
+4: tidyr::gather(., key = "Key", value = "Value", -Datum, -BundeslandID, 
+       -Name)
+3: dplyr::mutate(., Source = !!csvSource)
+2: read.csv(csvTarget, header = TRUE, sep = ";", stringsAsFactors = FALSE) %>% 
+       dplyr::mutate(Datum = as.Date(Datum)) %>% dplyr::select(-starts_with("Bev")) %>% 
+       tidyr::gather(key = "Key", value = "Value", -Datum, -BundeslandID, 
+           -Name) %>% dplyr::mutate(Source = !!csvSource)
+1: scrapeBmsgpk(ts = ts)
+20221012-124635.622 Writing ems data to ./data/COVID-19-austria.csv 
+Error in rbind(deparse.level, ...) : object 'dc' not found
+Calls: rbind -> rbind
+3: (function () 
+   traceback(2))()
+2: rbind(deparse.level, ...)
+1: rbind(df, dc)
+20221012-124635.723 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
+20221012-124635.723 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
+Error in is.data.frame(x) : object 'db' not found
+Calls: write.csv ... eval.parent -> eval -> eval -> <Anonymous> -> is.data.frame
+7: (function () 
+   traceback(2))()
+6: is.data.frame(x)
+5: utils::write.table(db, file = csvFile, row.names = FALSE, quote = FALSE, 
+       col.names = TRUE, sep = ",", dec = ".", qmethod = "double")
+4: eval(expr, p)
+3: eval(expr, p)
+2: eval.parent(Call)
+1: write.csv(db, file = csvFile, row.names = FALSE, quote = FALSE)
+20221012-124635.724 Done runing data extraction from bmsgpk web pages 
