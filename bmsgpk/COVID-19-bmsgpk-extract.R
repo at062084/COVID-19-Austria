@@ -126,12 +126,12 @@ scrapeBmsgpk <- function (ts=format(now(),"%Y%m%d-%H%M")) {
     csvTarget <- paste0("./data/bmsgpk/",csvFile,".csv")
     url <- paste0("https://info.gesundheitsministerium.gv.at/data/", csvFile,".csv")
     logMsg(paste("Fetching", csvFile))
-    cmd <- paste(url, " --secure-protocol=TLSv1 -O", csvTarget)
+    cmd <- paste(url, " --no-check-certificate --secure-protocol=TLSv1 -O", csvTarget)
     system2("wget", cmd)
     
     # gather to long format
     rc <- read.csv(csvTarget, header=TRUE, sep=";", stringsAsFactors=FALSE) %>% 
-      dplyr::mutate(Datum=as.Date(Datum)) %>% 
+      dplyr::mutate(Datum=as.Date(Datum,tryFormats=c("%Y.%m.%d","%Y-%m-%d","%Y-%m-%dT%H:%M:%S+01:00"))) %>% 
       dplyr::select(-starts_with("Bev")) %>%
       tidyr::gather(key="Key", value="Value", -Datum, -BundeslandID, -Name) %>%
       dplyr::mutate(Source=!!csvSource)
@@ -155,7 +155,7 @@ scrapeCovid2 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   url="\"https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html\""
   logMsg(paste("Download Ampel data from", url))
   logMsg(paste("Storing Ampel data to", ampelFile))
-  cmd <- paste(url, " --secure-protocol=TLSv1 -O", ampelFile)
+  cmd <- paste(url, " --no-check-certificate --secure-protocol=TLSv1 -O", ampelFile)
   system2("wget", cmd)
   
   # get html page from bmsgpk
@@ -163,7 +163,7 @@ scrapeCovid2 <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   url="\"https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html\""
   logMsg(paste("Scraping", url))
   logMsg(paste("Dumping page to", bmsgpkFile))
-  cmd <- paste(url, " --secure-protocol=TLSv1 -O", bmsgpkFile)
+  cmd <- paste(url, " --no-check-certificate --secure-protocol=TLSv1 -O", bmsgpkFile)
   system2("wget", cmd)
   
   #xpathTable <- "/html/body/div[3]/div/div/div/div[2]/main/div[2]/table"
@@ -231,7 +231,7 @@ scrapeCovid <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   url="\"https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html\""
   logMsg(paste("Scraping", url))
   logMsg(paste("Dumping page to", bmsgpkFile))
-  cmd <- paste(url, " --secure-protocol=TLSv1 -O", bmsgpkFile)
+  cmd <- paste(url, " --no-check-certificate --secure-protocol=TLSv1 -O", bmsgpkFile)
   system2("wget", cmd)
   
   logMsg(paste("Parsing dump in", bmsgpkFile))
@@ -507,7 +507,7 @@ scrapeHospitalisierung <- function(ts=format(now(),"%Y%m%d-%H%M")) {
   logMsg(paste("Scraping", url))
   
   logMsg(paste("Dumping page to", dmpFile))
-  cmd <- paste0("\"",url,"\"", " --secure-protocol=TLSv1  -O ", dmpFile)
+  cmd <- paste0("\"",url,"\"", " --no-check-certificate --secure-protocol=TLSv1  -O ", dmpFile)
   system2("wget", cmd)
 
   logMsg(paste("Reading dump from", dmpFile))
@@ -556,7 +556,7 @@ scrapeZIP <- function(ts=format(now(),"%Y-%m-%d_%H%M")) {
   url="https://info.gesundheitsministerium.at/data/data.zip"
   
   logMsg(paste("Downloading", url, "to", zipFile))
-  cmd <- paste0("\"",url,"\"", " --secure-protocol=TLSv1  -O ", zipFile)
+  cmd <- paste0("\"",url,"\"", " --no-check-certificate --secure-protocol=TLSv1  -O ", zipFile)
   system2("wget", cmd)
   
   #cmd <- paste(zipFile, "-d", zipDir)
@@ -573,7 +573,7 @@ scrapeZIP_AGES <- function(ts=format(now(),"%Y-%m-%d_%H%M")) {
   url="https://covid19-dashboard.ages.at/data/data.zip"
   
   logMsg(paste("Downloading", url, "to", zipFile))
-  cmd <- paste0("\"",url,"\"", " --secure-protocol=TLSv1 -O ", zipFile)
+  cmd <- paste0("\"",url,"\"", " --no-check-certificate --secure-protocol=TLSv1 -O ", zipFile)
   system2("wget", cmd)
   
   cmd <- paste("-fo", zipFile, "-d", unzipDir)
@@ -618,8 +618,8 @@ logMsg(paste("DISABLED: Calling scrapeCovid2 with", ts))
 #dc <- scrapeCovid2(ts=ts)
 
 # OK scrapeCovid
-logMsg(paste("Calling scrapeCovid3 with", ts))
-dc <- scrapeCovid3(ts=ts)
+logMsg(paste("DISABLED: Calling scrapeCovid3 with", ts))
+#dc <- scrapeCovid3(ts=ts)
 
 # scrapeHospitalisierung
 logMsg(paste("DISABLED: Calling scrapeHospitalisierung with", ts))
@@ -641,10 +641,10 @@ db <- scrapeBmsgpk(ts=ts)
 
 # Persist data
 csvFile <- paste0("./data/COVID-19-austria.csv")
-logMsg(paste("Writing ems data to", csvFile))
-df <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp, tz="CEST"))
-df <- rbind(df,dc)
-write.csv(df, file=csvFile, row.names=FALSE, quote=FALSE)
+logMsg(paste("DISABLED: Writing ems data to", csvFile))
+#df <- read.csv(file=csvFile) %>% dplyr::mutate(Stamp=as.POSIXct(Stamp, tz="CEST"))
+#df <- rbind(df,dc)
+#write.csv(df, file=csvFile, row.names=FALSE, quote=FALSE)
 
 #csvFile <- paste0("./data/COVID-19-austria.hospital.csv")
 #logMsg(paste("Writing new data to", csvFile))
