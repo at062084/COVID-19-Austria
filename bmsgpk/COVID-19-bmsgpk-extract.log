@@ -24205,3 +24205,21 @@
 20221031-175116.657 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
 20221031-175116.657 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
 20221031-175118.296 Done runing data extraction from bmsgpk web pages 
+20221102-085549.154 Running COVID-19-bmsgpk-extract.R 
+20221102-085549.158 DISABLED: Calling scrapeCovid2 with 20221102-0855 
+20221102-085549.158 DISABLED: Calling scrapeCovid3 with 20221102-0855 
+20221102-085549.158 DISABLED: Calling scrapeHospitalisierung with 20221102-0855 
+20221102-085549.158 DISABLED: Calling scrapeInfo with 20221102-0855 
+20221102-085549.159 Calling scrapeZIP_AGES with 20221102-0855 
+20221102-085549.167 Downloading https://covid19-dashboard.ages.at/data/data.zip to ./data/zip/COVID-19-austria.V1006.20221102-0855.zip 
+20221102-085557.306 Calling scrapeBmsgpk with 20221102-0855 
+20221102-085557.325 Fetching timeline-eimpfpass 
+20221102-085559.300 Fetching timeline-bbg 
+20221102-085600.388 Fetching timeline-faelle-ems 
+20221102-085601.006 Fetching timeline-faelle-bundeslaender 
+20221102-085601.795 Fetching timeline-testungen-apotheken-betriebe 
+20221102-085602.996 Fetching timeline-testungen-schulen 
+20221102-085603.748 DISABLED: Writing ems data to ./data/COVID-19-austria.csv 
+20221102-085603.748 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
+20221102-085603.749 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
+20221102-085605.570 Done runing data extraction from bmsgpk web pages 
