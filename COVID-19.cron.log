@@ -58689,3 +58689,214 @@ Calls: write.csv ... eval.parent -> eval -> eval -> <Anonymous> -> is.data.frame
 2: eval.parent(Call)
 1: write.csv(db, file = csvFile, row.names = FALSE, quote = FALSE)
 20230612-150458.649 Done runing data extraction from bmsgpk web pages 
+[master 82dcf8b5] 2023-06-12 15:00:28 Auto-Extract data from bmsgpk website
+ 19 files changed, 246900 insertions(+), 210267 deletions(-)
+ rewrite bmsgpk/data/ages/CovidFaelle_GKZ.csv (98%)
+ rewrite bmsgpk/data/bmsgpk/timeline-eimpfpass.csv (100%)
+ rewrite bmsgpk/data/unzip/CovidFaelle_GKZ.csv (98%)
+ create mode 100644 bmsgpk/data/zip/COVID-19-austria.V1006.20230612-1500.zip
+Warning: Permanently added 'github.com' (ECDSA) to the list of known hosts.
+Connection closed by 140.82.121.4 port 22
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+--------------------------------------------------------------------
+2023-06-12 15:22:58 Running ./COVID-19-cron.sh for SECTION=bmsgpk
+2023-06-12 15:22:58 Workdir /home/at001335/DataEngineering/COVID-19/COVID-19-Austria
+--------------------------------------------------------------------
+2023-06-12 15:22:58 Running auto-extraction of COVID-19 data from bmsgpk website
+
+Attaching package: ‘lubridate’
+
+The following objects are masked from ‘package:base’:
+
+    date, intersect, setdiff, union
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘rvest’
+
+The following object is masked from ‘package:readr’:
+
+    guess_encoding
+
+20230612-152259.215 Running COVID-19-bmsgpk-extract.R 
+20230612-152259.219 DISABLED: Calling scrapeCovid2 with 20230612-1522 
+20230612-152259.219 DISABLED: Calling scrapeCovid3 with 20230612-1522 
+20230612-152259.220 DISABLED: Calling scrapeHospitalisierung with 20230612-1522 
+20230612-152259.220 DISABLED: Calling scrapeInfo with 20230612-1522 
+20230612-152259.220 Calling scrapeZIP_AGES with 20230612-1522 
+20230612-152259.229 Downloading https://covid19-dashboard.ages.at/data/data.zip to ./data/zip/COVID-19-austria.V1006.20230612-1522.zip 
+--2023-06-12 15:22:59--  https://covid19-dashboard.ages.at/data/data.zip
+Resolving covid19-dashboard.ages.at (covid19-dashboard.ages.at)... 194.48.237.240
+Connecting to covid19-dashboard.ages.at (covid19-dashboard.ages.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 4630659 (4.4M) [application/zip]
+Saving to: ‘./data/zip/COVID-19-austria.V1006.20230612-1522.zip’
+
+     0K .......... .......... .......... .......... ..........  1%  400K 11s
+    50K .......... .......... .......... .......... ..........  2% 1.44M 7s
+   100K .......... .......... .......... .......... ..........  3% 2.45M 5s
+   150K .......... .......... .......... .......... ..........  4% 1.20M 5s
+   200K .......... .......... .......... .......... ..........  5% 1.26M 4s
+   250K .......... .......... .......... .......... ..........  6%  985K 4s
+   300K .......... .......... .......... .......... ..........  7%  980K 4s
+   350K .......... .......... .......... .......... ..........  8%  985K 4s
+   400K .......... .......... .......... .......... ..........  9% 17.5M 4s
+   450K .......... .......... .......... .......... .......... 11% 1022K 4s
+   500K .......... .......... .......... .......... .......... 12%  944K 4s
+   550K .......... .......... .......... .......... .......... 13% 1015K 4s
+   600K .......... .......... .......... .......... .......... 14% 66.9M 3s
+   650K .......... .......... .......... .......... .......... 15%  877K 3s
+   700K .......... .......... .......... .......... .......... 16% 1.13M 3s
+   750K .......... .......... .......... .......... .......... 17%  930K 3s
+   800K .......... .......... .......... .......... .......... 18% 32.6M 3s
+   850K .......... .......... .......... .......... .......... 19% 1.00M 3s
+   900K .......... .......... .......... .......... .......... 21%  939K 3s
+   950K .......... .......... .......... .......... .......... 22% 1016K 3s
+  1000K .......... .......... .......... .......... .......... 23%  955K 3s
+  1050K .......... .......... .......... .......... .......... 24%  998K 3s
+  1100K .......... .......... .......... .......... .......... 25%  275M 3s
+  1150K .......... .......... .......... .......... .......... 26%  477K 3s
+  1200K .......... .......... .......... .......... .......... 27% 1000K 3s
+  1250K .......... .......... .......... .......... .......... 28% 2.96M 3s
+  1300K .......... .......... .......... .......... .......... 29% 1.48M 3s
+  1350K .......... .......... .......... .......... .......... 30%  946K 3s
+  1400K .......... .......... .......... .......... .......... 32%  999K 3s
+  1450K .......... .......... .......... .......... .......... 33%  955K 3s
+  1500K .......... .......... .......... .......... .......... 34% 65.9M 3s
+  1550K .......... .......... .......... .......... .......... 35%  801K 3s
+  1600K .......... .......... .......... .......... .......... 36% 1.96M 2s
+  1650K .......... .......... .......... .......... .......... 37% 3.43M 2s
+  1700K .......... .......... .......... .......... .......... 38%  870K 2s
+  1750K .......... .......... .......... .......... .......... 39%  727K 2s
+  1800K .......... .......... .......... .......... .......... 40% 1.40M 2s
+  1850K .......... .......... .......... .......... .......... 42% 1.11M 2s
+  1900K .......... .......... .......... .......... .......... 43%  998K 2s
+  1950K .......... .......... .......... .......... .......... 44%  345M 2s
+  2000K .......... .......... .......... .......... .......... 45%  846K 2s
+  2050K .......... .......... .......... .......... .......... 46% 1.39M 2s
+  2100K .......... .......... .......... .......... .......... 47% 4.51M 2s
+  2150K .......... .......... .......... .......... .......... 48% 1002K 2s
+  2200K .......... .......... .......... .......... .......... 49% 1002K 2s
+  2250K .......... .......... .......... .......... .......... 50%  950K 2s
+  2300K .......... .......... .......... .......... .......... 51% 1010K 2s
+  2350K .......... .......... .......... .......... .......... 53%  955K 2s
+  2400K .......... .......... .......... .......... .......... 54% 61.6M 2s
+  2450K .......... .......... .......... .......... .......... 55% 1.02M 2s
+  2500K .......... .......... .......... .......... .......... 56% 1.21M 2s
+  2550K .......... .......... .......... .......... .......... 57% 1.57M 2s
+  2600K .......... .......... .......... .......... .......... 58% 1.58M 2s
+  2650K .......... .......... .......... .......... .......... 59% 4.74M 1s
+  2700K .......... .......... .......... .......... .......... 60% 1.12M 1s
+  2750K .......... .......... .......... .......... .......... 61% 1016K 1s
+  2800K .......... .......... .......... .......... .......... 63% 1.97M 1s
+  2850K .......... .......... .......... .......... .......... 64% 2.71M 1s
+  2900K .......... .......... .......... .......... .......... 65%  848K 1s
+  2950K .......... .......... .......... .......... .......... 66% 25.4M 1s
+  3000K .......... .......... .......... .......... .......... 67%  965K 1s
+  3050K .......... .......... .......... .......... .......... 68%  755K 1s
+  3100K .......... .......... .......... .......... .......... 69% 1.34M 1s
+  3150K .......... .......... .......... .......... .......... 70% 1001K 1s
+  3200K .......... .......... .......... .......... .......... 71%  957K 1s
+  3250K .......... .......... .......... .......... .......... 72%  187M 1s
+  3300K .......... .......... .......... .......... .......... 74% 1.32M 1s
+  3350K .......... .......... .......... .......... .......... 75% 1.57M 1s
+  3400K .......... .......... .......... .......... .......... 76% 1.69M 1s
+  3450K .......... .......... .......... .......... .......... 77% 2.51M 1s
+  3500K .......... .......... .......... .......... .......... 78% 1.35M 1s
+  3550K .......... .......... .......... .......... .......... 79% 1.73M 1s
+  3600K .......... .......... .......... .......... .......... 80% 1.48M 1s
+  3650K .......... .......... .......... .......... .......... 81% 1.24M 1s
+  3700K .......... .......... .......... .......... .......... 82% 2.86M 1s
+  3750K .......... .......... .......... .......... .......... 84% 1.40M 1s
+  3800K .......... .......... .......... .......... .......... 85%  965K 1s
+  3850K .......... .......... .......... .......... .......... 86% 36.3M 0s
+  3900K .......... .......... .......... .......... .......... 87%  978K 0s
+  3950K .......... .......... .......... .......... .......... 88% 1.00M 0s
+  4000K .......... .......... .......... .......... .......... 89%  932K 0s
+  4050K .......... .......... .......... .......... .......... 90% 7.72M 0s
+  4100K .......... .......... .......... .......... .......... 91%  943K 0s
+  4150K .......... .......... .......... .......... .......... 92%  972K 0s
+  4200K .......... .......... .......... .......... .......... 93% 1.16M 0s
+  4250K .......... .......... .......... .......... .......... 95%  990K 0s
+  4300K .......... .......... .......... .......... .......... 96%  976K 0s
+  4350K .......... .......... .......... .......... .......... 97%  949K 0s
+  4400K .......... .......... .......... .......... .......... 98% 68.9M 0s
+  4450K .......... .......... .......... .......... .......... 99%  860K 0s
+  4500K .......... .......... ..                              100%  554K=3.6s
+
+2023-06-12 15:23:03 (1.23 MB/s) - ‘./data/zip/COVID-19-austria.V1006.20230612-1522.zip’ saved [4630659/4630659]
+
+Archive:  ./data/zip/COVID-19-austria.V1006.20230612-1522.zip
+  inflating: ./data/unzip/CovidFaelleDelta.csv  
+  inflating: ./data/unzip/CovidFaelle_Altersgruppe.csv  
+  inflating: ./data/unzip/CovidFaelle_GKZ.csv  
+  inflating: ./data/unzip/CovidFaelle_Timeline.csv  
+  inflating: ./data/unzip/CovidFaelle_Timeline_GKZ.csv  
+  inflating: ./data/unzip/CovidFallzahlen.csv  
+  inflating: ./data/unzip/Hospitalisierung.csv  
+  inflating: ./data/unzip/Version.csv  
+20230612-152303.593 Calling scrapeBmsgpk with 20230612-1522 
+20230612-152303.610 Fetching timeline-eimpfpass 
+--2023-06-12 15:23:03--  https://info.gesundheitsministerium.gv.at/data/timeline-eimpfpass.csv
+Resolving info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)... 2a00:1610:0:50::1bb:4a, 194.48.237.240
+Connecting to info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)|2a00:1610:0:50::1bb:4a|:443... failed: Connection timed out.
+Connecting to info.gesundheitsministerium.gv.at (info.gesundheitsministerium.gv.at)|194.48.237.240|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://impfdaten.at//data/timeline-eimpfpass.csv [following]
+--2023-06-12 15:25:15--  https://impfdaten.at//data/timeline-eimpfpass.csv
+Resolving impfdaten.at (impfdaten.at)... 2001:67c:252c:12:212:183:22:3, 212.183.22.3
+Connecting to impfdaten.at (impfdaten.at)|2001:67c:252c:12:212:183:22:3|:443... failed: Connection timed out.
+Connecting to impfdaten.at (impfdaten.at)|212.183.22.3|:443... connected.
+HTTP request sent, awaiting response... 404 Not Found
+2023-06-12 15:27:26 ERROR 404: Not Found.
+
+Error in read.table(file = file, header = header, sep = sep, quote = quote,  : 
+  no lines available in input
+Calls: scrapeBmsgpk ... <Anonymous> -> <Anonymous> -> read.csv -> read.table
+10: (function () 
+    traceback(2))()
+9: stop("no lines available in input")
+8: read.table(file = file, header = header, sep = sep, quote = quote, 
+       dec = dec, fill = fill, comment.char = comment.char, ...)
+7: read.csv(csvTarget, header = TRUE, sep = ";", stringsAsFactors = FALSE)
+6: dplyr::mutate(., Datum = as.Date(Datum, tryFormats = c("%Y.%m.%d", 
+       "%Y-%m-%d", "%Y-%m-%dT%H:%M:%S+01:00")))
+5: dplyr::select(., -starts_with("Bev"))
+4: tidyr::gather(., key = "Key", value = "Value", -Datum, -BundeslandID, 
+       -Name)
+3: dplyr::mutate(., Source = !!csvSource)
+2: read.csv(csvTarget, header = TRUE, sep = ";", stringsAsFactors = FALSE) %>% 
+       dplyr::mutate(Datum = as.Date(Datum, tryFormats = c("%Y.%m.%d", 
+           "%Y-%m-%d", "%Y-%m-%dT%H:%M:%S+01:00"))) %>% dplyr::select(-starts_with("Bev")) %>% 
+       tidyr::gather(key = "Key", value = "Value", -Datum, -BundeslandID, 
+           -Name) %>% dplyr::mutate(Source = !!csvSource)
+1: scrapeBmsgpk(ts = ts)
+20230612-152726.261 DISABLED: Writing ems data to ./data/COVID-19-austria.csv 
+20230612-152726.261 DISABLED: Writing new data to ./data/COVID-19-austria.regions.csv 
+20230612-152726.261 Writing bmsgpk data to ./data/COVID-19-austria-bmsgpk.csv 
+Error in is.data.frame(x) : object 'db' not found
+Calls: write.csv ... eval.parent -> eval -> eval -> <Anonymous> -> is.data.frame
+7: (function () 
+   traceback(2))()
+6: is.data.frame(x)
+5: utils::write.table(db, file = csvFile, row.names = FALSE, quote = FALSE, 
+       col.names = TRUE, sep = ",", dec = ".", qmethod = "double")
+4: eval(expr, p)
+3: eval(expr, p)
+2: eval.parent(Call)
+1: write.csv(db, file = csvFile, row.names = FALSE, quote = FALSE)
+20230612-152726.263 Done runing data extraction from bmsgpk web pages 
